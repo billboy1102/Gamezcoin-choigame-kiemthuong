@@ -5,12 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#07111f" />
   <meta name="description" content="Gamezcoin: Chơi Game & Kiếm Thưởng" />
+  <meta name="gamezcoin-build" content="web-startup-fix-20260818-1513" />
   <title>Gamezcoin: Chơi Game & Kiếm Thưởng</title>
 </head>
 <body>
   <div id="app"></div>
   <div id="toast-root"></div>
-  <script type="module" src="/src/block-blast.js"></script>
+  <script>
+    window.setTimeout(function () {
+      var app = document.getElementById('app')
+      var loader = app && app.querySelector('.loader')
+      if (!loader) return
+      app.innerHTML = '<main style="min-height:100dvh;display:grid;place-items:center;padding:24px;background:#06101d;color:#eef6ff;font-family:system-ui;text-align:center"><section><h2>Không thể khởi động Gamezcoin</h2><p style="color:#8da4bb">Trang đã chờ quá lâu. Hãy tải lại để thử lại.</p><button onclick="location.reload()" style="border:0;border-radius:12px;padding:12px 18px;font-weight:800;background:#55e6a5;color:#03251a">Tải lại</button></section></main>'
+    }, 12000)
+  </script>
   <script type="module" src="/src/main.js"></script>
 </body>
 </html>
