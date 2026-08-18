@@ -42,18 +42,17 @@ function decorateCard(){
   document.querySelectorAll(`[data-play="${GAME_ID}"]`).forEach(btn=>{
     const icon=btn.closest('.game')?.querySelector('.gi')
     if(icon)icon.textContent='🧩'
+    if(btn.dataset.blockBlastBound==='1')return
+    btn.dataset.blockBlastBound='1'
+    btn.onclick=ev=>{
+      ev.preventDefault()
+      ev.stopPropagation()
+      startGame()
+    }
   })
 }
 new MutationObserver(decorateCard).observe(document.documentElement,{childList:true,subtree:true})
 queueMicrotask(decorateCard)
-
-document.addEventListener('click',ev=>{
-  const btn=ev.target.closest?.(`[data-play="${GAME_ID}"]`)
-  if(!btn)return
-  ev.preventDefault()
-  ev.stopImmediatePropagation()
-  startGame()
-},true)
 
 function modal(html){
   let m=document.querySelector('#gm')
@@ -64,7 +63,7 @@ function modal(html){
 function closeModal(){document.querySelector('#gm')?.remove();state=null}
 function loading(text='Đang tạo phiên chơi...'){modal(`<div class="loader"></div><p>${text}</p>`)}
 function friendly(message){
-  return ({TOO_FAST:'Phiên chơi quá nhanh nên không được cộng coin.',IMPOSSIBLE_SCORE:'Điểm vượt ngưỡng hợp lý nên bị từ chối.',SESSION_EXPIRED:'Phiên chơi đã hết hạn.',SESSION_ALREADY_FINISHED:'Phiên này đã được xử lý.'})[message]||message||'Không thể kết nối máy chủ.'
+  return ({TOO_FAST:'Phiên chơi quá nhanh nên không được cộng coin.',IMPOSSIBLE_SCORE:'Điểm vượt ngưỡng hợp lý nên bị từ chối.',SESSION_EXPIRED:'Phiên chơi đã hết hạn.',SESSION_ALREADY_FINISHED:'Phiên này đã được xử lý.',TOO_MANY_SESSIONS:'Bạn đang mở quá nhiều phiên game. Hãy đóng các ván cũ rồi thử lại.'})[message]||message||'Không thể kết nối máy chủ.'
 }
 
 async function startGame(){
@@ -194,11 +193,11 @@ function place(index,row,col){
     state.score+=cleared*8+state.combo*3
     fullRows.forEach(r=>{for(let c=0;c<SIZE;c++)state.board[r*SIZE+c]=0})
     fullCols.forEach(c=>{for(let r=0;r<SIZE;r++)state.board[r*SIZE+c]=0})
-    burst(cleared,state.combo)
   }else state.combo=0
 
   if(state.pieces.every(x=>!x))state.pieces=newSet()
   render()
+  if(cleared)requestAnimationFrame(()=>burst(cleared,state?.combo||1))
 }
 function burst(lines,combo){
   const pop=document.querySelector('#bb-pop')
