@@ -1,4 +1,4 @@
-name: Build Gamezcoin
+name: Deploy Gamezcoin Web
 
 on:
   push:
@@ -24,38 +24,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-      - run: npm install --no-audit --no-fund
-      - run: npm run build
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Build web
+        run: npm run build
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
       - id: deployment
         uses: actions/deploy-pages@v4
-
-  android:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-      - uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '17'
-      - run: npm install --no-audit --no-fund
-      - run: npm run build
-      - run: npx cap add android
-      - run: npx cap sync android
-      - name: Build APK and AAB
-        working-directory: android
-        run: ./gradlew assembleDebug bundleRelease
-      - uses: actions/upload-artifact@v4
-        with:
-          name: Gamezcoin-APK
-          path: android/app/build/outputs/apk/debug/app-debug.apk
-      - uses: actions/upload-artifact@v4
-        with:
-          name: Gamezcoin-AAB-unsigned
-          path: android/app/build/outputs/bundle/release/app-release.aab
