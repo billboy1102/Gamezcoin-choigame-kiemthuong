@@ -6,10 +6,15 @@ export const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
 })
 
 async function invoke(functionName, action, payload = {}) {
-  const { data, error } = await supabase.functions.invoke(functionName, {
-    body: { action, ...payload },
-  })
-  if (error) throw new Error(error.message || 'Không thể kết nối máy chủ')
+  const { data, error } = await supabase.functions.invoke(functionName, { body: { action, ...payload } })
+  if (error) {
+    let message = error.message || 'Không thể kết nối máy chủ'
+    try {
+      const details = await error.context?.json?.()
+      if (details?.error) message = details.error
+    } catch {}
+    throw new Error(message)
+  }
   if (data?.error) throw new Error(data.error)
   return data
 }
