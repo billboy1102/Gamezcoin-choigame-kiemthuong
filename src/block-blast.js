@@ -38,21 +38,17 @@ function chooseShape(){
 function newPiece(){return {shape:chooseShape(),color:1+Math.floor(Math.random()*COLORS)}}
 function newSet(){return [newPiece(),newPiece(),newPiece()]}
 
-function decorateCard(){
-  document.querySelectorAll(`[data-play="${GAME_ID}"]`).forEach(btn=>{
-    const icon=btn.closest('.game')?.querySelector('.gi')
-    if(icon)icon.textContent='🧩'
-    if(btn.dataset.blockBlastBound==='1')return
-    btn.dataset.blockBlastBound='1'
-    btn.onclick=ev=>{
-      ev.preventDefault()
-      ev.stopPropagation()
-      startGame()
-    }
-  })
-}
-new MutationObserver(decorateCard).observe(document.documentElement,{childList:true,subtree:true})
-queueMicrotask(decorateCard)
+// Intercept only the Block Blast button. Do not observe/mutate the whole DOM:
+// on Safari the old MutationObserver re-triggered itself endlessly when it
+// rewrote the icon text, leaving the app stuck on the loading spinner.
+document.addEventListener('click',ev=>{
+  const btn=ev.target.closest?.(`[data-play="${GAME_ID}"]`)
+  if(!btn)return
+  ev.preventDefault()
+  ev.stopPropagation()
+  ev.stopImmediatePropagation()
+  startGame()
+},true)
 
 function modal(html){
   let m=document.querySelector('#gm')
@@ -63,7 +59,7 @@ function modal(html){
 function closeModal(){document.querySelector('#gm')?.remove();state=null}
 function loading(text='Đang tạo phiên chơi...'){modal(`<div class="loader"></div><p>${text}</p>`)}
 function friendly(message){
-  return ({TOO_FAST:'Phiên chơi quá nhanh nên không được cộng coin.',IMPOSSIBLE_SCORE:'Điểm vượt ngưỡng hợp lý nên bị từ chối.',SESSION_EXPIRED:'Phiên chơi đã hết hạn.',SESSION_ALREADY_FINISHED:'Phiên này đã được xử lý.',TOO_MANY_SESSIONS:'Bạn đang mở quá nhiều phiên game. Hãy đóng các ván cũ rồi thử lại.'})[message]||message||'Không thể kết nối máy chủ.'
+  return ({TOO_FAST:'Phiên chơi quá nhanh nên không được cộng coin.',IMPOSSIBLE_SCORE:'Điểm vượt ngưỡng hợp lý nên bị từ chối.',SESSION_EXPIRED:'Phiên chơi đã hết hạn.',SESSION_ALREADY_FINISHED':'Phiên này đã được xử lý.',TOO_MANY_SESSIONS:'Bạn đang mở quá nhiều phiên game. Hãy đóng các ván cũ rồi thử lại.'})[message]||message||'Không thể kết nối máy chủ.'
 }
 
 async function startGame(){
