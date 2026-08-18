@@ -1,0 +1,22 @@
+{
+  "name": "gamezcoin-choigame-kiemthuong",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "android:add": "cap add android",
+    "android:sync": "npm run build && cap sync android"
+  },
+  "dependencies": {
+    "@capacitor/android": "6.2.0",
+    "@capacitor/core": "6.2.0",
+    "@supabase/supabase-js": "2.57.4"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "6.2.0",
+    "vite": "5.4.10"
+  }
+}

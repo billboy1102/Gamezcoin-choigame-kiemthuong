@@ -1,0 +1,6 @@
+{
+  "appId": "com.bobbey.gamezcoin",
+  "appName": "Gamezcoin: Chơi Game & Kiếm Thưởng",
+  "webDir": "dist",
+  "server": { "androidScheme": "https" }
+}
