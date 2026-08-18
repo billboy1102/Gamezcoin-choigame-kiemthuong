@@ -5,14 +5,12 @@ function blockBlastButton(target) {
 }
 
 // Keep Block Blast completely out of the startup path. The module (and its CSS)
-// is downloaded only after the player taps Chơi. This avoids the Safari startup
-// loop that happened when Block Blast was loaded together with the main app.
+// is downloaded only after the player taps Chơi.
 document.addEventListener('click', async (event) => {
-  if (event.__gamezcoinBlockBlastSynthetic) return
-
   const button = blockBlastButton(event.target)
-  if (!button) return
+  if (!button || button.dataset.blockBlastInternal === '1') return
 
+  // Stop main.js before it can route block-blast to the legacy memory-game fallback.
   event.preventDefault()
   event.stopPropagation()
   event.stopImmediatePropagation()
@@ -24,13 +22,19 @@ document.addEventListener('click', async (event) => {
   try {
     await import('./block-blast.js')
 
-    // block-blast.js owns the game session and gameplay. Re-dispatch one marked
-    // click after the lazy module is ready so its existing safe handler starts it.
     button.disabled = false
     button.textContent = oldText
-    const synthetic = new MouseEvent('click', { bubbles: true, cancelable: true })
-    Object.defineProperty(synthetic, '__gamezcoinBlockBlastSynthetic', { value: true })
-    button.dispatchEvent(synthetic)
+
+    // Launch through a temporary internal trigger that has no main.js onclick.
+    // block-blast.js catches this at document level and starts the correct game.
+    const trigger = document.createElement('button')
+    trigger.type = 'button'
+    trigger.hidden = true
+    trigger.dataset.play = BLOCK_BLAST_ID
+    trigger.dataset.blockBlastInternal = '1'
+    document.body.append(trigger)
+    trigger.click()
+    trigger.remove()
   } catch (error) {
     console.error('Block Blast lazy-load failed', error)
     button.disabled = false
