@@ -42,7 +42,7 @@ function installHero() {
       </div>
 
       <div class="home-balance-value"><span data-home-balance-value>${balance}</span><small>coin</small></div>
-      <p class="home-balance-desc">Coin từ chơi game, điểm danh và giới thiệu bạn bè được server xác minh trước khi ghi vào ví.</p>
+      <p class="home-balance-desc">Coin từ chơi game, điểm danh và giới thiệu bạn bè có thể rút được tiền.</p>
 
       <div class="home-balance-actions">
         <button class="home-balance-earn" id="home-hero-earn">Kiếm thưởng <span>›</span></button>
