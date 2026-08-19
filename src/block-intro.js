@@ -5,12 +5,12 @@ let overlay = null
 
 function currentRewardText(button) {
   const card = button?.closest?.('.block-card')
-  return card?.querySelector('em')?.textContent?.trim() || '+1 coin / điểm'
+  return card?.querySelector('em')?.textContent?.trim() || '10 điểm = 1 coin'
 }
 
 function boardPreview() {
-  const filledBlue = new Set([40,41,42,43,44,45,46,47, 30,38,46, 18,19,20])
-  const filledGold = new Set([8,16,24,32, 33,34,35])
+  const filledBlue = new Set([40,41,42,43,44,45,46,47,30,38,46,18,19,20])
+  const filledGold = new Set([8,16,24,32,33,34,35])
   const filledGreen = new Set([5,6,13,14,21,22])
   return Array.from({ length: 64 }, (_, i) => {
     const cls = filledBlue.has(i) ? ' f1' : filledGold.has(i) ? ' f2' : filledGreen.has(i) ? ' f3' : ''
@@ -27,54 +27,57 @@ function closeIntro() {
 function openIntro(playButton) {
   closeIntro()
   const reward = currentRewardText(playButton)
-  overlay = document.createElement('div')
+  overlay = document.createElement('main')
   overlay.className = 'block-intro-overlay'
+  overlay.setAttribute('role', 'dialog')
+  overlay.setAttribute('aria-modal', 'true')
+  overlay.setAttribute('aria-label', 'Hướng dẫn Block Blast')
   overlay.innerHTML = `
-    <main class="block-intro-shell" role="dialog" aria-modal="true" aria-label="Hướng dẫn Block Blast">
-      <header class="block-intro-top">
+    <section class="block-intro-shell">
+      <header class="block-intro-head">
         <button class="block-intro-back" id="block-intro-back" aria-label="Quay lại">‹</button>
-        <div class="block-intro-title"><small>GAMEZCOIN</small><strong>Block Blast</strong></div>
-        <span></span>
+        <div><small>MINI GAME</small><strong>BLOCK BLAST</strong></div>
+        <span class="block-intro-chip" aria-hidden="true">▦</span>
       </header>
 
-      <section class="block-intro-hero">
-        <div class="block-intro-icon">🧩</div>
-        <h2>Xếp khối · Phá hàng · Nhận coin</h2>
-        <p>Kéo các khối ở phía dưới vào bảng 8×8. Hoàn thành một hàng hoặc một cột để phá khối, tạo combo và tăng điểm. Ván chỉ kết thúc khi các khối còn lại không còn vị trí nào có thể đặt.</p>
-        <div class="block-intro-rate">🪙 ${reward}</div>
-      </section>
+      <div class="block-demo" aria-hidden="true">
+        <div class="block-demo-grid">${boardPreview()}</div>
+        <div class="block-demo-copy">
+          <b>XẾP KHỐI · PHÁ HÀNG</b>
+          <span>Giữ bảng còn chỗ trống càng lâu càng tốt</span>
+        </div>
+      </div>
 
-      <section class="block-intro-section">
-        <h3>🎮 Cách chơi</h3>
-        <div class="block-intro-steps">
-          <div class="block-intro-step"><b>1</b><div><strong>Chọn một trong 3 khối</strong><span>Nhấn giữ rồi kéo khối từ khay phía dưới lên bảng chơi.</span></div></div>
-          <div class="block-intro-step"><b>2</b><div><strong>Đặt vào ô trống</strong><span>Khối phải nằm hoàn toàn trong lưới 8×8 và không được đè lên khối đã có.</span></div></div>
-          <div class="block-intro-step"><b>3</b><div><strong>Lấp đầy hàng hoặc cột</strong><span>Khi đủ 8 ô theo chiều ngang hoặc dọc, cả hàng/cột đó sẽ được phá và cộng điểm.</span></div></div>
-          <div class="block-intro-step"><b>4</b><div><strong>Tạo combo để ghi nhiều điểm</strong><span>Liên tục phá hàng/cột ở các lượt kế tiếp để tăng combo và nhận thêm điểm thưởng.</span></div></div>
+      <section class="block-intro-card block-summary">
+        <h2>Block Blast là gì?</h2>
+        <p>Kéo các khối vào lưới 8×8, lấp đầy hàng hoặc cột để phá khối, tạo combo và ghi càng nhiều điểm càng tốt.</p>
+        <div class="block-reward-grid">
+          <div><small>BẢNG CHƠI</small><b>Lưới 8×8</b></div>
+          <div><small>QUY ĐỔI</small><b>${reward}</b></div>
         </div>
       </section>
 
-      <section class="block-intro-section">
-        <h3>🧠 Ví dụ bảng chơi</h3>
-        <div class="block-intro-board">${boardPreview()}</div>
+      <section class="block-intro-card">
+        <h2>Hướng dẫn chơi</h2>
+        <ol class="block-steps">
+          <li><i>1</i><div><b>Chọn một trong 3 khối</b><span>Nhấn giữ rồi kéo một khối từ khay phía dưới lên bảng chơi.</span></div></li>
+          <li><i>2</i><div><b>Đặt khối vào ô trống</b><span>Toàn bộ khối phải nằm trong lưới 8×8 và không được đè lên khối đã có.</span></div></li>
+          <li><i>3</i><div><b>Lấp đầy hàng hoặc cột</b><span>Đủ 8 ô theo chiều ngang hoặc dọc sẽ phá cả hàng/cột và cộng thêm điểm.</span></div></li>
+          <li><i>4</i><div><b>Tạo combo để tăng điểm</b><span>Phá hàng/cột liên tiếp ở các lượt kế tiếp để duy trì combo và tăng điểm thưởng.</span></div></li>
+          <li><i>5</i><div><b>Hết chỗ đặt là Game Over</b><span>Khi không còn vị trí hợp lệ cho các khối còn lại, điểm cuối ván được gửi lên server để xác minh và cộng coin.</span></div></li>
+        </ol>
       </section>
 
-      <section class="block-intro-section">
-        <h3>⭐ Luật tính điểm & nhận thưởng</h3>
-        <div class="block-intro-rules">
-          <div class="block-intro-rule"><b>•</b><span>Đặt khối thành công sẽ cộng điểm theo số ô của khối.</span></div>
-          <div class="block-intro-rule"><b>•</b><span>Phá hàng/cột sẽ nhận thêm điểm; combo càng cao thì điểm thưởng càng lớn.</span></div>
-          <div class="block-intro-rule"><b>•</b><span>Không giới hạn tổng coin kiếm được trong ngày.</span></div>
-          <div class="block-intro-rule"><b>•</b><span>Khi Game Over, điểm cuối cùng được gửi lên server xác minh trước khi cộng coin vào ví.</span></div>
-        </div>
+      <section class="block-intro-card block-note">
+        <b>💡 Mẹo</b>
+        <p>Ưu tiên giữ khoảng trống ở giữa bảng và đừng lấp kín các góc quá sớm. Tạo khoảng trống cho nhiều dạng khối sẽ giúp ván kéo dài hơn.</p>
       </section>
-
-      <div class="block-intro-warning">⚠️ Thoát giữa ván sẽ không nhận coin cho ván đó. Những phiên có điểm bất thường có thể bị server từ chối để chống gian lận.</div>
 
       <div class="block-intro-actions">
         <button id="block-intro-start" class="block-intro-start">▶ Bắt đầu chơi</button>
+        <small>Điểm và coin chỉ được ghi khi server xác minh ván chơi.</small>
       </div>
-    </main>`
+    </section>`
 
   document.body.append(overlay)
   document.body.style.overflow = 'hidden'
