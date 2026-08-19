@@ -1,6 +1,8 @@
 name: Build Gamezcoin Android
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
