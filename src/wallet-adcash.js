@@ -38,6 +38,13 @@ function activeWallet() {
   return document.querySelector('.shell>nav button.on')?.dataset.tab === 'wallet'
 }
 
+function walletViewIsCurrent(view) {
+  if (!view) return false
+  if (view.dataset.gcWalletAdcash === '1') return Boolean(view.querySelector('.gc-wallet-page'))
+  if (view.dataset.gcWalletAdcash === 'withdraw') return Boolean(view.querySelector('.gc-withdraw-page'))
+  return false
+}
+
 function transactionRows(data) {
   const ledger = (data.ledger || []).map((item) => ({
     id: `l-${item.id}`,
@@ -186,21 +193,39 @@ function renderWithdrawView(view, data) {
   })
 }
 
+function queueRaceGuard() {
+  for (const delay of [0, 80, 250, 700]) {
+    window.setTimeout(() => {
+      if (!activeWallet()) return
+      const view = document.querySelector('#view')
+      if (view && !walletViewIsCurrent(view)) schedule()
+    }, delay)
+  }
+}
+
 async function installWallet() {
   if (!activeWallet() || rendering) return
   const view = document.querySelector('#view')
-  if (!view) return
-  if (view.dataset.gcWalletAdcash === '1' || view.dataset.gcWalletAdcash === 'withdraw') return
+  if (!view || walletViewIsCurrent(view)) return
+
   rendering = true
   try {
-    view.innerHTML = '<div class="loader"></div>'
+    // Nếu ví cũ vừa được app chính render lại, thay nó ngay bằng ví mới đã cache
+    // trước khi gọi server. Như vậy người dùng không còn thấy form ví cũ nhấp nháy.
+    if (cached) renderWalletView(view, cached)
+    else view.innerHTML = '<div class="loader"></div>'
+
     const data = await loadWallet(true)
     if (!activeWallet() || !document.body.contains(view)) return
     renderWalletView(view, data)
   } catch (error) {
-    view.innerHTML = `<section class="card center"><h3>Không tải được Ví</h3><p>${e(error?.message || 'Hãy thử lại.')}</p></section>`
+    if (activeWallet() && document.body.contains(view)) {
+      view.innerHTML = `<section class="card center"><h3>Không tải được Ví</h3><p>${e(error?.message || 'Hãy thử lại.')}</p></section>`
+      delete view.dataset.gcWalletAdcash
+    }
   } finally {
     rendering = false
+    queueRaceGuard()
   }
 }
 
