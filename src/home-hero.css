@@ -1,0 +1,120 @@
+.home-welcome.gamez-home-balance{
+  position:relative!important;
+  display:block!important;
+  overflow:hidden!important;
+  min-height:300px;
+  padding:28px 24px 24px!important;
+  border:1px solid rgba(75,218,145,.28)!important;
+  border-radius:30px!important;
+  background:
+    radial-gradient(circle at 88% 8%,rgba(79,226,152,.10),transparent 34%),
+    linear-gradient(145deg,#0a291d 0%,#08251a 52%,#071f17 100%)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.035),
+    0 18px 42px rgba(0,0,0,.18)!important;
+}
+.home-welcome.gamez-home-balance::before,
+.home-welcome.gamez-home-balance::after{
+  content:"";
+  position:absolute;
+  pointer-events:none;
+  border-radius:50%;
+  border:1px solid rgba(86,229,162,.08);
+}
+.home-welcome.gamez-home-balance::before{
+  width:430px;
+  height:430px;
+  right:-205px;
+  top:-235px;
+}
+.home-welcome.gamez-home-balance::after{
+  width:520px;
+  height:520px;
+  right:-235px;
+  top:-285px;
+  border-color:rgba(86,229,162,.045);
+}
+.home-balance-content{position:relative;z-index:2}
+.home-balance-label{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#c4ddd1;
+  font-size:15px;
+  font-weight:800;
+  letter-spacing:.1px;
+}
+.home-balance-icon{
+  width:24px;
+  height:24px;
+  display:grid;
+  place-items:center;
+  color:#55e6a5;
+}
+.home-balance-icon svg{width:22px;height:22px;display:block}
+.home-balance-value{
+  margin-top:22px;
+  color:#f5fff9;
+  font-size:clamp(52px,14vw,76px);
+  line-height:.96;
+  letter-spacing:-3px;
+  font-weight:1000;
+  text-shadow:0 2px 10px rgba(0,0,0,.18);
+}
+.home-balance-value small{
+  margin-left:7px;
+  color:#d8e9e0;
+  font-size:.30em;
+  letter-spacing:0;
+  font-weight:800;
+}
+.home-balance-desc{
+  max-width:590px;
+  margin:25px 0 0!important;
+  color:#94aa9f!important;
+  font-size:13px!important;
+  line-height:1.65!important;
+}
+.home-balance-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:26px;
+}
+.home-balance-actions button{
+  min-height:56px;
+  border-radius:18px;
+  font-weight:1000;
+  font-size:15px;
+  letter-spacing:.1px;
+}
+.home-balance-earn{
+  border:0;
+  background:linear-gradient(135deg,#76efac,#49df91);
+  color:#062318;
+  box-shadow:inset 0 2px 0 rgba(255,255,255,.28),0 8px 22px rgba(57,208,130,.14);
+}
+.home-balance-earn span{
+  display:inline-block;
+  margin-left:14px;
+  font-size:28px;
+  line-height:0;
+  vertical-align:-3px;
+  font-weight:500;
+}
+.home-balance-withdraw{
+  border:1px solid rgba(171,213,192,.25);
+  background:rgba(9,34,25,.58);
+  color:#e5f2eb;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025);
+}
+.home-balance-actions button:active{transform:translateY(2px)}
+
+@media(max-width:600px){
+  .home-welcome.gamez-home-balance{min-height:282px;padding:25px 20px 21px!important;border-radius:27px!important}
+  .home-balance-label{font-size:14px}
+  .home-balance-value{margin-top:20px;font-size:clamp(50px,15vw,66px)}
+  .home-balance-desc{margin-top:22px!important;font-size:12px!important}
+  .home-balance-actions{gap:10px;margin-top:22px}
+  .home-balance-actions button{min-height:52px;border-radius:16px;font-size:14px}
+}
