@@ -1,5 +1,7 @@
 import './icon-theme.css'
 
+const orbitLogoUrl = `${import.meta.env.BASE_URL}orbit-break-logo.jpg`
+
 const svg = {
   home: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 10.5 12 3.8l8.5 6.7v9.2a1.3 1.3 0 0 1-1.3 1.3H4.8a1.3 1.3 0 0 1-1.3-1.3z"/><path d="M9 21v-6.2h6V21"/></svg>',
   rewards: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 1.3 4.2L17.5 8.5l-4.2 1.3L12 14l-1.3-4.2-4.2-1.3 4.2-1.3z"/><path d="m18.5 13 .8 2.4 2.4.8-2.4.8-.8 2.4-.8-2.4-2.4-.8 2.4-.8zM5.2 14.2l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/></svg>',
@@ -58,11 +60,22 @@ function styleHomeIcons() {
 function styleGameIcons() {
   document.querySelectorAll('.block-card').forEach((card) => {
     const holder = card.querySelector('.gi')
-    if (!holder || holder.dataset.gcGameIcon) return
+    if (!holder) return
     const isOrbit = card.classList.contains('orbit-card') || card.classList.contains('home-orbit-card') || /ORBIT BREAK/i.test(card.textContent || '')
-    holder.dataset.gcGameIcon = isOrbit ? 'orbit' : 'blocks'
+
+    if (isOrbit) {
+      if (holder.dataset.gcGameIcon === 'orbit-logo') return
+      holder.dataset.gcGameIcon = 'orbit-logo'
+      holder.classList.add('gc-game-icon', 'gc-game-logo')
+      holder.innerHTML = `<img src="${orbitLogoUrl}" alt="ORBIT BREAK">`
+      return
+    }
+
+    if (holder.dataset.gcGameIcon === 'blocks') return
+    holder.dataset.gcGameIcon = 'blocks'
     holder.classList.add('gc-game-icon')
-    holder.innerHTML = iconMarkup(isOrbit ? 'orbit' : 'blocks')
+    holder.classList.remove('gc-game-logo')
+    holder.innerHTML = iconMarkup('blocks')
   })
 }
 
