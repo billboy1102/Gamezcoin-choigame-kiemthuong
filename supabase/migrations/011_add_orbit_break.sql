@@ -5,7 +5,7 @@ insert into public.gamezcoin_games (
   'orbit-break',
   'ORBIT BREAK',
   'Bấm đúng nhịp để chuyển quỹ đạo. Mỗi lần bấm đúng +10 điểm; 100 điểm = 10 coin.',
-  1,1000,7200,3.2,4,true,2,now()
+  1,0,7200,3.2,4,true,2,now()
 )
 on conflict (id) do update set
   name=excluded.name,
