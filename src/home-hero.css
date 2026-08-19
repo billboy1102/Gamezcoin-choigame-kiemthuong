@@ -4,14 +4,16 @@
   overflow:hidden!important;
   min-height:300px;
   padding:28px 24px 24px!important;
-  border:1px solid rgba(75,218,145,.28)!important;
+  border:1px solid rgba(91,142,255,.38)!important;
   border-radius:30px!important;
   background:
-    radial-gradient(circle at 88% 8%,rgba(79,226,152,.10),transparent 34%),
-    linear-gradient(145deg,#0a291d 0%,#08251a 52%,#071f17 100%)!important;
+    radial-gradient(circle at 90% 4%,rgba(114,247,255,.14),transparent 31%),
+    radial-gradient(circle at 72% 110%,rgba(124,96,255,.16),transparent 38%),
+    linear-gradient(145deg,#102957 0%,#0c2149 48%,#0a1736 100%)!important;
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.035),
-    0 18px 42px rgba(0,0,0,.18)!important;
+    inset 0 1px 0 rgba(255,255,255,.07),
+    0 18px 42px rgba(1,8,28,.30),
+    0 0 34px rgba(70,111,219,.07)!important;
 }
 .home-welcome.gamez-home-balance::before,
 .home-welcome.gamez-home-balance::after{
@@ -19,27 +21,28 @@
   position:absolute;
   pointer-events:none;
   border-radius:50%;
-  border:1px solid rgba(86,229,162,.08);
+  border:1px solid rgba(104,222,255,.13);
 }
 .home-welcome.gamez-home-balance::before{
   width:430px;
   height:430px;
   right:-205px;
   top:-235px;
+  box-shadow:0 0 70px rgba(92,128,255,.04);
 }
 .home-welcome.gamez-home-balance::after{
   width:520px;
   height:520px;
   right:-235px;
   top:-285px;
-  border-color:rgba(86,229,162,.045);
+  border-color:rgba(137,111,255,.09);
 }
 .home-balance-content{position:relative;z-index:2}
 .home-balance-label{
   display:flex;
   align-items:center;
   gap:10px;
-  color:#c4ddd1;
+  color:#cddcff;
   font-size:15px;
   font-weight:800;
   letter-spacing:.1px;
@@ -49,29 +52,31 @@
   height:24px;
   display:grid;
   place-items:center;
-  color:#55e6a5;
+  color:#72f7ff;
+  filter:drop-shadow(0 0 8px rgba(114,247,255,.28));
 }
 .home-balance-icon svg{width:22px;height:22px;display:block}
 .home-balance-value{
   margin-top:22px;
-  color:#f5fff9;
+  color:#fff;
   font-size:clamp(52px,14vw,76px);
   line-height:.96;
   letter-spacing:-3px;
   font-weight:1000;
-  text-shadow:0 2px 10px rgba(0,0,0,.18);
+  text-shadow:0 3px 18px rgba(15,34,85,.38);
 }
 .home-balance-value small{
   margin-left:7px;
-  color:#d8e9e0;
+  color:#ffd45a;
   font-size:.30em;
   letter-spacing:0;
-  font-weight:800;
+  font-weight:900;
+  text-shadow:0 0 14px rgba(255,212,90,.12);
 }
 .home-balance-desc{
   max-width:590px;
   margin:25px 0 0!important;
-  color:#94aa9f!important;
+  color:#aabbdc!important;
   font-size:13px!important;
   line-height:1.65!important;
 }
@@ -89,10 +94,13 @@
   letter-spacing:.1px;
 }
 .home-balance-earn{
-  border:0;
-  background:linear-gradient(135deg,#76efac,#49df91);
-  color:#062318;
-  box-shadow:inset 0 2px 0 rgba(255,255,255,.28),0 8px 22px rgba(57,208,130,.14);
+  border:1px solid rgba(255,255,255,.15);
+  background:linear-gradient(135deg,#6cecff 0%,#5b8cff 52%,#7868ff 100%);
+  color:#071326;
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,.28),
+    0 8px 24px rgba(79,116,255,.24),
+    0 0 22px rgba(93,226,255,.09);
 }
 .home-balance-earn span{
   display:inline-block;
@@ -103,10 +111,12 @@
   font-weight:500;
 }
 .home-balance-withdraw{
-  border:1px solid rgba(171,213,192,.25);
-  background:rgba(9,34,25,.58);
-  color:#e5f2eb;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.025);
+  border:1px solid rgba(122,157,230,.34);
+  background:linear-gradient(180deg,rgba(20,45,91,.80),rgba(11,28,61,.86));
+  color:#edf4ff;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.05),
+    0 8px 20px rgba(1,7,24,.12);
 }
 .home-balance-actions button:active{transform:translateY(2px)}
 
