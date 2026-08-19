@@ -1,0 +1,273 @@
+:root{
+  font-family:Manrope,Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --bg:#07111f;
+  --card:#0b1929;
+  --line:rgba(134,176,255,.12);
+  --muted:#8ea4bd;
+  --green:#72f7ff;
+  --gold:#ffd45a;
+  --red:#ff7d8b;
+  --gc-panel:#0b1929;
+  --gc-panel-2:#0e2034;
+  --gc-line:rgba(134,176,255,.12);
+  --gc-line-strong:rgba(134,176,255,.20);
+  --gc-text:#f1f6ff;
+  --gc-muted:#8ea4bd;
+  --gc-cyan:#72f7ff;
+  --gc-blue:#6f8dff;
+  --gc-purple:#8a72ff;
+}
+html,body,#app{background:#07111f!important}
+body{background:radial-gradient(circle at 78% -18%,rgba(77,115,255,.12),transparent 38%),#07111f!important;color:var(--gc-text)}
+button,input,select{font:inherit}
+button{transition:transform .16s ease,filter .16s ease,background .16s ease,border-color .16s ease}
+button:active{transform:translateY(1px)}
+
+/* App shell / top bar */
+.shell{min-height:100dvh;padding-bottom:112px!important;background:radial-gradient(circle at 82% -12%,rgba(81,123,255,.10),transparent 34%),#07111f}
+.shell>header{
+  min-height:94px;
+  padding:calc(env(safe-area-inset-top) + 17px) 28px 17px!important;
+  background:rgba(7,17,31,.82)!important;
+  border-bottom:1px solid var(--gc-line)!important;
+  backdrop-filter:blur(18px)!important;
+  -webkit-backdrop-filter:blur(18px)!important;
+}
+.shell>header small{color:var(--gc-cyan)!important;font-size:10px!important;font-weight:900!important;letter-spacing:2.2px!important}
+.shell>header strong,.shell>header b{letter-spacing:-.025em}
+.balance{
+  padding:8px 13px!important;
+  gap:8px!important;
+  border:1px solid rgba(132,170,255,.20)!important;
+  border-radius:22px!important;
+  background:rgba(12,27,46,.88)!important;
+  color:#f5f8ff!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035)!important;
+}
+.balance span{width:28px!important;height:28px!important;background:var(--gold)!important;color:#332600!important;box-shadow:none!important}
+
+#view{width:min(820px,calc(100% - 42px))!important;max-width:none!important;padding:30px 0 118px!important;margin:0 auto!important}
+
+/* Floating Adcash-like bottom navigation */
+.shell>nav{
+  left:50%!important;
+  right:auto!important;
+  bottom:calc(14px + env(safe-area-inset-bottom))!important;
+  width:min(690px,calc(100% - 36px))!important;
+  height:78px!important;
+  padding:6px 8px!important;
+  transform:translateX(-50%)!important;
+  border:1px solid rgba(137,178,255,.14)!important;
+  border-radius:25px!important;
+  background:rgba(8,21,36,.94)!important;
+  box-shadow:0 18px 45px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.025)!important;
+  backdrop-filter:blur(18px)!important;
+  -webkit-backdrop-filter:blur(18px)!important;
+  overflow:hidden;
+}
+.shell>nav button{gap:1px!important;border:1px solid transparent!important;border-radius:19px!important;color:#71889f!important;font-weight:650!important}
+.shell>nav button small{font-size:9px!important;font-weight:650!important;letter-spacing:0!important}
+.shell>nav button b{width:38px!important;height:38px!important;border-radius:13px!important;background:transparent!important;border:0!important;box-shadow:none!important;color:#71889f!important}
+.shell>nav button b .gc-line-icon{width:24px!important;height:24px!important}
+.shell>nav button.on{
+  color:#8cf7f7!important;
+  background:linear-gradient(145deg,rgba(89,135,255,.14),rgba(79,222,255,.065))!important;
+  border-color:rgba(112,173,255,.10)!important;
+}
+.shell>nav button.on b{color:#72f7ff!important;filter:none!important}
+
+/* Shared Adcash card language */
+.shell .card,
+.home-quick-card,
+.rewards-head,
+.gc-wallet-section,
+.gc-withdraw-card,
+.gc-withdraw-summary{
+  border-color:var(--gc-line)!important;
+  background:rgba(11,25,41,.90)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025)!important;
+}
+.shell .card{border-radius:22px!important;padding:20px!important}
+
+/* Home hero: keep Gamezcoin colors, use Adcash proportions */
+.home-welcome.gamez-home-balance{
+  min-height:306px!important;
+  padding:32px 30px 28px!important;
+  border:1px solid rgba(126,170,255,.15)!important;
+  border-radius:27px!important;
+  background:
+    radial-gradient(circle at 84% 28%,rgba(103,229,255,.10),transparent 31%),
+    radial-gradient(circle at 76% 110%,rgba(112,92,255,.10),transparent 38%),
+    linear-gradient(135deg,#10233d,#0a1729 62%,#0a182b)!important;
+  box-shadow:0 24px 70px rgba(0,0,0,.20)!important;
+}
+.home-welcome.gamez-home-balance::before{border-color:rgba(114,247,255,.07)!important;box-shadow:0 0 0 58px rgba(94,139,255,.018),0 0 0 116px rgba(120,99,255,.012)!important}
+.home-welcome.gamez-home-balance::after{display:none!important}
+.home-balance-label{color:#c6d5e9!important;font-size:13px!important;font-weight:750!important}
+.home-balance-icon{color:var(--gc-cyan)!important;filter:none!important}
+.home-balance-value{margin-top:14px!important;font-size:clamp(48px,12vw,68px)!important;letter-spacing:-.055em!important;font-weight:850!important;text-shadow:none!important}
+.home-balance-value small{color:var(--gold)!important;font-weight:800!important}
+.home-balance-desc{margin-top:18px!important;color:#91a6bc!important;font-size:13px!important;line-height:1.65!important}
+.home-balance-actions{margin-top:24px!important;gap:11px!important}
+.home-balance-actions button{min-height:48px!important;border-radius:13px!important;font-size:13px!important;font-weight:850!important}
+.home-balance-earn{
+  border:0!important;
+  background:linear-gradient(135deg,#9cf9ff,#73dffa 48%,#7c92ff)!important;
+  color:#071321!important;
+  box-shadow:0 11px 28px rgba(75,145,220,.14)!important;
+}
+.home-balance-withdraw{border:1px solid var(--gc-line-strong)!important;background:rgba(255,255,255,.018)!important;color:#dce8f6!important;box-shadow:none!important}
+
+/* Home sections */
+.home-section{margin-top:24px!important}
+.home-section-title{margin-bottom:12px!important}
+.home-section-title small{color:var(--gc-cyan)!important;font-size:10px!important;letter-spacing:1.5px!important}
+.home-section-title h2{font-size:21px!important;letter-spacing:-.035em!important}
+.home-section-title>.gc-feature-icon{
+  width:46px!important;height:46px!important;border-radius:14px!important;
+  color:var(--gc-cyan)!important;background:rgba(80,214,244,.075)!important;
+  border:1px solid rgba(113,225,255,.08)!important;box-shadow:none!important
+}
+.home-quick-card{
+  min-height:82px!important;
+  padding:17px 18px!important;
+  border-radius:19px!important;
+  gap:14px!important;
+}
+.home-checkin-card,.home-ref-card{border-color:var(--gc-line)!important;background:rgba(11,25,41,.90)!important}
+.home-quick-card b{font-size:14px!important;font-weight:800!important}
+.home-quick-card p{color:var(--gc-muted)!important;font-size:11px!important}
+.home-quick-card button,.home-games-title button{
+  border:1px solid rgba(112,224,255,.10)!important;
+  background:rgba(92,224,246,.07)!important;
+  color:#8ff5f7!important;
+  box-shadow:none!important;
+}
+.home-games-title button{background:transparent!important;border:0!important}
+
+/* Rewards / earn page */
+.rewards-head{
+  padding:29px 30px!important;
+  border-radius:24px!important;
+  background:
+    radial-gradient(circle at 88% 16%,rgba(103,125,255,.13),transparent 34%),
+    linear-gradient(135deg,#10233d,#0b182c)!important;
+  box-shadow:0 20px 55px rgba(0,0,0,.16)!important;
+}
+.rewards-head>span{color:var(--gc-cyan)!important;font-size:10px!important;letter-spacing:1.7px!important}
+.rewards-head h1{margin:11px 0 10px!important;font-size:clamp(30px,7vw,39px)!important;line-height:1.12!important;letter-spacing:-.045em!important}
+.rewards-head p{max-width:620px;color:#91a6bc!important;font-size:13px!important;line-height:1.65!important}
+.rewards-count{margin:25px 4px 14px!important}
+.rewards-count b{font-size:28px!important;letter-spacing:-.04em!important}
+.rewards-count span{color:#8097ae!important;font-size:12px!important}
+
+/* All game cards */
+.shell .game,
+.shell .block-card{
+  grid-template-columns:68px minmax(0,1fr) auto!important;
+  align-items:center!important;
+  column-gap:18px!important;
+  row-gap:6px!important;
+  min-height:132px!important;
+  padding:18px!important;
+  margin:0!important;
+  border:1px solid var(--gc-line)!important;
+  border-radius:22px!important;
+  background:rgba(11,25,41,.92)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025)!important;
+}
+.shell .game .gi,.shell .block-card .gi{
+  width:68px!important;height:68px!important;border-radius:18px!important;
+  background:rgba(82,118,205,.13)!important;border:1px solid rgba(125,164,255,.18)!important;
+  box-shadow:none!important
+}
+.shell .game>div:nth-child(2),.shell .block-card>div:nth-child(2){min-width:0!important;padding-left:0!important;gap:4px!important}
+.shell .game h3,.shell .game strong,.shell .block-card h3{letter-spacing:-.02em}
+.shell .game p,.shell .block-card p{color:#8fa4bb!important;line-height:1.45!important}
+.shell .game em,.shell .block-card em{color:var(--gold)!important;font-weight:850!important}
+.shell .game button,.shell .block-card button{
+  min-width:82px!important;min-height:44px!important;padding:0 15px!important;
+  border:0!important;border-radius:13px!important;
+  background:linear-gradient(135deg,#9cf9ff,#75dff8 52%,#7f95ff)!important;
+  color:#071321!important;font-weight:900!important;
+  box-shadow:0 9px 22px rgba(72,143,215,.12)!important
+}
+.gc-game-icon{background:rgba(82,118,205,.13)!important;border-color:rgba(125,164,255,.18)!important;box-shadow:none!important}
+.gc-game-logo{background:#071321!important}
+
+/* Wallet */
+.gc-wallet-page{gap:18px!important}
+.gc-wallet-hero{
+  min-height:190px!important;padding:30px!important;border-radius:27px!important;
+  border:1px solid rgba(126,170,255,.15)!important;
+  background:radial-gradient(circle at 86% 25%,rgba(103,229,255,.12),transparent 30%),linear-gradient(135deg,#122a48,#0a182b 68%)!important;
+  color:var(--gc-text)!important;box-shadow:0 24px 70px rgba(0,0,0,.18)!important
+}
+.gc-wallet-balance-copy>span,.gc-wallet-balance-copy>small{color:#93a9bf!important}
+.gc-wallet-balance-copy>strong{font-size:clamp(40px,10vw,58px)!important;font-weight:850!important;letter-spacing:-.06em!important;text-shadow:none!important}
+.gc-wallet-withdraw{min-height:46px!important;border:0!important;border-radius:13px!important;background:#eaf7ff!important;color:#10213a!important;box-shadow:none!important}
+.gc-wallet-section{padding:23px!important;border-radius:22px!important;background:rgba(11,25,41,.90)!important}
+.gc-wallet-section-head small,.gc-withdraw-title small{color:var(--gc-cyan)!important}
+.gc-transaction-row{border-color:var(--gc-line)!important}
+.gc-transaction-icon{background:rgba(88,220,244,.07)!important;border-color:rgba(112,231,255,.08)!important}
+.gc-withdraw-card,.gc-withdraw-summary{border-radius:22px!important;background:rgba(11,25,41,.94)!important;border-color:var(--gc-line)!important}
+.gc-method-grid button,.gc-withdraw-card input,.gc-preset-row button{background:#081522!important;border-color:var(--gc-line)!important}
+.gc-method-grid button.selected{border-color:rgba(114,247,255,.40)!important;background:rgba(88,218,245,.07)!important}
+.gc-submit-withdraw{border-radius:13px!important;background:linear-gradient(135deg,#9cf9ff,#73dff8 52%,#8096ff)!important;color:#071321!important;box-shadow:none!important}
+
+/* Referral, account, old data cards */
+.shell .refcode{color:var(--gold)!important;letter-spacing:4px!important}
+.shell .avatar{background:linear-gradient(145deg,#182f53,#213e72)!important;color:#9cf9ff!important;border:1px solid rgba(128,170,255,.18)!important}
+.shell .stats{gap:10px!important}
+.shell .stats div{padding:15px!important;border-radius:16px!important;background:rgba(11,25,41,.90)!important;border-color:var(--gc-line)!important}
+.shell .stats b{font-size:20px!important;letter-spacing:-.03em!important}
+.shell .row{border-color:var(--gc-line)!important;padding:14px 0!important}
+.shell input,.shell select{
+  min-height:48px!important;padding:0 14px!important;border-radius:13px!important;
+  background:#081522!important;border:1px solid var(--gc-line)!important;color:#f2f7ff!important
+}
+.shell input:focus,.shell select:focus{border-color:rgba(114,247,255,.45)!important;box-shadow:0 0 0 3px rgba(114,247,255,.055)!important}
+.shell .primary,.shell .adminbtn{
+  min-height:47px!important;border-radius:13px!important;
+  background:linear-gradient(135deg,#9cf9ff,#73dff8 50%,#8096ff)!important;color:#071321!important;box-shadow:none!important
+}
+.shell .secondary{min-height:47px!important;border-radius:13px!important;background:rgba(255,255,255,.018)!important;border-color:var(--gc-line-strong)!important}
+
+/* Auth */
+.auth{background:radial-gradient(circle at 78% 6%,rgba(77,115,255,.13),transparent 38%),#07111f!important}
+.authbox{padding:25px!important;border-radius:24px!important;background:rgba(11,25,41,.94)!important;border-color:var(--gc-line)!important;box-shadow:0 24px 70px rgba(0,0,0,.20)!important}
+.auth .brand{gap:13px!important}
+.auth .switch{padding:4px!important;border-radius:13px!important;background:#081522!important}
+.auth .switch button{border-radius:10px!important;color:#8298ae!important}
+.auth .switch button.on{background:rgba(101,139,225,.13)!important;color:#edf5ff!important}
+.auth input,.auth select{min-height:48px!important;border-radius:13px!important;background:#081522!important;border-color:var(--gc-line)!important}
+.auth input:focus{border-color:rgba(114,247,255,.45)!important}
+.auth .primary{min-height:48px!important;border-radius:13px!important;background:linear-gradient(135deg,#9cf9ff,#73dff8 50%,#8096ff)!important;color:#071321!important}
+
+/* Toasts */
+.toast{border:1px solid var(--gc-line)!important;border-radius:13px!important;background:#10233a!important;box-shadow:0 12px 36px rgba(0,0,0,.26)!important}
+.toast.ok{background:#123247!important}.toast.bad{background:#4b2633!important}
+
+@media(max-width:600px){
+  .shell>header{min-height:88px;padding:calc(env(safe-area-inset-top) + 14px) 20px 14px!important}
+  #view{width:calc(100% - 36px)!important;padding:24px 0 116px!important}
+  .shell>nav{width:calc(100% - 28px)!important;height:76px!important;bottom:calc(10px + env(safe-area-inset-bottom))!important;border-radius:24px!important}
+  .shell>nav button small{font-size:8px!important}
+  .home-welcome.gamez-home-balance{min-height:286px!important;padding:27px 23px 23px!important;border-radius:25px!important}
+  .home-balance-value{font-size:clamp(45px,14vw,61px)!important}
+  .home-balance-actions{grid-template-columns:1.25fr .75fr!important}
+  .rewards-head{padding:25px 23px!important;border-radius:23px!important}
+  .rewards-head h1{font-size:32px!important}
+  .shell .game,.shell .block-card{grid-template-columns:64px minmax(0,1fr) auto!important;column-gap:16px!important;min-height:126px!important;padding:16px!important;border-radius:21px!important}
+  .shell .game .gi,.shell .block-card .gi{width:64px!important;height:64px!important;border-radius:17px!important}
+  .shell .game button,.shell .block-card button{min-width:76px!important;min-height:43px!important;padding:0 13px!important}
+  .gc-wallet-hero{min-height:174px!important;padding:24px!important;border-radius:24px!important}
+  .gc-wallet-section{padding:19px!important}
+}
+
+@media(max-width:390px){
+  #view{width:calc(100% - 28px)!important}
+  .shell .game,.shell .block-card{grid-template-columns:58px minmax(0,1fr) auto!important;column-gap:13px!important;padding:14px!important}
+  .shell .game .gi,.shell .block-card .gi{width:58px!important;height:58px!important}
+  .shell .game button,.shell .block-card button{min-width:68px!important;padding:0 10px!important;font-size:13px!important}
+}
