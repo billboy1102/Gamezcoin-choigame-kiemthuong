@@ -1,4 +1,4 @@
-.gc-offer-card{
+.shell .game.gc-offer-card{
   display:grid!important;
   grid-template-columns:72px minmax(0,1fr)!important;
   grid-template-rows:auto auto auto!important;
@@ -12,22 +12,23 @@
   background:linear-gradient(180deg,rgba(13,29,51,.98),rgba(8,21,39,.98))!important;
   box-shadow:0 16px 44px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.025)!important;
 }
-.gc-offer-banner{
-  grid-column:1/-1;
+.shell .game.gc-offer-card>.gc-offer-banner{
+  grid-column:1/-1!important;
+  grid-row:1!important;
   width:100%;
   aspect-ratio:2/1;
-  margin:0 0 16px;
+  margin:0 0 16px!important;
   overflow:hidden;
-  border-radius:18px;
-  background:#071322;
-  border:1px solid rgba(130,170,255,.12);
-  box-shadow:0 10px 30px rgba(0,0,0,.18);
+  border-radius:18px!important;
+  background:#071322!important;
+  border:1px solid rgba(130,170,255,.12)!important;
+  box-shadow:0 10px 30px rgba(0,0,0,.18)!important;
 }
-.gc-offer-banner img{display:block;width:100%;height:100%;object-fit:cover}
-.gc-offer-card>.gi{
-  grid-column:1;
-  grid-row:2;
-  align-self:center;
+.shell .game.gc-offer-card>.gc-offer-banner img{display:block;width:100%;height:100%;object-fit:cover}
+.shell .game.gc-offer-card>.gi{
+  grid-column:1!important;
+  grid-row:2!important;
+  align-self:center!important;
   width:72px!important;
   height:72px!important;
   border-radius:18px!important;
@@ -36,35 +37,35 @@
   background:#071321!important;
   box-shadow:0 8px 20px rgba(0,0,0,.16)!important;
 }
-.gc-offer-card>.gc-offer-info{
-  grid-column:2;
-  grid-row:2;
-  align-self:center;
-  min-width:0;
+.shell .game.gc-offer-card>.gc-offer-info{
+  grid-column:2!important;
+  grid-row:2!important;
+  align-self:center!important;
+  min-width:0!important;
   display:grid!important;
   gap:5px!important;
   padding:0!important;
 }
-.gc-offer-card>.gc-offer-info>strong{
-  display:block;
+.shell .game.gc-offer-card>.gc-offer-info>strong{
+  display:block!important;
   margin:0!important;
-  color:#f6f9ff;
+  color:#f6f9ff!important;
   font-size:22px!important;
   line-height:1.08!important;
   font-weight:900!important;
   letter-spacing:-.035em!important;
 }
-.gc-offer-card>.gc-offer-info>small,.gc-offer-card .block-badge{display:none!important}
-.gc-offer-card>.gc-offer-info>em{
+.shell .game.gc-offer-card>.gc-offer-info>small,.shell .game.gc-offer-card .block-badge{display:none!important}
+.shell .game.gc-offer-card>.gc-offer-info>em{
   display:flex!important;
-  align-items:center;
-  gap:7px;
+  align-items:center!important;
+  gap:7px!important;
   color:#9cb0c8!important;
   font-size:12px!important;
   font-style:normal!important;
   font-weight:700!important;
 }
-.gc-offer-card>.gc-offer-info>em::before{
+.shell .game.gc-offer-card>.gc-offer-info>em::before{
   content:'G';
   width:22px;
   height:22px;
@@ -78,7 +79,7 @@
   font-weight:1000;
   box-shadow:inset 0 0 0 2px rgba(255,255,255,.22);
 }
-.gc-offer-card>button{
+.shell .game.gc-offer-card>button{
   grid-column:1/-1!important;
   grid-row:3!important;
   width:100%!important;
@@ -95,14 +96,14 @@
   letter-spacing:-.015em!important;
   box-shadow:inset 0 2px 0 rgba(255,255,255,.26),0 10px 26px rgba(45,222,121,.17)!important;
 }
-.gc-offer-card>button:active{transform:translateY(1px)!important;filter:brightness(.97)}
+.shell .game.gc-offer-card>button:active{transform:translateY(1px)!important;filter:brightness(.97)}
 .rewards-games,.home-featured .games{gap:16px!important}
 @media(max-width:600px){
-  .gc-offer-card{grid-template-columns:62px minmax(0,1fr)!important;padding:12px!important;border-radius:22px!important;column-gap:13px!important}
-  .gc-offer-banner{margin-bottom:14px;border-radius:16px}
-  .gc-offer-card>.gi{width:62px!important;height:62px!important;border-radius:16px!important}
-  .gc-offer-card>.gc-offer-info>strong{font-size:19px!important}
-  .gc-offer-card>.gc-offer-info>em{font-size:11px!important}
-  .gc-offer-card>button{min-height:50px!important;margin-top:14px!important;border-radius:14px!important;font-size:15px!important}
+  .shell .game.gc-offer-card{grid-template-columns:62px minmax(0,1fr)!important;padding:12px!important;border-radius:22px!important;column-gap:13px!important}
+  .shell .game.gc-offer-card>.gc-offer-banner{margin-bottom:14px!important;border-radius:16px!important}
+  .shell .game.gc-offer-card>.gi{width:62px!important;height:62px!important;border-radius:16px!important}
+  .shell .game.gc-offer-card>.gc-offer-info>strong{font-size:19px!important}
+  .shell .game.gc-offer-card>.gc-offer-info>em{font-size:11px!important}
+  .shell .game.gc-offer-card>button{min-height:50px!important;margin-top:14px!important;border-radius:14px!important;font-size:15px!important}
 }
 @media(min-width:820px){.home-featured .games,.rewards-games{grid-template-columns:1fr 1fr!important;align-items:start}}
