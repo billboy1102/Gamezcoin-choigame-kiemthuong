@@ -1,6 +1,5 @@
 import './icon-theme.css'
-
-const orbitLogoUrl = `${import.meta.env.BASE_URL}orbit-break-logo.jpg`
+import orbitLogoUrl from './assets/orbit-break-logo.jpg'
 
 const svg = {
   home: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 10.5 12 3.8l8.5 6.7v9.2a1.3 1.3 0 0 1-1.3 1.3H4.8a1.3 1.3 0 0 1-1.3-1.3z"/><path d="M9 21v-6.2h6V21"/></svg>',
