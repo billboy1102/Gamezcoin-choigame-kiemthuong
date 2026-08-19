@@ -1,0 +1,17 @@
+.gc-premium-wallet-art{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+  -webkit-mask-image:none!important;
+  mask-image:none!important;
+}
+.gc-premium-wallet-art>*{display:none!important}
+@media(max-width:600px){
+  .gc-premium-wallet-art{
+    top:2px!important;
+    right:-3px!important;
+    width:45.5%!important;
+    height:70%!important;
+  }
+}
