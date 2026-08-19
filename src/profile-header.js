@@ -92,6 +92,7 @@ async function hydrateAvatar(container, initial) {
 function syncHeader() {
   const header = document.querySelector('.shell>header')
   if (!header) return
+  if (header.classList.contains('gc-premium-header')) return
   if (header.querySelector(':scope > .gc-header-actions')) return
 
   const oldIdentity = header.firstElementChild
