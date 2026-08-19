@@ -107,7 +107,7 @@ async function injectOrbitCard() {
     if (oldOnlyBadge && oldOnlyBadge.textContent.includes('DUY NHẤT')) oldOnlyBadge.textContent = 'BLOCK BLAST'
 
     const card = document.createElement('article')
-    card.className = 'card game orbit-card'
+    card.className = 'card game block-card orbit-card'
     card.innerHTML = `
       <div class="gi orbit-gi">◉</div>
       <div>
@@ -129,10 +129,11 @@ async function injectOrbitCard() {
 
 const style = document.createElement('style')
 style.textContent = `
-  .orbit-card{position:relative;overflow:hidden;background:linear-gradient(145deg,rgba(8,17,39,.98),rgba(18,12,42,.98))!important;border-color:rgba(98,246,255,.18)!important}
-  .orbit-card:before{content:"";position:absolute;right:-42px;top:-58px;width:150px;height:150px;border-radius:50%;border:2px solid rgba(98,246,255,.13);box-shadow:0 0 40px rgba(255,69,207,.08);pointer-events:none}
-  .orbit-card .orbit-gi{color:#72f7ff;text-shadow:0 0 18px rgba(98,246,255,.55);font-size:34px}
-  .orbit-card em{color:#72f7ff!important}
+  /* ORBIT BREAK reuses Block Blast card/button styling for a consistent game list. */
+  .orbit-card{position:relative;overflow:hidden}
+  .orbit-card:before{display:none!important;content:none!important}
+  .orbit-card .orbit-gi{color:#72f7ff;text-shadow:0 0 18px rgba(98,246,255,.55);font-size:30px}
+  .orbit-card em{color:#ffe16b!important}
 
   .orbit-intro{position:fixed;inset:0;z-index:99998;overflow:auto;background:radial-gradient(circle at 50% 4%,#152755 0,#07111f 38%,#030812 100%);color:#f5fbff;font-family:system-ui,-apple-system,sans-serif;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
   .orbit-intro-shell{width:min(100%,560px);min-height:100%;margin:auto;padding:14px 16px 28px}
