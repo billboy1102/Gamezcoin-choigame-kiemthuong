@@ -43,14 +43,7 @@ function syncRewardAndDifficultyUI() {
     rate.textContent = '10 điểm = 1 coin'
   }
 
-  const card = document.querySelector('.block-card > div:nth-child(2)')
-  if (card && !card.querySelector('.block-difficulty-note')) {
-    const note = document.createElement('span')
-    note.className = 'block-difficulty-note'
-    note.textContent = 'Độ khó tăng dần khi chơi lâu'
-    note.style.cssText = 'display:block;margin-top:4px;color:#9fb7d2;font-size:10px;font-weight:700'
-    card.append(note)
-  }
+  document.querySelectorAll('.block-difficulty-note').forEach((node) => node.remove())
 
   if (play) {
     const level = difficultyLevel()
