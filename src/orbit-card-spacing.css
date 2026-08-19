@@ -1,0 +1,3 @@
+.home-orbit-card>div:nth-child(2){min-width:0;padding-left:8px}
+.home-orbit-card .gc-game-logo{flex-shrink:0}
+@media(max-width:600px){.home-orbit-card>div:nth-child(2){padding-left:9px}}
