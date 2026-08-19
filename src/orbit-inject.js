@@ -4,10 +4,6 @@ import { startOrbitBreak } from './orbit-game.js'
 let cachedOrbit = null
 let loadingOrbitConfig = null
 
-const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (c) => ({
-  '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-}[c]))
-
 function formatNumber(value) {
   return new Intl.NumberFormat('vi-VN').format(Number(value || 0))
 }
@@ -31,8 +27,9 @@ function updateVisibleBalance(data) {
   button.innerHTML = `<span>G</span>${formatNumber(data.wallet.balance)} coin`
 }
 
-function showOrbitIntro(orbit) {
+function showOrbitIntro() {
   if (document.querySelector('.orbit-intro')) return
+
   const intro = document.createElement('main')
   intro.className = 'orbit-intro'
   intro.innerHTML = `
@@ -53,7 +50,7 @@ function showOrbitIntro(orbit) {
 
       <section class="orbit-intro-card orbit-summary">
         <h2>ORBIT BREAK là gì?</h2>
-        <p>${escapeHtml(orbit?.description || 'Bấm đúng nhịp để chuyển quỹ đạo. Mỗi lần bấm đúng +10 điểm; 100 điểm = 10 coin.')}</p>
+        <p>Bấm đúng nhịp để chuyển quỹ đạo và cố gắng duy trì ván chơi càng lâu càng tốt.</p>
         <div class="orbit-reward-grid">
           <div><small>MỖI LẦN ĐÚNG</small><b>+10 điểm</b></div>
           <div><small>QUY ĐỔI</small><b>100 điểm = 10 coin</b></div>
@@ -63,22 +60,22 @@ function showOrbitIntro(orbit) {
       <section class="orbit-intro-card">
         <h2>Hướng dẫn chơi</h2>
         <ol class="orbit-steps">
-          <li><i>1</i><div><b>Quan sát quả cầu đang xoay</b><span>Quả cầu sẽ chạy quanh tâm theo quỹ đạo neon.</span></div></li>
+          <li><i>1</i><div><b>Quan sát quả cầu đang xoay</b><span>Quả cầu chạy quanh tâm theo quỹ đạo neon.</span></div></li>
           <li><i>2</i><div><b>Chạm khi quả cầu tới vùng mục tiêu</b><span>Chạm đúng thời điểm để chuyển sang quỹ đạo tiếp theo.</span></div></li>
-          <li><i>3</i><div><b>Mỗi lần đúng nhận 10 điểm</b><span>10 lần bấm đúng = 100 điểm = 10 coin khi ván kết thúc hợp lệ.</span></div></li>
+          <li><i>3</i><div><b>Mỗi lần đúng nhận 10 điểm</b><span>10 lần bấm đúng tương ứng 100 điểm và 10 coin khi ván kết thúc hợp lệ.</span></div></li>
           <li><i>4</i><div><b>Tốc độ tăng dần</b><span>Càng chơi lâu, nhịp càng nhanh và thời điểm bấm càng khó.</span></div></li>
-          <li><i>5</i><div><b>Bấm sớm, bấm muộn hoặc bỏ lỡ là Game Over</b><span>Điểm cuối ván được gửi lên server xác minh rồi mới cộng coin.</span></div></li>
+          <li><i>5</i><div><b>Bấm sai là Game Over</b><span>Điểm cuối ván được gửi lên server xác minh trước khi cộng coin.</span></div></li>
         </ol>
       </section>
 
       <section class="orbit-intro-card orbit-note">
         <b>💡 Mẹo</b>
-        <p>Đừng nhìn vào ngón tay. Hãy tập trung vào vùng mục tiêu và nhịp chuyển động của quả cầu. Âm thanh giúp canh nhịp chính xác hơn.</p>
+        <p>Tập trung vào vùng mục tiêu và nhịp chuyển động của quả cầu. Âm thanh giúp canh nhịp chính xác hơn.</p>
       </section>
 
       <div class="orbit-intro-actions">
         <button class="orbit-start-button">▶ Bắt đầu chơi</button>
-        <small>Điểm/coin chỉ được ghi khi server xác minh ván chơi.</small>
+        <small>Điểm và coin chỉ được ghi khi server xác minh ván chơi.</small>
       </div>
     </section>`
 
@@ -98,6 +95,7 @@ function showOrbitIntro(orbit) {
 async function injectOrbitCard() {
   const games = document.querySelector('#view .games')
   if (!games || games.querySelector('#play-orbit') || games.dataset.orbitLoading === '1') return
+
   games.dataset.orbitLoading = '1'
   try {
     const orbit = await getOrbitConfig()
@@ -111,15 +109,14 @@ async function injectOrbitCard() {
     card.innerHTML = `
       <div class="gi orbit-gi">◉</div>
       <div>
-        <strong>${escapeHtml(orbit.name || 'ORBIT BREAK')}</strong>
-        <small>${escapeHtml(orbit.description || 'Bấm đúng nhịp để chuyển quỹ đạo.')}</small>
-        <em>+10 điểm/lần đúng · 100 điểm = 10 coin</em>
+        <strong>ORBIT BREAK</strong>
+        <small>Bấm đúng nhịp để chuyển quỹ đạo.</small>
         <span class="block-badge">ORBIT BREAK</span>
       </div>
       <button id="play-orbit">Chơi</button>`
     games.append(card)
 
-    card.querySelector('#play-orbit').onclick = () => showOrbitIntro(orbit)
+    card.querySelector('#play-orbit').onclick = showOrbitIntro
   } catch (error) {
     console.error('Không tải được cấu hình ORBIT BREAK', error)
   } finally {
@@ -129,11 +126,9 @@ async function injectOrbitCard() {
 
 const style = document.createElement('style')
 style.textContent = `
-  /* ORBIT BREAK reuses Block Blast card/button styling for a consistent game list. */
   .orbit-card{position:relative;overflow:hidden}
   .orbit-card:before{display:none!important;content:none!important}
   .orbit-card .orbit-gi{color:#72f7ff;text-shadow:0 0 18px rgba(98,246,255,.55);font-size:30px}
-  .orbit-card em{color:#ffe16b!important}
 
   .orbit-intro{position:fixed;inset:0;z-index:99998;overflow:auto;background:radial-gradient(circle at 50% 4%,#152755 0,#07111f 38%,#030812 100%);color:#f5fbff;font-family:system-ui,-apple-system,sans-serif;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
   .orbit-intro-shell{width:min(100%,560px);min-height:100%;margin:auto;padding:14px 16px 28px}
