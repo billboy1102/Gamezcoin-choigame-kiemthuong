@@ -100,16 +100,13 @@ function tryLaunchOriginalGame() {
   launchingGame = null
   clearTimeout(launchTimer)
 
-  // The home/rewards cards already show Block Blast's introduction once.
-  // When routing back through the original game button, bypass the second copy
-  // of the intro and start the existing gameplay handler directly.
   if (gameId === 'block-blast') button.dataset.blockIntroBypass = '1'
   button.click()
   if (gameId === 'block-blast') delete button.dataset.blockIntroBypass
   return true
 }
 
-function gameCard(gameId, data) {
+function gameCard(gameId, data, badgeText = '') {
   const game = (data?.games || []).find((item) => item.id === gameId)
   if (!game || game.enabled === false) return ''
 
@@ -120,7 +117,7 @@ function gameCard(gameId, data) {
     ? (game.description || 'Kéo thả khối vào lưới 8×8, phá hàng/cột và tạo combo.')
     : 'Bấm đúng nhịp để chuyển quỹ đạo.'
   const buttonId = isBlock ? 'play-block' : 'play-orbit'
-  const badge = isBlock ? 'BLOCK BLAST' : 'ORBIT BREAK'
+  const badge = badgeText || (isBlock ? 'BLOCK BLAST' : 'ORBIT BREAK')
 
   return `
     <article class="card game block-card home-game-card ${isBlock ? '' : 'home-orbit-card'}">
@@ -129,7 +126,7 @@ function gameCard(gameId, data) {
         <strong>${e(name)}</strong>
         <small>${e(description)}</small>
         <em>10 điểm = 1 coin</em>
-        <span class="block-badge">${badge}</span>
+        <span class="block-badge">${e(badge)}</span>
       </div>
       <button id="${buttonId}" data-home-game="${gameId}">Chơi</button>
     </article>`
@@ -231,13 +228,13 @@ async function renderRewards() {
     if (!document.body.contains(view) || document.querySelector('.shell>nav .on')?.dataset.tab !== 'checkin') return
     const enabled = (data.games || []).filter((game) => game.enabled !== false)
     const supported = enabled.filter((game) => game.id === 'block-blast' || game.id === 'orbit-break')
-    const cards = supported.map((game) => gameCard(game.id, data)).join('')
+    const cards = supported.map((game) => gameCard(game.id, data, 'GAME DỄ CHƠI')).join('')
 
     view.innerHTML = `
       <section class="rewards-head">
         <span>🎮 KIẾM THƯỞNG</span>
-        <h1>Tất cả mini game</h1>
-        <p>Chọn game, chơi lấy điểm và nhận coin sau khi server xác minh kết quả.</p>
+        <h1>Chơi càng hay, nhận càng nhiều</h1>
+        <p>Chọn game, chơi lấy điểm và nhận coin để quy đổi ra tiền.</p>
       </section>
       <div class="rewards-count"><b>${supported.length}</b><span>game đang khả dụng</span></div>
       <div class="games rewards-games">${cards || '<section class="card"><p>Chưa có mini game khả dụng.</p></section>'}</div>`
