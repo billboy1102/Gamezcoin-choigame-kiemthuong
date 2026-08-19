@@ -38,9 +38,19 @@ function syncRewardAndDifficultyUI() {
     lastDifficulty = -1
   }
 
-  const rate = document.querySelector('.block-card em')
-  if (rate && rate.textContent.trim() !== '10 điểm = 1 coin') {
+  const blockRate = document.querySelector('.block-card:not(.orbit-card) em')
+  if (blockRate && blockRate.textContent.trim() !== '10 điểm = 1 coin') {
+    blockRate.textContent = '10 điểm = 1 coin'
+  }
+
+  const orbitInfo = document.querySelector('.orbit-card > div:nth-child(2)')
+  if (orbitInfo && !orbitInfo.querySelector('.orbit-card-rate')) {
+    const rate = document.createElement('em')
+    rate.className = 'orbit-card-rate'
     rate.textContent = '10 điểm = 1 coin'
+    const badge = orbitInfo.querySelector('.block-badge')
+    if (badge) orbitInfo.insertBefore(rate, badge)
+    else orbitInfo.append(rate)
   }
 
   document.querySelectorAll('.block-difficulty-note').forEach((node) => node.remove())
