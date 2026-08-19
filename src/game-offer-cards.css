@@ -23,12 +23,7 @@
   border:1px solid rgba(130,170,255,.12);
   box-shadow:0 10px 30px rgba(0,0,0,.18);
 }
-.gc-offer-banner img{
-  display:block;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
+.gc-offer-banner img{display:block;width:100%;height:100%;object-fit:cover}
 .gc-offer-card>.gi{
   grid-column:1;
   grid-row:2;
@@ -41,7 +36,7 @@
   background:#071321!important;
   box-shadow:0 8px 20px rgba(0,0,0,.16)!important;
 }
-.gc-offer-card>div:nth-of-type(2){
+.gc-offer-card>.gc-offer-info{
   grid-column:2;
   grid-row:2;
   align-self:center;
@@ -50,7 +45,7 @@
   gap:5px!important;
   padding:0!important;
 }
-.gc-offer-card>div:nth-of-type(2)>strong{
+.gc-offer-card>.gc-offer-info>strong{
   display:block;
   margin:0!important;
   color:#f6f9ff;
@@ -59,11 +54,8 @@
   font-weight:900!important;
   letter-spacing:-.035em!important;
 }
-.gc-offer-card>div:nth-of-type(2)>small,
-.gc-offer-card .block-badge{
-  display:none!important;
-}
-.gc-offer-card>div:nth-of-type(2)>em{
+.gc-offer-card>.gc-offer-info>small,.gc-offer-card .block-badge{display:none!important}
+.gc-offer-card>.gc-offer-info>em{
   display:flex!important;
   align-items:center;
   gap:7px;
@@ -72,7 +64,7 @@
   font-style:normal!important;
   font-weight:700!important;
 }
-.gc-offer-card>div:nth-of-type(2)>em::before{
+.gc-offer-card>.gc-offer-info>em::before{
   content:'G';
   width:22px;
   height:22px;
@@ -109,10 +101,8 @@
   .gc-offer-card{grid-template-columns:62px minmax(0,1fr)!important;padding:12px!important;border-radius:22px!important;column-gap:13px!important}
   .gc-offer-banner{margin-bottom:14px;border-radius:16px}
   .gc-offer-card>.gi{width:62px!important;height:62px!important;border-radius:16px!important}
-  .gc-offer-card>div:nth-of-type(2)>strong{font-size:19px!important}
-  .gc-offer-card>div:nth-of-type(2)>em{font-size:11px!important}
+  .gc-offer-card>.gc-offer-info>strong{font-size:19px!important}
+  .gc-offer-card>.gc-offer-info>em{font-size:11px!important}
   .gc-offer-card>button{min-height:50px!important;margin-top:14px!important;border-radius:14px!important;font-size:15px!important}
 }
-@media(min-width:820px){
-  .home-featured .games,.rewards-games{grid-template-columns:1fr 1fr!important;align-items:start}
-}
+@media(min-width:820px){.home-featured .games,.rewards-games{grid-template-columns:1fr 1fr!important;align-items:start}}
