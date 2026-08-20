@@ -84,7 +84,16 @@ function openIntro(playButton) {
 
   overlay.querySelector('#block-intro-back').onclick = closeIntro
   overlay.querySelector('#block-intro-start').onclick = () => {
+    const startGame = globalThis.GamezcoinStartBlockBlast
     closeIntro()
+
+    if (typeof startGame === 'function') {
+      startGame()
+      return
+    }
+
+    // Fallback for an unusually slow/cached module load. The normal path above
+    // is direct and does not depend on Safari dispatching a synthetic click.
     playButton.dataset.blockIntroBypass = '1'
     playButton.click()
     delete playButton.dataset.blockIntroBypass
