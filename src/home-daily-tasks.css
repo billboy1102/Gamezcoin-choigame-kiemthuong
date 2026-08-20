@@ -1,0 +1,46 @@
+.gc-premium-daily-tasks{overflow:hidden;border:1px solid rgba(112,151,226,.24);border-radius:24px;background:linear-gradient(180deg,rgba(11,27,52,.98),rgba(7,20,39,.98));box-shadow:0 16px 40px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.035);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.gc-premium-daily-tasks.is-highlighted{border-color:rgba(57,220,255,.62);box-shadow:0 0 0 2px rgba(57,220,255,.08),0 18px 44px rgba(0,0,0,.22);transform:translateY(-1px)}
+.gc-daily-task-head{min-height:58px;padding:0 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid rgba(128,158,211,.14)}
+.gc-daily-task-head>div{display:flex;align-items:center;gap:10px;min-width:0}
+.gc-daily-task-head svg{width:23px;height:23px;fill:none;stroke:#8b61ff;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.gc-daily-task-head strong{font-size:17px;line-height:1.1;font-weight:850;color:#f7f9ff;letter-spacing:-.025em}
+.gc-daily-task-head>span{flex:0 0 auto;padding:5px 9px;border:1px solid rgba(61,198,255,.18);border-radius:999px;background:rgba(30,106,159,.12);color:#70dfff;font-size:10px;font-weight:800}
+.gc-daily-task-list{display:grid}
+.gc-daily-task-row{position:relative;width:100%;min-height:58px;display:grid;grid-template-columns:34px minmax(0,1fr) auto 42px 16px;gap:9px;align-items:center;padding:8px 15px;border:0;background:transparent;color:#fff;text-align:left}
+.gc-daily-task-row+.gc-daily-task-row:before{content:"";position:absolute;left:58px;right:14px;top:0;height:1px;background:rgba(125,153,203,.11)}
+.gc-daily-task-row:active{background:rgba(51,116,189,.10)}
+.gc-daily-task-icon{width:31px;height:31px;border-radius:9px;display:grid;place-items:center;background:rgba(31,83,139,.14)}
+.gc-daily-task-icon svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.gc-daily-task-icon.cyan{color:#17d8ff}.gc-daily-task-icon.blue{color:#4b8cff}.gc-daily-task-icon.gold{color:#ffc928}.gc-daily-task-icon.purple{color:#9f66ff}
+.gc-daily-task-row>strong{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#eff4ff;font-size:13px;font-weight:760}
+.gc-daily-task-reward{white-space:nowrap;color:#ffd12d;font-size:12px;font-weight:850}
+.gc-daily-task-row>em{min-width:36px;text-align:center;color:#a9bad2;font-size:11px;font-style:normal;font-weight:750}
+.gc-daily-task-row>b{display:grid;place-items:center;color:#5e92d7}
+.gc-daily-task-row>b svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.gc-daily-task-all{width:calc(100% - 28px);min-height:42px;margin:5px 14px 14px;border:1px solid rgba(43,181,255,.62);border-radius:12px;background:linear-gradient(180deg,rgba(16,66,116,.42),rgba(7,34,68,.36));color:#7fe6ff;display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;font-weight:850;box-shadow:inset 0 1px 0 rgba(255,255,255,.035)}
+.gc-daily-task-all svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}
+
+@media(max-width:650px){
+  .gc-premium-daily-tasks{border-radius:18px}
+  .gc-daily-task-head{min-height:50px;padding:0 13px}
+  .gc-daily-task-head svg{width:20px;height:20px}
+  .gc-daily-task-head strong{font-size:14px}
+  .gc-daily-task-head>span{font-size:8.5px;padding:4px 7px}
+  .gc-daily-task-row{min-height:50px;grid-template-columns:29px minmax(0,1fr) auto 34px 13px;gap:7px;padding:6px 11px}
+  .gc-daily-task-row+.gc-daily-task-row:before{left:47px;right:10px}
+  .gc-daily-task-icon{width:27px;height:27px;border-radius:8px}
+  .gc-daily-task-icon svg{width:18px;height:18px}
+  .gc-daily-task-row>strong{font-size:11px}
+  .gc-daily-task-reward{font-size:10px}
+  .gc-daily-task-row>em{min-width:30px;font-size:9px}
+  .gc-daily-task-row>b svg{width:13px;height:13px}
+  .gc-daily-task-all{width:calc(100% - 22px);min-height:38px;margin:5px 11px 11px;border-radius:10px;font-size:10.5px}
+}
+
+@media(max-width:390px){
+  .gc-daily-task-row{grid-template-columns:27px minmax(0,1fr) auto 29px 11px;gap:5px;padding-left:9px;padding-right:9px}
+  .gc-daily-task-icon{width:25px;height:25px}
+  .gc-daily-task-row>strong{font-size:10.5px}
+  .gc-daily-task-reward{font-size:9.5px}
+  .gc-daily-task-row>em{min-width:27px;font-size:8.5px}
+}
