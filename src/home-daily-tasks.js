@@ -20,8 +20,6 @@ const defaultStatus = {
 let taskStatus = { ...defaultStatus }
 let statusLoading = null
 let lastStatusFetch = 0
-let blockEntryArmed = false
-const orbitHosts = new WeakSet()
 
 const tasks = [
   { id: 'play10', icon: 'gamepad', tone: 'blue', title: 'Chơi 10 game bất kỳ', reward: '+100 coin' },
@@ -43,11 +41,6 @@ function toast(message, type = '') {
 
 function goTo(tab) {
   document.querySelector(`.shell>nav [data-tab="${tab}"]`)?.click()
-}
-
-function makeEntryId() {
-  if (globalThis.crypto?.randomUUID) return crypto.randomUUID()
-  return `${Date.now()}-${Math.random().toString(36).slice(2)}-${Math.random().toString(36).slice(2)}`
 }
 
 function completedCount() {
@@ -105,15 +98,25 @@ async function refreshBalance() {
   } catch {}
 }
 
+function applyTaskStatus(next, notifyPlayReward = false) {
+  if (!next) return
+  const wasPlayClaimed = !!taskStatus.play_claimed
+  taskStatus = { ...defaultStatus, ...next }
+  renderTaskState()
+  if (notifyPlayReward && !wasPlayClaimed && taskStatus.play_claimed) {
+    toast('+100 coin · Hoàn thành nhiệm vụ chơi 10 game', 'ok')
+    void refreshBalance()
+  }
+}
+
 async function refreshStatus(force = false) {
   const now = Date.now()
   if (!force && now - lastStatusFetch < 1500) return taskStatus
   if (statusLoading) return statusLoading
   statusLoading = api('daily_tasks')
     .then((response) => {
-      if (response?.tasks) taskStatus = { ...defaultStatus, ...response.tasks }
+      if (response?.tasks) applyTaskStatus(response.tasks)
       lastStatusFetch = Date.now()
-      renderTaskState()
       return taskStatus
     })
     .catch((error) => {
@@ -122,38 +125,6 @@ async function refreshStatus(force = false) {
     })
     .finally(() => { statusLoading = null })
   return statusLoading
-}
-
-async function recordGameEntry(gameId) {
-  try {
-    const response = await api('record_daily_game_entry', { game_id: gameId, entry_id: makeEntryId() })
-    if (response?.tasks) taskStatus = { ...defaultStatus, ...response.tasks }
-    renderTaskState()
-    if (response?.result?.reward?.claimed) {
-      toast('+100 coin · Hoàn thành nhiệm vụ chơi 10 game', 'ok')
-      await refreshBalance()
-    }
-  } catch (error) {
-    console.warn('Không ghi được lượt chơi cho nhiệm vụ', error)
-  }
-}
-
-function watchGameEntries() {
-  const loadingText = document.querySelector('.play-loading p')?.textContent || ''
-  if (loadingText.includes('Đang tạo phiên Block Blast')) blockEntryArmed = true
-  if (blockEntryArmed && document.querySelector('.play-screen')) {
-    blockEntryArmed = false
-    void recordGameEntry('block-blast')
-  }
-
-  document.querySelectorAll('.orbit-host').forEach((host) => {
-    if (orbitHosts.has(host)) return
-    orbitHosts.add(host)
-    const frame = host.querySelector('.orbit-frame')
-    const record = () => void recordGameEntry('orbit-break')
-    if (frame?.classList.contains('ready')) record()
-    else frame?.addEventListener('load', record, { once: true })
-  })
 }
 
 function shareUrl() {
@@ -167,8 +138,7 @@ function closeShareSheet() {
 async function claimShareReward() {
   try {
     const response = await api('claim_daily_task', { task: 'share' })
-    if (response?.tasks) taskStatus = { ...defaultStatus, ...response.tasks }
-    renderTaskState()
+    if (response?.tasks) applyTaskStatus(response.tasks)
     if (response?.result?.claimed) {
       toast('+150 coin · Chia sẻ app cho bạn bè', 'ok')
       await refreshBalance()
@@ -289,13 +259,16 @@ document.addEventListener('click', (event) => {
   focusTasks()
 }, true)
 
+window.addEventListener('gamezcoin:daily-tasks', (event) => {
+  applyTaskStatus(event.detail, true)
+})
+
 let queued = false
 function schedule() {
   if (queued) return
   queued = true
   queueMicrotask(() => {
     queued = false
-    watchGameEntries()
     mountTasks()
   })
 }

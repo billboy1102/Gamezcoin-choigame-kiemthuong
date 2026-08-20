@@ -24,7 +24,7 @@ const dailyTaskKey = (userId: string, task: string, date: string) => `daily_task
 async function getDailyTasks(admin: any, userId: string) {
   const date = bangkokDate()
   const [entriesQ, playRewardQ, shareRewardQ] = await Promise.all([
-    admin.from('gamezcoin_daily_game_entries').select('entry_id', { count: 'exact', head: true }).eq('user_id', userId).eq('task_date', date),
+    admin.from('gamezcoin_daily_game_entries').select('entry_id', { count: 'exact', head: true }).eq('user_id', userId).eq('task_date', date).not('session_id', 'is', null),
     admin.from('gamezcoin_wallet_ledger').select('id').eq('idempotency_key', dailyTaskKey(userId, 'play10', date)).maybeSingle(),
     admin.from('gamezcoin_wallet_ledger').select('id').eq('idempotency_key', dailyTaskKey(userId, 'share', date)).maybeSingle(),
   ])
@@ -96,9 +96,11 @@ Deno.serve(async (req: Request) => {
       const entryId = String(body?.entry_id || '').trim()
       if (!gameId || entryId.length < 8 || entryId.length > 160) return json({ error: 'INVALID_ENTRY' }, 400)
       const { data, error } = await admin.rpc('gamezcoin_record_daily_game_entry', {
-        p_user_id: user.id, p_game_id: gameId, p_entry_id: entryId,
+        p_user_id: user.id,
+        p_game_id: gameId,
+        p_entry_id: entryId,
       })
-      if (error) return json({ error: error.message || 'TASK_PROGRESS_FAILED' }, 400)
+      if (error) return json({ error: error.message || 'TASK_PENDING_FAILED' }, 400)
       return json({ result: data, tasks: await getDailyTasks(admin, user.id) })
     }
 
@@ -127,11 +129,48 @@ Deno.serve(async (req: Request) => {
     if (action === 'finish_game') {
       const sessionId = String(body?.session_id || '')
       const score = Number(body?.score)
+      const rawDailyEntryId = String(body?.daily_entry_id || '').trim()
+      const dailyEntryId = rawDailyEntryId.length >= 8 && rawDailyEntryId.length <= 160 ? rawDailyEntryId : ''
       if (!sessionId || !Number.isInteger(score) || score < 0 || score > 2_000_000_000) return json({ error: 'INVALID_SCORE' }, 400)
       const { data, error } = await admin.rpc('gamezcoin_award_game_session', { p_user_id: user.id, p_session_id: sessionId, p_score: score })
       if (error) return json({ error: error.message || 'REWARD_REJECTED' }, 400)
       if (data?.rejected) return json({ error: data.reason || 'REWARD_REJECTED' }, 400)
-      return json({ result: data })
+
+      let dailyTask: any = null
+      let tasks: any = null
+      try {
+        const { data: session, error: sessionError } = await admin.from('gamezcoin_game_sessions')
+          .select('id,game_id,status')
+          .eq('id', sessionId)
+          .eq('user_id', user.id)
+          .maybeSingle()
+        if (sessionError) throw sessionError
+        if (session?.status === 'rewarded') {
+          if (dailyEntryId) {
+            const { data: taskData, error: taskError } = await admin.rpc('gamezcoin_record_daily_game_completion', {
+              p_user_id: user.id,
+              p_session_id: session.id,
+              p_game_id: session.game_id,
+              p_entry_id: dailyEntryId,
+            })
+            if (taskError) throw taskError
+            dailyTask = taskData
+          } else {
+            const { data: taskData, error: taskError } = await admin.rpc('gamezcoin_complete_pending_daily_game_entry', {
+              p_user_id: user.id,
+              p_session_id: session.id,
+              p_game_id: session.game_id,
+            })
+            if (taskError) throw taskError
+            dailyTask = taskData
+          }
+        }
+        tasks = await getDailyTasks(admin, user.id)
+      } catch (taskError) {
+        console.error('daily game completion', taskError)
+      }
+
+      return json({ result: data, daily_task: dailyTask, ...(tasks ? { tasks } : {}) })
     }
 
     if (action === 'checkin') {

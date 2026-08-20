@@ -7,7 +7,22 @@ export const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
 
 const SERVER_TIMEOUT_MS = 15000
 const FINISH_RETRY_DELAYS_MS = [700, 1500]
+const dailyEntryIds = new Map()
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+
+function makeDailyEntryId() {
+  if (globalThis.crypto?.randomUUID) return crypto.randomUUID()
+  return `${Date.now()}-${Math.random().toString(36).slice(2)}-${Math.random().toString(36).slice(2)}`
+}
+
+function currentDailyEntryId() {
+  const orbitHost = document.querySelector('.orbit-host')
+  if (orbitHost) {
+    if (!orbitHost.dataset.dailyEntryId) orbitHost.dataset.dailyEntryId = makeDailyEntryId()
+    return orbitHost.dataset.dailyEntryId
+  }
+  return makeDailyEntryId()
+}
 
 function isTransientFinishError(error) {
   const status = Number(error?.status || 0)
@@ -56,5 +71,29 @@ async function invoke(functionName, action, payload = {}) {
   }
 }
 
-export const api = (action, payload) => invoke('gamezcoin-api', action, payload)
+export async function api(action, payload = {}) {
+  const requestPayload = { ...(payload || {}) }
+  const sessionId = String(requestPayload.session_id || '')
+
+  if (action === 'finish_game' && sessionId && !requestPayload.daily_entry_id) {
+    const dailyEntryId = dailyEntryIds.get(sessionId)
+    if (dailyEntryId) requestPayload.daily_entry_id = dailyEntryId
+  }
+
+  const data = await invoke('gamezcoin-api', action, requestPayload)
+
+  if (action === 'start_game' && data?.session?.id) {
+    dailyEntryIds.set(String(data.session.id), currentDailyEntryId())
+  }
+
+  if (action === 'finish_game' && sessionId) {
+    dailyEntryIds.delete(sessionId)
+    if (data?.tasks) {
+      window.dispatchEvent(new CustomEvent('gamezcoin:daily-tasks', { detail: data.tasks }))
+    }
+  }
+
+  return data
+}
+
 export const adminApi = (action, payload) => invoke('gamezcoin-admin', action, payload)
