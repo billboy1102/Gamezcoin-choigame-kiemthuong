@@ -63,11 +63,6 @@ function relabelNav() {
   })
 }
 
-function goTo(tab) {
-  const button = document.querySelector(`.shell>nav [data-tab="${tab}"]`)
-  button?.click()
-}
-
 function launchGame(gameId) {
   launchingGame = gameId
   clearTimeout(launchTimer)
@@ -138,85 +133,6 @@ function bindGameButtons(view) {
   })
 }
 
-async function renderHome() {
-  const view = document.querySelector('#view')
-  if (!view || view.dataset.gamezPage === 'home') return
-  view.dataset.gamezPage = 'home'
-  view.innerHTML = '<div class="loader"></div>'
-
-  try {
-    const data = await getData()
-    if (!document.body.contains(view) || document.querySelector('.shell>nav .on')?.dataset.tab !== 'games' || launchingGame) return
-
-    const reward = Number(data.settings?.daily_checkin_coin || 100)
-    const code = data.profile?.referral_code || ''
-    const inviter = Number(data.settings?.referral_inviter_coin || 0)
-    const games = ['block-blast', 'orbit-break'].map((id) => gameCard(id, data)).filter(Boolean).join('')
-
-    view.innerHTML = `
-      <section class="home-welcome">
-        <div>
-          <span class="home-kicker">GAMEZCOIN</span>
-          <h1>Chơi Game & Kiếm Thưởng</h1>
-          <p>Chơi mini game, tích lũy điểm và nhận coin. Điểm được server xác minh trước khi cộng vào ví.</p>
-        </div>
-        <div class="home-coin">G</div>
-      </section>
-
-      <section class="home-section">
-        <div class="home-section-title"><div><small>MỖI NGÀY</small><h2>Điểm danh</h2></div><span>📅</span></div>
-        <div class="home-quick-card home-checkin-card">
-          <div><b>+${f(reward)} coin</b><p>Nhận thưởng điểm danh mỗi ngày.</p></div>
-          <button id="home-checkin">Điểm danh</button>
-        </div>
-      </section>
-
-      <section class="home-section">
-        <div class="home-section-title"><div><small>MỜI BẠN BÈ</small><h2>Giới thiệu</h2></div><span>👥</span></div>
-        <div class="home-quick-card home-ref-card">
-          <div><b>${e(code || 'Mã giới thiệu')}</b><p>${inviter ? `Nhận +${f(inviter)} coin khi lời mời đủ điều kiện.` : 'Chia sẻ mã của bạn để nhận thưởng.'}</p></div>
-          <button id="home-referral">Xem</button>
-        </div>
-      </section>
-
-      <section class="home-section home-featured">
-        <div class="home-section-title home-games-title">
-          <div><small>NỔI BẬT</small><h2>Mini game</h2></div>
-          <button id="home-view-all">Xem tất cả <span>›</span></button>
-        </div>
-        <div class="games">${games || '<section class="card"><p>Chưa có mini game khả dụng.</p></section>'}</div>
-      </section>`
-
-    view.querySelector('#home-checkin')?.addEventListener('click', async (event) => {
-      const button = event.currentTarget
-      button.disabled = true
-      button.textContent = 'Đang nhận...'
-      try {
-        const result = await api('checkin')
-        toast(result.result?.claimed ? `+${f(result.result.reward_coin)} coin` : 'Hôm nay bạn đã điểm danh.', 'ok')
-        await getData(true)
-        view.dataset.gamezPage = ''
-        renderHome()
-      } catch (error) {
-        toast(error?.message || 'Không thể điểm danh.', 'bad')
-        button.disabled = false
-        button.textContent = 'Điểm danh'
-      }
-    })
-
-    view.querySelector('#home-referral')?.addEventListener('click', () => goTo('ref'))
-    view.querySelector('#home-view-all')?.addEventListener('click', () => goTo('checkin'))
-    bindGameButtons(view)
-  } catch (error) {
-    view.innerHTML = `<section class="card center"><h3>Không tải được Trang chủ</h3><p>${e(error?.message || 'Hãy thử lại.')}</p><button class="primary" id="home-retry">Thử lại</button></section>`
-    view.querySelector('#home-retry')?.addEventListener('click', () => {
-      view.dataset.gamezPage = ''
-      cachedData = null
-      renderHome()
-    })
-  }
-}
-
 async function renderRewards() {
   const view = document.querySelector('#view')
   if (!view || view.dataset.gamezPage === 'rewards') return
@@ -263,7 +179,7 @@ function sync() {
 
   if (active === 'games') {
     if (tryLaunchOriginalGame()) return
-    renderHome()
+    // Trang chủ cũ đã bị loại bỏ hoàn toàn. home-reference.js là renderer Home duy nhất.
     return
   }
 
