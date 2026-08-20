@@ -1,18 +1,8 @@
 /* Pixel-focused leaderboard pass based on the approved reference artwork.
    This file only changes the full leaderboard screen. Home preview stays live/dynamic. */
 
-html body #view:has(.gc-leaderboard-page){
-  max-width:900px!important;
-  padding:0!important;
-  background:#020b18!important;
-}
-html body .gc-leaderboard-page{
-  min-height:100%;
-  padding:9px 10px calc(86px + env(safe-area-inset-bottom))!important;
-  gap:11px!important;
-  background:radial-gradient(circle at 52% 38%,rgba(21,62,125,.12),transparent 34%),linear-gradient(180deg,#020b18 0%,#020c19 100%)!important;
-  color:#f7fbff;
-}
+html body #view:has(.gc-leaderboard-page){max-width:900px!important;padding:0!important;background:#020b18!important}
+html body .gc-leaderboard-page{min-height:100%;padding:9px 10px calc(86px + env(safe-area-inset-bottom))!important;gap:11px!important;background:radial-gradient(circle at 52% 38%,rgba(21,62,125,.12),transparent 34%),linear-gradient(180deg,#020b18 0%,#020c19 100%)!important;color:#f7fbff}
 html body .shell>nav .gc-leaderboard-nav{display:none!important}
 html body .shell>nav [data-tab="account"].gc-account-nav-source{display:grid!important}
 html body .gc-leaderboard-page .gc-lb-hero{position:relative!important;min-height:154px!important;padding:15px 43% 14px 17px!important;border:1px solid #5a42ef!important;border-left-color:#16d9ff!important;border-radius:17px!important;overflow:hidden!important;background:radial-gradient(circle at 83% 31%,rgba(77,62,255,.35),transparent 33%),radial-gradient(circle at 11% 16%,rgba(0,210,255,.13),transparent 25%),linear-gradient(115deg,#062750 0%,#08183b 50%,#241050 100%)!important;box-shadow:0 0 0 1px rgba(35,203,255,.16),inset 0 0 28px rgba(34,61,177,.10),0 12px 24px rgba(0,0,0,.22)!important}
@@ -30,7 +20,7 @@ html body .gc-leaderboard-page .gc-lb-trust svg{width:15px!important;height:15px
 html body .gc-leaderboard-page .gc-lb-trust b{color:#f2f6ff!important;font-size:8px!important;font-weight:700!important;line-height:1.15!important}
 html body .gc-leaderboard-page .gc-lb-hero-art{position:absolute!important;z-index:2!important;top:0!important;right:0!important;width:43%!important;height:100%!important;display:block!important;overflow:hidden!important}
 html body .gc-leaderboard-page .gc-lb-hero-art>i,html body .gc-leaderboard-page .gc-lb-hero-art>svg{display:none!important}
-html body .gc-leaderboard-page .gc-lb-hero-art:before{content:"";position:absolute;inset:0;background:url('/assets/leaderboard/trophy-reference.png') center/cover no-repeat;filter:saturate(1.04) contrast(1.02)}
+html body .gc-leaderboard-page .gc-lb-hero-art:before{content:"";position:absolute;inset:0;background:url('/assets/leaderboard/trophy-reference.jpg') center/cover no-repeat;filter:saturate(1.04) contrast(1.02)}
 html body .gc-leaderboard-page .gc-lb-periods{height:43px!important;margin:0!important;display:grid!important;grid-template-columns:repeat(4,1fr)!important;border:1px solid rgba(45,76,130,.53)!important;border-radius:17px!important;overflow:hidden!important;background:#071329!important;box-shadow:0 6px 18px rgba(0,0,0,.16)!important}
 html body .gc-leaderboard-page .gc-lb-periods button{min-height:43px!important;padding:0 5px!important;border:0!important;border-right:1px solid rgba(62,89,139,.28)!important;border-radius:0!important;background:transparent!important;color:#9ba8bc!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:6px!important;font-size:10px!important;font-weight:650!important;white-space:nowrap!important}
 html body .gc-leaderboard-page .gc-lb-periods button:last-child{border-right:0!important}
@@ -42,11 +32,8 @@ html body .gc-leaderboard-page .gc-lb-podium-card{position:relative!important;mi
 html body .gc-leaderboard-page .gc-lb-podium-card.r1{min-height:166px!important;padding-top:31px!important;border-color:#f5cc24!important;background:radial-gradient(circle at 50% 22%,rgba(255,192,16,.11),transparent 32%),linear-gradient(180deg,rgba(36,32,17,.96),rgba(5,20,37,.99))!important;box-shadow:0 0 0 1px rgba(255,206,37,.15),0 0 23px rgba(255,191,16,.17),inset 0 1px 0 rgba(255,238,132,.15)!important}
 html body .gc-leaderboard-page .gc-lb-podium-card.r3{border-color:#c56c26!important;background:linear-gradient(180deg,rgba(41,26,20,.78),rgba(5,20,37,.99))!important}
 html body .gc-leaderboard-page .gc-lb-podium-card.is-me{box-shadow:0 0 0 1px rgba(89,232,255,.17),0 0 21px rgba(49,194,255,.11)!important}
-html body .gc-leaderboard-page .gc-lb-podium-card.r1 .gc-lb-avatar.large,html body .gc-leaderboard-page .gc-lb-podium-card.r2 .gc-lb-avatar.large,html body .gc-leaderboard-page .gc-lb-podium-card.r3 .gc-lb-avatar.large{width:60px!important;height:60px!important;border:0!important;background-color:#08172d!important;background-size:cover!important;background-position:center!important;box-shadow:none!important}
-html body .gc-leaderboard-page .gc-lb-podium-card.r1 .gc-lb-avatar.large{width:68px!important;height:68px!important;background-image:url('/assets/leaderboard/rank1-avatar.png')!important}
-html body .gc-leaderboard-page .gc-lb-podium-card.r2 .gc-lb-avatar.large{background-image:url('/assets/leaderboard/rank2-avatar.png')!important}
-html body .gc-leaderboard-page .gc-lb-podium-card.r3 .gc-lb-avatar.large{background-image:url('/assets/leaderboard/rank3-avatar.png')!important}
-html body .gc-leaderboard-page .gc-lb-podium-card .gc-lb-avatar.large>b,html body .gc-leaderboard-page .gc-lb-podium-card .gc-lb-avatar.large>i{display:none!important}
+html body .gc-leaderboard-page .gc-lb-podium-card.r1 .gc-lb-avatar.large,html body .gc-leaderboard-page .gc-lb-podium-card.r2 .gc-lb-avatar.large,html body .gc-leaderboard-page .gc-lb-podium-card.r3 .gc-lb-avatar.large{width:60px!important;height:60px!important;box-shadow:0 0 13px hsl(var(--gc-lb-h) 90% 50%/.18)!important}
+html body .gc-leaderboard-page .gc-lb-podium-card.r1 .gc-lb-avatar.large{width:68px!important;height:68px!important}
 html body .gc-leaderboard-page .gc-lb-medal{position:absolute!important;left:7px!important;top:7px!important;width:31px!important;height:35px!important;display:grid!important;place-items:center!important;border-radius:50% 50% 44% 44%!important;font-size:12px!important;font-weight:1000!important;filter:drop-shadow(0 4px 5px rgba(0,0,0,.32))!important}
 html body .gc-leaderboard-page .gc-lb-medal.r1{background:linear-gradient(145deg,#fff37e,#ffc21c 55%,#dd8700)!important;color:#7e4a00!important;border:1px solid #fff08a!important}
 html body .gc-leaderboard-page .gc-lb-medal.r2{background:linear-gradient(145deg,#f5f8ff,#a7bbd8 55%,#637b9e)!important;color:#4b5e79!important;border:1px solid #ecf6ff!important}
