@@ -49,67 +49,21 @@
     inset:24% -4% 5% 6%!important;
   }
   .gc-reward-hero-art>img{
-    right:-4px!important;
-    bottom:4px!important;
-    width:94%!important;
-    height:72%!important;
+    content:url('/assets/rewards-controller-exact.svg');
+    right:-7px!important;
+    bottom:1px!important;
+    width:118%!important;
+    height:108%!important;
     object-fit:contain!important;
-    border-radius:14px!important;
-    filter:drop-shadow(0 9px 12px rgba(0,0,0,.30))!important;
+    object-position:center!important;
+    border-radius:0!important;
+    filter:drop-shadow(0 10px 15px rgba(0,0,0,.28))!important;
   }
 
-  .gc-floating-pad{
-    right:35%!important;
-    top:2px!important;
-    width:46px!important;
-    height:34px!important;
-    border-radius:11px!important;
-  }
-  .gc-floating-pad svg{
-    width:30px!important;
-    height:30px!important;
-  }
-  .gc-floating-app{
-    width:27px!important;
-    height:27px!important;
-    border-radius:8px!important;
-  }
-  .gc-floating-app svg{
-    width:16px!important;
-    height:16px!important;
-  }
-  .gc-floating-app.a1{
-    right:12%!important;
-    top:1px!important;
-  }
-  .gc-floating-app.a2{
-    right:-2px!important;
-    top:19%!important;
-  }
-
+  .gc-floating-pad,
+  .gc-floating-app,
   .gc-hero-coin{
-    width:18px!important;
-    height:18px!important;
-    border-width:1px!important;
-    font-size:7px!important;
-  }
-  .gc-hero-coin.c1{
-    left:35%!important;
-    top:46%!important;
-  }
-  .gc-hero-coin.c2{
-    left:50%!important;
-    bottom:11%!important;
-    width:25px!important;
-    height:25px!important;
-    font-size:9px!important;
-  }
-  .gc-hero-coin.c3{
-    right:0!important;
-    bottom:27%!important;
-    width:17px!important;
-    height:17px!important;
-    font-size:6px!important;
+    display:none!important;
   }
 
   .gc-reward-trust-strip{
