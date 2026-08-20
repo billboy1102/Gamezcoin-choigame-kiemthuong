@@ -1,0 +1,11 @@
+/* Prevent the old check-in renderer from ever becoming visible on the Rewards tab.
+   app-v2 still mounts its legacy check-in view synchronously, while rewards-catalog.js
+   replaces it immediately after. Keep that transient DOM out of the paint pipeline. */
+.shell:has(>nav [data-tab="checkin"].on) #view:not(:has(.gc-rewards-catalog)) > *{
+  display:none!important;
+}
+
+/* Extra guard for the exact legacy check-in card in case DOM order changes later. */
+.shell:has(>nav [data-tab="checkin"].on) #view > .card.center:has(#claim){
+  display:none!important;
+}
