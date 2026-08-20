@@ -59,7 +59,7 @@ function modal(html){
 function closeModal(){document.querySelector('#gm')?.remove();state=null}
 function loading(text='Đang tạo phiên chơi...'){modal(`<div class="loader"></div><p>${text}</p>`)}
 function friendly(message){
-  return ({TOO_FAST:'Phiên chơi quá nhanh nên không được cộng coin.',IMPOSSIBLE_SCORE:'Điểm vượt ngưỡng hợp lý nên bị từ chối.',SESSION_EXPIRED:'Phiên chơi đã hết hạn.',SESSION_ALREADY_FINISHED':'Phiên này đã được xử lý.',TOO_MANY_SESSIONS:'Bạn đang mở quá nhiều phiên game. Hãy đóng các ván cũ rồi thử lại.'})[message]||message||'Không thể kết nối máy chủ.'
+  return ({TOO_FAST:'Phiên chơi quá nhanh nên không được cộng coin.',IMPOSSIBLE_SCORE:'Điểm vượt ngưỡng hợp lý nên bị từ chối.',SESSION_EXPIRED:'Phiên chơi đã hết hạn.',SESSION_ALREADY_FINISHED:'Phiên này đã được xử lý.',TOO_MANY_SESSIONS:'Bạn đang mở quá nhiều phiên game. Hãy đóng các ván cũ rồi thử lại.'})[message]||message||'Không thể kết nối máy chủ.'
 }
 
 async function startGame(){
@@ -72,6 +72,10 @@ async function startGame(){
     render()
   }catch(error){closeModal();alert(friendly(error.message))}
 }
+
+// Stable public bridge for the intro screen. Calling the game directly avoids
+// Safari losing a synthetic second click between document-level capture handlers.
+globalThis.GamezcoinStartBlockBlast = startGame
 
 function render(){
   if(!state)return
