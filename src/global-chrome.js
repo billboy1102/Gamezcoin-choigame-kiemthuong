@@ -5,7 +5,7 @@ let cache = null
 let avatarUrl = ''
 let loading = false
 let queued = false
-let lastShell = null
+let hydratedShell = null
 
 const f = (value) => new Intl.NumberFormat('vi-VN').format(Number(value || 0))
 const e = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({
@@ -78,7 +78,7 @@ function normalizeNav() {
 }
 
 async function hydrate(shell) {
-  if (loading || !shell?.isConnected) return
+  if (loading || !shell || hydratedShell === shell) return
   loading = true
   try {
     const [data, userResult] = await Promise.all([
@@ -87,7 +87,10 @@ async function hydrate(shell) {
     ])
     cache = data
     avatarUrl = userResult?.data?.user?.user_metadata?.avatar_url || userResult?.data?.user?.user_metadata?.picture || ''
-    if (shell.isConnected && shell === document.querySelector('.shell')) renderHeader(cache)
+    if (shell.isConnected) {
+      hydratedShell = shell
+      renderHeader(cache)
+    }
   } catch (error) {
     console.error('Không thể đồng bộ header Gamezcoin', error)
   } finally {
@@ -97,23 +100,11 @@ async function hydrate(shell) {
 
 function sync() {
   const shell = document.querySelector('.shell')
-  if (!shell) {
-    lastShell = null
-    return
-  }
-
+  if (!shell) return
   normalizeNav()
-
-  if (shell !== lastShell) {
-    lastShell = shell
-    cache = null
-    renderHeader(fallbackData())
-    hydrate(shell)
-    return
-  }
-
   const header = shell.querySelector(':scope>header')
-  if (header && !header.classList.contains('gc-premium-header')) renderHeader(cache || fallbackData())
+  if (header && !header.classList.contains('gc-premium-header')) renderHeader()
+  hydrate(shell)
 }
 
 function schedule() {
