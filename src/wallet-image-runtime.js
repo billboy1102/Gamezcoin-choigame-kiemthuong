@@ -1,6 +1,6 @@
 import './wallet-image-runtime.css'
+import walletHeroUrl from './assets/wallet-hero.svg'
 
-const walletHeroUrl = '/src/assets/wallet-hero.svg'
 let queued = false
 
 function applyWalletImage() {
@@ -8,7 +8,7 @@ function applyWalletImage() {
     node.style.setProperty('background', 'transparent', 'important')
     node.style.setProperty('background-image', `url("${walletHeroUrl}")`, 'important')
     node.style.setProperty('background-repeat', 'no-repeat', 'important')
-    node.style.setProperty('background-position', 'center, center', 'important')
+    node.style.setProperty('background-position', 'center center', 'important')
     node.style.setProperty('background-size', 'contain', 'important')
     node.style.setProperty('-webkit-mask-image', 'none', 'important')
     node.style.setProperty('mask-image', 'none', 'important')
