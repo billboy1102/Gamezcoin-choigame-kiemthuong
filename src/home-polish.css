@@ -1,0 +1,31 @@
+/* Final small layout refinements requested for the premium Home/header. */
+
+/* Make the Earn button a little shorter and give Withdraw more breathing room. */
+.gc-premium-hero-actions{
+  grid-template-columns:1.16fr 1fr!important;
+}
+
+/* Notification bell lives next to the user name instead of next to balance. */
+.gc-premium-user{
+  flex-wrap:nowrap!important;
+}
+.gc-premium-user>.gc-premium-bell{
+  flex:0 0 auto!important;
+  margin-left:1px!important;
+  margin-right:0!important;
+}
+.gc-premium-head-actions{
+  gap:0!important;
+}
+
+@media(max-width:650px){
+  .gc-premium-user>.gc-premium-bell{
+    width:32px!important;
+    height:36px!important;
+    margin-left:0!important;
+  }
+  .gc-premium-user>.gc-premium-bell svg{
+    width:22px!important;
+    height:22px!important;
+  }
+}
