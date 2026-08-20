@@ -1,0 +1,59 @@
+.gc-reward-hero-art.gc-controller-art-ready{
+  overflow:visible!important;
+}
+.gc-reward-hero-art.gc-controller-art-ready:before{
+  inset:18% -8% 2% 3%!important;
+  background:radial-gradient(circle,rgba(37,126,255,.27),transparent 64%)!important;
+  filter:blur(9px)!important;
+}
+.gc-reward-hero-art .gc-reward-controller-coins-art{
+  display:block!important;
+  position:absolute!important;
+  z-index:4!important;
+  right:-7%!important;
+  bottom:-5%!important;
+  width:108%!important;
+  height:108%!important;
+  max-width:none!important;
+  max-height:none!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  border-radius:0!important;
+  background:transparent!important;
+  filter:drop-shadow(0 12px 16px rgba(0,0,0,.32))!important;
+}
+.gc-reward-hero-art.gc-controller-art-failed:before{
+  opacity:.35!important;
+}
+
+@media(max-width:650px){
+  .gc-reward-hero-art.gc-controller-art-ready{
+    height:122px!important;
+    width:108%!important;
+    justify-self:end!important;
+    transform:translateX(2px)!important;
+  }
+  .gc-reward-hero-art.gc-controller-art-ready:before{
+    inset:17% -12% 0 2%!important;
+  }
+  .gc-reward-hero-art .gc-reward-controller-coins-art{
+    right:-12%!important;
+    bottom:-8%!important;
+    width:118%!important;
+    height:118%!important;
+    filter:drop-shadow(0 9px 12px rgba(0,0,0,.30))!important;
+  }
+}
+
+@media(max-width:390px){
+  .gc-reward-hero-art.gc-controller-art-ready{
+    height:116px!important;
+    width:106%!important;
+  }
+  .gc-reward-hero-art .gc-reward-controller-coins-art{
+    right:-11%!important;
+    bottom:-6%!important;
+    width:116%!important;
+    height:116%!important;
+  }
+}
