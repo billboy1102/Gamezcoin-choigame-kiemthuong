@@ -1,0 +1,3 @@
+/* Keep leaderboard available from Home, but keep the original Account tab in the bottom navigation. */
+html body .shell>nav .gc-leaderboard-nav{display:none!important}
+html body .shell>nav [data-tab="account"].gc-account-nav-source{display:grid!important}
