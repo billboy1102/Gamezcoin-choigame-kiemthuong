@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 320" fill="none">
+  <defs>
+    <linearGradient id="pad" x1="90" y1="65" x2="330" y2="275" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#163887"/><stop offset=".38" stop-color="#121F62"/><stop offset=".72" stop-color="#2B1768"/><stop offset="1" stop-color="#091436"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="80" y1="60" x2="350" y2="260" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#18E8FF"/><stop offset=".48" stop-color="#4D7BFF"/><stop offset="1" stop-color="#F044FF"/>
+    </linearGradient>
+    <linearGradient id="touch" x1="160" y1="80" x2="270" y2="145" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#263F82"/><stop offset="1" stop-color="#111B50"/>
+    </linearGradient>
+    <radialGradient id="gold" cx="0" cy="0" r="1" gradientTransform="translate(0.32 0.25) rotate(45) scale(.9)">
+      <stop stop-color="#FFF6A4"/><stop offset=".28" stop-color="#FFD641"/><stop offset=".68" stop-color="#F6A900"/><stop offset="1" stop-color="#B86400"/>
+    </radialGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="11" stdDeviation="11" flood-color="#02091E" flood-opacity=".58"/></filter>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+
+  <g opacity=".42" filter="url(#glow)">
+    <ellipse cx="221" cy="181" rx="145" ry="94" fill="#1467FF" opacity=".18"/>
+    <path d="M43 214C116 133 290 106 385 187" stroke="#31D9FF" stroke-width="3" stroke-linecap="round"/>
+    <path d="M55 228C146 290 307 289 385 202" stroke="#EF3FFF" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <g filter="url(#shadow)" transform="rotate(-4 215 174)">
+    <path d="M112 88c21-17 54-28 88-28h39c38 0 73 12 91 33 14 16 25 43 30 73l13 71c5 27-8 51-29 55-17 3-32-10-44-36l-21-45H155l-23 48c-13 27-28 38-45 34-22-5-33-29-27-57l15-72c6-31 19-60 37-76Z" fill="url(#pad)" stroke="url(#edge)" stroke-width="5"/>
+    <path d="M153 75h123c13 0 23 11 21 24l-7 40c-2 10-10 17-20 17H160c-10 0-19-8-20-18l-5-40c-2-12 7-23 18-23Z" fill="url(#touch)" stroke="#528DFF" stroke-width="2"/>
+    <path d="M158 81h114" stroke="#70C8FF" stroke-opacity=".35" stroke-width="2"/>
+
+    <g stroke="#3EDFFF" stroke-width="5" stroke-linecap="round">
+      <path d="M116 111v41M96 131h40"/>
+    </g>
+    <circle cx="116" cy="131" r="30" stroke="#435EFF" stroke-width="3" opacity=".55"/>
+
+    <g>
+      <circle cx="311" cy="112" r="14" fill="#111641" stroke="#17E5FF" stroke-width="3"/><path d="m305 116 6-9 6 9Z" stroke="#57E9FF" stroke-width="2"/>
+      <circle cx="338" cy="140" r="14" fill="#111641" stroke="#FF45C9" stroke-width="3"/><circle cx="338" cy="140" r="5" stroke="#FF63D8" stroke-width="2"/>
+      <circle cx="284" cy="140" r="14" fill="#111641" stroke="#C643FF" stroke-width="3"/><rect x="279" y="135" width="10" height="10" stroke="#E272FF" stroke-width="2"/>
+      <circle cx="311" cy="168" r="14" fill="#111641" stroke="#4F86FF" stroke-width="3"/><path d="m305 162 12 12m0-12-12 12" stroke="#75B7FF" stroke-width="2"/>
+    </g>
+
+    <g filter="url(#glow)">
+      <circle cx="157" cy="186" r="31" fill="#101440" stroke="#337CFF" stroke-width="4"/>
+      <circle cx="157" cy="186" r="20" fill="#202457" stroke="#B353FF" stroke-width="3"/>
+      <circle cx="253" cy="191" r="31" fill="#101440" stroke="#B248FF" stroke-width="4"/>
+      <circle cx="253" cy="191" r="20" fill="#202457" stroke="#37CFFF" stroke-width="3"/>
+    </g>
+    <circle cx="205" cy="181" r="6" fill="#43A5FF"/>
+    <circle cx="220" cy="181" r="3" fill="#8FBCFF"/><circle cx="228" cy="181" r="3" fill="#8FBCFF"/>
+  </g>
+
+  <g font-family="Arial,Helvetica,sans-serif" font-weight="900" text-anchor="middle">
+    <g transform="translate(63 94) rotate(-20)"><circle r="31" fill="url(#gold)" stroke="#FFE66B" stroke-width="3"/><circle r="23" stroke="#BD7100" stroke-width="2" opacity=".55"/><text y="10" font-size="28" fill="#8F5600">G</text></g>
+    <g transform="translate(340 61) rotate(14)"><circle r="38" fill="url(#gold)" stroke="#FFE66B" stroke-width="3"/><circle r="29" stroke="#BD7100" stroke-width="2" opacity=".55"/><text y="12" font-size="34" fill="#8F5600">G</text></g>
+    <g transform="translate(89 245) rotate(9)"><circle r="42" fill="url(#gold)" stroke="#FFE66B" stroke-width="4"/><circle r="31" stroke="#BD7100" stroke-width="2" opacity=".55"/><text y="13" font-size="38" fill="#8F5600">G</text></g>
+    <g transform="translate(359 229) rotate(-14)"><circle r="20" fill="url(#gold)" stroke="#FFE66B" stroke-width="2"/><text y="7" font-size="18" fill="#8F5600">G</text></g>
+    <g transform="translate(211 40) rotate(18)"><circle r="18" fill="url(#gold)" stroke="#FFE66B" stroke-width="2"/><text y="6" font-size="16" fill="#8F5600">G</text></g>
+  </g>
+</svg>
