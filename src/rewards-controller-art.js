@@ -1,5 +1,6 @@
 import './rewards-controller-art.css'
-import controllerArt from './assets/rewards-controller-coins.svg'
+
+const controllerArt = '/assets/rewards-controller-exact.svg?v=20260820-2255'
 
 let queued = false
 
