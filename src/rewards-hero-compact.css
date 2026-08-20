@@ -1,0 +1,138 @@
+/* Compact mobile hero for the Rewards catalog. Loaded after rewards-catalog.css. */
+@media(max-width:650px){
+  .gc-reward-hero{
+    min-height:0!important;
+    grid-template-columns:1.34fr .66fr!important;
+    grid-template-rows:minmax(132px,auto) 54px!important;
+    padding:14px 14px 10px!important;
+    border-radius:17px!important;
+    align-items:center!important;
+  }
+
+  .gc-reward-hero-copy{
+    align-self:center!important;
+    padding:0!important;
+  }
+
+  .gc-reward-kicker{
+    gap:5px!important;
+    font-size:8.5px!important;
+    letter-spacing:1.45px!important;
+  }
+  .gc-reward-kicker svg{
+    width:15px!important;
+    height:15px!important;
+  }
+
+  .gc-reward-hero h1{
+    margin:8px 0 7px!important;
+    font-size:clamp(27px,7.8vw,32px)!important;
+    line-height:.98!important;
+    letter-spacing:-.045em!important;
+  }
+  .gc-reward-hero h1 b{
+    white-space:nowrap!important;
+  }
+  .gc-reward-hero-copy>p{
+    margin:0!important;
+    font-size:clamp(10px,2.9vw,12px)!important;
+    line-height:1.38!important;
+  }
+
+  .gc-reward-hero-art{
+    height:112px!important;
+    width:100%!important;
+    align-self:center!important;
+    justify-self:end!important;
+  }
+  .gc-reward-hero-art:before{
+    inset:24% -4% 5% 6%!important;
+  }
+  .gc-reward-hero-art>img{
+    right:-4px!important;
+    bottom:4px!important;
+    width:94%!important;
+    height:72%!important;
+    object-fit:contain!important;
+    border-radius:14px!important;
+    filter:drop-shadow(0 9px 12px rgba(0,0,0,.30))!important;
+  }
+
+  .gc-floating-pad{
+    right:35%!important;
+    top:2px!important;
+    width:46px!important;
+    height:34px!important;
+    border-radius:11px!important;
+  }
+  .gc-floating-pad svg{
+    width:30px!important;
+    height:30px!important;
+  }
+  .gc-floating-app{
+    width:27px!important;
+    height:27px!important;
+    border-radius:8px!important;
+  }
+  .gc-floating-app svg{
+    width:16px!important;
+    height:16px!important;
+  }
+  .gc-floating-app.a1{
+    right:12%!important;
+    top:1px!important;
+  }
+  .gc-floating-app.a2{
+    right:-2px!important;
+    top:19%!important;
+  }
+
+  .gc-hero-coin{
+    width:18px!important;
+    height:18px!important;
+    border-width:1px!important;
+    font-size:7px!important;
+  }
+  .gc-hero-coin.c1{
+    left:35%!important;
+    top:46%!important;
+  }
+  .gc-hero-coin.c2{
+    left:50%!important;
+    bottom:11%!important;
+    width:25px!important;
+    height:25px!important;
+    font-size:9px!important;
+  }
+  .gc-hero-coin.c3{
+    right:0!important;
+    bottom:27%!important;
+    width:17px!important;
+    height:17px!important;
+    font-size:6px!important;
+  }
+
+  .gc-reward-trust-strip{
+    min-height:54px!important;
+    height:54px!important;
+    margin-top:0!important;
+    border-radius:12px!important;
+  }
+  .gc-reward-trust-strip>div{
+    grid-template-columns:20px 1fr!important;
+    column-gap:4px!important;
+    padding:5px 5px!important;
+  }
+  .gc-reward-trust-strip svg{
+    width:18px!important;
+    height:18px!important;
+  }
+  .gc-reward-trust-strip strong{
+    font-size:8px!important;
+  }
+  .gc-reward-trust-strip span{
+    margin-top:1px!important;
+    font-size:6px!important;
+    line-height:1.08!important;
+  }
+}
