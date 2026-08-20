@@ -11,6 +11,34 @@ const json = (body: unknown, status = 200) => new Response(JSON.stringify(body),
   headers: { ...corsHeaders, 'Content-Type': 'application/json; charset=utf-8' },
 })
 
+function bangkokDate() {
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Bangkok', year: 'numeric', month: '2-digit', day: '2-digit',
+  }).formatToParts(new Date())
+  const get = (type: string) => parts.find((part) => part.type === type)?.value || ''
+  return `${get('year')}-${get('month')}-${get('day')}`
+}
+
+const dailyTaskKey = (userId: string, task: string, date: string) => `daily_task:${task}:${userId}:${date}`
+
+async function getDailyTasks(admin: any, userId: string) {
+  const date = bangkokDate()
+  const [entriesQ, playRewardQ, shareRewardQ] = await Promise.all([
+    admin.from('gamezcoin_daily_game_entries').select('entry_id', { count: 'exact', head: true }).eq('user_id', userId).eq('task_date', date),
+    admin.from('gamezcoin_wallet_ledger').select('id').eq('idempotency_key', dailyTaskKey(userId, 'play10', date)).maybeSingle(),
+    admin.from('gamezcoin_wallet_ledger').select('id').eq('idempotency_key', dailyTaskKey(userId, 'share', date)).maybeSingle(),
+  ])
+  const firstError = [entriesQ, playRewardQ, shareRewardQ].find((query: any) => query?.error)?.error
+  if (firstError) throw firstError
+  return {
+    date,
+    play_count: Math.min(Number(entriesQ.count || 0), 10),
+    play_target: 10,
+    play_claimed: !!playRewardQ.data,
+    share_claimed: !!shareRewardQ.data,
+  }
+}
+
 Deno.serve(async (req: Request) => {
   if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders })
   if (req.method !== 'POST') return json({ error: 'METHOD_NOT_ALLOWED' }, 405)
@@ -57,6 +85,29 @@ Deno.serve(async (req: Request) => {
         is_admin: !!adminQ.data, ledger: ledgerQ.data || [], withdrawals: withdrawalsQ.data || [],
         checkins: checkinsQ.data || [], referrals: referralsQ.data || [],
       })
+    }
+
+    if (action === 'daily_tasks') {
+      return json({ tasks: await getDailyTasks(admin, user.id) })
+    }
+
+    if (action === 'record_daily_game_entry') {
+      const gameId = String(body?.game_id || '')
+      const entryId = String(body?.entry_id || '').trim()
+      if (!gameId || entryId.length < 8 || entryId.length > 160) return json({ error: 'INVALID_ENTRY' }, 400)
+      const { data, error } = await admin.rpc('gamezcoin_record_daily_game_entry', {
+        p_user_id: user.id, p_game_id: gameId, p_entry_id: entryId,
+      })
+      if (error) return json({ error: error.message || 'TASK_PROGRESS_FAILED' }, 400)
+      return json({ result: data, tasks: await getDailyTasks(admin, user.id) })
+    }
+
+    if (action === 'claim_daily_task') {
+      const task = String(body?.task || '')
+      if (task !== 'play10' && task !== 'share') return json({ error: 'INVALID_TASK' }, 400)
+      const { data, error } = await admin.rpc('gamezcoin_claim_daily_task', { p_user_id: user.id, p_task: task })
+      if (error) return json({ error: error.message || 'TASK_REWARD_FAILED' }, 400)
+      return json({ result: data, tasks: await getDailyTasks(admin, user.id) })
     }
 
     if (action === 'start_game') {
