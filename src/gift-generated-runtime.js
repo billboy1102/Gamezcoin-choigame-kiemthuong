@@ -8,10 +8,16 @@ let queued = false
 
 function applyGiftImage() {
   document.querySelectorAll('.gc-premium-gift-art').forEach((node) => {
+    // Keep the new transparent artwork, but match the footprint of the
+    // original referral-banner picture from the supplied reference.
+    node.style.setProperty('right', '0', 'important')
+    node.style.setProperty('bottom', '0', 'important')
+    node.style.setProperty('width', '34%', 'important')
+    node.style.setProperty('height', '100%', 'important')
     node.style.setProperty('background-image', giftImage, 'important')
     node.style.setProperty('background-repeat', 'no-repeat', 'important')
-    node.style.setProperty('background-position', 'right center', 'important')
-    node.style.setProperty('background-size', 'contain', 'important')
+    node.style.setProperty('background-position', 'right 40%', 'important')
+    node.style.setProperty('background-size', '100% auto', 'important')
     node.style.setProperty('-webkit-mask-image', 'none', 'important')
     node.style.setProperty('mask-image', 'none', 'important')
   })
