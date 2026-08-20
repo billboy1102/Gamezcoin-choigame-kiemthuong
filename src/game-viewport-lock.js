@@ -103,10 +103,17 @@ function stopBrowserGesture(event) {
   event.preventDefault()
 }
 
+function stopMultiTouch(event) {
+  if (!locked || !event.touches || event.touches.length < 2) return
+  event.preventDefault()
+}
+
 ;['gesturestart', 'gesturechange', 'gestureend'].forEach((type) => {
   document.addEventListener(type, stopBrowserGesture, { capture: true, passive: false })
 })
 
+document.addEventListener('touchstart', stopMultiTouch, { capture: true, passive: false })
+document.addEventListener('touchmove', stopMultiTouch, { capture: true, passive: false })
 document.addEventListener('dblclick', stopBrowserGesture, { capture: true, passive: false })
 document.addEventListener('dragstart', stopBrowserGesture, { capture: true, passive: false })
 document.addEventListener('selectstart', stopBrowserGesture, { capture: true, passive: false })
