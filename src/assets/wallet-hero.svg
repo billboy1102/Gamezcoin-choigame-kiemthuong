@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 560">
+<defs>
+<linearGradient id="blueCard" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7e72e8"/><stop offset="1" stop-color="#bdb5ff"/></linearGradient>
+<linearGradient id="cyanCard" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2048ff"/><stop offset="1" stop-color="#1533b8"/></linearGradient>
+<linearGradient id="leather" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#30303a"/><stop offset=".48" stop-color="#11121a"/><stop offset="1" stop-color="#05060b"/></linearGradient>
+<linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff36a"/><stop offset=".35" stop-color="#ffc928"/><stop offset="1" stop-color="#e58b00"/></linearGradient>
+<filter id="shadow"><feDropShadow dx="0" dy="12" stdDeviation="10" flood-opacity=".35"/></filter>
+<filter id="glow"><feGaussianBlur stdDeviation="4"/></filter>
+</defs>
+<g filter="url(#shadow)">
+<g transform="translate(185 54) rotate(28)"><ellipse rx="38" ry="17" fill="#d98b00"/><ellipse cy="-5" rx="38" ry="17" fill="url(#gold)" stroke="#fff19a" stroke-width="2"/><text y="2" text-anchor="middle" font-size="22" font-family="Arial" font-weight="900" fill="#a86500">G</text></g>
+<g transform="translate(94 177) rotate(25)"><ellipse rx="34" ry="15" fill="#d98b00"/><ellipse cy="-5" rx="34" ry="15" fill="url(#gold)" stroke="#fff19a" stroke-width="2"/><text y="2" text-anchor="middle" font-size="20" font-family="Arial" font-weight="900" fill="#a86500">G</text></g>
+<g transform="translate(635 245) rotate(-18)"><ellipse rx="34" ry="15" fill="#d98b00"/><ellipse cy="-5" rx="34" ry="15" fill="url(#gold)" stroke="#fff19a" stroke-width="2"/><text y="2" text-anchor="middle" font-size="20" font-family="Arial" font-weight="900" fill="#a86500">G</text></g>
+</g>
+<g filter="url(#shadow)">
+<rect x="245" y="78" width="155" height="235" rx="25" transform="rotate(-12 245 78)" fill="url(#blueCard)" stroke="#eeeaff" stroke-width="3"/>
+<rect x="360" y="54" width="165" height="245" rx="27" transform="rotate(12 360 54)" fill="url(#cyanCard)" stroke="#738cff" stroke-width="3"/>
+<circle cx="463" cy="126" r="29" fill="#37e7ff" opacity=".72"/>
+<rect x="430" y="178" width="70" height="50" rx="8" fill="#eef4ff" opacity=".8"/>
+<path d="M445 178v50M478 178v50M430 203h70" stroke="#8194ff" stroke-width="3"/>
+</g>
+<g filter="url(#shadow)">
+<rect x="151" y="192" width="430" height="300" rx="48" fill="url(#leather)" stroke="#666977" stroke-width="5"/>
+<path d="M170 218h390" stroke="#858796" stroke-width="3" stroke-dasharray="7 6" opacity=".8"/>
+<rect x="492" y="302" width="190" height="112" rx="35" fill="url(#leather)" stroke="#666977" stroke-width="5"/>
+<circle cx="494" cy="358" r="24" fill="#c8cbd4" stroke="#777b86" stroke-width="4"/><circle cx="494" cy="358" r="14" fill="#aeb2bd"/>
+<circle cx="345" cy="337" r="70" fill="#0b52e8" opacity=".45" filter="url(#glow)"/><circle cx="345" cy="337" r="56" fill="#123b96" stroke="#23a7ff" stroke-width="8"/><circle cx="345" cy="337" r="45" fill="#163a83"/><text x="345" y="357" text-anchor="middle" font-size="58" font-family="Arial" font-weight="900" fill="#9ef0ff">G</text>
+</g>
+<g filter="url(#shadow)">
+<g transform="translate(126 470)"><ellipse cy="38" rx="88" ry="27" fill="#d88900"/><ellipse cy="24" rx="88" ry="27" fill="url(#gold)" stroke="#fff09a" stroke-width="3"/><ellipse cy="10" rx="88" ry="27" fill="url(#gold)" stroke="#fff09a" stroke-width="3"/><text y="18" text-anchor="middle" font-size="34" font-family="Arial" font-weight="900" fill="#a56600">G</text></g>
+<g transform="translate(560 467)"><ellipse cy="38" rx="72" ry="24" fill="#d88900"/><ellipse cy="23" rx="72" ry="24" fill="url(#gold)" stroke="#fff09a" stroke-width="3"/><ellipse cy="8" rx="72" ry="24" fill="url(#gold)" stroke="#fff09a" stroke-width="3"/><text y="16" text-anchor="middle" font-size="30" font-family="Arial" font-weight="900" fill="#a56600">G</text></g>
+<g transform="translate(275 520) rotate(-8)"><ellipse rx="88" ry="27" fill="#d88900"/><ellipse cy="-7" rx="88" ry="27" fill="url(#gold)" stroke="#fff09a" stroke-width="3"/><text y="2" text-anchor="middle" font-size="34" font-family="Arial" font-weight="900" fill="#a56600">G</text></g>
+</g></svg>
