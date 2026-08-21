@@ -1,10 +1,10 @@
-const SHOWCASE_SRC='/assets/gamezcoin-rewards-showcase.svg?v=20260822-0105'
+const SHOWCASE_SRC='/assets/gamezcoin-rewards-user.svg?v=20260822-0100'
 
 const css=`
 .gc-public-live-games::before{display:none!important;content:none!important}
 .gc-inline-hero-art{display:none!important}
-.gc-force-showcase{display:block!important;width:min(640px,calc(100% - 24px))!important;margin:0 auto 22px!important;position:relative!important;z-index:20!important}
-.gc-force-showcase img{display:block!important;width:100%!important;height:auto!important;max-width:100%!important;object-fit:contain!important;border:0!important;background:transparent!important}
+.gc-force-showcase{display:block!important;width:min(640px,calc(100% - 24px))!important;aspect-ratio:1/1!important;margin:0 auto 22px!important;position:relative!important;z-index:20!important;overflow:hidden!important;background:transparent!important}
+.gc-force-showcase object{display:block!important;width:100%!important;height:100%!important;border:0!important;background:transparent!important;pointer-events:none!important}
 @media(max-width:700px){.gc-force-showcase{width:min(390px,calc(100vw - 24px))!important;margin:0 auto 18px!important}}
 `
 
@@ -20,9 +20,14 @@ function mountShowcase(){
  if(!section)return false
  let wrap=section.querySelector('.gc-force-showcase')
  if(!wrap){wrap=document.createElement('div');wrap.className='gc-force-showcase';section.insertBefore(wrap,section.firstChild)}
- let img=wrap.querySelector('img')
- if(!img){img=document.createElement('img');img.alt='Gamezcoin rewards artwork';img.loading='eager';img.decoding='async';wrap.replaceChildren(img)}
- if(img.getAttribute('src')!==SHOWCASE_SRC)img.setAttribute('src',SHOWCASE_SRC)
+ let art=wrap.querySelector('object')
+ if(!art){
+   art=document.createElement('object')
+   art.type='image/svg+xml'
+   art.setAttribute('aria-label','Gamezcoin rewards artwork')
+   wrap.replaceChildren(art)
+ }
+ if(art.getAttribute('data')!==SHOWCASE_SRC)art.setAttribute('data',SHOWCASE_SRC)
  return true
 }
 
