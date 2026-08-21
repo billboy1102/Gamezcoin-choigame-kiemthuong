@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  NODE_VERSION: '20'
+  NODE_VERSION: '24'
 
 jobs:
   web:
@@ -24,27 +24,37 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: ${{ env.NODE_VERSION }}
       - name: Install dependencies
         run: npm install --no-audit --no-fund
-      - name: Build web
-        run: npm run build
-      - name: Create landing artwork WebP
+      - name: Materialize landing artwork
         run: |
           node <<'NODE'
           const fs = require('fs');
+          const path = require('path');
           const source = fs.readFileSync('public/assets/gamezcoin-rewards-user.svg', 'utf8');
-          const match = source.match(/data:image\/webp;base64,([^"']+)/);
-          if (!match) throw new Error('Embedded Gamezcoin WebP not found');
-          const bytes = Buffer.from(match[1].replace(/\s+/g, ''), 'base64');
-          if (bytes.subarray(0, 4).toString('ascii') !== 'RIFF' || bytes.subarray(8, 12).toString('ascii') !== 'WEBP') throw new Error('Invalid WebP payload');
-          fs.mkdirSync('dist/assets', { recursive: true });
-          fs.writeFileSync('dist/assets/gamezcoin-rewards-artwork.webp', bytes);
-          console.log('Gamezcoin artwork:', bytes.length, 'bytes');
+          const marker = 'data:image/webp;base64,';
+          const start = source.indexOf(marker);
+          if (start < 0) throw new Error('Embedded WebP marker not found');
+          const from = start + marker.length;
+          const end = source.indexOf('"', from);
+          if (end < 0) throw new Error('Embedded WebP payload end not found');
+          const payload = source.slice(from, end).replace(/\s+/g, '');
+          const bytes = Buffer.from(payload, 'base64');
+          if (bytes.length < 16 || bytes.toString('ascii',0,4) !== 'RIFF' || bytes.toString('ascii',8,12) !== 'WEBP') throw new Error('Decoded artwork is not WebP');
+          fs.mkdirSync('public/assets', {recursive:true});
+          fs.writeFileSync('public/assets/gamezcoin-rewards-artwork.webp', bytes);
+          console.log(`Artwork ready: ${bytes.length} bytes`);
           NODE
+      - name: Build web
+        run: npm run build
+      - name: Verify artwork in dist
+        run: |
+          test -s dist/assets/gamezcoin-rewards-artwork.webp
+          node -e "const b=require('fs').readFileSync('dist/assets/gamezcoin-rewards-artwork.webp'); if(b.toString('ascii',0,4)!=='RIFF'||b.toString('ascii',8,12)!=='WEBP') process.exit(1); console.log('dist artwork OK:',b.length,'bytes')"
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
