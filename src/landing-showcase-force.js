@@ -1,61 +1,46 @@
-const SHOWCASE_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Gamezcoin gaming rewards showcase">
-<defs>
- <linearGradient id="gc-neon" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#14e8ff"/><stop offset=".48" stop-color="#146dff"/><stop offset="1" stop-color="#d22cff"/></linearGradient>
- <linearGradient id="gc-purple" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#762cff"/><stop offset="1" stop-color="#ed18da"/></linearGradient>
- <linearGradient id="gc-gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff45b"/><stop offset=".5" stop-color="#ffb100"/><stop offset="1" stop-color="#ff4a00"/></linearGradient>
- <linearGradient id="gc-dark" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#13245f"/><stop offset="1" stop-color="#02081d"/></linearGradient>
- <filter id="gc-glow"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
- <filter id="gc-shadow"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#15105c" flood-opacity=".34"/></filter>
-</defs>
-<rect width="800" height="800" rx="34" fill="#fff"/>
-<ellipse cx="400" cy="658" rx="335" ry="78" fill="#18086a" opacity=".14"/>
-<ellipse cx="400" cy="650" rx="335" ry="72" fill="none" stroke="url(#gc-neon)" stroke-width="14" filter="url(#gc-glow)"/>
-<circle cx="365" cy="287" r="174" fill="#070c43" stroke="url(#gc-neon)" stroke-width="18" filter="url(#gc-glow)"/>
-<circle cx="365" cy="287" r="150" fill="#09104d" stroke="#5b36ff" stroke-width="5"/>
-<path d="M430 229H343c-60 0-88 31-88 66 0 41 31 70 84 70 38 0 74-13 95-33v-61h-87v43h37v14c-12 7-26 10-41 10-31 0-49-15-49-43 0-25 20-40 53-40h83z" fill="none" stroke="url(#gc-neon)" stroke-width="31" stroke-linejoin="round" filter="url(#gc-glow)"/>
-<g transform="translate(520 155) rotate(5 100 220)" filter="url(#gc-shadow)"><rect width="205" height="440" rx="38" fill="#07112e" stroke="#336eff" stroke-width="7"/><rect x="15" y="28" width="175" height="384" rx="23" fill="url(#gc-dark)"/><rect x="69" y="10" width="68" height="16" rx="8" fill="#02040c"/><text x="31" y="82" fill="#fff" font-family="Arial,sans-serif" font-size="18" font-weight="700">Số dư khả dụng</text><text x="30" y="132" fill="#fff" font-family="Arial,sans-serif" font-size="42" font-weight="800">501.075đ</text><g font-family="Arial,sans-serif"><rect x="28" y="158" width="150" height="42" rx="10" fill="#102354" stroke="#274b9a"/><circle cx="44" cy="179" r="9" fill="#22df7a"/><text x="60" y="185" fill="#cfe3ff" font-size="13">Đã cập nhật</text><g fill="#0d2455" stroke="#2c4e9e"><rect x="28" y="216" width="150" height="53" rx="11"/><rect x="28" y="279" width="150" height="53" rx="11"/><rect x="28" y="342" width="150" height="53" rx="11"/></g><g fill="#fff" font-size="14" font-weight="700"><text x="47" y="240">Block Blast</text><text x="47" y="303">Orbit Break</text><text x="47" y="366">Candy Merge</text></g><g fill="#32f38d" font-size="14" font-weight="800"><text x="126" y="240">+120k</text><text x="130" y="303">+90k</text><text x="130" y="366">+80k</text></g><rect x="45" y="381" width="120" height="43" rx="12" fill="url(#gc-purple)"/><text x="82" y="408" fill="#fff" font-size="18" font-weight="800">Rút tiền</text></g></g>
-<g transform="translate(84 405) rotate(-4 180 100)" filter="url(#gc-shadow)"><path d="M71 31c42-31 176-31 218 0 27 19 57 99 38 140-12 26-39 30-59 8l-38-43H130l-38 43c-20 22-47 18-59-8C14 130 44 50 71 31z" fill="#070b22" stroke="#233b78" stroke-width="7"/><rect x="134" y="31" width="92" height="48" rx="9" fill="#10183f" stroke="#334e91"/><circle cx="99" cy="112" r="31" fill="#050817" stroke="#1178ff" stroke-width="6"/><circle cx="242" cy="112" r="31" fill="#050817" stroke="#1178ff" stroke-width="6"/><g fill="#19224b" stroke="#475591" stroke-width="3"><rect x="62" y="52" width="22" height="62" rx="7"/><rect x="42" y="72" width="62" height="22" rx="7"/></g><circle cx="284" cy="66" r="12" fill="#8d30ff"/><circle cx="310" cy="87" r="12" fill="#ff35db"/><circle cx="260" cy="89" r="12" fill="#1ba6ff"/></g>
-<g transform="translate(342 520)" filter="url(#gc-shadow)"><rect x="8" y="57" width="180" height="124" rx="10" fill="url(#gc-purple)"/><rect x="-4" y="38" width="205" height="47" rx="9" fill="#bd19d6"/><rect x="83" y="38" width="30" height="143" fill="url(#gc-gold)"/><path d="M98 39c-50-2-55-34-34-45 18-10 39 9 46 29 8-20 28-39 46-29 22 12 15 43-35 45" fill="none" stroke="url(#gc-gold)" stroke-width="17" stroke-linecap="round"/></g>
-<g fill="url(#gc-gold)" stroke="#ff6b00" stroke-width="5" filter="url(#gc-shadow)"><ellipse cx="140" cy="173" rx="50" ry="30" transform="rotate(24 140 173)"/><ellipse cx="208" cy="88" rx="44" ry="28" transform="rotate(28 208 88)"/><ellipse cx="605" cy="85" rx="39" ry="24" transform="rotate(-19 605 85)"/><ellipse cx="704" cy="297" rx="41" ry="25" transform="rotate(-33 704 297)"/><ellipse cx="684" cy="599" rx="55" ry="31" transform="rotate(18 684 599)"/><ellipse cx="240" cy="620" rx="58" ry="34" transform="rotate(-16 240 620)"/><ellipse cx="468" cy="435" rx="45" ry="28" transform="rotate(-19 468 435)"/></g>
-<g fill="#ffef47" font-family="Arial,sans-serif" font-size="32" font-weight="900" text-anchor="middle"><text x="140" y="183" transform="rotate(24 140 173)">G</text><text x="208" y="98" transform="rotate(28 208 88)">G</text><text x="605" y="95" transform="rotate(-19 605 85)">G</text><text x="704" y="307" transform="rotate(-33 704 297)">G</text><text x="684" y="609" transform="rotate(18 684 599)">G</text><text x="240" y="630" transform="rotate(-16 240 620)">G</text><text x="468" y="445" transform="rotate(-19 468 435)">G</text></g>
-</svg>`
+const SHOWCASE_SRC = '/assets/gamezcoin-rewards-user.svg?v=20260821-2305'
 
 const css = `
 .gc-public-live-games{position:relative!important}
 .gc-public-live-games::before{display:none!important;content:none!important}
 .gc-inline-hero-art{display:none!important}
 .gc-force-showcase{display:block!important;width:min(640px,calc(100% - 16px))!important;margin:0 auto 22px!important;position:relative!important;z-index:20!important;opacity:1!important;visibility:visible!important;transform:none!important}
-.gc-force-showcase svg{display:block!important;width:100%!important;height:auto!important;max-width:100%!important;opacity:1!important;visibility:visible!important;border-radius:20px!important;background:#fff!important;filter:drop-shadow(0 18px 32px rgba(0,0,0,.28))!important}
+.gc-force-showcase img{display:block!important;width:100%!important;height:auto!important;max-width:100%!important;opacity:1!important;visibility:visible!important;object-fit:contain!important;border:0!important;background:transparent!important;filter:drop-shadow(0 18px 32px rgba(0,0,0,.28))!important}
 @media(max-width:700px){
  .gc-force-showcase{width:calc(100vw - 24px)!important;margin:0 calc(50% - 50vw + 12px) 20px!important}
- .gc-force-showcase svg{border-radius:16px!important}
  .gc-public-live-games{margin-top:24px!important;padding-top:0!important}
 }
 `
 
 function ensureStyle(){
-  if(document.getElementById('gc-force-showcase-style')) return
-  const style=document.createElement('style')
-  style.id='gc-force-showcase-style'
+  let style=document.getElementById('gc-force-showcase-style')
+  if(!style){
+    style=document.createElement('style')
+    style.id='gc-force-showcase-style'
+    document.head.appendChild(style)
+  }
   style.textContent=css
-  document.head.appendChild(style)
 }
 
 function mountShowcase(){
   const section=document.querySelector('.gc-public-live-games')
   if(!section) return false
-  let wrap=null
-  for(const child of section.children){
-    if(child.classList && child.classList.contains('gc-force-showcase')){wrap=child;break}
-  }
+  let wrap=section.querySelector('.gc-force-showcase')
   if(!wrap){
     wrap=document.createElement('div')
     wrap.className='gc-force-showcase'
-    wrap.innerHTML=SHOWCASE_SVG
     section.insertBefore(wrap,section.firstChild)
-  }else if(!wrap.querySelector('svg')){
-    wrap.innerHTML=SHOWCASE_SVG
   }
+  let img=wrap.querySelector('img')
+  if(!img){
+    wrap.innerHTML=''
+    img=document.createElement('img')
+    img.alt='Gamezcoin - tay cầm chơi game, điện thoại, hộp quà và đồng G'
+    img.decoding='async'
+    img.loading='eager'
+    wrap.appendChild(img)
+  }
+  if(img.getAttribute('src')!==SHOWCASE_SRC) img.setAttribute('src',SHOWCASE_SRC)
   return true
 }
 
