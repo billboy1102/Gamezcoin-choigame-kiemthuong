@@ -1,1 +1,18 @@
-.gc-public-live-games::before{display:none!important;content:none!important}.gc-public-live-games{padding-top:6px}@media(max-width:700px){.gc-public-live-games{margin-top:24px!important}}
+.gc-public-live-games{padding-top:6px}
+.gc-public-live-games::before{
+  content:""!important;
+  display:block!important;
+  width:min(640px,calc(100% - 24px))!important;
+  aspect-ratio:1/1!important;
+  margin:0 auto 22px!important;
+  background-image:url('./gamezcoin-rewards-direct.jpg?v=20260822-0200')!important;
+  background-repeat:no-repeat!important;
+  background-position:center!important;
+  background-size:contain!important;
+  border:0!important;
+  pointer-events:none!important;
+}
+@media(max-width:700px){
+  .gc-public-live-games{margin-top:24px!important}
+  .gc-public-live-games::before{width:min(390px,calc(100vw - 24px))!important;margin-bottom:18px!important}
+}
