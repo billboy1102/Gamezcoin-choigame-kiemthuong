@@ -32,6 +32,19 @@ jobs:
         run: npm install --no-audit --no-fund
       - name: Build web
         run: npm run build
+      - name: Create landing artwork WebP
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const source = fs.readFileSync('public/assets/gamezcoin-rewards-user.svg', 'utf8');
+          const match = source.match(/data:image\/webp;base64,([^"']+)/);
+          if (!match) throw new Error('Embedded Gamezcoin WebP not found');
+          const bytes = Buffer.from(match[1].replace(/\s+/g, ''), 'base64');
+          if (bytes.subarray(0, 4).toString('ascii') !== 'RIFF' || bytes.subarray(8, 12).toString('ascii') !== 'WEBP') throw new Error('Invalid WebP payload');
+          fs.mkdirSync('dist/assets', { recursive: true });
+          fs.writeFileSync('dist/assets/gamezcoin-rewards-artwork.webp', bytes);
+          console.log('Gamezcoin artwork:', bytes.length, 'bytes');
+          NODE
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
