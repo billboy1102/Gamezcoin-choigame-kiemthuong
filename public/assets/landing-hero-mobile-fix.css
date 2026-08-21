@@ -9,7 +9,7 @@
 .gc-public-hero-meta>span:nth-child(1)>b::after{content:'4.8/5 Đánh giá';font-size:9px}
 .gc-public-hero-meta>span:nth-child(2)>b::after{content:'100.000+ Người dùng thật';font-size:9px}
 .gc-public-hero-meta>span:nth-child(3)>b::after{content:'Thanh toán nhanh chóng';font-size:9px}
-.gc-public-hero-art,.gc-public-hero-art.gc-hero-art-replaced{right:0!important;top:2%!important;width:56%!important;height:96%!important;background-image:url('/assets/landing-hero-gaming.webp?v=20260821-1738')!important;background-repeat:no-repeat!important;background-position:center!important;background-size:contain!important;overflow:visible!important}
+.gc-public-hero-art,.gc-public-hero-art.gc-hero-art-replaced{right:0!important;top:2%!important;width:56%!important;height:96%!important;background-image:url('/assets/landing-hero-gaming.svg?v=20260821-2047')!important;background-repeat:no-repeat!important;background-position:center!important;background-size:contain!important;overflow:visible!important}
 .gc-public-hero-art>*{display:none!important}
 @media(max-width:650px){
  .gc-public-hero{min-height:930px!important;padding-bottom:515px!important}
