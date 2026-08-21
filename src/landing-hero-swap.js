@@ -1,4 +1,4 @@
-const HERO_ART = '/assets/landing-hero-gaming.webp?v=20260821-1432'
+const HERO_ART = '/assets/landing-hero-gaming.svg?v=20260821-1553'
 
 const css = `
 .gc-public-hero-meta{gap:10px!important}
