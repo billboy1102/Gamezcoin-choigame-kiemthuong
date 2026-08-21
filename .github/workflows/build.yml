@@ -25,6 +25,29 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
       - run: npm install --no-audit --no-fund
       - run: npm run build
+      - name: Build valid Gamezcoin showcase image
+        run: |
+          node <<'NODE'
+          const fs = require('fs')
+          const source = fs.readFileSync('public/assets/gamezcoin-rewards-user.svg', 'utf8')
+          const marker = 'data:image/webp;base64,'
+          const start = source.indexOf(marker)
+          if (start < 0) throw new Error('WebP payload not found in showcase SVG')
+          const from = start + marker.length
+          const doubleQuote = source.indexOf('"', from)
+          const singleQuote = source.indexOf("'", from)
+          const ends = [doubleQuote, singleQuote].filter(i => i > from)
+          if (!ends.length) throw new Error('Could not find end of WebP payload')
+          const end = Math.min(...ends)
+          const payload = source.slice(from, end).replace(/\s+/g, '')
+          const bytes = Buffer.from(payload, 'base64')
+          if (bytes.length < 1000 || bytes.toString('ascii',0,4) !== 'RIFF' || bytes.toString('ascii',8,12) !== 'WEBP') {
+            throw new Error('Decoded showcase is not a valid WebP')
+          }
+          fs.mkdirSync('dist/assets', { recursive: true })
+          fs.writeFileSync('dist/assets/gamezcoin-rewards-final.webp', bytes)
+          console.log('showcase webp bytes:', bytes.length)
+          NODE
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
