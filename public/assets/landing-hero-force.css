@@ -1,0 +1,20 @@
+.gc-public-hero-meta{gap:10px!important}
+.gc-public-hero-meta>span{min-height:44px!important;padding:8px 12px!important;display:flex!important;align-items:center!important;gap:9px!important;border:1px solid rgba(53,98,152,.48)!important;border-radius:12px!important;background:rgba(4,22,43,.72)!important;color:#eef7ff!important}
+.gc-public-hero-meta>span>svg,.gc-public-hero-meta>span>.gc-proof-ico{display:none!important}
+.gc-public-hero-meta>span::before{width:20px;height:20px;display:grid;place-items:center;flex:0 0 20px;font-size:17px;line-height:1}
+.gc-public-hero-meta>span:nth-child(1)::before{content:'⭐'}
+.gc-public-hero-meta>span:nth-child(2)::before{content:'👥'}
+.gc-public-hero-meta>span:nth-child(3)::before{content:'⚡'}
+.gc-public-hero-meta>span>b{font-size:0!important;line-height:1.2!important}
+.gc-public-hero-meta>span:nth-child(1)>b::after{content:'4.8/5 Đánh giá';font-size:10px}
+.gc-public-hero-meta>span:nth-child(2)>b::after{content:'100.000+ Người dùng thật';font-size:10px}
+.gc-public-hero-meta>span:nth-child(3)>b::after{content:'Thanh toán nhanh chóng';font-size:10px}
+.gc-public-hero-art,.gc-public-hero-art.gc-hero-art-replaced{right:0!important;top:2%!important;width:56%!important;height:96%!important;background-image:url('/assets/landing-hero-gaming.svg?v=20260821-1648')!important;background-repeat:no-repeat!important;background-position:center!important;background-size:contain!important;overflow:visible!important}
+.gc-public-hero-art>*{display:none!important}
+@media(max-width:650px){
+ .gc-public-hero-meta{grid-template-columns:repeat(3,1fr)!important;gap:6px!important}
+ .gc-public-hero-meta>span{min-height:58px!important;padding:7px 5px!important;display:grid!important;place-items:center!important;align-content:center!important;text-align:center!important;gap:3px!important}
+ .gc-public-hero-meta>span::before{width:19px;height:19px;font-size:16px}
+ .gc-public-hero-meta>span:nth-child(1)>b::after,.gc-public-hero-meta>span:nth-child(2)>b::after,.gc-public-hero-meta>span:nth-child(3)>b::after{font-size:9px;line-height:1.25}
+ .gc-public-hero-art,.gc-public-hero-art.gc-hero-art-replaced{left:0!important;right:0!important;top:auto!important;bottom:0!important;width:100%!important;height:340px!important;background-position:center bottom!important;background-size:contain!important}
+}
