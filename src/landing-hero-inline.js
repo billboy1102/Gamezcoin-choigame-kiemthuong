@@ -1,13 +1,15 @@
-const HERO_SRC = '/assets/landing-hero-gaming.svg?v=20260821-2133'
+const HERO_SRC = '/assets/gamezcoin-rewards-showcase.svg?v=20260821-2144'
 
 const css = `
 .gc-public-hero-art{display:none!important}
-.gc-inline-hero-art{display:block;width:min(640px,100%);margin:24px auto 0;position:relative;z-index:2}
-.gc-inline-hero-art img{display:block;width:100%;height:auto;max-width:100%;object-fit:contain;background:transparent;border:0;filter:drop-shadow(0 18px 28px rgba(0,0,0,.35))}
+.gc-public-live-games::before{display:none!important;content:none!important}
+.gc-inline-hero-art{display:block;width:min(640px,100%);margin:24px auto 4px;position:relative;z-index:5}
+.gc-inline-hero-art img{display:block;width:100%;height:auto;max-width:100%;object-fit:contain;background:transparent;border:0;border-radius:22px;filter:drop-shadow(0 18px 28px rgba(0,0,0,.35))}
 @media(max-width:650px){
- .gc-public-hero{min-height:auto!important;padding-bottom:34px!important}
- .gc-inline-hero-art{width:100%;margin:18px auto 0;padding:0 8px}
- .gc-inline-hero-art img{width:100%;height:auto;max-height:none!important;object-position:center}
+ .gc-public-hero{min-height:auto!important;padding-bottom:28px!important}
+ .gc-inline-hero-art{width:min(420px,calc(100vw - 24px));margin:20px auto 0;padding:0}
+ .gc-inline-hero-art img{width:100%;height:auto;max-height:none!important;object-position:center;border-radius:18px}
+ .gc-public-live-games{margin-top:24px!important}
 }
 `
 
@@ -29,8 +31,9 @@ function mount(){
   wrap.className='gc-inline-hero-art'
   const img=document.createElement('img')
   img.src=HERO_SRC
-  img.alt='Gamezcoin - tay cầm, điện thoại, hộp quà và đồng G'
+  img.alt='Gamezcoin - tay cầm chơi game, điện thoại, hộp quà và đồng G'
   img.decoding='async'
+  img.loading='eager'
   wrap.append(img)
   meta.insertAdjacentElement('afterend',wrap)
   return true
