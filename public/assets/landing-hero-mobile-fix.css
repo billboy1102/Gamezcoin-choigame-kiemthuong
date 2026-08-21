@@ -1,0 +1,27 @@
+.gc-public-hero-meta{gap:8px!important;align-items:center!important}
+.gc-public-hero-meta>span{min-height:38px!important;padding:7px 10px!important;display:flex!important;align-items:center!important;gap:7px!important;border:1px solid rgba(53,98,152,.42)!important;border-radius:11px!important;background:rgba(4,22,43,.64)!important;color:#eef7ff!important}
+.gc-public-hero-meta>span>svg,.gc-public-hero-meta>span>.gc-proof-ico{display:none!important}
+.gc-public-hero-meta>span::before{width:16px;height:16px;display:grid;place-items:center;flex:0 0 16px;font-size:14px;line-height:1}
+.gc-public-hero-meta>span:nth-child(1)::before{content:'⭐'}
+.gc-public-hero-meta>span:nth-child(2)::before{content:'👥'}
+.gc-public-hero-meta>span:nth-child(3)::before{content:'⚡'}
+.gc-public-hero-meta>span>b{font-size:0!important;line-height:1.15!important;white-space:nowrap!important}
+.gc-public-hero-meta>span:nth-child(1)>b::after{content:'4.8/5 Đánh giá';font-size:9px}
+.gc-public-hero-meta>span:nth-child(2)>b::after{content:'100.000+ Người dùng thật';font-size:9px}
+.gc-public-hero-meta>span:nth-child(3)>b::after{content:'Thanh toán nhanh chóng';font-size:9px}
+.gc-public-hero-art,.gc-public-hero-art.gc-hero-art-replaced{right:0!important;top:2%!important;width:56%!important;height:96%!important;background-image:url('/assets/landing-hero-gaming.webp?v=20260821-1738')!important;background-repeat:no-repeat!important;background-position:center!important;background-size:contain!important;overflow:visible!important}
+.gc-public-hero-art>*{display:none!important}
+@media(max-width:650px){
+ .gc-public-hero{min-height:930px!important;padding-bottom:515px!important}
+ .gc-public-hero-meta{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px!important;margin-top:20px!important}
+ .gc-public-hero-meta>span{min-height:42px!important;padding:5px 4px!important;display:grid!important;grid-template-columns:16px 1fr!important;place-items:center!important;align-content:center!important;text-align:left!important;gap:4px!important}
+ .gc-public-hero-meta>span::before{width:16px;height:16px;font-size:14px}
+ .gc-public-hero-meta>span:nth-child(1)>b::after,.gc-public-hero-meta>span:nth-child(2)>b::after,.gc-public-hero-meta>span:nth-child(3)>b::after{font-size:7.5px!important;line-height:1.15!important;white-space:normal!important}
+ .gc-public-hero-art,.gc-public-hero-art.gc-hero-art-replaced{left:14px!important;right:14px!important;top:auto!important;bottom:18px!important;width:calc(100% - 28px)!important;height:500px!important;background-position:center bottom!important;background-size:contain!important}
+}
+@media(max-width:390px){
+ .gc-public-hero{min-height:880px!important;padding-bottom:470px!important}
+ .gc-public-hero-meta>span{min-height:40px!important;padding:4px 3px!important}
+ .gc-public-hero-meta>span:nth-child(1)>b::after,.gc-public-hero-meta>span:nth-child(2)>b::after,.gc-public-hero-meta>span:nth-child(3)>b::after{font-size:7px!important}
+ .gc-public-hero-art,.gc-public-hero-art.gc-hero-art-replaced{height:455px!important;bottom:15px!important}
+}
