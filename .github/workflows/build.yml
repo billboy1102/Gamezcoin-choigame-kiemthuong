@@ -32,6 +32,26 @@ jobs:
         run: npm install --no-audit --no-fund
       - name: Build web
         run: npm run build
+      - name: Make showcase a real PNG
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import base64, re
+
+          p = Path('dist/assets/gamezcoin-rewards-exact.png')
+          raw = p.read_bytes()
+          if raw.startswith(b'\x89PNG\r\n\x1a\n'):
+              print('Showcase is already a real PNG')
+          else:
+              text = raw.decode('ascii', errors='ignore')
+              text = re.sub(r'^data:image/[^;]+;base64,', '', text.strip())
+              text = ''.join(text.split())
+              data = base64.b64decode(text, validate=False)
+              if not data.startswith(b'\x89PNG\r\n\x1a\n'):
+                  raise SystemExit('Showcase asset could not be decoded to PNG')
+              p.write_bytes(data)
+              print('Decoded showcase PNG:', len(data), 'bytes')
+          PY
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
