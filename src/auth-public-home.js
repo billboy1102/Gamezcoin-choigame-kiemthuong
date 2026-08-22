@@ -2,6 +2,7 @@ import './auth-public-home.css'
 import './landing-how-professional.css'
 import './landing-trust-reference.css'
 import './landing-mobile-actions.css'
+import './landing-hero-metrics.css'
 import { supabase } from './api.js'
 
 const app = document.querySelector('#app')
@@ -23,6 +24,7 @@ const arrowIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7
 const closeIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>`
 const homeNavIcon = `<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M7 22.5 24 7l17 15.5"/><path d="M11 20.5V41h10V29h6v12h10V20.5"/></svg>`
 const cashoutNavIcon = `<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 9h32v9H8z"/><path d="M14 18v21h20V18"/><rect x="18" y="22" width="12" height="12" rx="2"/><path d="M24 24.5v7M27 26h-4.2a1.8 1.8 0 0 0 0 3.6H27"/></svg>`
+const usersMetricIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="gc-users-gradient" x1="3" y1="4" x2="21" y2="20" gradientUnits="userSpaceOnUse"><stop stop-color="#21c8ff"/><stop offset=".55" stop-color="#3978ff"/><stop offset="1" stop-color="#8b42ff"/></linearGradient></defs><circle cx="8.2" cy="7.8" r="3.1"/><circle cx="16.5" cy="8.7" r="2.5" opacity=".78"/><path d="M2.7 18.5c.35-4 2.4-6.1 5.6-6.1 3.25 0 5.3 2.1 5.65 6.1.08.9-.58 1.6-1.45 1.6H4.15c-.87 0-1.53-.7-1.45-1.6Z"/><path d="M13.4 13.1c.8-.62 1.85-.95 3.1-.95 2.75 0 4.55 1.85 4.82 5.35.08.86-.56 1.55-1.4 1.55h-4.35c-.05-2.35-.78-4.35-2.17-5.95Z" opacity=".78"/></svg>`
 
 const virtualGames = [
   ['Galaxy Match', 'planet', 'galaxy-match-3d.webp', '250.000đ'],
@@ -97,7 +99,7 @@ function landingMarkup() {
 
     <section class="gc-public-hero">
       <div class="gc-public-hero-copy">
-        <span class="gc-public-eyebrow"><i></i> GAMEZCOIN • Chơi game & Kiếm Tiền</span>
+        <span class="gc-public-eyebrow">GAMEZCOIN • Chơi game & Kiếm tiền</span>
         <h1>Chơi game &<br><em>kiếm tiền</em></h1>
         <p>Chơi game, kiếm tiền thật và rút thưởng uy tín, nhanh chóng về ví của bạn</p>
         <div class="gc-public-hero-cta">
@@ -105,9 +107,9 @@ function landingMarkup() {
           <button type="button" class="secondary" data-public-auth="login">Đăng nhập</button>
         </div>
         <div class="gc-public-hero-meta">
-          <span><b>⭐️ 4.8/5 Đánh giá</b></span>
-          <span><b>100.000+ Người dùng thật</b></span>
-          <span><b>Thanh toán nhanh chóng</b></span>
+          <div class="gc-hero-metric"><i class="gc-hero-metric-icon gc-metric-star" aria-hidden="true">★</i><div class="gc-hero-metric-copy"><b>4.8/5</b><small>Đánh giá</small></div></div>
+          <div class="gc-hero-metric"><i class="gc-hero-metric-icon gc-metric-users" aria-hidden="true">${usersMetricIcon}</i><div class="gc-hero-metric-copy"><b>100.000+</b><small>Người dùng thật</small></div></div>
+          <div class="gc-hero-metric"><i class="gc-hero-metric-icon gc-metric-bolt" aria-hidden="true">${boltIcon}</i><div class="gc-hero-metric-copy"><b>Thanh toán</b><small>Nhanh chóng</small></div></div>
         </div>
       </div>
       <div class="gc-public-hero-art" aria-hidden="true">
