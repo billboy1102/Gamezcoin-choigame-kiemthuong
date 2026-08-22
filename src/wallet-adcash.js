@@ -203,10 +203,10 @@ function queueRaceGuard() {
   }
 }
 
-async function installWallet() {
+async function installWallet(force = false) {
   if (!activeWallet() || rendering) return
   const view = document.querySelector('#view')
-  if (!view || walletViewIsCurrent(view)) return
+  if (!view || (!force && walletViewIsCurrent(view))) return
 
   rendering = true
   try {
@@ -227,6 +227,20 @@ async function installWallet() {
     rendering = false
     queueRaceGuard()
   }
+}
+
+export function openWallet(view = document.querySelector('#view')) {
+  if (!view) return Promise.resolve()
+
+  // App chính gọi trực tiếp renderer hiện tại. Không render HTML ví cũ trước rồi
+  // mới ghi đè, nên chuyển tab Ví không còn bị nháy giao diện cũ.
+  if (cached) renderWalletView(view, cached)
+  else {
+    view.dataset.gcWalletAdcash = 'loading'
+    view.innerHTML = '<div class="loader"></div>'
+  }
+
+  return installWallet(true)
 }
 
 function schedule() {

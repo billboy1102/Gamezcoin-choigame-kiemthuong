@@ -3,6 +3,7 @@ import './app-v2.css'
 import { supabase, api, adminApi } from './api.js'
 import { SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY } from './config.js'
 import { getLanguage, translate } from './landing-i18n.js'
+import { openWallet } from './wallet-adcash.js'
 
 const root = document.querySelector('#app')
 const toasts = document.querySelector('#toast-root')
@@ -253,59 +254,9 @@ function renderCheckin() {
 
 const withdrawalStatus = (value) => ({ pending: 'Đang chờ', paid: 'Đã thanh toán', rejected: 'Từ chối' }[value] || value)
 
-async function renderWallet() {
+function renderWallet() {
   const view = root.querySelector('#view')
-  view.innerHTML = '<div class="loader"></div>'
-  try {
-    await load('dashboard', false)
-  } catch (error) {
-    toast(friendly(error.message), 'bad')
-  }
-  const d = state.data
-  const wallet = d.wallet || {}
-  const minimum = Number(d.settings?.min_withdrawal_coin || 20000)
-  view.innerHTML = `
-    <section class="wallet">
-      <small>SỐ DƯ</small>
-      <h1>${f(wallet.balance)} <span>coin</span></h1>
-      <p>Đã kiếm ${f(wallet.lifetime_earned)} · Đã rút ${f(wallet.lifetime_withdrawn)}</p>
-    </section>
-    <section class="card">
-      <h3>Rút tiền</h3>
-      <form id="withdraw-form">
-        <label>Số coin<input name="amount" type="number" min="${minimum}" required placeholder="Tối thiểu ${minimum}"></label>
-        <label>Phương thức<select name="method"><option value="momo">MoMo</option><option value="bank">Ngân hàng</option></select></label>
-        <label>Chủ tài khoản<input name="name" required></label>
-        <label>SĐT / số tài khoản<input name="number" required></label>
-        <label>Tên ngân hàng<input name="bank"></label>
-        <button class="primary">Gửi yêu cầu rút</button>
-      </form>
-      <small>Nếu admin từ chối, coin được hoàn tự động.</small>
-    </section>
-    <section class="card"><h3>Lịch sử rút</h3>
-      ${(d.withdrawals || []).map((item) => `<div class="row"><span>${f(item.coin_amount)} coin<small>${new Date(item.created_at).toLocaleString('vi-VN')}</small></span><b class="${item.status}">${withdrawalStatus(item.status)}</b></div>`).join('') || '<p>Chưa có yêu cầu.</p>'}
-    </section>
-    <section class="card"><h3>Biến động coin</h3>
-      ${(d.ledger || []).map((item) => `<div class="row"><span>${e(item.description)}<small>${new Date(item.created_at).toLocaleString('vi-VN')}</small></span><b class="${Number(item.amount) > 0 ? 'plus' : 'minus'}">${Number(item.amount) > 0 ? '+' : ''}${f(item.amount)}</b></div>`).join('') || '<p>Chưa có giao dịch.</p>'}
-    </section>`
-
-  view.querySelector('#withdraw-form').onsubmit = async (event) => {
-    event.preventDefault()
-    const form = new FormData(event.currentTarget)
-    try {
-      await api('withdraw', {
-        coin_amount: Number(form.get('amount')),
-        method: form.get('method'),
-        account_name: form.get('name'),
-        account_number: form.get('number'),
-        bank_name: form.get('bank')
-      })
-      toast('Đã gửi yêu cầu rút.', 'ok')
-      await load('dashboard')
-    } catch (error) {
-      toast(friendly(error.message), 'bad')
-    }
-  }
+  openWallet(view)
 }
 
 function renderReferral() {
