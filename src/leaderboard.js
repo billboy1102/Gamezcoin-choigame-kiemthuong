@@ -6,6 +6,13 @@ const crownSvg = `<svg viewBox="0 0 32 24" aria-hidden="true"><path d="m3 7 6 5 
 const chevronSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>`
 const shieldSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 6v5.5c0 4.7-3.1 7.8-8 9.5-4.9-1.7-8-4.8-8-9.5V6l8-3Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg>`
 const clockSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3.4 2"/></svg>`
+const laurelSvg = `<svg viewBox="0 0 140 104" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round"><path d="M45 94C20 77 14 48 27 18"/><path d="M95 94c25-17 31-46 18-76"/></g><g fill="currentColor"><ellipse cx="27" cy="76" rx="5" ry="11" transform="rotate(-40 27 76)"/><ellipse cx="21" cy="61" rx="5" ry="11" transform="rotate(-58 21 61)"/><ellipse cx="21" cy="44" rx="5" ry="11" transform="rotate(-72 21 44)"/><ellipse cx="28" cy="28" rx="5" ry="11" transform="rotate(-88 28 28)"/><ellipse cx="37" cy="84" rx="5" ry="11" transform="rotate(-26 37 84)"/><ellipse cx="113" cy="76" rx="5" ry="11" transform="rotate(40 113 76)"/><ellipse cx="119" cy="61" rx="5" ry="11" transform="rotate(58 119 61)"/><ellipse cx="119" cy="44" rx="5" ry="11" transform="rotate(72 119 44)"/><ellipse cx="112" cy="28" rx="5" ry="11" transform="rotate(88 112 28)"/><ellipse cx="103" cy="84" rx="5" ry="11" transform="rotate(26 103 84)"/></g></svg>`
+
+const rankAvatarSources = {
+  1: '/assets/leaderboard/avatar-rank-1.webp',
+  2: '/assets/leaderboard/avatar-rank-2.webp',
+  3: '/assets/leaderboard/avatar-rank-3.webp',
+}
 
 const cache = new Map()
 let leaderboardOpen = false
@@ -29,9 +36,13 @@ function hueFor(value = '') {
   return Math.abs(hash) % 360
 }
 
-function avatar(item, extra = '') {
+function avatar(item, extra = '', rank = 0) {
   const name = item?.display_name || 'Người chơi'
   const hue = hueFor(item?.user_id || name)
+  const source = rankAvatarSources[rank]
+  if (source) {
+    return `<span class="gc-lb-avatar gc-lb-avatar-art rank-${rank} ${extra}" style="--gc-lb-h:${hue}"><img src="${source}" alt="" aria-hidden="true"><i>G</i></span>`
+  }
   return `<span class="gc-lb-avatar ${extra}" style="--gc-lb-h:${hue}"><b>${e(initials(name))}</b><i>G</i></span>`
 }
 
@@ -61,8 +72,7 @@ async function fetchLeaderboard(period = 'today', limit = 60, force = false) {
 }
 
 function medal(rank) {
-  const label = rank === 1 ? '1' : rank === 2 ? '2' : '3'
-  return `<span class="gc-lb-medal r${rank}">${label}</span>`
+  return `<span class="gc-lb-medal r${rank}" aria-label="Hạng ${rank}"><i></i><b>${rank}</b><em></em></span>`
 }
 
 function podiumCard(item, rank) {
@@ -72,7 +82,7 @@ function podiumCard(item, rank) {
   return `<article class="gc-lb-podium-card r${rank} ${item.is_me ? 'is-me' : ''}">
     ${rank === 1 ? `<span class="gc-lb-crown">${crownSvg}</span>` : ''}
     ${medal(rank)}
-    ${avatar(item, 'large')}
+    <span class="gc-lb-avatar-stage">${rank === 1 ? `<span class="gc-lb-laurel">${laurelSvg}</span>` : ''}${avatar(item, 'large', rank)}</span>
     <span class="gc-lb-rank-ribbon">Hạng ${rank}</span>
     <strong>${e(item.display_name || 'Người chơi')}</strong>
     ${coin(item.earned_coin)}
