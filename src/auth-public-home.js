@@ -130,10 +130,10 @@ function landingMarkup() {
     <section class="gc-public-proof gc-proof-reference" id="gc-proof">
       <h2>Vì sao người chơi tin dùng Gamezcoin</h2>
       <div class="gc-proof-reference-grid">
-        <article><span class="gc-proof-reference-icon">${boltIcon}</span><div><strong>Rút tiền nhanh</strong><p>Hỗ trợ MoMo và chuyển khoản ngân hàng ngay trong ứng dụng.</p></div></article>
-        <article><span class="gc-proof-reference-icon">${shieldIcon}</span><div><strong>Minh bạch</strong><p>Điều kiện game, số dư và trạng thái xử lý được hiển thị rõ ràng.</p></div></article>
-        <article><span class="gc-proof-reference-icon">${lockIcon}</span><div><strong>Bảo mật</strong><p>Dữ liệu được lưu theo tài khoản và xử lý trên máy chủ.</p></div></article>
-        <article><span class="gc-proof-reference-icon">${gameIcon}</span><div><strong>Game hot mỗi ngày</strong><p>Khám phá nhiều game 3D với trạng thái phát hành cụ thể.</p></div></article>
+        <article><span class="gc-proof-reference-icon">${boltIcon}</span><div><strong>Rút tiền nhanh</strong><p>Xử lý tự động 24/7, nhanh chóng chỉ từ 1 – 10 phút</p></div></article>
+        <article><span class="gc-proof-reference-icon">${shieldIcon}</span><div><strong>Minh bạch</strong><p>Công khai lịch sử thanh toán, minh bạch số liệu, không phí ẩn</p></div></article>
+        <article><span class="gc-proof-reference-icon">${lockIcon}</span><div><strong>Bảo mật</strong><p>Bảo mật nhiều lớp, đảm bảo an toàn tuyệt đối cho tài khoản của bạn</p></div></article>
+        <article><span class="gc-proof-reference-icon">${gameIcon}</span><div><strong>Game hot mỗi ngày</strong><p>Cập nhật hàng trăm game mới, nhiều ưu đãi, phần thưởng hấp dẫn mỗi ngày</p></div></article>
       </div>
     </section>
 
