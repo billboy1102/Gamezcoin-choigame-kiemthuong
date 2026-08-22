@@ -58,7 +58,7 @@ function metaFor(game) {
     badgeClass: block ? 'hot' : 'new',
     category: block ? 'puzzle hot' : 'arcade hot',
     rate: '10 điểm = 1 coin',
-    reward: block ? '+80 coin' : '+100 coin'
+    reward: block ? '+50.000 coin' : '80.000 coin'
   }
 }
 

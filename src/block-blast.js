@@ -219,14 +219,17 @@ async function finishGame(){
     if(result.result?.rejected)throw new Error(result.result.reason||'IMPOSSIBLE_SCORE')
     const coin=Number(result.result?.game_coin||0),ref=Number(result.result?.referral_invitee_coin||0)
     const stage=modal(`
-      <div class="bb-result-icon">🧩</div><h2>Kết thúc ván</h2>
-      <div class="bb-result-score">${fmt.format(final.score)} điểm</div>
-      <p>${final.lines} hàng/cột · combo tốt nhất x${Math.max(1,final.combo)}</p>
-      <strong class="earned">+${fmt.format(coin)} coin</strong>
-      ${ref?`<p>Thưởng giới thiệu +${fmt.format(ref)} coin</p>`:''}
-      <button id="bb-done" class="primary">Nhận thưởng</button>
+      <div class="bb-result-panel">
+        <div class="bb-result-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></svg></div>
+        <h2>Hoàn thành ván</h2>
+        <div class="bb-result-metrics"><div><small>ĐIỂM</small><strong>${fmt.format(final.score)}</strong></div><div class="coin-metric"><small>COIN NHẬN ĐƯỢC</small><strong>+${fmt.format(coin)}</strong></div></div>
+        <p>${final.lines} hàng/cột · combo tốt nhất x${Math.max(1,final.combo)}</p>
+        ${ref?`<p class="bb-result-referral">Thưởng giới thiệu +${fmt.format(ref)} coin</p>`:''}
+        <button id="bb-next" type="button" class="bb-replay-button" aria-label="Chơi ván mới"><svg viewBox="0 0 24 24"><path d="M20 7v5h-5"/><path d="M19 12a7 7 0 1 1-2.05-4.95L20 10"/></svg></button>
+        <span class="bb-replay-label">Chơi ván mới</span>
+      </div>
     `)
-    stage.querySelector('#bb-done').onclick=()=>location.reload()
+    stage.querySelector('#bb-next').onclick=(event)=>{event.currentTarget.disabled=true;state=null;startGame()}
   }catch(error){
     const stage=modal(`<div class="bb-result-icon">⚠️</div><h2>Không được cộng coin</h2><p>${friendly(error.message)}</p><button id="bb-done" class="secondary">Đóng</button>`)
     stage.querySelector('#bb-done').onclick=closeModal

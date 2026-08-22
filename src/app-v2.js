@@ -655,21 +655,29 @@ async function finishBlockBlast() {
     if (result.result?.rejected) throw new Error(result.result.reason || 'IMPOSSIBLE_SCORE')
     const coin = Number(result.result?.game_coin || 0)
     const referral = Number(result.result?.referral_invitee_coin || 0)
+    if (state.data?.wallet) {
+      state.data.wallet.balance = Number(state.data.wallet.balance || 0) + coin + referral
+      state.data.wallet.lifetime_earned = Number(state.data.wallet.lifetime_earned || 0) + coin + referral
+    }
     root.innerHTML = `
       <main class="play-result">
         <section class="play-result-card">
-          <div class="play-result-icon">🧩</div>
-          <h2>Kết thúc ván</h2>
-          <div class="play-result-score">${f(finalScore)} điểm</div>
-          <p>${b.lines} hàng/cột · combo tốt nhất x${Math.max(1, b.bestCombo)}</p>
-          <strong class="earned">+${f(coin)} coin</strong>
-          ${referral ? `<p>Thưởng giới thiệu +${f(referral)} coin</p>` : ''}
-          <button id="claim-game" class="primary play-action">Nhận thưởng</button>
+          <div class="play-result-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></svg></div>
+          <h2>Hoàn thành ván</h2>
+          <div class="play-result-metrics">
+            <div><small>ĐIỂM</small><strong>${f(finalScore)}</strong></div>
+            <div class="coin-metric"><small>COIN NHẬN ĐƯỢC</small><strong>+${f(coin)}</strong></div>
+          </div>
+          <p class="play-result-meta">${b.lines} hàng/cột · combo tốt nhất x${Math.max(1, b.bestCombo)}</p>
+          ${referral ? `<p class="play-result-referral">Thưởng giới thiệu +${f(referral)} coin</p>` : ''}
+          <button id="next-block-game" type="button" class="play-replay-button" aria-label="Chơi ván mới"><svg viewBox="0 0 24 24"><path d="M20 7v5h-5"/><path d="M19 12a7 7 0 1 1-2.05-4.95L20 10"/></svg></button>
+          <span class="play-replay-label">Chơi ván mới</span>
         </section>
       </main>`
-    root.querySelector('#claim-game').onclick = async () => {
+    root.querySelector('#next-block-game').onclick = (event) => {
+      event.currentTarget.disabled = true
       state.block = null
-      await load()
+      startBlockBlast()
     }
   } catch (error) {
     root.innerHTML = `
