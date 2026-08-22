@@ -1,0 +1,656 @@
+.gc-how-pro {
+  margin-top: 78px;
+}
+
+.gc-how-pro .gc-public-section-title {
+  position: relative;
+}
+
+.gc-how-pro .gc-public-section-title > small {
+  color: #5beaff;
+  letter-spacing: 0.17em;
+}
+
+.gc-how-pro .gc-public-section-title > h2 {
+  margin-top: 10px;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.gc-how-pro .gc-public-section-title > p {
+  max-width: 610px;
+  margin-top: 13px;
+  color: #9aadc2;
+  font-size: 11px;
+}
+
+.gc-how-trust {
+  width: min(720px, 100%);
+  margin: 22px auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.gc-how-trust > span {
+  min-height: 46px;
+  padding: 8px 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid rgba(67, 119, 181, 0.5);
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(11, 34, 64, 0.92), rgba(6, 22, 43, 0.92));
+  color: #dbe9f8;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.gc-how-trust svg {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 17px;
+  color: #42e4ff;
+}
+
+.gc-how-trust b {
+  min-width: 0;
+  font-size: 8px;
+  line-height: 1.3;
+}
+
+.gc-how-pro .gc-how-stack {
+  margin-top: 18px;
+  gap: 16px;
+}
+
+.gc-how-pro .gc-how-stack > article {
+  position: relative;
+  isolation: isolate;
+  min-height: 280px;
+  padding: 25px;
+  grid-template-columns: 58px minmax(220px, 0.78fr) minmax(390px, 1.22fr);
+  gap: 21px;
+  overflow: hidden;
+  border: 1px solid rgba(67, 111, 174, 0.56);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 86% 20%, rgba(33, 195, 255, 0.08), transparent 30%),
+    linear-gradient(124deg, #071a32, #061326 54%, #0b1530);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.2), inset 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.gc-how-pro .gc-how-stack > article::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #2ce3ff, #527dff 55%, transparent);
+}
+
+.gc-how-pro .gc-how-stack > article:nth-child(2)::before {
+  background: linear-gradient(90deg, #715cff, #c43fff 58%, transparent);
+}
+
+.gc-how-pro .gc-how-stack > article:nth-child(3)::before {
+  background: linear-gradient(90deg, #31e2a0, #34c9ff 58%, transparent);
+}
+
+.gc-how-pro .gc-step-icon,
+.gc-how-pro .gc-step-copy,
+.gc-how-pro .gc-step-visual,
+.gc-how-pro .gc-complete-demo,
+.gc-how-pro .gc-cashout-phone {
+  position: relative;
+  z-index: 2;
+}
+
+.gc-how-pro .gc-step-icon {
+  width: 54px;
+  height: 54px;
+  border-color: rgba(44, 205, 255, 0.58);
+  border-radius: 16px;
+  background: linear-gradient(145deg, #0a3156, #0b1d3c);
+  color: #41e8ff;
+  box-shadow: 0 10px 24px rgba(0, 156, 255, 0.12), inset 0 1px rgba(255, 255, 255, 0.07);
+}
+
+.gc-how-pro .gc-how-stack > article:nth-child(2) .gc-step-icon {
+  border-color: rgba(139, 92, 255, 0.62);
+  background: linear-gradient(145deg, #27205e, #151638);
+  color: #a68aff;
+}
+
+.gc-how-pro .gc-how-stack > article:nth-child(3) .gc-step-icon {
+  border-color: rgba(57, 224, 165, 0.55);
+  background: linear-gradient(145deg, #0b3a3d, #0a2037);
+  color: #51e8b0;
+}
+
+.gc-how-pro .gc-step-icon svg {
+  width: 27px;
+  height: 27px;
+}
+
+.gc-how-pro .gc-step-copy > small {
+  width: fit-content;
+  min-height: 25px;
+  padding: 0 9px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(65, 218, 255, 0.3);
+  border-radius: 999px;
+  background: rgba(7, 35, 64, 0.75);
+  color: #58e8ff;
+  font-size: 7px;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+}
+
+.gc-how-pro .gc-step-copy h3 {
+  margin: 12px 0 9px;
+  font-size: clamp(20px, 2.2vw, 26px);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.gc-how-pro .gc-step-copy p {
+  max-width: 360px;
+  color: #9aadc2;
+  font-size: 10.5px;
+  line-height: 1.62;
+}
+
+.gc-how-pro .gc-step-games-pro {
+  min-height: 210px;
+  padding: 12px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+  transform: none;
+  border-color: rgba(77, 105, 188, 0.62);
+  border-radius: 18px;
+  background: radial-gradient(circle at 85% 12%, rgba(115, 59, 255, 0.2), transparent 34%), #07162d;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.gc-how-pro .gc-step-games-pro .gc-mini-game {
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  overflow: hidden;
+  border: 1px solid rgba(76, 120, 180, 0.58);
+  border-radius: 12px;
+  background: #09192f;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
+}
+
+.gc-how-pro .gc-step-games-pro .gc-mini-game > img {
+  display: block;
+  width: 100%;
+  height: 125px;
+  object-fit: cover;
+  filter: saturate(1.04) contrast(1.03);
+}
+
+.gc-how-pro .gc-step-games-pro .gc-mini-game > span {
+  min-width: 0;
+  padding: 9px 10px 10px;
+  display: grid;
+  gap: 3px;
+}
+
+.gc-how-pro .gc-step-games-pro .gc-mini-game b {
+  overflow: hidden;
+  color: #f4f8ff;
+  font-size: 9px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gc-how-pro .gc-step-games-pro .gc-mini-game small {
+  color: #59e8bd;
+  font-size: 7px;
+  font-weight: 800;
+}
+
+.gc-how-pro .gc-verify-demo {
+  min-height: 220px;
+  padding: 17px;
+  display: grid;
+  grid-template-columns: 0.76fr 1.24fr;
+  gap: 13px;
+  place-items: stretch;
+  border-color: rgba(111, 87, 222, 0.62);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 18% 50%, rgba(52, 203, 255, 0.14), transparent 30%),
+    radial-gradient(circle at 88% 18%, rgba(130, 65, 255, 0.18), transparent 32%),
+    #07162d;
+}
+
+.gc-verify-seal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  border: 1px solid rgba(76, 147, 204, 0.42);
+  border-radius: 14px;
+  background: rgba(8, 31, 58, 0.78);
+  text-align: center;
+}
+
+.gc-verify-seal > svg {
+  width: 52px;
+  height: 52px;
+  padding: 12px;
+  border: 1px solid rgba(65, 225, 255, 0.55);
+  border-radius: 50%;
+  color: #49e4ff;
+  background: #092541;
+  box-shadow: 0 0 24px rgba(54, 211, 255, 0.16);
+}
+
+.gc-verify-seal > span {
+  display: grid;
+  gap: 5px;
+}
+
+.gc-verify-seal small {
+  color: #6d89a6;
+  font-size: 6.5px;
+  font-weight: 900;
+  letter-spacing: 0.13em;
+}
+
+.gc-verify-seal b {
+  color: #f3f8ff;
+  font-size: 10px;
+}
+
+.gc-verify-rows {
+  display: grid;
+  gap: 8px;
+}
+
+.gc-verify-rows > span {
+  min-height: 53px;
+  padding: 9px 11px;
+  display: grid;
+  grid-template-columns: 27px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid rgba(65, 103, 158, 0.48);
+  border-radius: 11px;
+  background: rgba(7, 28, 53, 0.86);
+}
+
+.gc-verify-rows svg {
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  border-radius: 8px;
+  color: #53e2ff;
+  background: #0b3151;
+}
+
+.gc-verify-rows b {
+  min-width: 0;
+  color: #dce8f5;
+  font-size: 8.5px;
+}
+
+.gc-verify-rows em {
+  color: #5be5ab;
+  font-size: 7px;
+  font-style: normal;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.gc-how-pro .gc-wallet-demo {
+  min-height: 230px;
+  padding: 17px;
+  border-color: rgba(67, 126, 188, 0.62);
+  border-radius: 18px;
+  background: radial-gradient(circle at 90% 0, rgba(53, 213, 255, 0.11), transparent 30%), linear-gradient(180deg, #08182f, #071429);
+}
+
+.gc-wallet-demo-head {
+  min-height: 54px;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid rgba(65, 102, 151, 0.4);
+}
+
+.gc-wallet-demo-head > span {
+  width: 37px;
+  height: 37px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(58, 224, 255, 0.48);
+  border-radius: 11px;
+  background: #0a2c49;
+  color: #50e5ff;
+}
+
+.gc-wallet-demo-head svg {
+  width: 20px;
+  height: 20px;
+}
+
+.gc-wallet-demo-head > div {
+  display: grid;
+  gap: 3px;
+}
+
+.gc-wallet-demo-head small {
+  color: #5be7ff;
+  font-size: 6.5px;
+  font-weight: 950;
+  letter-spacing: 0.13em;
+}
+
+.gc-wallet-demo-head b {
+  color: #edf5ff;
+  font-size: 10px;
+}
+
+.gc-wallet-demo-head > em {
+  padding: 5px 7px;
+  border: 1px solid rgba(74, 229, 173, 0.35);
+  border-radius: 999px;
+  color: #63e8b1;
+  font-size: 6px;
+  font-style: normal;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+}
+
+.gc-wallet-demo > .gc-wallet-methods {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.gc-wallet-demo > .gc-wallet-methods > span {
+  min-height: 72px;
+  padding: 10px;
+  border-color: rgba(55, 99, 153, 0.55);
+  background: #081a32;
+}
+
+.gc-wallet-demo > .gc-wallet-methods > span:nth-child(-n + 2) {
+  border-color: rgba(53, 190, 160, 0.42);
+  background: linear-gradient(180deg, #0a283a, #07192e);
+}
+
+.gc-wallet-methods b {
+  color: #edf5ff;
+  font-size: 9px;
+}
+
+.gc-wallet-demo-note {
+  min-height: 37px;
+  margin-top: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid rgba(50, 93, 145, 0.4);
+  border-radius: 10px;
+  background: rgba(5, 23, 44, 0.72);
+}
+
+.gc-wallet-demo-note svg {
+  width: 15px;
+  height: 15px;
+  color: #4ce5ff;
+}
+
+.gc-wallet-demo-note small {
+  color: #91a8be;
+  font-size: 7px;
+}
+
+@media (max-width: 900px) {
+  .gc-how-pro .gc-how-stack > article {
+    min-height: 0;
+    grid-template-columns: 54px minmax(0, 1fr);
+  }
+
+  .gc-how-pro .gc-how-stack > article > :last-child {
+    grid-column: 1 / 3;
+  }
+}
+
+@media (max-width: 650px) {
+  .gc-how-pro {
+    margin-top: 56px;
+  }
+
+  .gc-how-pro .gc-public-section-title > small {
+    font-size: 7.5px;
+  }
+
+  .gc-how-pro .gc-public-section-title > h2 {
+    margin-top: 8px;
+    font-size: 30px;
+  }
+
+  .gc-how-pro .gc-public-section-title > p {
+    max-width: 340px;
+    margin-top: 10px;
+    font-size: 9.5px;
+  }
+
+  .gc-how-trust {
+    margin-top: 16px;
+    gap: 5px;
+  }
+
+  .gc-how-trust > span {
+    min-height: 52px;
+    padding: 6px 4px;
+    display: grid;
+    place-items: center;
+    align-content: center;
+    gap: 4px;
+    text-align: center;
+  }
+
+  .gc-how-trust svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .gc-how-trust b {
+    font-size: 6.8px;
+  }
+
+  .gc-how-pro .gc-how-stack {
+    margin-top: 12px;
+    gap: 12px;
+  }
+
+  .gc-how-pro .gc-how-stack > article {
+    padding: 16px 13px;
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 11px;
+    border-radius: 18px;
+  }
+
+  .gc-how-pro .gc-step-icon {
+    width: 43px;
+    height: 43px;
+    border-radius: 12px;
+  }
+
+  .gc-how-pro .gc-step-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .gc-how-pro .gc-step-copy > small {
+    min-height: 21px;
+    padding: 0 7px;
+    font-size: 6px;
+  }
+
+  .gc-how-pro .gc-step-copy h3 {
+    margin: 8px 0 6px;
+    font-size: 17px;
+  }
+
+  .gc-how-pro .gc-step-copy p {
+    max-width: none;
+    font-size: 9px;
+    line-height: 1.52;
+  }
+
+  .gc-how-pro .gc-step-games-pro {
+    min-height: 0;
+    padding: 8px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+    border-radius: 14px;
+  }
+
+  .gc-how-pro .gc-step-games-pro .gc-mini-game {
+    border-radius: 9px;
+  }
+
+  .gc-how-pro .gc-step-games-pro .gc-mini-game > img {
+    height: 69px;
+  }
+
+  .gc-how-pro .gc-step-games-pro .gc-mini-game > span {
+    padding: 7px;
+  }
+
+  .gc-how-pro .gc-step-games-pro .gc-mini-game b {
+    font-size: 7px;
+  }
+
+  .gc-how-pro .gc-step-games-pro .gc-mini-game small {
+    font-size: 5.8px;
+  }
+
+  .gc-how-pro .gc-verify-demo {
+    min-height: 0;
+    padding: 10px;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    border-radius: 14px;
+  }
+
+  .gc-verify-seal {
+    min-height: 55px;
+    padding: 8px 11px;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 10px;
+    text-align: left;
+  }
+
+  .gc-verify-seal > svg {
+    width: 37px;
+    height: 37px;
+    padding: 8px;
+  }
+
+  .gc-verify-rows {
+    gap: 6px;
+  }
+
+  .gc-verify-rows > span {
+    min-height: 43px;
+    grid-template-columns: 23px minmax(0, 1fr) auto;
+    padding: 7px 9px;
+    gap: 7px;
+  }
+
+  .gc-verify-rows svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .gc-verify-rows b {
+    font-size: 7.5px;
+  }
+
+  .gc-verify-rows em {
+    font-size: 6.3px;
+  }
+
+  .gc-how-pro .gc-wallet-demo {
+    min-height: 0;
+    padding: 12px;
+    border-radius: 14px;
+  }
+
+  .gc-wallet-demo-head {
+    min-height: 47px;
+    grid-template-columns: 35px minmax(0, 1fr) auto;
+    gap: 8px;
+  }
+
+  .gc-wallet-demo-head > span {
+    width: 31px;
+    height: 31px;
+    border-radius: 9px;
+  }
+
+  .gc-wallet-demo-head svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .gc-wallet-demo-head b {
+    font-size: 8px;
+  }
+
+  .gc-wallet-demo > .gc-wallet-methods {
+    margin-top: 9px;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+
+  .gc-wallet-demo > .gc-wallet-methods > span {
+    min-height: 51px;
+    padding: 8px;
+  }
+
+  .gc-wallet-demo-note {
+    min-height: 32px;
+    margin-top: 8px;
+    padding: 0 7px;
+  }
+
+  .gc-wallet-demo-note small {
+    font-size: 6.3px;
+  }
+}
+
+@media (max-width: 390px) {
+  .gc-how-pro .gc-public-section-title > h2 {
+    font-size: 27px;
+  }
+
+  .gc-how-trust b {
+    font-size: 6.2px;
+  }
+
+  .gc-how-pro .gc-step-games-pro .gc-mini-game > img {
+    height: 61px;
+  }
+}
