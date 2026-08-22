@@ -4,6 +4,7 @@ import './landing-trust-reference.css'
 import './landing-mobile-actions.css'
 import './landing-hero-metrics.css'
 import './landing-faq-final-cta.css'
+import { finalBannerImageUrl } from './final-cta-reference.js'
 import { supabase } from './api.js'
 
 const app = document.querySelector('#app')
@@ -22,58 +23,6 @@ const checkIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 
 const boltIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m13.5 2-8 11h6.1L10.5 22l8-11h-6.1L13.5 2Z"/></svg>`
 const lockIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></svg>`
 const arrowIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>`
-const finalCoinArt = `<svg viewBox="0 0 230 170" aria-hidden="true">
-  <defs>
-    <linearGradient id="gc-final-gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff06d"/><stop offset=".33" stop-color="#ffc21d"/><stop offset=".72" stop-color="#df6d00"/><stop offset="1" stop-color="#ffb412"/></linearGradient>
-    <linearGradient id="gc-final-gold-edge" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffc828"/><stop offset="1" stop-color="#8a3500"/></linearGradient>
-    <filter id="gc-final-coin-glow" x="-70%" y="-70%" width="240%" height="240%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-  </defs>
-  <g filter="url(#gc-final-coin-glow)" transform="translate(13 30) rotate(-19 52 39)">
-    <ellipse cx="52" cy="47" rx="43" ry="18" style="fill:url(#gc-final-gold-edge);stroke:#ff9e08;stroke-width:2"/>
-    <ellipse cx="52" cy="39" rx="43" ry="18" style="fill:url(#gc-final-gold);stroke:#ffe25b;stroke-width:2"/>
-    <ellipse cx="52" cy="39" rx="30" ry="12" style="fill:#f5a514;stroke:#fff274;stroke-width:1.4"/>
-    <text x="52" y="47" text-anchor="middle" style="fill:#9e4300;stroke:#ffdb35;stroke-width:.8;font:900 25px Inter,sans-serif">G</text>
-  </g>
-  <g filter="url(#gc-final-coin-glow)" transform="translate(108 7) rotate(18 49 37)">
-    <ellipse cx="49" cy="44" rx="38" ry="16" style="fill:url(#gc-final-gold-edge);stroke:#ff9e08;stroke-width:2"/>
-    <ellipse cx="49" cy="37" rx="38" ry="16" style="fill:url(#gc-final-gold);stroke:#ffe25b;stroke-width:2"/>
-    <ellipse cx="49" cy="37" rx="26" ry="10.5" style="fill:#f2a00f;stroke:#fff274;stroke-width:1.4"/>
-    <text x="49" y="44" text-anchor="middle" style="fill:#9e4300;stroke:#ffdb35;stroke-width:.7;font:900 22px Inter,sans-serif">G</text>
-  </g>
-  <g filter="url(#gc-final-coin-glow)" transform="translate(55 95) rotate(9 40 29)">
-    <ellipse cx="40" cy="35" rx="32" ry="13" style="fill:url(#gc-final-gold-edge);stroke:#ff9e08;stroke-width:1.8"/>
-    <ellipse cx="40" cy="29" rx="32" ry="13" style="fill:url(#gc-final-gold);stroke:#ffe25b;stroke-width:1.8"/>
-    <ellipse cx="40" cy="29" rx="22" ry="8.5" style="fill:#f2a00f;stroke:#fff274;stroke-width:1.2"/>
-    <text x="40" y="35" text-anchor="middle" style="fill:#9e4300;stroke:#ffdb35;stroke-width:.6;font:900 18px Inter,sans-serif">G</text>
-  </g>
-</svg>`
-const finalGiftArt = `<svg viewBox="0 0 250 205" aria-hidden="true">
-  <defs>
-    <linearGradient id="gc-gift-front" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a91eff"/><stop offset=".55" stop-color="#5a12bc"/><stop offset="1" stop-color="#25105f"/></linearGradient>
-    <linearGradient id="gc-gift-side" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#6411bd"/><stop offset="1" stop-color="#240b58"/></linearGradient>
-    <linearGradient id="gc-gift-top" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e040ff"/><stop offset=".52" stop-color="#8c20ef"/><stop offset="1" stop-color="#4c0ca5"/></linearGradient>
-    <linearGradient id="gc-gift-ribbon" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffd849"/><stop offset=".42" stop-color="#ff8a15"/><stop offset="1" stop-color="#b83c00"/></linearGradient>
-    <linearGradient id="gc-gift-coin" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff36a"/><stop offset=".42" stop-color="#ffbc13"/><stop offset="1" stop-color="#c85b00"/></linearGradient>
-    <filter id="gc-gift-glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5" result="g"/><feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-  </defs>
-  <ellipse cx="132" cy="184" rx="93" ry="13" style="fill:#5312be;opacity:.34;stroke:none"/>
-  <g filter="url(#gc-gift-glow)">
-    <path d="M55 82 137 56 215 83 132 113Z" style="fill:url(#gc-gift-top);stroke:#f050ff;stroke-width:1.4"/>
-    <path d="M55 82 132 113 132 182 55 151Z" style="fill:url(#gc-gift-front);stroke:#8b35ff;stroke-width:1.4"/>
-    <path d="M132 113 215 83 215 151 132 182Z" style="fill:url(#gc-gift-side);stroke:#7624d7;stroke-width:1.4"/>
-    <path d="M119 108 146 99 146 177 119 183Z" style="fill:url(#gc-gift-ribbon);stroke:#ffad1c;stroke-width:1"/>
-    <path d="M108 65 132 58 158 67 134 76Z" style="fill:url(#gc-gift-ribbon);stroke:#ffc02b;stroke-width:1"/>
-    <path d="M132 62C111 58 86 43 90 28c4-14 28-5 42 20Z" style="fill:url(#gc-gift-ribbon);stroke:#ffd044;stroke-width:1.4"/>
-    <path d="M134 62c17-17 42-29 49-15 8 15-22 25-49 24Z" style="fill:url(#gc-gift-ribbon);stroke:#ffd044;stroke-width:1.4"/>
-    <ellipse cx="133" cy="64" rx="13" ry="10" style="fill:#ff9b13;stroke:#ffd44d;stroke-width:1.2"/>
-  </g>
-  <g filter="url(#gc-gift-glow)" transform="translate(179 3) rotate(19 26 26)">
-    <circle cx="26" cy="29" r="23" style="fill:#a34700;stroke:#ff9e0b;stroke-width:2"/>
-    <circle cx="26" cy="24" r="23" style="fill:url(#gc-gift-coin);stroke:#fff067;stroke-width:2"/>
-    <circle cx="26" cy="24" r="15" style="fill:#f29c08;stroke:#ffe15b;stroke-width:1.4"/>
-    <text x="26" y="31" text-anchor="middle" style="fill:#914000;stroke:#ffdc39;stroke-width:.6;font:900 20px Inter,sans-serif">G</text>
-  </g>
-</svg>`
 const closeIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>`
 const homeNavIcon = `<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M7 22.5 24 7l17 15.5"/><path d="M11 20.5V41h10V29h6v12h10V20.5"/></svg>`
 const cashoutNavIcon = `<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 9h32v9H8z"/><path d="M14 18v21h20V18"/><rect x="18" y="22" width="12" height="12" rx="2"/><path d="M24 24.5v7M27 26h-4.2a1.8 1.8 0 0 0 0 3.6H27"/></svg>`
@@ -234,12 +183,11 @@ function landingMarkup() {
     </section>
 
     <section class="gc-public-final-cta gc-final-reference">
-      <div class="gc-final-coins" aria-hidden="true">${finalCoinArt}</div>
+      <img class="gc-final-reference-image" src="${finalBannerImageUrl}" alt="" width="941" height="189" loading="eager" decoding="async" draggable="false">
       <div class="gc-final-reference-copy">
         <h2>Bắt đầu <em>chơi game kiếm tiền</em><br>ngay hôm nay</h2>
         <div class="gc-final-buttons"><button type="button" data-public-auth="signup">Đăng ký miễn phí</button><button type="button" class="secondary" data-public-auth="login">Đăng nhập</button></div>
       </div>
-      <div class="gc-final-gift" aria-hidden="true">${finalGiftArt}</div>
     </section>
 
     <footer class="gc-public-footer">

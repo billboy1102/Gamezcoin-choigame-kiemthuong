@@ -76,173 +76,106 @@
 .gc-public-final-cta.gc-final-reference {
   position: relative;
   isolation: isolate;
-  width: min(1180px, calc(100% - 32px));
-  min-height: 194px;
+  width: min(941px, calc(100% - 32px));
+  min-height: 0;
+  aspect-ratio: 941 / 171;
   margin-top: 62px;
-  padding: 15px 28px;
-  display: grid !important;
-  grid-template-columns: 215px minmax(0, 1fr) 225px;
-  align-items: center;
-  gap: 10px;
+  padding: 0;
+  display: block !important;
   overflow: hidden;
-  border: 1px solid rgba(119, 49, 255, 0.9) !important;
-  border-left-color: rgba(39, 216, 255, 0.74) !important;
-  border-radius: 27px !important;
-  background:
-    radial-gradient(circle at 6% 24%, rgba(255, 255, 255, 0.95) 0 1px, transparent 2px),
-    radial-gradient(circle at 17% 73%, rgba(70, 224, 255, 0.86) 0 1px, transparent 2px),
-    radial-gradient(circle at 26% 18%, rgba(221, 74, 255, 0.92) 0 1px, transparent 2px),
-    radial-gradient(circle at 73% 19%, rgba(255, 255, 255, 0.88) 0 1px, transparent 2px),
-    radial-gradient(circle at 85% 77%, rgba(63, 221, 255, 0.82) 0 1px, transparent 2px),
-    radial-gradient(circle at 94% 26%, rgba(215, 70, 255, 0.88) 0 1px, transparent 2px),
-    radial-gradient(ellipse at 9% 78%, rgba(28, 76, 229, 0.42), transparent 28%),
-    radial-gradient(ellipse at 91% 30%, rgba(119, 20, 222, 0.43), transparent 30%),
-    linear-gradient(105deg, #06122e 0%, #090a27 48%, #120829 100%) !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.055),
-    inset 0 0 44px rgba(67, 35, 166, 0.12),
-    0 0 22px rgba(50, 75, 231, 0.16),
-    0 18px 54px rgba(0, 0, 0, 0.3) !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
-.gc-final-reference::before {
-  content: "";
-  position: absolute;
-  z-index: -2;
-  inset: 0;
-  opacity: 0.72;
-  background-image:
-    radial-gradient(circle, rgba(255, 255, 255, 0.72) 0 0.7px, transparent 1px),
-    radial-gradient(circle, rgba(111, 69, 255, 0.72) 0 0.8px, transparent 1.2px);
-  background-position: 7px 12px, 31px 24px;
-  background-size: 47px 41px, 71px 57px;
-  mask-image: linear-gradient(90deg, #000, rgba(0, 0, 0, 0.3) 50%, #000);
-}
-
+.gc-final-reference::before,
 .gc-final-reference::after {
-  content: "";
+  display: none !important;
+}
+
+.gc-final-reference-image {
   position: absolute;
-  z-index: -1;
-  left: 5%;
-  right: 4%;
-  bottom: -66px;
-  height: 128px;
-  border: 1px solid rgba(98, 46, 244, 0.32);
-  border-radius: 50%;
-  box-shadow: 0 -1px 16px rgba(44, 158, 255, 0.08);
-  transform: rotate(-2deg);
-}
-
-.gc-final-coins,
-.gc-final-gift {
-  position: relative;
   z-index: 1;
-  display: grid;
-  place-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  display: block;
   pointer-events: none;
-}
-
-.gc-final-coins svg {
-  width: 210px;
-  height: auto;
-  overflow: visible;
-  filter: drop-shadow(0 12px 14px rgba(0, 0, 0, 0.4));
-}
-
-.gc-final-gift svg {
-  width: 225px;
-  height: auto;
-  overflow: visible;
-  filter: drop-shadow(0 14px 17px rgba(0, 0, 0, 0.48));
+  user-select: none;
 }
 
 .gc-final-reference-copy {
-  position: relative;
-  z-index: 3;
+  position: absolute;
+  z-index: 2;
+  inset: 0;
   min-width: 0;
-  text-align: center;
+  pointer-events: none;
 }
 
 .gc-final-reference .gc-final-reference-copy h2 {
-  max-width: none;
-  margin: 0 !important;
-  color: #fff;
-  font-size: clamp(31px, 3.25vw, 43px) !important;
-  font-weight: 950;
-  line-height: 1.05 !important;
-  letter-spacing: -0.04em;
-  text-align: center;
-  text-shadow: 0 3px 16px rgba(0, 0, 0, 0.48);
-}
-
-.gc-final-reference .gc-final-reference-copy h2 em {
-  white-space: nowrap;
-  background: linear-gradient(90deg, #27d8ff 0%, #347eff 46%, #bd39ec 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  font-style: normal;
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  border: 0 !important;
+  white-space: nowrap !important;
 }
 
 .gc-final-reference .gc-final-buttons {
-  margin-top: 15px;
-  display: grid !important;
-  grid-template-columns: minmax(190px, 245px) minmax(140px, 178px);
-  justify-content: center !important;
-  gap: 22px;
+  position: absolute;
+  inset: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+  pointer-events: none;
 }
 
 .gc-final-reference .gc-final-buttons button {
-  width: 100%;
-  min-height: 50px !important;
-  padding: 0 20px !important;
-  border: 1px solid rgba(87, 223, 255, 0.78) !important;
-  border-radius: 12px !important;
-  background: linear-gradient(105deg, #20cff8 0%, #248cff 46%, #b52aee 100%) !important;
-  color: #fff !important;
-  font-size: 16px;
-  font-weight: 800 !important;
-  line-height: 1;
-  white-space: nowrap;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.22),
-    inset 0 -3px 0 rgba(58, 25, 157, 0.25),
-    0 0 18px rgba(65, 102, 255, 0.22) !important;
+  position: absolute;
+  top: 58.48%;
+  min-width: 0;
+  min-height: 0 !important;
+  height: 30.41%;
+  margin: 0 !important;
+  padding: 0 !important;
+  opacity: 0;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: transparent !important;
+  box-shadow: none !important;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.gc-final-reference .gc-final-buttons button:first-child {
+  left: 25.61%;
+  width: 25.93%;
 }
 
 .gc-final-reference .gc-final-buttons button.secondary {
-  border-color: rgba(117, 137, 183, 0.78) !important;
-  background: rgba(7, 14, 35, 0.82) !important;
-  color: #f2f5ff !important;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035) !important;
+  left: 53.88%;
+  width: 18.07%;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 .gc-final-reference .gc-final-buttons button:hover {
-  filter: brightness(1.08);
+  filter: none !important;
 }
 
-@media (max-width: 900px) {
-  .gc-public-final-cta.gc-final-reference {
-    grid-template-columns: 155px minmax(0, 1fr) 165px;
-    padding-inline: 15px;
-  }
-
-  .gc-final-coins svg {
-    width: 155px;
-  }
-
-  .gc-final-gift svg {
-    width: 168px;
-  }
-
-  .gc-final-reference .gc-final-buttons {
-    grid-template-columns: minmax(165px, 210px) minmax(125px, 155px);
-    gap: 11px;
-  }
-
-  .gc-final-reference .gc-final-buttons button {
-    font-size: 13px;
-  }
+.gc-final-reference .gc-final-buttons button:focus-visible {
+  opacity: 0.18;
+  outline: 2px solid #fff;
+  outline-offset: -3px;
+  border-radius: 10px !important;
 }
 
 @media (max-width: 650px) {
@@ -276,54 +209,16 @@
 
   .gc-public-final-cta.gc-final-reference {
     width: calc(100% - 24px);
-    min-height: 320px;
+    min-height: 0;
     margin-top: 54px;
-    padding: 28px 16px 128px;
+    padding: 0;
     display: block !important;
-    border-radius: 23px !important;
-  }
-
-  .gc-final-reference .gc-final-reference-copy h2 {
-    font-size: clamp(27px, 8.2vw, 36px) !important;
-    line-height: 1.08 !important;
-  }
-
-  .gc-final-reference .gc-final-reference-copy h2 em {
-    white-space: normal;
-  }
-
-  .gc-final-reference .gc-final-buttons {
-    margin-top: 18px;
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
-    gap: 10px;
+    border-radius: 0 !important;
   }
 
   .gc-final-reference .gc-final-buttons button {
-    min-height: 47px !important;
-    padding: 0 9px !important;
-    font-size: 11px;
-  }
-
-  .gc-final-coins,
-  .gc-final-gift {
-    position: absolute;
-    bottom: -5px;
-  }
-
-  .gc-final-coins {
-    left: -2px;
-  }
-
-  .gc-final-gift {
-    right: 0;
-  }
-
-  .gc-final-coins svg {
-    width: 144px;
-  }
-
-  .gc-final-gift svg {
-    width: 158px;
+    top: 31%;
+    height: 69%;
   }
 }
 
@@ -334,27 +229,5 @@
 
   .gc-faq-reference summary {
     font-size: 10.5px !important;
-  }
-
-  .gc-public-final-cta.gc-final-reference {
-    min-height: 305px;
-    padding-inline: 12px;
-    padding-bottom: 116px;
-  }
-
-  .gc-final-reference .gc-final-reference-copy h2 {
-    font-size: 26px !important;
-  }
-
-  .gc-final-reference .gc-final-buttons button {
-    font-size: 10px;
-  }
-
-  .gc-final-coins svg {
-    width: 128px;
-  }
-
-  .gc-final-gift svg {
-    width: 142px;
   }
 }
