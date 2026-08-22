@@ -11,6 +11,21 @@ const f = (n) => numberFmt.format(Number(n || 0))
 const e = (v) => String(v ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]))
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
+function authRedirectUrl() {
+  const url = new URL(import.meta.env.BASE_URL, window.location.href)
+  url.search = ''
+  url.hash = ''
+  return url.href
+}
+
+function isIOSDevice() {
+  const userAgent = navigator.userAgent || ''
+  const platform = navigator.platform || ''
+  return /iPad|iPhone|iPod/i.test(userAgent) || (platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+}
+
+const oauthProviderNames = { google: 'Google', facebook: 'Facebook', apple: 'Apple' }
+
 function toast(message, type = '') {
   const node = document.createElement('div')
   node.className = `toast ${type}`
@@ -24,6 +39,7 @@ function friendly(message = '') {
   const map = {
     'Invalid login credentials': 'Email hoặc mật khẩu không đúng.',
     'Email not confirmed': 'Hãy xác nhận email trước khi đăng nhập.',
+    'provider is not enabled': 'Phương thức đăng nhập này chưa được bật trên hệ thống.',
     TOO_FAST: 'Phiên chơi quá nhanh nên không được cộng coin.',
     IMPOSSIBLE_SCORE: 'Điểm vượt ngưỡng hợp lý nên bị từ chối.',
     SESSION_EXPIRED: 'Phiên chơi đã hết hạn.',
@@ -62,7 +78,11 @@ function renderAuth() {
           ${login ? '' : '<label>Mã giới thiệu (không bắt buộc)<input name="ref" maxlength="16"></label>'}
           <button class="primary" type="submit">${login ? 'Đăng nhập' : 'Tạo tài khoản'}</button>
         </form>
-        <button id="google-login" class="google">Đăng nhập bằng Google</button>
+        <div class="auth-social" data-auth-social>
+          <button type="button" id="google-login" class="google" data-oauth-provider="google">Tiếp tục với Google</button>
+          <button type="button" id="facebook-login" data-oauth-provider="facebook">Tiếp tục với Facebook</button>
+          ${isIOSDevice() ? '<button type="button" id="apple-login" data-oauth-provider="apple">Tiếp tục với Apple</button>' : ''}
+        </div>
         <small>Tài khoản và coin được lưu trên server, dùng chung giữa nhiều thiết bị.</small>
       </section>
     </main>`
@@ -103,13 +123,28 @@ function renderAuth() {
     }
   }
 
-  root.querySelector('#google-login').onclick = async () => {
-    const result = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: { redirectTo: location.origin + location.pathname }
-    })
-    if (result.error) toast(friendly(result.error.message), 'bad')
-  }
+  root.querySelectorAll('[data-oauth-provider]').forEach((button) => {
+    button.onclick = async () => {
+      const provider = button.dataset.oauthProvider
+      const providerName = oauthProviderNames[provider] || provider
+      button.disabled = true
+      button.setAttribute('aria-busy', 'true')
+      try {
+        const { error } = await supabase.auth.signInWithOAuth({
+          provider,
+          options: { redirectTo: authRedirectUrl() }
+        })
+        if (error) throw error
+      } catch (error) {
+        const message = /provider is not enabled/i.test(error?.message || '')
+          ? `${providerName} chưa được kích hoạt trên hệ thống. Vui lòng thử phương thức khác.`
+          : friendly(error?.message)
+        toast(message, 'bad')
+        button.disabled = false
+        button.removeAttribute('aria-busy')
+      }
+    }
+  })
 }
 
 function nav(id, icon, text) {

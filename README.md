@@ -5,7 +5,7 @@ Một codebase dùng chung cho Web + Android (APK/AAB), kết nối backend Supa
 ## Chức năng đã có
 
 - Đăng ký/đăng nhập email + mật khẩu, lưu session đa thiết bị.
-- Nút đăng nhập Google đã nối Supabase Auth (cần bật Google provider trong Supabase Dashboard để dùng).
+- OAuth Google và Facebook đã nối Supabase Auth; Apple chỉ hiển thị trên iPhone/iPad.
 - 3 mini game: Tap Rush, Target Hunt, Chuỗi Trí Nhớ.
 - Coin được ghi phía server, không có giới hạn coin kiếm từ game theo ngày.
 - Phiên game server-side với kiểm tra thời gian, ngưỡng điểm hợp lý, chống gửi lại cùng phiên.
@@ -43,6 +43,20 @@ npm run build
 ```
 
 Output: `dist/`.
+
+## Cấu hình OAuth bắt buộc
+
+Google, Facebook và Apple phải được bật kèm Client ID/Secret tương ứng trong Supabase Dashboard. Dùng callback này trong bảng điều khiển của từng nhà cung cấp:
+
+```text
+https://lmtcnbhdnryivjgupuct.supabase.co/auth/v1/callback
+```
+
+Đặt Site URL và thêm Redirect URL sau vào danh sách cho phép của Supabase Auth:
+
+```text
+https://billboy1102.github.io/Gamezcoin-choigame-kiemthuong/
+```
 
 ## Build Android
 

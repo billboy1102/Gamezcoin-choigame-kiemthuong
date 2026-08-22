@@ -19,6 +19,8 @@ const infoPageUrl = (file) => `${import.meta.env.BASE_URL}pages/${file}`
 const publicAssetUrl = (file) => `${import.meta.env.BASE_URL}assets/${file}`
 
 const googleIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M21.6 12.23c0-.71-.06-1.23-.2-1.77H12v3.4h5.52a4.73 4.73 0 0 1-2.05 3.1l-.03.11 2.98 2.31.2.02c1.83-1.69 2.98-4.18 2.98-7.17Z"/><path fill="#34A853" d="M12 22c2.7 0 4.96-.89 6.62-2.42l-3.15-2.44c-.84.57-1.95.98-3.47.98a6.02 6.02 0 0 1-5.7-4.16l-.1.01-3.1 2.4-.04.1A10 10 0 0 0 12 22Z"/><path fill="#FBBC05" d="M6.3 13.96A6.17 6.17 0 0 1 5.96 12c0-.68.12-1.34.33-1.96l-.01-.13-3.14-2.44-.1.05A10.05 10.05 0 0 0 2 12c0 1.61.38 3.13 1.05 4.48l3.25-2.52Z"/><path fill="#EA4335" d="M12 5.88c1.88 0 3.15.81 3.88 1.48l2.8-2.73C16.96 3.03 14.7 2 12 2a10 10 0 0 0-8.95 5.52l3.24 2.52A6.04 6.04 0 0 1 12 5.88Z"/></svg>`
+const facebookIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#1877F2"/><path fill="#fff" d="M13.7 20v-7h2.35l.35-2.73h-2.7V8.53c0-.79.22-1.33 1.36-1.33h1.45V4.76c-.25-.03-1.11-.11-2.11-.11-2.09 0-3.52 1.27-3.52 3.62v2H8.52V13h2.36v7h2.82Z"/></svg>`
+const appleIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.05 12.54c.03 3.15 2.76 4.2 2.79 4.22-.02.08-.44 1.5-1.44 2.98-.86 1.28-1.76 2.55-3.17 2.58-1.38.03-1.83-.82-3.42-.82-1.58 0-2.08.79-3.39.85-1.36.05-2.4-1.37-3.27-2.64-1.77-2.56-3.12-7.23-1.31-10.39a5.08 5.08 0 0 1 4.31-2.62c1.34-.03 2.61.91 3.42.91.8 0 2.31-1.13 3.9-.97.66.03 2.52.27 3.72 2.02-.1.06-2.22 1.3-2.14 3.88ZM14.43 4.96c.72-.87 1.2-2.08 1.07-3.29-1.04.04-2.3.69-3.05 1.56-.67.77-1.25 2-1.1 3.18 1.16.09 2.35-.59 3.08-1.45Z"/></svg>`
 const globeIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.8 2.6 4.2 5.6 4.2 9S14.8 18.4 12 21c-2.8-2.6-4.2-5.6-4.2-9S9.2 5.6 12 3Z"/></svg>`
 const shieldIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 6v5.5c0 4.6-3.1 7.7-8 9.5-4.9-1.8-8-4.9-8-9.5V6l8-3Z"/><path d="m8.6 12 2.2 2.2 4.7-4.8"/></svg>`
 const gameIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 8h9a5 5 0 0 1 4.8 6.4l-.8 2.6a2.6 2.6 0 0 1-4.1 1.3l-2.2-1.8H9.8l-2.2 1.8A2.6 2.6 0 0 1 3.5 17l-.8-2.6A5 5 0 0 1 7.5 8Z"/><path d="M7 12v4M5 14h4M16.5 12.8h.01M19 15h.01"/></svg>`
@@ -27,7 +29,7 @@ const checkIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 
 const boltIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m13.5 2-8 11h6.1L10.5 22l8-11h-6.1L13.5 2Z"/></svg>`
 const lockIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></svg>`
 const arrowIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>`
-const closeIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>`
+const closeIcon = `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>`
 const usersMetricIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="gc-users-gradient" x1="3" y1="4" x2="21" y2="20" gradientUnits="userSpaceOnUse"><stop stop-color="#21c8ff"/><stop offset=".55" stop-color="#3978ff"/><stop offset="1" stop-color="#8b42ff"/></linearGradient></defs><circle cx="8.2" cy="7.8" r="3.1"/><circle cx="16.5" cy="8.7" r="2.5" opacity=".78"/><path d="M2.7 18.5c.35-4 2.4-6.1 5.6-6.1 3.25 0 5.3 2.1 5.65 6.1.08.9-.58 1.6-1.45 1.6H4.15c-.87 0-1.53-.7-1.45-1.6Z"/><path d="M13.4 13.1c.8-.62 1.85-.95 3.1-.95 2.75 0 4.55 1.85 4.82 5.35.08.86-.56 1.55-1.4 1.55h-4.35c-.05-2.35-.78-4.35-2.17-5.95Z" opacity=".78"/></svg>`
 
 const virtualGames = [
@@ -80,7 +82,10 @@ async function resetPassword(box) {
     return
   }
   setAuthMessage(box, 'Đang gửi liên kết đặt lại mật khẩu…')
-  const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: location.origin + location.pathname })
+  const redirectUrl = new URL(import.meta.env.BASE_URL, window.location.href)
+  redirectUrl.search = ''
+  redirectUrl.hash = ''
+  const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: redirectUrl.href })
   if (error) {
     setAuthMessage(box, error.message || 'Không thể gửi email đặt lại mật khẩu.', 'bad')
     return
@@ -229,13 +234,27 @@ function decorateAuthBox(main, box, login) {
   switcher?.classList.add('gc-auth-switch')
   switcher?.querySelectorAll('[data-mode]').forEach((button) => button.addEventListener('click', () => { requestedMode = button.dataset.mode }, true))
 
-  const google = box.querySelector('#google-login')
+  const social = box.querySelector('[data-auth-social]')
   const form = box.querySelector('#auth-form')
-  if (google && form) {
-    google.classList.add('gc-auth-google')
-    google.innerHTML = `${googleIcon}<span>Tiếp tục với Google</span>`
-    switcher?.insertAdjacentElement('afterend', google)
-    google.insertAdjacentHTML('afterend', '<div class="gc-auth-divider"><span>HOẶC</span></div>')
+  if (social && form) {
+    social.classList.add('gc-auth-social')
+    const google = social.querySelector('[data-oauth-provider="google"]')
+    const facebook = social.querySelector('[data-oauth-provider="facebook"]')
+    const apple = social.querySelector('[data-oauth-provider="apple"]')
+    if (google) {
+      google.classList.add('gc-auth-google')
+      google.innerHTML = `${googleIcon}<span>Tiếp tục với Google</span>`
+    }
+    if (facebook) {
+      facebook.classList.add('gc-auth-facebook')
+      facebook.innerHTML = `${facebookIcon}<span>Tiếp tục với Facebook</span>`
+    }
+    if (apple) {
+      apple.classList.add('gc-auth-apple')
+      apple.innerHTML = `${appleIcon}<span>Tiếp tục với Apple</span>`
+    }
+    switcher?.insertAdjacentElement('afterend', social)
+    social.insertAdjacentHTML('afterend', '<div class="gc-auth-divider"><span>HOẶC</span></div>')
   }
 
   form?.classList.add('gc-auth-form')
