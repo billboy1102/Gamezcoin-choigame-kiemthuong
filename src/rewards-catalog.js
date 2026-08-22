@@ -1,7 +1,7 @@
 import './rewards-catalog.css'
 import { api } from './api.js'
-import blockBanner from './assets/block-blast-banner.svg'
-import orbitBanner from './assets/orbit-break-banner.svg'
+import blockBanner from './assets/block-blast-banner.webp'
+import orbitBanner from './assets/orbit-break-banner.webp'
 import walletArt from './assets/home-wallet-reference-crop.svg'
 
 let cache = null

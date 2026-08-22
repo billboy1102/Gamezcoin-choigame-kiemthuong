@@ -1,6 +1,6 @@
 import './game-offer-cards.css'
-import blockBanner from './assets/block-blast-banner.svg'
-import orbitBanner from './assets/orbit-break-banner.svg'
+import blockBanner from './assets/block-blast-banner.webp'
+import orbitBanner from './assets/orbit-break-banner.webp'
 
 const bannerByGame = {
   'block-blast': blockBanner,

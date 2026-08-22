@@ -1,7 +1,7 @@
 import './home-reference.css'
 import { api, supabase } from './api.js'
-import blockBanner from './assets/block-blast-banner.svg'
-import orbitBanner from './assets/orbit-break-banner.svg'
+import blockBanner from './assets/block-blast-banner.webp'
+import orbitBanner from './assets/orbit-break-banner.webp'
 
 let cache = null
 let queued = false
