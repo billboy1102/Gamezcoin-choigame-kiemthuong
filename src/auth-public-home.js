@@ -137,7 +137,7 @@ function landingMarkup() {
       </div>
       <div class="gc-public-hero-art" aria-hidden="true">
         <div class="gc-hero-promo-visual">
-          <img class="gc-hero-promo-image" src="${publicAssetUrl('gamezcoin-hero-rewards.jpeg')}" alt="" width="1254" height="1254" decoding="async" fetchpriority="high" draggable="false">
+          <img class="gc-hero-promo-image" src="${publicAssetUrl('gamezcoin-hero-rewards-transparent.png')}" alt="" width="1254" height="1254" decoding="async" fetchpriority="high" draggable="false">
         </div>
       </div>
     </section>
