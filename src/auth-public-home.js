@@ -137,12 +137,6 @@ function landingMarkup() {
       </div>
     </section>
 
-    <section class="gc-public-stats">
-      <div class="gc-stat-card"><span>🚀</span><div><strong>Cơ chế thưởng rõ ràng</strong><p>Tỷ lệ quy đổi sẽ được hiển thị trong từng game khi chính thức phát hành.</p></div></div>
-      <div class="gc-stat-card"><span>🔥</span><div><strong>Hoàn thành ván thật</strong><p>Mở game rồi thoát giữa chừng không được tính nhiệm vụ.</p></div></div>
-      <div class="gc-stat-card"><span>🪙</span><div><strong>Coin lưu trên server</strong><p>Số dư đồng bộ theo tài khoản thay vì chỉ lưu trên trình duyệt.</p></div></div>
-    </section>
-
     <section class="gc-public-how gc-how-reference" id="gc-how">
       <div class="gc-how-reference-title"><h2>Bạn muốn kiếm tiền<br>từ game? <em>Đây là cách</em></h2></div>
       <div class="gc-how-reference-steps">
