@@ -194,7 +194,7 @@ function ensureLeaderboardNav() {
 
 function fullHero() {
   return `<section class="gc-lb-hero">
-    <div class="gc-lb-hero-copy"><small>🏆 &nbsp; BẢNG XẾP HẠNG</small><h1>Top người dùng kiếm coin</h1><p>Xếp hạng người dùng theo tổng số coin kiếm được thực tế trên Gamezcoin.</p>
+    <div class="gc-lb-hero-copy"><small>🏆 &nbsp; BẢNG XẾP HẠNG</small><h1>Top người dùng kiếm coin</h1><p>Xếp hạng người dùng theo số coin kiếm được hôm nay và toàn thời gian.</p>
       <div class="gc-lb-trust"><span>${shieldSvg}<b>Minh bạch</b></span><span>${clockSvg}<b>Cập nhật thời gian thực</b></span><span>${shieldSvg}<b>Uy tín</b></span></div>
     </div>
     <div class="gc-lb-hero-art"><i></i>${trophySvg}</div>
