@@ -1,0 +1,99 @@
+.gc-public-logo {
+  flex: 0 0 auto;
+  gap: 9px !important;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.gc-public-logo > .gc-public-logo-mark {
+  width: 48px !important;
+  height: 48px !important;
+  flex: 0 0 48px;
+  padding: 0 !important;
+  display: grid !important;
+  place-items: center !important;
+  overflow: visible !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.gc-public-logo-mark img,
+.gc-public-footer-brand-link img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 0 9px rgba(46, 153, 255, 0.34));
+}
+
+.gc-public-logo:hover .gc-public-logo-mark img,
+.gc-public-logo:focus-visible .gc-public-logo-mark img,
+.gc-public-footer-brand-link:hover img,
+.gc-public-footer-brand-link:focus-visible img {
+  filter: brightness(1.08) drop-shadow(0 0 12px rgba(44, 219, 255, 0.5));
+}
+
+.gc-public-logo:focus-visible,
+.gc-public-footer-brand-link:focus-visible {
+  outline: 2px solid #48e6ff;
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+.gc-public-footer-brand-link {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.gc-public-footer-brand-link > span {
+  width: 40px !important;
+  height: 40px !important;
+  padding: 0 !important;
+  display: grid !important;
+  place-items: center !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+.gc-public-footer-brand-link > strong {
+  color: #fff;
+  font-size: 17px;
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 650px) {
+  .gc-public-logo {
+    gap: 7px !important;
+  }
+
+  .gc-public-logo > .gc-public-logo-mark {
+    width: 43px !important;
+    height: 43px !important;
+    flex-basis: 43px;
+  }
+
+  .gc-public-footer-brand-link > span {
+    width: 34px !important;
+    height: 34px !important;
+  }
+
+  .gc-public-footer-brand-link > strong {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 390px) {
+  .gc-public-logo > .gc-public-logo-mark {
+    width: 39px !important;
+    height: 39px !important;
+    flex-basis: 39px;
+  }
+}

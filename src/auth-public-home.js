@@ -5,6 +5,7 @@ import './landing-mobile-actions.css'
 import './landing-hero-metrics.css'
 import './landing-faq-final-cta.css'
 import './landing-footer-pages.css'
+import './landing-brand-refresh.css'
 import { finalBannerImageUrl } from './final-cta-reference.js'
 import { supabase } from './api.js'
 
@@ -15,6 +16,7 @@ let queued = false
 const gameArtUrl = (file) => `${import.meta.env.BASE_URL}assets/games/${file}`
 const paymentAssetUrl = (file) => `${import.meta.env.BASE_URL}assets/payments/${file}`
 const infoPageUrl = (file) => `${import.meta.env.BASE_URL}pages/${file}`
+const publicAssetUrl = (file) => `${import.meta.env.BASE_URL}assets/${file}`
 
 const googleIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M21.6 12.23c0-.71-.06-1.23-.2-1.77H12v3.4h5.52a4.73 4.73 0 0 1-2.05 3.1l-.03.11 2.98 2.31.2.02c1.83-1.69 2.98-4.18 2.98-7.17Z"/><path fill="#34A853" d="M12 22c2.7 0 4.96-.89 6.62-2.42l-3.15-2.44c-.84.57-1.95.98-3.47.98a6.02 6.02 0 0 1-5.7-4.16l-.1.01-3.1 2.4-.04.1A10 10 0 0 0 12 22Z"/><path fill="#FBBC05" d="M6.3 13.96A6.17 6.17 0 0 1 5.96 12c0-.68.12-1.34.33-1.96l-.01-.13-3.14-2.44-.1.05A10.05 10.05 0 0 0 2 12c0 1.61.38 3.13 1.05 4.48l3.25-2.52Z"/><path fill="#EA4335" d="M12 5.88c1.88 0 3.15.81 3.88 1.48l2.8-2.73C16.96 3.03 14.7 2 12 2a10 10 0 0 0-8.95 5.52l3.24 2.52A6.04 6.04 0 0 1 12 5.88Z"/></svg>`
 const globeIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.8 2.6 4.2 5.6 4.2 9S14.8 18.4 12 21c-2.8-2.6-4.2-5.6-4.2-9S9.2 5.6 12 3Z"/></svg>`
@@ -26,8 +28,6 @@ const boltIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m13.5 2-8
 const lockIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></svg>`
 const arrowIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>`
 const closeIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>`
-const homeNavIcon = `<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M7 22.5 24 7l17 15.5"/><path d="M11 20.5V41h10V29h6v12h10V20.5"/></svg>`
-const cashoutNavIcon = `<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 9h32v9H8z"/><path d="M14 18v21h20V18"/><rect x="18" y="22" width="12" height="12" rx="2"/><path d="M24 24.5v7M27 26h-4.2a1.8 1.8 0 0 0 0 3.6H27"/></svg>`
 const usersMetricIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="gc-users-gradient" x1="3" y1="4" x2="21" y2="20" gradientUnits="userSpaceOnUse"><stop stop-color="#21c8ff"/><stop offset=".55" stop-color="#3978ff"/><stop offset="1" stop-color="#8b42ff"/></linearGradient></defs><circle cx="8.2" cy="7.8" r="3.1"/><circle cx="16.5" cy="8.7" r="2.5" opacity=".78"/><path d="M2.7 18.5c.35-4 2.4-6.1 5.6-6.1 3.25 0 5.3 2.1 5.65 6.1.08.9-.58 1.6-1.45 1.6H4.15c-.87 0-1.53-.7-1.45-1.6Z"/><path d="M13.4 13.1c.8-.62 1.85-.95 3.1-.95 2.75 0 4.55 1.85 4.82 5.35.08.86-.56 1.55-1.4 1.55h-4.35c-.05-2.35-.78-4.35-2.17-5.95Z" opacity=".78"/></svg>`
 
 const virtualGames = [
@@ -54,7 +54,7 @@ function virtualGameCards() {
       </div>
       <div class="gc-virtual-copy">
         <strong>${name}</strong>
-        <span>Concept game 3D</span>
+        <span>Chơi & kiếm tiền</span>
         <small>Lên đến ${amount}</small>
       </div>
       <span class="gc-virtual-arrow">›</span>
@@ -91,7 +91,10 @@ async function resetPassword(box) {
 function landingMarkup() {
   return `<div class="gc-public-home">
     <header class="gc-public-header">
-      <div class="gc-public-logo" aria-label="Gamezcoin"><span>G</span><strong>GAMEZCOIN</strong></div>
+      <a class="gc-public-logo" href="${import.meta.env.BASE_URL}" data-public-reload aria-label="Tải lại trang Gamezcoin">
+        <span class="gc-public-logo-mark"><img src="${publicAssetUrl('gamezcoin-logo.png')}" alt="" width="256" height="253" decoding="async" fetchpriority="high"></span>
+        <strong>GAMEZCOIN</strong>
+      </a>
       <nav class="gc-public-desktop-links" aria-label="Điều hướng giới thiệu">
         <a href="#gc-games">Game</a><a href="#gc-proof">Uy tín</a><a href="#gc-how">Cách chơi</a><a href="#gc-cashout">Rút tiền</a>
       </nav>
@@ -112,9 +115,9 @@ function landingMarkup() {
           <button type="button" class="secondary" data-public-auth="login">Đăng nhập</button>
         </div>
         <div class="gc-public-hero-meta">
-          <span><i class="gc-hero-metric-icon gc-metric-star" aria-hidden="true">★</i><b>4.8/5 Đánh giá</b></span>
-          <span><i class="gc-hero-metric-icon gc-metric-users" aria-hidden="true">${usersMetricIcon}</i><b>100.000+ Người dùng thật</b></span>
-          <span><i class="gc-hero-metric-icon gc-metric-bolt" aria-hidden="true">${boltIcon}</i><b>Thanh toán nhanh chóng</b></span>
+          <span><i class="gc-hero-metric-icon gc-metric-star" aria-hidden="true">★</i><b><strong>4.8/5</strong><small>Đánh giá</small></b></span>
+          <span><i class="gc-hero-metric-icon gc-metric-users" aria-hidden="true">${usersMetricIcon}</i><b><strong>100.000+</strong><small>Người dùng thật</small></b></span>
+          <span><i class="gc-hero-metric-icon gc-metric-bolt" aria-hidden="true">${boltIcon}</i><b><strong>Thanh toán</strong><small>Nhanh chóng</small></b></span>
         </div>
       </div>
       <div class="gc-public-hero-art" aria-hidden="true">
@@ -194,7 +197,10 @@ function landingMarkup() {
     </section>
 
     <footer class="gc-public-footer">
-      <div class="gc-public-footer-brand"><span>G</span><strong>GAMEZCOIN</strong><p>Chơi game kiếm tiền thật<br>dễ dàng và uy tín.</p></div>
+      <div class="gc-public-footer-brand">
+        <a class="gc-public-footer-brand-link" href="${import.meta.env.BASE_URL}" data-public-reload aria-label="Tải lại trang Gamezcoin"><span><img src="${publicAssetUrl('gamezcoin-logo.png')}" alt="" width="256" height="253" loading="lazy" decoding="async"></span><strong>GAMEZCOIN</strong></a>
+        <p>Chơi game kiếm tiền thật<br>dễ dàng và uy tín.</p>
+      </div>
       <nav class="gc-public-footer-links" aria-label="Hỗ trợ">
         <b>Hỗ trợ</b>
         <a href="${infoPageUrl('chinh-sach-bao-mat.html')}" target="_blank" rel="noopener noreferrer">Chính sách bảo mật</a>
@@ -206,7 +212,6 @@ function landingMarkup() {
     </footer>
 
     <button type="button" class="gc-mobile-sticky-cta" data-public-auth="signup"><span class="gc-sticky-game-icon">${gameIcon}</span><strong>Bắt đầu kiếm tiền ngay bây giờ</strong><span class="gc-sticky-arrow">${arrowIcon}</span></button>
-    <nav class="gc-public-bottom-nav" aria-label="Điều hướng khách"><button type="button" class="on" data-public-home><span class="gc-bottom-nav-icon">${homeNavIcon}</span><small>Nhà</small><i class="gc-nav-dot" aria-hidden="true"></i></button><button type="button" data-public-auth="login"><span class="gc-bottom-nav-icon">${cashoutNavIcon}</span><small>Rút tiền mặt</small></button></nav>
   </div>`
 }
 
@@ -275,7 +280,10 @@ function bindLanding(main) {
       setTimeout(() => main.querySelector('.gc-public-auth-panel input')?.focus(), 40)
     })
   })
-  main.querySelector('[data-public-home]')?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }))
+  main.querySelectorAll('[data-public-reload]').forEach((link) => link.addEventListener('click', (event) => {
+    event.preventDefault()
+    window.location.reload()
+  }))
   main.querySelectorAll('a[href^="#"]').forEach((a) => a.addEventListener('click', (event) => {
     const target = main.querySelector(a.getAttribute('href'))
     if (!target) return

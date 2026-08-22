@@ -6,18 +6,30 @@
   display: none !important;
 }
 
+.gc-public-hero-meta {
+  width: 100% !important;
+  max-width: 460px !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 6px !important;
+}
+
 .gc-public-hero-meta > span {
+  min-width: 0 !important;
+  min-height: 42px !important;
+  padding: 6px 7px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 7px !important;
+  gap: 6px !important;
+  overflow: hidden;
+  border-radius: 10px !important;
   text-align: left !important;
 }
 
 .gc-hero-metric-icon {
-  width: 19px;
-  height: 19px;
-  flex: 0 0 19px;
+  width: 17px;
+  height: 17px;
+  flex: 0 0 17px;
   display: grid;
   place-items: center;
   padding: 0;
@@ -28,15 +40,15 @@
 }
 
 .gc-hero-metric-icon svg {
-  width: 19px !important;
-  height: 19px !important;
+  width: 17px !important;
+  height: 17px !important;
   display: block !important;
   stroke: none !important;
 }
 
 .gc-metric-star {
   color: #ffd12f;
-  font-size: 19px;
+  font-size: 17px;
   text-shadow: 0 0 9px rgba(255, 194, 34, 0.32);
 }
 
@@ -51,55 +63,106 @@
 }
 
 .gc-public-hero-meta > span > b {
-  white-space: nowrap !important;
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+  line-height: 1.08 !important;
+  white-space: normal !important;
+}
+
+.gc-public-hero-meta > span > b > strong,
+.gc-public-hero-meta > span > b > small {
+  max-width: 100%;
+  display: block;
+  overflow: hidden;
+  color: #eef7ff;
+  line-height: 1.1;
+  text-overflow: clip;
+  white-space: nowrap;
+}
+
+.gc-public-hero-meta > span > b > strong {
+  font-size: 9.2px;
+  font-weight: 900;
+}
+
+.gc-public-hero-meta > span > b > small {
+  color: #a9bdd2;
+  font-size: 7.2px;
+  font-weight: 700;
 }
 
 @media (max-width: 650px) {
+  .gc-public-hero-meta {
+    max-width: 100% !important;
+    margin-top: 15px !important;
+    gap: 5px !important;
+  }
+
   .gc-public-hero-meta > span {
+    min-height: 43px !important;
+    padding: 5px 4px !important;
     gap: 4px !important;
+    border-radius: 9px !important;
   }
 
   .gc-hero-metric-icon {
-    width: 16px;
-    height: 16px;
-    flex-basis: 16px;
+    width: 14px;
+    height: 14px;
+    flex-basis: 14px;
   }
 
   .gc-hero-metric-icon svg {
-    width: 16px !important;
-    height: 16px !important;
+    width: 14px !important;
+    height: 14px !important;
   }
 
   .gc-metric-star {
-    font-size: 16px;
+    font-size: 14px;
   }
 
-  .gc-public-hero-meta > span > b {
-    font-size: 7px !important;
+  .gc-public-hero-meta > span > b > strong {
+    font-size: 7.5px;
+  }
+
+  .gc-public-hero-meta > span > b > small {
+    font-size: 6.3px;
   }
 }
 
 @media (max-width: 390px) {
+  .gc-public-hero-meta {
+    gap: 4px !important;
+  }
+
   .gc-public-hero-meta > span {
+    min-height: 41px !important;
+    padding: 4px 3px !important;
     gap: 3px !important;
   }
 
   .gc-hero-metric-icon {
-    width: 15px;
-    height: 15px;
-    flex-basis: 15px;
+    width: 13px;
+    height: 13px;
+    flex-basis: 13px;
   }
 
   .gc-hero-metric-icon svg {
-    width: 15px !important;
-    height: 15px !important;
+    width: 13px !important;
+    height: 13px !important;
   }
 
   .gc-metric-star {
-    font-size: 15px;
+    font-size: 13px;
   }
 
-  .gc-public-hero-meta > span > b {
-    font-size: 6.6px !important;
+  .gc-public-hero-meta > span > b > strong {
+    font-size: 6.9px;
+  }
+
+  .gc-public-hero-meta > span > b > small {
+    font-size: 5.9px;
   }
 }
