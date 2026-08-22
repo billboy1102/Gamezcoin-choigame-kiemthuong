@@ -7,21 +7,27 @@ function applyLandingHeroCopy(root = document) {
   if (!hero) return false
 
   const eyebrow = hero.querySelector('.gc-public-eyebrow')
-  const eyebrowHtml = '<i></i> GAMEZCOIN · Chơi game & Kiếm Tiền'
-  if (eyebrow && eyebrow.innerHTML !== eyebrowHtml) eyebrow.innerHTML = eyebrowHtml
+  if (eyebrow) {
+    eyebrow.replaceChildren()
+    const dot = document.createElement('i')
+    eyebrow.append(dot, document.createTextNode(' GAMEZCOIN · Chơi game & Kiếm Tiền'))
+  }
 
   const title = hero.querySelector('h1')
-  const titleHtml = 'Chơi game & <em>kiếm tiền</em>'
-  if (title && title.innerHTML !== titleHtml) title.innerHTML = titleHtml
+  if (title) {
+    title.replaceChildren(document.createTextNode('Chơi game & '))
+    const em = document.createElement('em')
+    em.textContent = 'kiếm tiền'
+    title.append(em)
+  }
 
-  const description = hero.querySelector('.gc-public-hero-copy > p')
-  setText(description, 'Chơi game, kiếm tiền thật và rút thưởng uy tín, nhanh chóng về ví của bạn')
+  setText(hero.querySelector('.gc-public-hero-copy > p'), 'Chơi game, kiếm tiền thật và rút thưởng uy tín, nhanh chóng về ví của bạn')
 
   const primary = hero.querySelector('.gc-public-hero-cta .gc-hero-explore')
   if (primary) {
-    const arrow = primary.querySelector('svg')?.outerHTML || ''
-    const nextHtml = `Bắt đầu kiếm tiền ${arrow}`.trim()
-    if (primary.innerHTML !== nextHtml) primary.innerHTML = nextHtml
+    const svg = primary.querySelector('svg')?.cloneNode(true)
+    primary.replaceChildren(document.createTextNode('Bắt đầu kiếm tiền '))
+    if (svg) primary.append(svg)
   }
 
   const secondary = hero.querySelector('.gc-public-hero-cta .secondary')
@@ -30,36 +36,36 @@ function applyLandingHeroCopy(root = document) {
     setText(secondary, 'Đăng nhập')
   }
 
-  const meta = hero.querySelectorAll('.gc-public-hero-meta > span')
   const metrics = [
     '⭐️ 4.8/5 Đánh giá',
     '👥 100.000+ Người dùng thật',
     '⚡ Thanh toán nhanh chóng',
   ]
-  meta.forEach((item, index) => {
+  hero.querySelectorAll('.gc-public-hero-meta > span').forEach((item, index) => {
     const value = metrics[index]
     if (!value) return
-    const nextHtml = `<b>${value}</b>`
-    if (item.innerHTML !== nextHtml) item.innerHTML = nextHtml
+    item.replaceChildren()
+    const strong = document.createElement('b')
+    strong.textContent = value
+    item.append(strong)
   })
 
-  const sticky = root.querySelector?.('.gc-mobile-sticky-cta span')
-  setText(sticky, 'Bắt đầu kiếm tiền')
-
+  setText(root.querySelector?.('.gc-mobile-sticky-cta span'), 'Bắt đầu kiếm tiền')
   return true
 }
 
-let queued = false
-function scheduleLandingHeroCopy() {
-  if (queued) return
-  queued = true
-  queueMicrotask(() => {
-    queued = false
+function bootLandingHeroCopy() {
+  if (applyLandingHeroCopy(document)) return
+
+  const target = document.querySelector('#app') || document.documentElement
+  const observer = new MutationObserver(() => {
+    if (!document.querySelector('.gc-public-hero')) return
+    observer.disconnect()
     applyLandingHeroCopy(document)
   })
+  observer.observe(target, { childList: true, subtree: true })
+  window.setTimeout(() => observer.disconnect(), 12000)
 }
 
-applyLandingHeroCopy(document)
-const target = document.querySelector('#app') || document.documentElement
-new MutationObserver(scheduleLandingHeroCopy).observe(target, { childList: true, subtree: true })
-window.addEventListener('pageshow', scheduleLandingHeroCopy)
+bootLandingHeroCopy()
+window.addEventListener('pageshow', () => applyLandingHeroCopy(document))
