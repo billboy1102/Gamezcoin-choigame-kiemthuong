@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Chuyển khoản ngân hàng">
+  <defs>
+    <linearGradient id="bank-bg" x1="16" y1="8" x2="112" y2="120" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#18B9FF"/>
+      <stop offset="1" stop-color="#244CE7"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#bank-bg)"/>
+  <path fill="#fff" d="M64 24 22 44v8h84v-8L64 24Zm-30 35h12v29H34V59Zm24 0h12v29H58V59Zm24 0h12v29H82V59ZM27 95h74v10H27V95Z"/>
+</svg>

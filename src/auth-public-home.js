@@ -8,6 +8,7 @@ let requestedMode = null
 let queued = false
 
 const gameArtUrl = (file) => `${import.meta.env.BASE_URL}assets/games/${file}`
+const paymentAssetUrl = (file) => `${import.meta.env.BASE_URL}assets/payments/${file}`
 
 const googleIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M21.6 12.23c0-.71-.06-1.23-.2-1.77H12v3.4h5.52a4.73 4.73 0 0 1-2.05 3.1l-.03.11 2.98 2.31.2.02c1.83-1.69 2.98-4.18 2.98-7.17Z"/><path fill="#34A853" d="M12 22c2.7 0 4.96-.89 6.62-2.42l-3.15-2.44c-.84.57-1.95.98-3.47.98a6.02 6.02 0 0 1-5.7-4.16l-.1.01-3.1 2.4-.04.1A10 10 0 0 0 12 22Z"/><path fill="#FBBC05" d="M6.3 13.96A6.17 6.17 0 0 1 5.96 12c0-.68.12-1.34.33-1.96l-.01-.13-3.14-2.44-.1.05A10.05 10.05 0 0 0 2 12c0 1.61.38 3.13 1.05 4.48l3.25-2.52Z"/><path fill="#EA4335" d="M12 5.88c1.88 0 3.15.81 3.88 1.48l2.8-2.73C16.96 3.03 14.7 2 12 2a10 10 0 0 0-8.95 5.52l3.24 2.52A6.04 6.04 0 0 1 12 5.88Z"/></svg>`
 const globeIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.8 2.6 4.2 5.6 4.2 9S14.8 18.4 12 21c-2.8-2.6-4.2-5.6-4.2-9S9.2 5.6 12 3Z"/></svg>`
@@ -150,7 +151,18 @@ function landingMarkup() {
         </article>
         <article class="gc-reference-step gc-reference-step-cashout" id="gc-cashout">
           <div class="gc-reference-step-head"><span class="gc-reference-step-icon">${walletIcon}</span><div><h3><em>3.</em> Nhận tiền</h3><p>Gửi yêu cầu rút qua phương thức đang hỗ trợ và theo dõi trạng thái ngay trong tài khoản.</p></div></div>
-          <div class="gc-reference-phone"><i class="gc-reference-phone-notch"></i><header><span>‹</span><b>Rút tiền</b><small>${shieldIcon} An toàn</small></header><h4>Chọn phương thức rút tiền</h4><div class="gc-reference-methods"><span class="is-active"><i class="gc-pay-momo">momo</i><b>MoMo</b><small>${checkIcon} Đang hỗ trợ</small></span><span><i class="gc-pay-zalo">ZaloPay</i><b>ZaloPay</b><small>Sắp hỗ trợ</small></span><span class="is-active"><i class="gc-pay-bank">▥</i><b>Chuyển khoản<br>ngân hàng</b><small>${checkIcon} Đang hỗ trợ</small></span><span><i class="gc-pay-paypal">P</i><b>PayPal</b><small>Sắp hỗ trợ</small></span><span><i class="gc-pay-play">▶</i><b>Google Play</b><small>Sắp hỗ trợ</small></span><span><i class="gc-pay-phone">▣</i><b>Thẻ điện thoại</b><small>Sắp hỗ trợ</small></span></div></div>
+          <div class="gc-reference-phone">
+            <i class="gc-reference-phone-notch"></i>
+            <header><span>‹</span><b>Rút tiền</b><small>${shieldIcon} An toàn</small></header>
+            <h4>Chọn phương thức rút tiền</h4>
+            <div class="gc-reference-methods">
+              <span class="is-active"><i class="gc-pay-logo gc-pay-momo"><img src="${paymentAssetUrl('momo-logo.webp')}" alt="" width="1200" height="1200" loading="lazy" decoding="async"></i><b>MoMo</b><small>${checkIcon} Đang hỗ trợ</small></span>
+              <span><i class="gc-pay-logo gc-pay-zalo"><img src="${paymentAssetUrl('zalopay-logo.png')}" alt="" width="1200" height="1200" loading="lazy" decoding="async"></i><b>ZaloPay</b><small>Sắp hỗ trợ</small></span>
+              <span class="is-active"><i class="gc-pay-logo gc-pay-bank"><img src="${paymentAssetUrl('bank-transfer.svg')}" alt="" width="128" height="128" loading="lazy" decoding="async"></i><b>Chuyển khoản<br>ngân hàng</b><small>${checkIcon} Đang hỗ trợ</small></span>
+              <span><i class="gc-pay-logo gc-pay-paypal"><img src="${paymentAssetUrl('paypal-logo.png')}" alt="" width="512" height="512" loading="lazy" decoding="async"></i><b>PayPal</b><small>Sắp hỗ trợ</small></span>
+              <span class="gc-method-last"><i class="gc-pay-logo gc-pay-play"><img src="${paymentAssetUrl('google-play-logo.webp')}" alt="" width="512" height="512" loading="lazy" decoding="async"></i><b>Google Play</b><small>Sắp hỗ trợ</small></span>
+            </div>
+          </div>
           <div class="gc-reference-security">${shieldIcon}<span>Dữ liệu theo tài khoản · Trạng thái xử lý rõ ràng</span></div>
         </article>
       </div>

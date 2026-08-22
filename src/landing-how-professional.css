@@ -431,48 +431,32 @@
 }
 
 .gc-reference-methods i {
-  width: 47px;
-  height: 47px;
+  width: 52px;
+  height: 52px;
   display: grid;
   place-items: center;
-  border-radius: 11px;
-  color: #fff;
+  overflow: hidden;
+  border-radius: 12px;
   font-style: normal;
-  font-weight: 950;
-  line-height: 1;
 }
 
-.gc-pay-momo {
-  background: linear-gradient(145deg, #db2099, #8d197b);
-  font-size: 11px;
-  letter-spacing: -0.08em;
+.gc-reference-methods i img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
 }
 
-.gc-pay-zalo {
-  background: linear-gradient(145deg, #287cf5, #20c998);
-  font-size: 8px;
+.gc-pay-paypal img,
+.gc-pay-play img {
+  width: 90%;
+  height: 90%;
 }
 
-.gc-pay-bank {
-  background: linear-gradient(145deg, #177cff, #293caa);
-  font-size: 30px;
-}
-
-.gc-pay-paypal {
-  background: linear-gradient(145deg, #194bbd, #0f2473);
-  font-size: 29px;
-  font-style: italic;
-}
-
-.gc-pay-play {
-  background: linear-gradient(145deg, #35d6ff, #4be24a 35%, #ffd834 68%, #f24d73);
-  color: #071225 !important;
-  font-size: 25px;
-}
-
-.gc-pay-phone {
-  background: linear-gradient(145deg, #9147ff, #4a22b4);
-  font-size: 28px;
+.gc-reference-methods > .gc-method-last {
+  width: calc(50% - 6px);
+  grid-column: 1 / -1;
+  justify-self: center;
 }
 
 .gc-reference-methods b {
@@ -722,9 +706,13 @@
   }
 
   .gc-reference-methods i {
-    width: 38px;
-    height: 38px;
+    width: 42px;
+    height: 42px;
     border-radius: 8px;
+  }
+
+  .gc-reference-methods > .gc-method-last {
+    width: calc(50% - 4px);
   }
 
   .gc-reference-methods b {
