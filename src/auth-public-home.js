@@ -107,9 +107,9 @@ function landingMarkup() {
           <button type="button" class="secondary" data-public-auth="login">Đăng nhập</button>
         </div>
         <div class="gc-public-hero-meta">
-          <div class="gc-hero-metric"><i class="gc-hero-metric-icon gc-metric-star" aria-hidden="true">★</i><div class="gc-hero-metric-copy"><b>4.8/5</b><small>Đánh giá</small></div></div>
-          <div class="gc-hero-metric"><i class="gc-hero-metric-icon gc-metric-users" aria-hidden="true">${usersMetricIcon}</i><div class="gc-hero-metric-copy"><b>100.000+</b><small>Người dùng thật</small></div></div>
-          <div class="gc-hero-metric"><i class="gc-hero-metric-icon gc-metric-bolt" aria-hidden="true">${boltIcon}</i><div class="gc-hero-metric-copy"><b>Thanh toán</b><small>Nhanh chóng</small></div></div>
+          <span><i class="gc-hero-metric-icon gc-metric-star" aria-hidden="true">★</i><b>4.8/5 Đánh giá</b></span>
+          <span><i class="gc-hero-metric-icon gc-metric-users" aria-hidden="true">${usersMetricIcon}</i><b>100.000+ Người dùng thật</b></span>
+          <span><i class="gc-hero-metric-icon gc-metric-bolt" aria-hidden="true">${boltIcon}</i><b>Thanh toán nhanh chóng</b></span>
         </div>
       </div>
       <div class="gc-public-hero-art" aria-hidden="true">

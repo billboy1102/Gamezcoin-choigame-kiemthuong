@@ -6,164 +6,100 @@
   display: none !important;
 }
 
-.gc-public-hero-meta {
-  margin-top: 22px !important;
-  padding: 9px 0 !important;
-  display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  gap: 0 !important;
-  border-top: 1px solid rgba(73, 92, 145, 0.24) !important;
-  border-bottom: 1px solid rgba(73, 92, 145, 0.24) !important;
-  background: linear-gradient(90deg, rgba(3, 13, 32, 0.2), rgba(9, 18, 44, 0.48), rgba(3, 13, 32, 0.2)) !important;
-}
-
-.gc-public-hero-meta > .gc-hero-metric {
-  min-width: 0 !important;
-  min-height: 48px !important;
-  padding: 0 16px !important;
+.gc-public-hero-meta > span {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 9px !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  color: #eef4ff !important;
+  gap: 7px !important;
   text-align: left !important;
-  box-shadow: none !important;
-}
-
-.gc-public-hero-meta > .gc-hero-metric + .gc-hero-metric {
-  border-left: 1px solid rgba(77, 91, 143, 0.27) !important;
 }
 
 .gc-hero-metric-icon {
-  width: 27px !important;
-  height: 27px !important;
-  flex: 0 0 27px !important;
-  display: grid !important;
-  place-items: center !important;
-  padding: 0 !important;
-  border: 0 !important;
-  background: transparent !important;
-  font-style: normal !important;
-  line-height: 1 !important;
+  width: 19px;
+  height: 19px;
+  flex: 0 0 19px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-style: normal;
+  line-height: 1;
 }
 
 .gc-hero-metric-icon svg {
-  width: 26px !important;
-  height: 26px !important;
+  width: 19px !important;
+  height: 19px !important;
   display: block !important;
   stroke: none !important;
 }
 
 .gc-metric-star {
-  color: #ffd12f !important;
-  font-size: 25px !important;
-  text-shadow: 0 0 10px rgba(255, 194, 34, 0.32) !important;
+  color: #ffd12f;
+  font-size: 19px;
+  text-shadow: 0 0 9px rgba(255, 194, 34, 0.32);
 }
 
 .gc-metric-users svg {
   fill: url(#gc-users-gradient) !important;
-  filter: drop-shadow(0 0 7px rgba(66, 111, 255, 0.38));
+  filter: drop-shadow(0 0 6px rgba(66, 111, 255, 0.35));
 }
 
 .gc-metric-bolt svg {
   fill: #28dfff !important;
-  filter: drop-shadow(0 0 7px rgba(40, 223, 255, 0.38));
+  filter: drop-shadow(0 0 6px rgba(40, 223, 255, 0.35));
 }
 
-.gc-hero-metric-copy {
-  min-width: 0;
-  display: grid;
-  gap: 3px;
-}
-
-.gc-public-hero-meta .gc-hero-metric-copy > b {
-  min-width: 0 !important;
-  color: #f7f9ff !important;
-  font-size: 14px !important;
-  font-weight: 900 !important;
-  line-height: 1 !important;
-  letter-spacing: -0.015em !important;
-  white-space: nowrap !important;
-}
-
-.gc-public-hero-meta .gc-hero-metric-copy > small {
-  color: #bac5d8 !important;
-  font-size: 10px !important;
-  font-weight: 500 !important;
-  line-height: 1.05 !important;
+.gc-public-hero-meta > span > b {
   white-space: nowrap !important;
 }
 
 @media (max-width: 650px) {
-  .gc-public-hero-meta {
-    margin-top: 19px !important;
-    padding: 8px 0 !important;
-  }
-
-  .gc-public-hero-meta > .gc-hero-metric {
-    min-height: 46px !important;
-    padding: 0 7px !important;
-    display: flex !important;
-    place-items: initial !important;
-    align-content: normal !important;
-    justify-content: center !important;
-    gap: 7px !important;
-    text-align: left !important;
+  .gc-public-hero-meta > span {
+    gap: 4px !important;
   }
 
   .gc-hero-metric-icon {
-    width: 23px !important;
-    height: 23px !important;
-    flex-basis: 23px !important;
+    width: 16px;
+    height: 16px;
+    flex-basis: 16px;
   }
 
   .gc-hero-metric-icon svg {
-    width: 23px !important;
-    height: 23px !important;
+    width: 16px !important;
+    height: 16px !important;
   }
 
   .gc-metric-star {
-    font-size: 22px !important;
+    font-size: 16px;
   }
 
-  .gc-public-hero-meta .gc-hero-metric-copy > b {
-    font-size: 11px !important;
-  }
-
-  .gc-public-hero-meta .gc-hero-metric-copy > small {
-    font-size: 8.5px !important;
+  .gc-public-hero-meta > span > b {
+    font-size: 7px !important;
   }
 }
 
 @media (max-width: 390px) {
-  .gc-public-hero-meta > .gc-hero-metric {
-    padding: 0 4px !important;
-    gap: 5px !important;
+  .gc-public-hero-meta > span {
+    gap: 3px !important;
   }
 
   .gc-hero-metric-icon {
-    width: 20px !important;
-    height: 20px !important;
-    flex-basis: 20px !important;
+    width: 15px;
+    height: 15px;
+    flex-basis: 15px;
   }
 
   .gc-hero-metric-icon svg {
-    width: 20px !important;
-    height: 20px !important;
+    width: 15px !important;
+    height: 15px !important;
   }
 
   .gc-metric-star {
-    font-size: 19px !important;
+    font-size: 15px;
   }
 
-  .gc-public-hero-meta .gc-hero-metric-copy > b {
-    font-size: 10px !important;
-  }
-
-  .gc-public-hero-meta .gc-hero-metric-copy > small {
-    font-size: 7.8px !important;
+  .gc-public-hero-meta > span > b {
+    font-size: 6.6px !important;
   }
 }
