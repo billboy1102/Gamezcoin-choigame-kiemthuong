@@ -1,5 +1,6 @@
 import './auth-public-home.css'
 import './landing-how-professional.css'
+import './landing-trust-reference.css'
 import { supabase } from './api.js'
 
 const app = document.querySelector('#app')
@@ -15,6 +16,7 @@ const gameIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 8h9a
 const walletIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5.5a2 2 0 0 1 2-2h12"/><path d="M3 8h17M15.5 13.7H20"/></svg>`
 const checkIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>`
 const boltIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m13.5 2-8 11h6.1L10.5 22l8-11h-6.1L13.5 2Z"/></svg>`
+const lockIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></svg>`
 const clockIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.3 2"/></svg>`
 const arrowIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>`
 const closeIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>`
@@ -125,23 +127,13 @@ function landingMarkup() {
       <button class="gc-more-games" type="button" data-public-auth="signup">Đăng ký để chơi game & kiếm tiền ${arrowIcon}</button>
     </section>
 
-    <section class="gc-public-proof" id="gc-proof">
-      <div class="gc-public-section-title"><small>MINH BẠCH TRƯỚC KHI QUẢNG CÁO CON SỐ</small><h2>Chứng minh <em>uy tín & thanh toán</em></h2><p>Gamezcoin hiển thị những gì hệ thống hiện có thể xác minh, không dùng số người dùng hay tổng tiền chi trả giả.</p></div>
-      <div class="gc-proof-grid">
-        <article>${shieldIcon}<strong>Ván chơi được xác minh</strong><p>Nhiệm vụ chơi game chỉ ghi nhận sau khi phiên chơi kết thúc hợp lệ trên server.</p></article>
-        <article>${walletIcon}<strong>Lịch sử ví rõ ràng</strong><p>Số dư, coin đã kiếm, giao dịch và yêu cầu rút được lưu trong tài khoản.</p></article>
-        <article>${boltIcon}<strong>Trạng thái xử lý cụ thể</strong><p>Yêu cầu rút có trạng thái đang chờ, đã thanh toán hoặc từ chối.</p></article>
-        <article>${checkIcon}<strong>Hoàn coin khi từ chối</strong><p>Nếu yêu cầu rút bị từ chối theo luồng hiện tại, coin được hoàn tự động.</p></article>
-      </div>
-      <div class="gc-payment-panel">
-        <h3>Phương thức rút tiền</h3><p>Chỉ đánh dấu “đang hỗ trợ” cho phương thức đã có trong ứng dụng.</p>
-        <div class="gc-payment-methods">
-          <span class="active"><b>MoMo</b><small>Đang hỗ trợ</small></span>
-          <span class="active"><b>Chuyển khoản ngân hàng</b><small>Đang hỗ trợ</small></span>
-          <span><b>ZaloPay</b><small>Sắp hỗ trợ</small></span>
-          <span><b>PayPal</b><small>Sắp hỗ trợ</small></span>
-          <span><b>Thẻ quà tặng</b><small>Sắp hỗ trợ</small></span>
-        </div>
+    <section class="gc-public-proof gc-proof-reference" id="gc-proof">
+      <h2>Vì sao người chơi tin dùng Gamezcoin</h2>
+      <div class="gc-proof-reference-grid">
+        <article><span class="gc-proof-reference-icon">${boltIcon}</span><div><strong>Rút tiền nhanh</strong><p>Hỗ trợ MoMo và chuyển khoản ngân hàng ngay trong ứng dụng.</p></div></article>
+        <article><span class="gc-proof-reference-icon">${shieldIcon}</span><div><strong>Minh bạch</strong><p>Điều kiện game, số dư và trạng thái xử lý được hiển thị rõ ràng.</p></div></article>
+        <article><span class="gc-proof-reference-icon">${lockIcon}</span><div><strong>Bảo mật</strong><p>Dữ liệu được lưu theo tài khoản và xử lý trên máy chủ.</p></div></article>
+        <article><span class="gc-proof-reference-icon">${gameIcon}</span><div><strong>Game hot mỗi ngày</strong><p>Khám phá nhiều game 3D với trạng thái phát hành cụ thể.</p></div></article>
       </div>
     </section>
 
