@@ -1,0 +1,578 @@
+/* Final landing hero layout. This file intentionally loads after legacy landing CSS. */
+.gc-public-hero {
+  position: relative !important;
+  isolation: isolate !important;
+  box-sizing: border-box !important;
+  width: min(1180px, calc(100% - 32px)) !important;
+  min-height: 520px !important;
+  margin: 0 auto !important;
+  padding: 58px 52% 58px 52px !important;
+  display: flex !important;
+  align-items: center !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(66, 111, 179, 0.42) !important;
+  border-top: 0 !important;
+  border-radius: 0 0 30px 30px !important;
+  background:
+    radial-gradient(circle at 78% 38%, rgba(58, 211, 255, 0.2), transparent 26%),
+    radial-gradient(circle at 82% 64%, rgba(139, 55, 255, 0.24), transparent 35%),
+    radial-gradient(circle at 14% 42%, rgba(27, 158, 255, 0.11), transparent 32%),
+    linear-gradient(118deg, #071a34 0%, #071328 49%, #13092e 100%) !important;
+  box-shadow:
+    0 28px 80px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+.gc-public-hero::before {
+  content: "" !important;
+  position: absolute !important;
+  z-index: 0 !important;
+  inset: 0 !important;
+  background-image:
+    linear-gradient(rgba(75, 129, 203, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(75, 129, 203, 0.07) 1px, transparent 1px) !important;
+  background-size: 44px 44px !important;
+  mask-image: linear-gradient(90deg, #000, rgba(0, 0, 0, 0.62) 52%, transparent 88%) !important;
+  pointer-events: none !important;
+}
+
+.gc-public-hero::after {
+  content: "" !important;
+  position: absolute !important;
+  z-index: 1 !important;
+  right: -8% !important;
+  top: -38% !important;
+  width: 64% !important;
+  aspect-ratio: 1 !important;
+  border-radius: 50% !important;
+  background:
+    radial-gradient(circle, transparent 0 37%, rgba(53, 221, 255, 0.09) 37.4% 38%, transparent 38.5% 49%, rgba(154, 76, 255, 0.1) 49.4% 50%, transparent 50.5%),
+    conic-gradient(from 205deg, transparent, rgba(43, 209, 255, 0.09), transparent 34%, rgba(178, 61, 255, 0.1), transparent 68%) !important;
+  pointer-events: none !important;
+}
+
+.gc-public-hero-copy {
+  position: relative !important;
+  z-index: 6 !important;
+  width: 100% !important;
+  max-width: 560px !important;
+}
+
+.gc-public-eyebrow {
+  width: fit-content !important;
+  min-height: 30px !important;
+  padding: 0 11px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  border: 1px solid rgba(68, 221, 255, 0.3) !important;
+  border-radius: 999px !important;
+  background: rgba(4, 25, 48, 0.66) !important;
+  color: #68eaff !important;
+  font-size: 9px !important;
+  font-weight: 950 !important;
+  letter-spacing: 0.14em !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.gc-public-eyebrow i {
+  width: 7px !important;
+  height: 7px !important;
+  flex: 0 0 7px !important;
+  border-radius: 50% !important;
+  background: #42f0bd !important;
+  box-shadow: 0 0 12px rgba(66, 240, 189, 0.78) !important;
+}
+
+.gc-public-hero h1 {
+  margin: 18px 0 18px !important;
+  color: #fff !important;
+  font-size: clamp(48px, 5.7vw, 74px) !important;
+  line-height: 0.98 !important;
+  letter-spacing: -0.055em !important;
+  text-wrap: balance !important;
+}
+
+.gc-public-hero h1 em {
+  display: inline-block !important;
+  font-style: normal !important;
+  background: linear-gradient(92deg, #36e4ff 2%, #5e8cff 48%, #cb43ff 98%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+.gc-public-hero-copy > p {
+  max-width: 530px !important;
+  margin: 0 !important;
+  color: #afc0d5 !important;
+  font-size: 15px !important;
+  line-height: 1.62 !important;
+}
+
+.gc-public-hero-cta {
+  margin-top: 25px !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 10px !important;
+}
+
+.gc-public-hero-cta .gc-hero-explore,
+.gc-public-hero-cta button {
+  min-height: 52px !important;
+  padding: 0 20px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 9px !important;
+  border-radius: 13px !important;
+  font-size: 12px !important;
+  font-weight: 950 !important;
+  text-decoration: none !important;
+}
+
+.gc-public-hero-cta .gc-hero-explore {
+  border: 0 !important;
+  background: linear-gradient(105deg, #22dfff 0%, #338eff 46%, #ad39ff 100%) !important;
+  color: #031427 !important;
+  box-shadow:
+    inset 0 -3px 0 rgba(19, 37, 115, 0.27),
+    0 14px 30px rgba(53, 116, 255, 0.22) !important;
+}
+
+.gc-public-hero-cta .gc-hero-explore svg {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+.gc-public-hero-cta button.secondary {
+  border: 1px solid rgba(82, 132, 196, 0.58) !important;
+  background: rgba(8, 31, 58, 0.78) !important;
+  color: #eef7ff !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+.gc-public-hero-cta .gc-hero-explore:focus-visible,
+.gc-public-hero-cta button:focus-visible {
+  outline: 2px solid #7eeeff !important;
+  outline-offset: 3px !important;
+}
+
+.gc-public-hero-meta {
+  margin-top: 22px !important;
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+}
+
+.gc-public-hero-meta > span {
+  min-width: 0 !important;
+  min-height: 48px !important;
+  padding: 8px 9px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  border: 1px solid rgba(67, 111, 170, 0.42) !important;
+  border-radius: 12px !important;
+  background: rgba(3, 20, 40, 0.62) !important;
+  color: #d5e3f3 !important;
+}
+
+.gc-public-hero-meta > span::before {
+  content: none !important;
+  display: none !important;
+}
+
+.gc-public-hero-meta > span > svg {
+  display: block !important;
+  width: 17px !important;
+  height: 17px !important;
+  flex: 0 0 17px !important;
+  color: #4ae2ff !important;
+}
+
+.gc-public-hero-meta > span > b {
+  min-width: 0 !important;
+  font-size: 8.5px !important;
+  line-height: 1.28 !important;
+  white-space: normal !important;
+}
+
+.gc-public-hero > .gc-public-hero-art {
+  position: absolute !important;
+  z-index: 4 !important;
+  left: auto !important;
+  right: 24px !important;
+  top: 36px !important;
+  bottom: 36px !important;
+  width: 47% !important;
+  height: auto !important;
+  display: block !important;
+  overflow: visible !important;
+  perspective: none !important;
+  filter: none !important;
+  background: none !important;
+  pointer-events: none !important;
+}
+
+.gc-hero-visual {
+  position: relative !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.gc-hero-ring {
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  width: 78% !important;
+  aspect-ratio: 1 !important;
+  transform: translate(-50%, -50%) !important;
+  border: 1px solid rgba(75, 220, 255, 0.2) !important;
+  border-radius: 50% !important;
+  box-shadow:
+    0 0 0 34px rgba(88, 76, 255, 0.04),
+    0 0 95px rgba(65, 116, 255, 0.2) !important;
+}
+
+.gc-hero-feature-card {
+  position: absolute !important;
+  z-index: 3 !important;
+  left: 50% !important;
+  top: 50% !important;
+  width: 84% !important;
+  aspect-ratio: 16 / 10 !important;
+  transform: translate(-50%, -50%) rotate(-1.5deg) !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(105, 188, 255, 0.54) !important;
+  border-radius: 24px !important;
+  background: #09162d !important;
+  box-shadow:
+    0 30px 56px rgba(0, 0, 0, 0.48),
+    0 0 0 5px rgba(68, 75, 255, 0.13),
+    0 0 46px rgba(49, 190, 255, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+.gc-hero-feature-card::after {
+  content: "" !important;
+  position: absolute !important;
+  z-index: 2 !important;
+  inset: 0 !important;
+  background: linear-gradient(180deg, transparent 36%, rgba(3, 9, 25, 0.18) 56%, rgba(3, 8, 22, 0.94) 100%) !important;
+}
+
+.gc-hero-feature-card > img {
+  position: absolute !important;
+  z-index: 1 !important;
+  inset: 0 !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  filter: saturate(1.05) contrast(1.03) !important;
+}
+
+.gc-hero-feature-card > span {
+  position: absolute !important;
+  z-index: 4 !important;
+  left: 16px !important;
+  top: 15px !important;
+  min-height: 27px !important;
+  padding: 0 10px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  border: 1px solid rgba(88, 241, 255, 0.45) !important;
+  border-radius: 999px !important;
+  background: rgba(3, 20, 43, 0.75) !important;
+  color: #7cecff !important;
+  font-size: 8px !important;
+  font-weight: 950 !important;
+  letter-spacing: 0.1em !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+.gc-hero-feature-card > div {
+  position: absolute !important;
+  z-index: 4 !important;
+  left: 18px !important;
+  right: 18px !important;
+  bottom: 17px !important;
+  display: grid !important;
+  gap: 4px !important;
+  color: #fff !important;
+}
+
+.gc-hero-feature-card > div small {
+  color: #63e6ff !important;
+  font-size: 7px !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.13em !important;
+}
+
+.gc-hero-feature-card > div strong {
+  max-width: 360px !important;
+  font-size: clamp(15px, 1.55vw, 21px) !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.gc-hero-mini-card {
+  position: absolute !important;
+  z-index: 5 !important;
+  width: 32% !important;
+  aspect-ratio: 16 / 10 !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(116, 147, 239, 0.6) !important;
+  border-radius: 15px !important;
+  background: #07152a !important;
+  box-shadow: 0 18px 32px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+.gc-hero-mini-card::after {
+  content: "" !important;
+  position: absolute !important;
+  z-index: 2 !important;
+  inset: 0 !important;
+  background: linear-gradient(180deg, transparent 48%, rgba(3, 8, 22, 0.88)) !important;
+}
+
+.gc-hero-mini-card img {
+  position: absolute !important;
+  z-index: 1 !important;
+  inset: 0 !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+.gc-hero-mini-card b {
+  position: absolute !important;
+  z-index: 3 !important;
+  left: 10px !important;
+  right: 8px !important;
+  bottom: 8px !important;
+  overflow: hidden !important;
+  color: #fff !important;
+  font-size: 8px !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.gc-hero-mini-one {
+  left: -1% !important;
+  top: 4% !important;
+  transform: rotate(-7deg) !important;
+}
+
+.gc-hero-mini-two {
+  right: -1% !important;
+  bottom: 3% !important;
+  transform: rotate(7deg) !important;
+}
+
+.gc-public-virtual-games {
+  margin-top: 58px !important;
+  scroll-margin-top: 112px !important;
+}
+
+.gc-mobile-sticky-cta {
+  text-decoration: none !important;
+}
+
+@media (max-width: 900px) {
+  .gc-public-hero {
+    padding-left: 34px !important;
+    padding-right: 49% !important;
+  }
+
+  .gc-public-hero h1 {
+    font-size: clamp(45px, 6vw, 62px) !important;
+  }
+
+  .gc-public-hero > .gc-public-hero-art {
+    right: 14px !important;
+    width: 47% !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .gc-public-hero {
+    width: 100% !important;
+    min-height: 690px !important;
+    padding: 38px 18px 280px !important;
+    display: block !important;
+    border-right: 0 !important;
+    border-left: 0 !important;
+    border-radius: 0 0 24px 24px !important;
+  }
+
+  .gc-public-hero::before {
+    mask-image: linear-gradient(180deg, #000, rgba(0, 0, 0, 0.35) 58%, transparent 92%) !important;
+  }
+
+  .gc-public-hero::after {
+    right: -38% !important;
+    top: 42% !important;
+    width: 112% !important;
+  }
+
+  .gc-public-hero-copy {
+    max-width: none !important;
+    text-align: center !important;
+  }
+
+  .gc-public-eyebrow {
+    margin: 0 auto !important;
+  }
+
+  .gc-public-hero h1 {
+    margin-top: 16px !important;
+    font-size: clamp(43px, 12.5vw, 54px) !important;
+    line-height: 0.98 !important;
+  }
+
+  .gc-public-hero-copy > p {
+    max-width: 520px !important;
+    margin: 0 auto !important;
+    font-size: 12px !important;
+    line-height: 1.55 !important;
+  }
+
+  .gc-public-hero-cta {
+    margin-top: 20px !important;
+    display: grid !important;
+    grid-template-columns: 1.35fr 1fr !important;
+    gap: 8px !important;
+  }
+
+  .gc-public-hero-cta .gc-hero-explore,
+  .gc-public-hero-cta button {
+    min-width: 0 !important;
+    min-height: 47px !important;
+    padding: 0 10px !important;
+    font-size: 9.5px !important;
+  }
+
+  .gc-public-hero-meta {
+    margin-top: 18px !important;
+    gap: 6px !important;
+  }
+
+  .gc-public-hero-meta > span {
+    min-height: 50px !important;
+    padding: 6px 5px !important;
+    display: grid !important;
+    place-items: center !important;
+    align-content: center !important;
+    gap: 3px !important;
+    text-align: center !important;
+  }
+
+  .gc-public-hero-meta > span > svg {
+    width: 16px !important;
+    height: 16px !important;
+    flex-basis: 16px !important;
+  }
+
+  .gc-public-hero-meta > span > b {
+    font-size: 7.6px !important;
+  }
+
+  .gc-public-hero > .gc-public-hero-art {
+    left: 16px !important;
+    right: 16px !important;
+    top: auto !important;
+    bottom: 20px !important;
+    width: auto !important;
+    height: 238px !important;
+  }
+
+  .gc-hero-feature-card {
+    width: min(80%, 360px) !important;
+    border-radius: 19px !important;
+  }
+
+  .gc-hero-mini-card {
+    width: 29% !important;
+    border-radius: 12px !important;
+  }
+
+  .gc-hero-mini-one {
+    left: 1% !important;
+    top: 4% !important;
+  }
+
+  .gc-hero-mini-two {
+    right: 1% !important;
+    bottom: 3% !important;
+  }
+
+  .gc-public-virtual-games {
+    margin-top: 44px !important;
+    scroll-margin-top: 102px !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .gc-public-hero {
+    min-height: 650px !important;
+    padding: 34px 16px 250px !important;
+  }
+
+  .gc-public-eyebrow {
+    min-height: 27px !important;
+    padding: 0 9px !important;
+    font-size: 7.5px !important;
+  }
+
+  .gc-public-hero h1 {
+    font-size: clamp(39px, 11.5vw, 47px) !important;
+  }
+
+  .gc-public-hero-copy > p {
+    font-size: 11px !important;
+  }
+
+  .gc-public-hero > .gc-public-hero-art {
+    bottom: 17px !important;
+    height: 210px !important;
+  }
+
+  .gc-hero-feature-card {
+    width: 83% !important;
+  }
+
+  .gc-hero-feature-card > span {
+    left: 11px !important;
+    top: 10px !important;
+    min-height: 23px !important;
+    padding: 0 8px !important;
+    font-size: 6.5px !important;
+  }
+
+  .gc-hero-feature-card > div {
+    left: 12px !important;
+    right: 12px !important;
+    bottom: 11px !important;
+  }
+
+  .gc-hero-feature-card > div strong {
+    font-size: 12px !important;
+  }
+
+  .gc-hero-mini-card b {
+    left: 7px !important;
+    bottom: 6px !important;
+    font-size: 6.5px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gc-public-hero *,
+  .gc-public-hero *::before,
+  .gc-public-hero *::after {
+    scroll-behavior: auto !important;
+  }
+}

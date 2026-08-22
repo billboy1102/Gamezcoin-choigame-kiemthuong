@@ -19,30 +19,30 @@ const arrowIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7
 const closeIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>`
 
 const virtualGames = [
-  ['Galaxy Match', 'planet', 'galaxy-match-3d.webp', '65.000đ'],
-  ['Fruit Craze', 'fruit', 'fruit-craze-3d.webp', '85.000đ'],
-  ['Jewel Quest', 'jewel', 'jewel-quest-3d.webp', '100.000đ'],
-  ['Candy Merge', 'candy', 'candy-merge-3d.webp', '80.000đ'],
-  ['Bubble Pop', 'bubble', 'bubble-pop-3d.webp', '60.000đ'],
-  ['Zombie Dash', 'zombie', 'zombie-dash-3d.webp', '90.000đ'],
-  ['Farm Puzzle', 'farm', 'farm-puzzle-3d.webp', '70.000đ'],
-  ['Speed Runner', 'runner', 'speed-runner-3d.webp', '90.000đ'],
-  ['Pixel Shooter', 'space', 'pixel-shooter-3d.webp', '75.000đ'],
-  ['Dragon Merge', 'dragon', 'dragon-merge-3d.webp', '120.000đ'],
-  ['Lucky Spin', 'spin', 'lucky-spin-3d.webp', '55.000đ'],
-  ['Merge Town', 'town', 'merge-town-3d.webp', '110.000đ'],
+  ['Galaxy Match', 'planet', 'galaxy-match-3d.webp'],
+  ['Fruit Craze', 'fruit', 'fruit-craze-3d.webp'],
+  ['Jewel Quest', 'jewel', 'jewel-quest-3d.webp'],
+  ['Candy Merge', 'candy', 'candy-merge-3d.webp'],
+  ['Bubble Pop', 'bubble', 'bubble-pop-3d.webp'],
+  ['Zombie Dash', 'zombie', 'zombie-dash-3d.webp'],
+  ['Farm Puzzle', 'farm', 'farm-puzzle-3d.webp'],
+  ['Speed Runner', 'runner', 'speed-runner-3d.webp'],
+  ['Pixel Shooter', 'space', 'pixel-shooter-3d.webp'],
+  ['Dragon Merge', 'dragon', 'dragon-merge-3d.webp'],
+  ['Lucky Spin', 'spin', 'lucky-spin-3d.webp'],
+  ['Merge Town', 'town', 'merge-town-3d.webp'],
 ]
 
 function virtualGameCards() {
-  return virtualGames.map(([name, art, image, reward]) => `
+  return virtualGames.map(([name, art, image]) => `
     <article class="gc-virtual-game">
       <div class="gc-virtual-art gc-art-${art}" data-professional-art="1">
         <img src="${gameArtUrl(image)}" alt="" width="960" height="540" loading="lazy" decoding="async" draggable="false">
       </div>
       <div class="gc-virtual-copy">
         <strong>${name}</strong>
-        <span>Chơi & kiếm tiền</span>
-        <small>Sắp ra mắt · dự kiến lên tới ${reward}</small>
+        <span>Concept game 3D</span>
+        <small>Sắp ra mắt · Nhận thông báo khi sẵn sàng</small>
       </div>
       <span class="gc-virtual-arrow">›</span>
     </article>`).join('')
@@ -91,42 +91,35 @@ function landingMarkup() {
 
     <section class="gc-public-hero">
       <div class="gc-public-hero-copy">
-        <span class="gc-public-eyebrow"><i></i> GAMEZCOIN · CHƠI GAME KIẾM TIỀN</span>
-        <h1>Chơi game<br><em>kiếm tiền</em></h1>
-        <p>Chơi game giải trí, hoàn thành ván hợp lệ và nhận phần thưởng vào tài khoản Gamezcoin. Giao dịch được ghi nhận trên server và theo dõi ngay trong ví của bạn.</p>
+        <span class="gc-public-eyebrow"><i></i> GAMEZCOIN · KHO GAME 3D</span>
+        <h1>Thế giới game mới.<br><em>Sắp mở màn.</em></h1>
+        <p>Khám phá những concept game 3D mới của Gamezcoin. Mỗi trò chơi đều có trạng thái rõ ràng để bạn biết game nào đang được hoàn thiện và khi nào có thể trải nghiệm.</p>
         <div class="gc-public-hero-cta">
-          <button type="button" data-public-auth="signup">Bắt đầu kiếm tiền ${arrowIcon}</button>
-          <button type="button" class="secondary" data-public-auth="login">Đăng nhập</button>
+          <a class="gc-hero-explore" href="#gc-games">Khám phá kho game ${arrowIcon}</a>
+          <button type="button" class="secondary" data-public-auth="signup">Nhận thông báo</button>
         </div>
         <div class="gc-public-hero-meta">
-          <span>${gameIcon}<b>2 game đang hoạt động</b></span>
-          <span>${shieldIcon}<b>Phiên chơi xác minh server</b></span>
-          <span>${walletIcon}<b>Ví & lịch sử giao dịch</b></span>
+          <span>${gameIcon}<b>12 concept game 3D</b></span>
+          <span>${shieldIcon}<b>Trạng thái minh bạch</b></span>
+          <span>${boltIcon}<b>Tối ưu cho di động</b></span>
         </div>
       </div>
       <div class="gc-public-hero-art" aria-hidden="true">
-        <div class="gc-public-glow"></div>
-        <div class="gc-public-gmark">G</div>
-        <img src="/assets/rewards-controller-exact.svg" alt="">
-        <div class="gc-public-phone">
-          <div class="gc-phone-notch"></div><small>Số dư khả dụng</small><strong>501.075 <i>coin</i></strong>
-          <span><b>Block Blast</b><em>+ coin</em></span><span><b>Orbit Break</b><em>+ coin</em></span>
-          <button>Rút tiền</button>
+        <div class="gc-hero-visual">
+          <div class="gc-hero-ring"></div>
+          <article class="gc-hero-feature-card">
+            <img src="${gameArtUrl('galaxy-match-3d.webp')}" alt="" width="960" height="540" decoding="async" fetchpriority="high" draggable="false">
+            <span>12 GAME 3D</span>
+            <div><small>BỘ SƯU TẬP GAMEZCOIN</small><strong>Thế giới game mới đang chờ bạn</strong></div>
+          </article>
+          <article class="gc-hero-mini-card gc-hero-mini-one"><img src="${gameArtUrl('dragon-merge-3d.webp')}" alt="" width="960" height="540" decoding="async" draggable="false"><b>Dragon Merge</b></article>
+          <article class="gc-hero-mini-card gc-hero-mini-two"><img src="${gameArtUrl('candy-merge-3d.webp')}" alt="" width="960" height="540" decoding="async" draggable="false"><b>Candy Merge</b></article>
         </div>
       </div>
     </section>
 
-    <section class="gc-public-live-games" id="gc-games">
-      <div class="gc-public-section-title"><small>GAME ĐANG HOẠT ĐỘNG</small><h2>Chơi game & kiếm tiền</h2><p>Hai game hiện tại của Gamezcoin; các game khác bên dưới là bản giới thiệu sắp ra mắt.</p></div>
-      <div class="gc-live-grid">
-        <article class="gc-live-card"><div class="gc-live-art gc-block-live"><img src="${gameArtUrl('block-blast-3d.webp')}" alt="" width="960" height="540" decoding="async" fetchpriority="high" draggable="false"></div><span class="gc-live-tag">ĐANG CHƠI ĐƯỢC</span><h3>Block Blast</h3><p>Chơi & kiếm tiền</p><b>10 điểm = 1 coin</b><button data-public-auth="signup">Chơi ngay ${arrowIcon}</button></article>
-        <article class="gc-live-card"><div class="gc-live-art"><img src="${gameArtUrl('orbit-break-3d.webp')}" alt="" width="960" height="540" decoding="async" fetchpriority="high" draggable="false"></div><span class="gc-live-tag">ĐANG CHƠI ĐƯỢC</span><h3>Orbit Break</h3><p>Chơi & kiếm tiền</p><b>10 điểm = 1 coin</b><button data-public-auth="signup">Chơi ngay ${arrowIcon}</button></article>
-        <article class="gc-live-card gc-live-coming"><div class="gc-live-art gc-candy-preview"><img src="${gameArtUrl('candy-merge-3d.webp')}" alt="" width="960" height="540" loading="lazy" decoding="async" draggable="false"></div><span class="gc-live-tag">SẮP RA MẮT</span><h3>Candy Merge</h3><p>Game giới thiệu</p><b>Phần thưởng sẽ công bố sau</b><button data-public-auth="signup">Đăng ký để cập nhật ${arrowIcon}</button></article>
-      </div>
-    </section>
-
-    <section class="gc-public-virtual-games">
-      <div class="gc-public-section-title"><small>KHO GAME GIỚI THIỆU</small><h2>Nhiều game <em>kiếm tiền</em> nổi bật</h2><p>Các thẻ dưới đây là game ảo/sắp ra mắt để minh họa kho game tương lai, chưa phải game đang trả thưởng.</p></div>
+    <section class="gc-public-virtual-games" id="gc-games">
+      <div class="gc-public-section-title"><small>KHO GAME 3D</small><h2>Nhiều game <em>đang được hoàn thiện</em></h2><p>Khám phá 12 concept game tương lai của Gamezcoin. Tất cả hiện là bản giới thiệu/sắp ra mắt, chưa phải game đang trả thưởng.</p></div>
       <div class="gc-virtual-grid">${virtualGameCards()}</div>
       <button class="gc-more-games" type="button" data-public-auth="signup">Đăng ký để nhận thông báo game mới ${arrowIcon}</button>
     </section>
@@ -160,7 +153,7 @@ function landingMarkup() {
     </section>
 
     <section class="gc-public-stats">
-      <div class="gc-stat-card"><span>🚀</span><div><strong>10 điểm = 1 coin</strong><p>Tỷ lệ hiện tại của Block Blast và Orbit Break.</p></div></div>
+      <div class="gc-stat-card"><span>🚀</span><div><strong>Cơ chế thưởng rõ ràng</strong><p>Tỷ lệ quy đổi sẽ được hiển thị trong từng game khi chính thức phát hành.</p></div></div>
       <div class="gc-stat-card"><span>🔥</span><div><strong>Hoàn thành ván thật</strong><p>Mở game rồi thoát giữa chừng không được tính nhiệm vụ.</p></div></div>
       <div class="gc-stat-card"><span>🪙</span><div><strong>Coin lưu trên server</strong><p>Số dư đồng bộ theo tài khoản thay vì chỉ lưu trên trình duyệt.</p></div></div>
     </section>
@@ -168,7 +161,7 @@ function landingMarkup() {
     <section class="gc-public-how" id="gc-how">
       <div class="gc-public-section-title"><small>KIẾM TIỀN TỪ GAME NHƯ THẾ NÀO?</small><h2>Bạn muốn bắt đầu? <em>Đây là cách</em></h2></div>
       <div class="gc-how-stack">
-        <article><span class="gc-step-icon">${gameIcon}</span><div class="gc-step-copy"><small>1</small><h3>Chọn một game kiếm tiền</h3><p>Chọn Block Blast hoặc Orbit Break đang hoạt động. Kho game ảo phía trên cho thấy hướng mở rộng tương lai.</p></div><div class="gc-step-visual gc-step-games">${virtualGames.slice(0,6).map(([name, art]) => `<span class="gc-mini-game gc-mini-${art}"><b>${name}</b><small>Game giới thiệu</small></span>`).join('')}</div></article>
+        <article><span class="gc-step-icon">${gameIcon}</span><div class="gc-step-copy"><small>1</small><h3>Khám phá kho game</h3><p>Xem concept, thể loại và trạng thái phát hành của từng game. Đăng ký để nhận thông báo khi game sẵn sàng.</p></div><div class="gc-step-visual gc-step-games">${virtualGames.slice(0,6).map(([name, art]) => `<span class="gc-mini-game gc-mini-${art}"><b>${name}</b><small>Sắp ra mắt</small></span>`).join('')}</div></article>
         <article><span class="gc-step-icon">${checkIcon}</span><div class="gc-step-copy"><small>2</small><h3>Hoàn thành ván game</h3><p>Ván chơi phải kết thúc hợp lệ và được backend xử lý thành công. Đây là cơ chế giúp hạn chế việc chỉ mở game để nhận thưởng.</p></div><div class="gc-complete-demo"><div class="gc-demo-art">⚔️</div><div class="gc-demo-stars">★★★★★</div><span><b>Phiên chơi hợp lệ</b><em>Server xác minh</em></span></div></article>
         <article id="gc-cashout"><span class="gc-step-icon">${walletIcon}</span><div class="gc-step-copy"><small>3</small><h3>Rút tiền từ số dư</h3><p>Mở Ví, nhập số coin, chọn MoMo hoặc chuyển khoản ngân hàng và gửi yêu cầu rút. Trạng thái được lưu trong lịch sử tài khoản.</p></div><div class="gc-cashout-phone"><h4>Chọn phương thức rút tiền</h4><div><span>MoMo <i>Đang hỗ trợ</i></span><span>Ngân hàng <i>Đang hỗ trợ</i></span><span>PayPal <i>Sắp hỗ trợ</i></span><span>ZaloPay <i>Sắp hỗ trợ</i></span></div>${shieldIcon}<small>An toàn · Có trạng thái xử lý · Lưu lịch sử</small></div></article>
       </div>
@@ -180,32 +173,32 @@ function landingMarkup() {
         <article>${clockIcon}<h3>Không hứa thời gian rút giả</h3><p>Landing không quảng cáo “1–10 phút” nếu hệ thống chưa có dữ liệu thống kê đủ để chứng minh.</p></article>
         <article>${shieldIcon}<h3>Không bịa đánh giá</h3><p>Không gắn Trustpilot, số sao hoặc số lượng review nếu Gamezcoin chưa có hồ sơ đánh giá thật tương ứng.</p></article>
         <article>${walletIcon}<h3>Không bịa giao dịch</h3><p>Các bằng chứng thanh toán chỉ nên lấy từ giao dịch đã hoàn tất thật và được ẩn thông tin nhạy cảm.</p></article>
-        <article>${gameIcon}<h3>Game ảo được ghi rõ</h3><p>Game chưa phát hành được gắn nhãn “Sắp ra mắt” để người dùng không nhầm với offer có thể chơi ngay.</p></article>
+        <article>${gameIcon}<h3>Trạng thái game rõ ràng</h3><p>Game chưa phát hành được gắn nhãn “Sắp ra mắt” để người dùng luôn biết chính xác trạng thái sản phẩm.</p></article>
       </div>
     </section>
 
     <section class="gc-public-faq">
       <div class="gc-public-section-title"><small>GIẢI ĐÁP NHANH</small><h2>Câu hỏi thường gặp</h2></div>
-      <details><summary>Gamezcoin hiện có game nào chơi được?</summary><p>Hiện landing giới thiệu Block Blast và Orbit Break là hai game đang hoạt động. Những game còn lại trên landing được ghi rõ là game ảo/sắp ra mắt.</p></details>
+      <details><summary>Khi nào các game trên landing có thể chơi?</summary><p>Toàn bộ game trong kho hiện là concept/sắp ra mắt. Gamezcoin sẽ cập nhật trạng thái và gửi thông báo cho tài khoản đã đăng ký khi từng game sẵn sàng.</p></details>
       <details><summary>Chơi game có được cộng tiền ngay khi mở game không?</summary><p>Không. Với nhiệm vụ chơi game, phiên phải kết thúc hợp lệ và backend xác minh thành công mới được ghi nhận.</p></details>
       <details><summary>Hiện có thể rút bằng phương thức nào?</summary><p>Luồng rút tiền hiện tại của ứng dụng hỗ trợ MoMo và chuyển khoản ngân hàng. Các phương thức khác trên landing được ghi là sắp hỗ trợ.</p></details>
       <details><summary>Làm sao kiểm tra một yêu cầu rút?</summary><p>Sau khi đăng nhập, người dùng xem lịch sử rút trong Ví với trạng thái đang chờ, đã thanh toán hoặc từ chối.</p></details>
     </section>
 
     <section class="gc-public-final-cta">
-      <div><small>GAMEZCOIN</small><h2>Bắt đầu <em>chơi game kiếm tiền</em> ngay hôm nay</h2><p>Đăng ký miễn phí để chơi các game đang hoạt động và theo dõi phần thưởng trong tài khoản.</p></div>
-      <div class="gc-final-buttons"><button type="button" data-public-auth="signup">Đăng ký miễn phí ${arrowIcon}</button><button type="button" class="secondary" data-public-auth="login">Đăng nhập</button></div>
+      <div><small>GAMEZCOIN</small><h2>Sẵn sàng cho <em>thế giới game mới</em></h2><p>Đăng ký miễn phí để nhận thông báo phát hành và theo dõi các cập nhật mới nhất từ Gamezcoin.</p></div>
+      <div class="gc-final-buttons"><button type="button" data-public-auth="signup">Nhận thông báo ${arrowIcon}</button><button type="button" class="secondary" data-public-auth="login">Đăng nhập</button></div>
     </section>
 
     <footer class="gc-public-footer">
       <div class="gc-public-footer-brand"><span>G</span><strong>GAMEZCOIN</strong><p>Chơi game kiếm tiền với dữ liệu giao dịch minh bạch trong tài khoản.</p></div>
       <div><b>Hỗ trợ</b><span>Trung tâm trợ giúp</span><span>Hướng dẫn</span><span>Chính sách bảo mật</span><span>Điều khoản sử dụng</span></div>
-      <div><b>Về Gamezcoin</b><span>Giới thiệu</span><span>Game đang hoạt động</span><span>Phương thức rút tiền</span></div>
-      <div><b>Minh bạch</b><span>Không số liệu giả</span><span>Không review giả</span><span>Game ảo có nhãn rõ</span></div>
+      <div><b>Về Gamezcoin</b><span>Giới thiệu</span><span>Kho game 3D</span><span>Phương thức rút tiền</span></div>
+      <div><b>Minh bạch</b><span>Không số liệu giả</span><span>Không review giả</span><span>Trạng thái game rõ ràng</span></div>
       <small>© 2026 Gamezcoin. All rights reserved.</small>
     </footer>
 
-    <button type="button" class="gc-mobile-sticky-cta" data-public-auth="signup">${gameIcon}<span>Bắt đầu kiếm tiền ngay bây giờ</span>${arrowIcon}</button>
+    <a class="gc-mobile-sticky-cta" href="#gc-games">${gameIcon}<span>Khám phá kho game 3D</span>${arrowIcon}</a>
     <nav class="gc-public-bottom-nav" aria-label="Điều hướng khách"><button type="button" class="on" data-public-home><span>⌂</span><small>Nhà</small></button><button type="button" data-public-auth="login"><span>▣</span><small>Rút tiền mặt</small></button></nav>
   </div>`
 }
