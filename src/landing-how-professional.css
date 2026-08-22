@@ -1,656 +1,778 @@
-.gc-how-pro {
-  margin-top: 78px;
-}
-
-.gc-how-pro .gc-public-section-title {
-  position: relative;
-}
-
-.gc-how-pro .gc-public-section-title > small {
-  color: #5beaff;
-  letter-spacing: 0.17em;
-}
-
-.gc-how-pro .gc-public-section-title > h2 {
-  margin-top: 10px;
-  line-height: 1.02;
-  text-wrap: balance;
-}
-
-.gc-how-pro .gc-public-section-title > p {
-  max-width: 610px;
-  margin-top: 13px;
-  color: #9aadc2;
-  font-size: 11px;
-}
-
-.gc-how-trust {
-  width: min(720px, 100%);
-  margin: 22px auto 0;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
-}
-
-.gc-how-trust > span {
-  min-height: 46px;
-  padding: 8px 11px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  border: 1px solid rgba(67, 119, 181, 0.5);
-  border-radius: 12px;
-  background: linear-gradient(180deg, rgba(11, 34, 64, 0.92), rgba(6, 22, 43, 0.92));
-  color: #dbe9f8;
-  box-shadow: inset 0 1px rgba(255, 255, 255, 0.04);
-}
-
-.gc-how-trust svg {
-  width: 17px;
-  height: 17px;
-  flex: 0 0 17px;
-  color: #42e4ff;
-}
-
-.gc-how-trust b {
-  min-width: 0;
-  font-size: 8px;
-  line-height: 1.3;
-}
-
-.gc-how-pro .gc-how-stack {
-  margin-top: 18px;
-  gap: 16px;
-}
-
-.gc-how-pro .gc-how-stack > article {
+.gc-how-reference {
   position: relative;
   isolation: isolate;
-  min-height: 280px;
-  padding: 25px;
-  grid-template-columns: 58px minmax(220px, 0.78fr) minmax(390px, 1.22fr);
-  gap: 21px;
+  margin-top: 74px;
+  padding: 58px 32px 46px;
   overflow: hidden;
-  border: 1px solid rgba(67, 111, 174, 0.56);
-  border-radius: 22px;
+  border: 1px solid rgba(43, 76, 135, 0.28);
+  border-radius: 30px;
   background:
-    radial-gradient(circle at 86% 20%, rgba(33, 195, 255, 0.08), transparent 30%),
-    linear-gradient(124deg, #071a32, #061326 54%, #0b1530);
-  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.2), inset 0 1px rgba(255, 255, 255, 0.04);
+    radial-gradient(circle at 8% 8%, rgba(20, 177, 255, 0.09), transparent 24%),
+    radial-gradient(circle at 94% 31%, rgba(156, 43, 255, 0.08), transparent 23%),
+    radial-gradient(circle at 20% 70%, rgba(41, 102, 255, 0.07), transparent 25%),
+    linear-gradient(180deg, #020b1c 0%, #030d20 48%, #030b1b 100%);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.3), inset 0 1px rgba(255, 255, 255, 0.03);
 }
 
-.gc-how-pro .gc-how-stack > article::before {
+.gc-how-reference::before {
   content: "";
   position: absolute;
   z-index: 0;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #2ce3ff, #527dff 55%, transparent);
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 7% 13%, #20dfff 0 1px, transparent 1.6px),
+    radial-gradient(circle at 91% 8%, #934dff 0 1px, transparent 1.6px),
+    radial-gradient(circle at 82% 22%, #28bcff 0 1px, transparent 1.5px),
+    radial-gradient(circle at 13% 42%, #5f4dff 0 1px, transparent 1.5px),
+    radial-gradient(circle at 89% 61%, #dc45ff 0 1px, transparent 1.6px),
+    radial-gradient(circle at 5% 78%, #24dfff 0 1px, transparent 1.6px),
+    radial-gradient(circle at 76% 91%, #704dff 0 1px, transparent 1.6px);
+  opacity: 0.72;
+  pointer-events: none;
 }
 
-.gc-how-pro .gc-how-stack > article:nth-child(2)::before {
-  background: linear-gradient(90deg, #715cff, #c43fff 58%, transparent);
-}
-
-.gc-how-pro .gc-how-stack > article:nth-child(3)::before {
-  background: linear-gradient(90deg, #31e2a0, #34c9ff 58%, transparent);
-}
-
-.gc-how-pro .gc-step-icon,
-.gc-how-pro .gc-step-copy,
-.gc-how-pro .gc-step-visual,
-.gc-how-pro .gc-complete-demo,
-.gc-how-pro .gc-cashout-phone {
+.gc-how-reference-title,
+.gc-how-reference-steps {
   position: relative;
   z-index: 2;
 }
 
-.gc-how-pro .gc-step-icon {
-  width: 54px;
-  height: 54px;
-  border-color: rgba(44, 205, 255, 0.58);
-  border-radius: 16px;
-  background: linear-gradient(145deg, #0a3156, #0b1d3c);
-  color: #41e8ff;
-  box-shadow: 0 10px 24px rgba(0, 156, 255, 0.12), inset 0 1px rgba(255, 255, 255, 0.07);
-}
-
-.gc-how-pro .gc-how-stack > article:nth-child(2) .gc-step-icon {
-  border-color: rgba(139, 92, 255, 0.62);
-  background: linear-gradient(145deg, #27205e, #151638);
-  color: #a68aff;
-}
-
-.gc-how-pro .gc-how-stack > article:nth-child(3) .gc-step-icon {
-  border-color: rgba(57, 224, 165, 0.55);
-  background: linear-gradient(145deg, #0b3a3d, #0a2037);
-  color: #51e8b0;
-}
-
-.gc-how-pro .gc-step-icon svg {
-  width: 27px;
-  height: 27px;
-}
-
-.gc-how-pro .gc-step-copy > small {
-  width: fit-content;
-  min-height: 25px;
-  padding: 0 9px;
-  display: inline-flex;
-  align-items: center;
-  border: 1px solid rgba(65, 218, 255, 0.3);
-  border-radius: 999px;
-  background: rgba(7, 35, 64, 0.75);
-  color: #58e8ff;
-  font-size: 7px;
+.gc-how-reference-title h2 {
+  max-width: 890px;
+  margin: 0 auto;
+  color: #f7f9ff;
+  font-size: clamp(39px, 5vw, 62px);
   font-weight: 950;
-  letter-spacing: 0.12em;
-}
-
-.gc-how-pro .gc-step-copy h3 {
-  margin: 12px 0 9px;
-  font-size: clamp(20px, 2.2vw, 26px);
   line-height: 1.08;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.045em;
+  text-align: center;
+  text-wrap: balance;
 }
 
-.gc-how-pro .gc-step-copy p {
-  max-width: 360px;
-  color: #9aadc2;
-  font-size: 10.5px;
-  line-height: 1.62;
+.gc-how-reference-title h2 em,
+.gc-reference-step h3 em {
+  font-style: normal;
+  background: linear-gradient(100deg, #2deaff, #20bfff 58%, #b33fff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-.gc-how-pro .gc-step-games-pro {
-  min-height: 210px;
-  padding: 12px;
+.gc-how-reference-steps {
+  display: grid;
+  gap: 76px;
+  margin-top: 50px;
+}
+
+.gc-reference-step {
+  position: relative;
+  min-width: 0;
+}
+
+.gc-reference-step-games::before,
+.gc-reference-step-cashout::before {
+  content: "G";
+  position: absolute;
+  z-index: 0;
+  width: 70px;
+  height: 70px;
+  display: grid;
+  place-items: center;
+  border: 3px solid rgba(246, 174, 29, 0.38);
+  border-radius: 50%;
+  background: radial-gradient(circle, #59350c, #1c160e 70%);
+  color: #f7af24;
+  font-size: 31px;
+  font-weight: 1000;
+  opacity: 0.28;
+  transform: rotate(18deg);
+  box-shadow: 0 0 24px rgba(255, 174, 29, 0.12);
+}
+
+.gc-reference-step-games::before {
+  left: -58px;
+  top: 122px;
+}
+
+.gc-reference-step-cashout::before {
+  right: -43px;
+  top: 76px;
+  transform: rotate(-21deg);
+}
+
+.gc-reference-step-head {
+  position: relative;
+  z-index: 2;
+  width: min(820px, 100%);
+  margin: 0 auto 26px;
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr);
+  align-items: center;
+  gap: 25px;
+}
+
+.gc-reference-step-icon {
+  width: 82px;
+  height: 82px;
+  display: grid;
+  place-items: center;
+  border: 1px solid transparent;
+  border-radius: 22px;
+  background:
+    linear-gradient(#07142c, #07142c) padding-box,
+    linear-gradient(145deg, #21eaff, #3c7cff 53%, #df3dff) border-box;
+  color: #51e6ff;
+  box-shadow: 0 0 28px rgba(66, 117, 255, 0.15), inset 0 1px rgba(255, 255, 255, 0.07);
+}
+
+.gc-reference-step-icon svg {
+  width: 45px;
+  height: 45px;
+  filter: drop-shadow(0 0 10px rgba(66, 222, 255, 0.36));
+}
+
+.gc-reference-step-head h3,
+.gc-reference-centered-copy h3 {
+  margin: 0;
+  color: #f8faff;
+  font-size: clamp(28px, 3.5vw, 45px);
+  font-weight: 950;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.gc-reference-step-head p,
+.gc-reference-centered-copy p {
+  max-width: 680px;
+  margin: 11px 0 0;
+  color: #b3bed1;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.gc-reference-game-board {
+  position: relative;
+  z-index: 2;
+  width: min(840px, 100%);
+  margin: 0 auto;
+  padding: 13px;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 9px;
-  transform: none;
-  border-color: rgba(77, 105, 188, 0.62);
-  border-radius: 18px;
-  background: radial-gradient(circle at 85% 12%, rgba(115, 59, 255, 0.2), transparent 34%), #07162d;
-  box-shadow: inset 0 1px rgba(255, 255, 255, 0.05);
+  gap: 10px;
+  border: 2px solid transparent;
+  border-radius: 25px;
+  background:
+    linear-gradient(155deg, rgba(7, 18, 43, 0.98), rgba(12, 12, 44, 0.98)) padding-box,
+    linear-gradient(135deg, #25e6ff, #5367ff 48%, #db38ff) border-box;
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.4), 0 0 38px rgba(74, 58, 255, 0.16), inset 0 1px rgba(255, 255, 255, 0.06);
+  transform: perspective(1200px) rotateX(1.2deg) rotateZ(-0.7deg);
+  transform-origin: center top;
 }
 
-.gc-how-pro .gc-step-games-pro .gc-mini-game {
+.gc-reference-game-card {
+  position: relative;
   min-width: 0;
-  min-height: 0;
-  padding: 0;
-  display: grid;
-  grid-template-rows: minmax(0, 1fr) auto;
   overflow: hidden;
-  border: 1px solid rgba(76, 120, 180, 0.58);
-  border-radius: 12px;
-  background: #09192f;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
+  border: 1px solid rgba(74, 111, 176, 0.62);
+  border-radius: 13px;
+  background: linear-gradient(180deg, #0b1c39, #071227);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.32), inset 0 1px rgba(255, 255, 255, 0.06);
 }
 
-.gc-how-pro .gc-step-games-pro .gc-mini-game > img {
+.gc-reference-game-card > img {
   display: block;
   width: 100%;
-  height: 125px;
+  height: 122px;
   object-fit: cover;
   filter: saturate(1.04) contrast(1.03);
 }
 
-.gc-how-pro .gc-step-games-pro .gc-mini-game > span {
-  min-width: 0;
-  padding: 9px 10px 10px;
+.gc-reference-game-card > span {
+  min-height: 70px;
+  padding: 9px 37px 10px 11px;
   display: grid;
+  align-content: center;
   gap: 3px;
+  border-top: 1px solid rgba(74, 108, 166, 0.38);
+  background: linear-gradient(180deg, rgba(10, 24, 50, 0.98), rgba(7, 17, 36, 0.98));
 }
 
-.gc-how-pro .gc-step-games-pro .gc-mini-game b {
+.gc-reference-game-card b {
   overflow: hidden;
-  color: #f4f8ff;
-  font-size: 9px;
+  color: #f7f9ff;
+  font-size: 13px;
+  line-height: 1.1;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.gc-how-pro .gc-step-games-pro .gc-mini-game small {
-  color: #59e8bd;
-  font-size: 7px;
-  font-weight: 800;
+.gc-reference-game-card small {
+  color: #b0bdd0;
+  font-size: 8px;
 }
 
-.gc-how-pro .gc-verify-demo {
-  min-height: 220px;
-  padding: 17px;
+.gc-reference-game-card em {
+  margin-top: 3px;
+  color: #ffd342;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 950;
+}
+
+.gc-reference-game-card > i {
+  position: absolute;
+  right: 10px;
+  bottom: 12px;
+  width: 25px;
+  height: 25px;
   display: grid;
-  grid-template-columns: 0.76fr 1.24fr;
-  gap: 13px;
-  place-items: stretch;
-  border-color: rgba(111, 87, 222, 0.62);
-  border-radius: 18px;
-  background:
-    radial-gradient(circle at 18% 50%, rgba(52, 203, 255, 0.14), transparent 30%),
-    radial-gradient(circle at 88% 18%, rgba(130, 65, 255, 0.18), transparent 32%),
-    #07162d;
+  place-items: center;
+  border: 2px solid #f4a819;
+  border-radius: 50%;
+  background: radial-gradient(circle, #6e400b, #281708 76%);
+  color: #ffc02e;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 1000;
+  box-shadow: 0 0 11px rgba(255, 177, 25, 0.24);
 }
 
-.gc-verify-seal {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 13px;
-  border: 1px solid rgba(76, 147, 204, 0.42);
-  border-radius: 14px;
-  background: rgba(8, 31, 58, 0.78);
+.gc-reference-centered-copy {
+  width: min(820px, 100%);
+  margin: 0 auto 27px;
   text-align: center;
 }
 
-.gc-verify-seal > svg {
-  width: 52px;
-  height: 52px;
-  padding: 12px;
-  border: 1px solid rgba(65, 225, 255, 0.55);
-  border-radius: 50%;
-  color: #49e4ff;
-  background: #092541;
-  box-shadow: 0 0 24px rgba(54, 211, 255, 0.16);
+.gc-reference-centered-copy p {
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.gc-verify-seal > span {
-  display: grid;
-  gap: 5px;
-}
-
-.gc-verify-seal small {
-  color: #6d89a6;
-  font-size: 6.5px;
-  font-weight: 900;
-  letter-spacing: 0.13em;
-}
-
-.gc-verify-seal b {
-  color: #f3f8ff;
-  font-size: 10px;
-}
-
-.gc-verify-rows {
-  display: grid;
-  gap: 8px;
-}
-
-.gc-verify-rows > span {
-  min-height: 53px;
-  padding: 9px 11px;
-  display: grid;
-  grid-template-columns: 27px minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 9px;
-  border: 1px solid rgba(65, 103, 158, 0.48);
-  border-radius: 11px;
-  background: rgba(7, 28, 53, 0.86);
-}
-
-.gc-verify-rows svg {
-  width: 25px;
-  height: 25px;
-  padding: 5px;
-  border-radius: 8px;
-  color: #53e2ff;
-  background: #0b3151;
-}
-
-.gc-verify-rows b {
-  min-width: 0;
-  color: #dce8f5;
-  font-size: 8.5px;
-}
-
-.gc-verify-rows em {
-  color: #5be5ab;
-  font-size: 7px;
-  font-style: normal;
+.gc-reference-centered-copy p b {
+  color: #2de8dc;
   font-weight: 850;
-  white-space: nowrap;
 }
 
-.gc-how-pro .gc-wallet-demo {
-  min-height: 230px;
-  padding: 17px;
-  border-color: rgba(67, 126, 188, 0.62);
-  border-radius: 18px;
-  background: radial-gradient(circle at 90% 0, rgba(53, 213, 255, 0.11), transparent 30%), linear-gradient(180deg, #08182f, #071429);
+.gc-reference-complete-card {
+  position: relative;
+  width: min(780px, 100%);
+  margin: 0 auto;
+  padding: 15px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  border-radius: 30px;
+  background:
+    linear-gradient(180deg, rgba(7, 19, 42, 0.98), rgba(6, 14, 33, 0.98)) padding-box,
+    linear-gradient(135deg, #27e6ff, #5b6cff 48%, #df39ff) border-box;
+  box-shadow: 0 25px 75px rgba(0, 0, 0, 0.42), 0 0 40px rgba(82, 60, 255, 0.18), inset 0 1px rgba(255, 255, 255, 0.08);
 }
 
-.gc-wallet-demo-head {
-  min-height: 54px;
-  display: grid;
-  grid-template-columns: 42px minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 10px;
-  border-bottom: 1px solid rgba(65, 102, 151, 0.4);
+.gc-reference-complete-card > img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 8.7;
+  object-fit: cover;
+  border-radius: 20px;
+  filter: saturate(1.04) contrast(1.03);
 }
 
-.gc-wallet-demo-head > span {
-  width: 37px;
-  height: 37px;
-  display: grid;
-  place-items: center;
-  border: 1px solid rgba(58, 224, 255, 0.48);
-  border-radius: 11px;
-  background: #0a2c49;
-  color: #50e5ff;
-}
-
-.gc-wallet-demo-head svg {
-  width: 20px;
-  height: 20px;
-}
-
-.gc-wallet-demo-head > div {
-  display: grid;
-  gap: 3px;
-}
-
-.gc-wallet-demo-head small {
-  color: #5be7ff;
-  font-size: 6.5px;
-  font-weight: 950;
-  letter-spacing: 0.13em;
-}
-
-.gc-wallet-demo-head b {
-  color: #edf5ff;
-  font-size: 10px;
-}
-
-.gc-wallet-demo-head > em {
-  padding: 5px 7px;
-  border: 1px solid rgba(74, 229, 173, 0.35);
-  border-radius: 999px;
-  color: #63e8b1;
-  font-size: 6px;
-  font-style: normal;
-  font-weight: 950;
-  letter-spacing: 0.08em;
-}
-
-.gc-wallet-demo > .gc-wallet-methods {
-  margin-top: 12px;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 8px;
-}
-
-.gc-wallet-demo > .gc-wallet-methods > span {
-  min-height: 72px;
-  padding: 10px;
-  border-color: rgba(55, 99, 153, 0.55);
-  background: #081a32;
-}
-
-.gc-wallet-demo > .gc-wallet-methods > span:nth-child(-n + 2) {
-  border-color: rgba(53, 190, 160, 0.42);
-  background: linear-gradient(180deg, #0a283a, #07192e);
-}
-
-.gc-wallet-methods b {
-  color: #edf5ff;
-  font-size: 9px;
-}
-
-.gc-wallet-demo-note {
-  min-height: 37px;
-  margin-top: 11px;
+.gc-reference-stars {
+  min-height: 62px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  border: 1px solid rgba(50, 93, 145, 0.4);
-  border-radius: 10px;
-  background: rgba(5, 23, 44, 0.72);
+  color: #ffd32c;
+  font-size: 34px;
+  letter-spacing: 7px;
+  text-shadow: 0 3px 10px rgba(255, 177, 0, 0.26);
 }
 
-.gc-wallet-demo-note svg {
-  width: 15px;
-  height: 15px;
-  color: #4ce5ff;
+.gc-reference-result {
+  min-height: 78px;
+  padding: 11px 17px;
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 13px;
+  border: 1px solid rgba(53, 219, 115, 0.58);
+  border-radius: 16px;
+  background: linear-gradient(90deg, rgba(7, 48, 31, 0.82), rgba(5, 20, 39, 0.92) 48%, rgba(18, 18, 48, 0.92));
+  box-shadow: inset 0 0 22px rgba(42, 225, 107, 0.06);
 }
 
-.gc-wallet-demo-note small {
-  color: #91a8be;
+.gc-reference-result > span {
+  width: 45px;
+  height: 45px;
+  display: grid;
+  place-items: center;
+  border: 2px solid #65e94f;
+  border-radius: 11px;
+  background: #1d6b1d;
+  color: #d8ff34;
+  font-size: 22px;
+  font-weight: 1000;
+}
+
+.gc-reference-result > strong {
+  color: #8ff040;
+  font-size: clamp(25px, 4vw, 41px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.gc-reference-result > b {
+  color: #f4f6fb;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.gc-reference-step-cashout .gc-reference-step-head {
+  width: min(720px, 100%);
+}
+
+.gc-reference-step-cashout .gc-reference-step-icon {
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(25, 55, 111, 0.94), rgba(6, 14, 37, 0.98)) padding-box,
+    linear-gradient(145deg, #25e9ff, #5a61ff 52%, #c43cff) border-box;
+}
+
+.gc-reference-phone {
+  position: relative;
+  z-index: 2;
+  width: min(620px, 92%);
+  margin: 0 auto;
+  padding: 54px 28px 28px;
+  border: 3px solid rgba(135, 154, 205, 0.76);
+  border-radius: 58px 58px 38px 38px;
+  background: linear-gradient(180deg, #070d1d, #081126 54%, #050b18);
+  box-shadow:
+    0 0 0 2px rgba(24, 218, 255, 0.3),
+    0 0 0 4px rgba(174, 52, 255, 0.18),
+    0 30px 80px rgba(0, 0, 0, 0.5),
+    0 0 48px rgba(74, 85, 255, 0.2),
+    inset 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.gc-reference-phone-notch {
+  position: absolute;
+  left: 50%;
+  top: 12px;
+  width: 112px;
+  height: 21px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: #02050c;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.gc-reference-phone > header {
+  min-height: 42px;
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
+  align-items: center;
+  border-bottom: 1px solid rgba(83, 103, 150, 0.28);
+  color: #eef3ff;
+}
+
+.gc-reference-phone > header > span {
+  font-size: 29px;
+  line-height: 1;
+}
+
+.gc-reference-phone > header > b {
+  font-size: 15px;
+  text-align: center;
+}
+
+.gc-reference-phone > header > small {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #9eabc1;
   font-size: 7px;
 }
 
-@media (max-width: 900px) {
-  .gc-how-pro .gc-how-stack > article {
-    min-height: 0;
-    grid-template-columns: 54px minmax(0, 1fr);
-  }
-
-  .gc-how-pro .gc-how-stack > article > :last-child {
-    grid-column: 1 / 3;
-  }
+.gc-reference-phone > header svg {
+  width: 13px;
+  height: 13px;
+  color: #3ce6a0;
 }
 
-@media (max-width: 650px) {
-  .gc-how-pro {
+.gc-reference-phone > h4 {
+  margin: 18px 0 14px;
+  color: #f5f7ff;
+  font-size: 19px;
+}
+
+.gc-reference-methods {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 11px;
+}
+
+.gc-reference-methods > span {
+  min-height: 122px;
+  padding: 13px 8px 10px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 7px;
+  border: 1px solid rgba(65, 84, 130, 0.56);
+  border-radius: 14px;
+  background: linear-gradient(180deg, #0a1429, #071020);
+  text-align: center;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.gc-reference-methods > span.is-active {
+  border-color: rgba(42, 210, 152, 0.38);
+  background: linear-gradient(180deg, #0a192c, #071322);
+}
+
+.gc-reference-methods i {
+  width: 47px;
+  height: 47px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  color: #fff;
+  font-style: normal;
+  font-weight: 950;
+  line-height: 1;
+}
+
+.gc-pay-momo {
+  background: linear-gradient(145deg, #db2099, #8d197b);
+  font-size: 11px;
+  letter-spacing: -0.08em;
+}
+
+.gc-pay-zalo {
+  background: linear-gradient(145deg, #287cf5, #20c998);
+  font-size: 8px;
+}
+
+.gc-pay-bank {
+  background: linear-gradient(145deg, #177cff, #293caa);
+  font-size: 30px;
+}
+
+.gc-pay-paypal {
+  background: linear-gradient(145deg, #194bbd, #0f2473);
+  font-size: 29px;
+  font-style: italic;
+}
+
+.gc-pay-play {
+  background: linear-gradient(145deg, #35d6ff, #4be24a 35%, #ffd834 68%, #f24d73);
+  color: #071225 !important;
+  font-size: 25px;
+}
+
+.gc-pay-phone {
+  background: linear-gradient(145deg, #9147ff, #4a22b4);
+  font-size: 28px;
+}
+
+.gc-reference-methods b {
+  color: #edf3ff;
+  font-size: 11px;
+  line-height: 1.18;
+}
+
+.gc-reference-methods small {
+  min-height: 14px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #76859e;
+  font-size: 7px;
+}
+
+.gc-reference-methods .is-active small {
+  color: #5be7a5;
+}
+
+.gc-reference-methods small svg {
+  width: 12px;
+  height: 12px;
+}
+
+.gc-reference-security {
+  width: min(780px, 100%);
+  min-height: 48px;
+  margin: 20px auto 0;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border: 1px solid rgba(63, 95, 153, 0.5);
+  border-radius: 15px;
+  background: rgba(6, 18, 38, 0.88);
+  color: #b2c0d2;
+  font-size: 11px;
+}
+
+.gc-reference-security svg {
+  width: 20px;
+  height: 20px;
+  color: #35e1ff;
+}
+
+@media (max-width: 700px) {
+  .gc-how-reference {
+    width: calc(100% - 20px);
     margin-top: 56px;
+    padding: 38px 8px 30px;
+    border-radius: 24px;
   }
 
-  .gc-how-pro .gc-public-section-title > small {
-    font-size: 7.5px;
+  .gc-how-reference-title h2 {
+    max-width: 360px;
+    font-size: clamp(31px, 9vw, 38px);
+    line-height: 1.09;
   }
 
-  .gc-how-pro .gc-public-section-title > h2 {
-    margin-top: 8px;
-    font-size: 30px;
+  .gc-how-reference-steps {
+    gap: 60px;
+    margin-top: 38px;
   }
 
-  .gc-how-pro .gc-public-section-title > p {
-    max-width: 340px;
-    margin-top: 10px;
-    font-size: 9.5px;
+  .gc-reference-step-head {
+    grid-template-columns: 64px minmax(0, 1fr);
+    gap: 14px;
+    margin-bottom: 19px;
+    padding: 0 6px;
   }
 
-  .gc-how-trust {
-    margin-top: 16px;
-    gap: 5px;
+  .gc-reference-step-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 17px;
   }
 
-  .gc-how-trust > span {
-    min-height: 52px;
-    padding: 6px 4px;
-    display: grid;
-    place-items: center;
-    align-content: center;
-    gap: 4px;
-    text-align: center;
+  .gc-reference-step-icon svg {
+    width: 34px;
+    height: 34px;
   }
 
-  .gc-how-trust svg {
-    width: 15px;
-    height: 15px;
+  .gc-reference-step-head h3,
+  .gc-reference-centered-copy h3 {
+    font-size: clamp(23px, 6.7vw, 29px);
   }
 
-  .gc-how-trust b {
-    font-size: 6.8px;
+  .gc-reference-step-head p,
+  .gc-reference-centered-copy p {
+    margin-top: 7px;
+    font-size: 11px;
+    line-height: 1.48;
   }
 
-  .gc-how-pro .gc-how-stack {
-    margin-top: 12px;
-    gap: 12px;
-  }
-
-  .gc-how-pro .gc-how-stack > article {
-    padding: 16px 13px;
-    grid-template-columns: 44px minmax(0, 1fr);
-    gap: 11px;
-    border-radius: 18px;
-  }
-
-  .gc-how-pro .gc-step-icon {
-    width: 43px;
-    height: 43px;
-    border-radius: 12px;
-  }
-
-  .gc-how-pro .gc-step-icon svg {
-    width: 22px;
-    height: 22px;
-  }
-
-  .gc-how-pro .gc-step-copy > small {
-    min-height: 21px;
-    padding: 0 7px;
-    font-size: 6px;
-  }
-
-  .gc-how-pro .gc-step-copy h3 {
-    margin: 8px 0 6px;
-    font-size: 17px;
-  }
-
-  .gc-how-pro .gc-step-copy p {
-    max-width: none;
-    font-size: 9px;
-    line-height: 1.52;
-  }
-
-  .gc-how-pro .gc-step-games-pro {
-    min-height: 0;
-    padding: 8px;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .gc-reference-game-board {
+    width: calc(100% - 4px);
+    padding: 7px;
     gap: 6px;
-    border-radius: 14px;
+    border-radius: 17px;
+    transform: perspective(900px) rotateX(0.8deg) rotateZ(-0.45deg);
   }
 
-  .gc-how-pro .gc-step-games-pro .gc-mini-game {
+  .gc-reference-game-card {
     border-radius: 9px;
   }
 
-  .gc-how-pro .gc-step-games-pro .gc-mini-game > img {
-    height: 69px;
+  .gc-reference-game-card > img {
+    height: 62px;
   }
 
-  .gc-how-pro .gc-step-games-pro .gc-mini-game > span {
-    padding: 7px;
+  .gc-reference-game-card > span {
+    min-height: 56px;
+    padding: 6px 23px 7px 6px;
+    gap: 2px;
   }
 
-  .gc-how-pro .gc-step-games-pro .gc-mini-game b {
+  .gc-reference-game-card b {
+    font-size: 7.5px;
+  }
+
+  .gc-reference-game-card small {
+    font-size: 5.7px;
+  }
+
+  .gc-reference-game-card em {
+    font-size: 7.5px;
+  }
+
+  .gc-reference-game-card > i {
+    right: 5px;
+    bottom: 8px;
+    width: 17px;
+    height: 17px;
+    border-width: 1px;
     font-size: 7px;
   }
 
-  .gc-how-pro .gc-step-games-pro .gc-mini-game small {
-    font-size: 5.8px;
+  .gc-reference-step-games::before {
+    left: -30px;
+    top: 94px;
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
   }
 
-  .gc-how-pro .gc-verify-demo {
-    min-height: 0;
-    padding: 10px;
-    grid-template-columns: 1fr;
-    gap: 8px;
+  .gc-reference-centered-copy {
+    margin-bottom: 18px;
+    padding: 0 8px;
+  }
+
+  .gc-reference-complete-card {
+    width: calc(100% - 8px);
+    padding: 9px;
+    border-radius: 21px;
+  }
+
+  .gc-reference-complete-card > img {
+    aspect-ratio: 16 / 9.4;
     border-radius: 14px;
   }
 
-  .gc-verify-seal {
-    min-height: 55px;
-    padding: 8px 11px;
-    flex-direction: row;
-    justify-content: flex-start;
-    gap: 10px;
-    text-align: left;
+  .gc-reference-stars {
+    min-height: 46px;
+    font-size: 24px;
+    letter-spacing: 4px;
   }
 
-  .gc-verify-seal > svg {
-    width: 37px;
-    height: 37px;
-    padding: 8px;
-  }
-
-  .gc-verify-rows {
-    gap: 6px;
-  }
-
-  .gc-verify-rows > span {
-    min-height: 43px;
-    grid-template-columns: 23px minmax(0, 1fr) auto;
-    padding: 7px 9px;
-    gap: 7px;
-  }
-
-  .gc-verify-rows svg {
-    width: 22px;
-    height: 22px;
-  }
-
-  .gc-verify-rows b {
-    font-size: 7.5px;
-  }
-
-  .gc-verify-rows em {
-    font-size: 6.3px;
-  }
-
-  .gc-how-pro .gc-wallet-demo {
-    min-height: 0;
-    padding: 12px;
-    border-radius: 14px;
-  }
-
-  .gc-wallet-demo-head {
-    min-height: 47px;
+  .gc-reference-result {
+    min-height: 61px;
+    padding: 8px 10px;
     grid-template-columns: 35px minmax(0, 1fr) auto;
     gap: 8px;
+    border-radius: 12px;
   }
 
-  .gc-wallet-demo-head > span {
-    width: 31px;
-    height: 31px;
-    border-radius: 9px;
+  .gc-reference-result > span {
+    width: 33px;
+    height: 33px;
+    border-radius: 8px;
+    font-size: 16px;
   }
 
-  .gc-wallet-demo-head svg {
-    width: 17px;
-    height: 17px;
+  .gc-reference-result > strong {
+    font-size: clamp(20px, 6vw, 26px);
   }
 
-  .gc-wallet-demo-head b {
+  .gc-reference-result > b {
     font-size: 8px;
   }
 
-  .gc-wallet-demo > .gc-wallet-methods {
-    margin-top: 9px;
-    grid-template-columns: 1fr 1fr;
-    gap: 6px;
+  .gc-reference-step-cashout .gc-reference-step-head {
+    grid-template-columns: 66px minmax(0, 1fr);
   }
 
-  .gc-wallet-demo > .gc-wallet-methods > span {
-    min-height: 51px;
+  .gc-reference-step-cashout .gc-reference-step-icon {
+    width: 62px;
+    height: 62px;
+  }
+
+  .gc-reference-phone {
+    width: calc(100% - 24px);
+    padding: 42px 13px 15px;
+    border-width: 2px;
+    border-radius: 38px 38px 27px 27px;
+  }
+
+  .gc-reference-phone-notch {
+    top: 9px;
+    width: 82px;
+    height: 16px;
+  }
+
+  .gc-reference-phone > header {
+    min-height: 35px;
+    grid-template-columns: 25px 1fr auto;
+  }
+
+  .gc-reference-phone > header > span {
+    font-size: 23px;
+  }
+
+  .gc-reference-phone > header > b {
+    font-size: 12px;
+  }
+
+  .gc-reference-phone > header > small {
+    font-size: 5.8px;
+  }
+
+  .gc-reference-phone > h4 {
+    margin: 14px 0 10px;
+    font-size: 14px;
+  }
+
+  .gc-reference-methods {
+    gap: 7px;
+  }
+
+  .gc-reference-methods > span {
+    min-height: 93px;
+    padding: 9px 5px 8px;
+    gap: 5px;
+    border-radius: 10px;
+  }
+
+  .gc-reference-methods i {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+  }
+
+  .gc-reference-methods b {
+    font-size: 8.5px;
+  }
+
+  .gc-reference-methods small {
+    font-size: 5.7px;
+  }
+
+  .gc-reference-security {
+    width: calc(100% - 10px);
+    min-height: 40px;
+    margin-top: 14px;
     padding: 8px;
+    border-radius: 12px;
+    font-size: 8px;
+    text-align: center;
   }
 
-  .gc-wallet-demo-note {
-    min-height: 32px;
-    margin-top: 8px;
-    padding: 0 7px;
-  }
-
-  .gc-wallet-demo-note small {
-    font-size: 6.3px;
+  .gc-reference-security svg {
+    width: 17px;
+    height: 17px;
+    flex: 0 0 17px;
   }
 }
 
 @media (max-width: 390px) {
-  .gc-how-pro .gc-public-section-title > h2 {
-    font-size: 27px;
+  .gc-how-reference-title h2 {
+    font-size: 30px;
   }
 
-  .gc-how-trust b {
-    font-size: 6.2px;
+  .gc-reference-step-head h3,
+  .gc-reference-centered-copy h3 {
+    font-size: 22px;
   }
 
-  .gc-how-pro .gc-step-games-pro .gc-mini-game > img {
-    height: 61px;
+  .gc-reference-game-card > img {
+    height: 56px;
+  }
+
+  .gc-reference-game-card > span {
+    min-height: 52px;
+  }
+
+  .gc-reference-result > b {
+    max-width: 85px;
+    white-space: normal;
+    text-align: right;
   }
 }

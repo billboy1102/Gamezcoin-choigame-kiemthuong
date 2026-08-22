@@ -151,17 +151,22 @@ function landingMarkup() {
       <div class="gc-stat-card"><span>🪙</span><div><strong>Coin lưu trên server</strong><p>Số dư đồng bộ theo tài khoản thay vì chỉ lưu trên trình duyệt.</p></div></div>
     </section>
 
-    <section class="gc-public-how gc-how-pro" id="gc-how">
-      <div class="gc-public-section-title"><small>QUY TRÌNH 3 BƯỚC MINH BẠCH</small><h2>Từ lượt chơi hợp lệ<br><em>đến số dư trong tài khoản</em></h2><p>Mỗi bước đều có điều kiện và trạng thái rõ ràng để bạn chủ động kiểm tra.</p></div>
-      <div class="gc-how-trust">
-        <span>${gameIcon}<b>Điều kiện hiển thị trước</b></span>
-        <span>${shieldIcon}<b>Phiên chơi xác minh</b></span>
-        <span>${walletIcon}<b>Dữ liệu theo tài khoản</b></span>
-      </div>
-      <div class="gc-how-stack">
-        <article><span class="gc-step-icon">${gameIcon}</span><div class="gc-step-copy"><small>BƯỚC 01</small><h3>Chọn game và xem điều kiện</h3><p>Trạng thái phát hành, cách tính điểm và điều kiện ghi nhận được hiển thị trước khi bạn bắt đầu.</p></div><div class="gc-step-visual gc-step-games gc-step-games-pro">${virtualGames.slice(0,3).map(([name, , image]) => `<span class="gc-mini-game"><img src="${gameArtUrl(image)}" alt="" width="960" height="540" loading="lazy" decoding="async" draggable="false"><span><b>${name}</b><small>Xem điều kiện</small></span></span>`).join('')}</div></article>
-        <article><span class="gc-step-icon">${shieldIcon}</span><div class="gc-step-copy"><small>BƯỚC 02</small><h3>Hoàn thành phiên chơi hợp lệ</h3><p>Coin chỉ được cập nhật sau khi ván kết thúc đúng quy trình và máy chủ xác minh phiên chơi thành công.</p></div><div class="gc-complete-demo gc-verify-demo"><div class="gc-verify-seal">${shieldIcon}<span><small>TRẠNG THÁI PHIÊN</small><b>Được máy chủ xác minh</b></span></div><div class="gc-verify-rows"><span>${gameIcon}<b>Ván chơi kết thúc</b><em>Đã ghi nhận</em></span><span>${checkIcon}<b>Máy chủ đối chiếu</b><em>Hợp lệ</em></span><span>${walletIcon}<b>Cập nhật số coin</b><em>Trong tài khoản</em></span></div></div></article>
-        <article id="gc-cashout"><span class="gc-step-icon">${walletIcon}</span><div class="gc-step-copy"><small>BƯỚC 03</small><h3>Theo dõi coin và yêu cầu rút</h3><p>Số dư gắn với tài khoản. Trong Ví, bạn chọn phương thức đang hỗ trợ và theo dõi trạng thái xử lý.</p></div><div class="gc-cashout-phone gc-wallet-demo"><header class="gc-wallet-demo-head"><span>${walletIcon}</span><div><small>VÍ GAMEZCOIN</small><b>Dữ liệu theo tài khoản</b></div><em>SERVER</em></header><div class="gc-wallet-methods"><span><b>MoMo</b><i>Đang hỗ trợ</i></span><span><b>Ngân hàng</b><i>Đang hỗ trợ</i></span><span><b>PayPal</b><i>Sắp hỗ trợ</i></span><span><b>ZaloPay</b><i>Sắp hỗ trợ</i></span></div><footer class="gc-wallet-demo-note">${shieldIcon}<small>Có trạng thái xử lý · Không hiển thị giao dịch mẫu</small></footer></div></article>
+    <section class="gc-public-how gc-how-reference" id="gc-how">
+      <div class="gc-how-reference-title"><h2>Bạn muốn kiếm tiền<br>từ game? <em>Đây là cách</em></h2></div>
+      <div class="gc-how-reference-steps">
+        <article class="gc-reference-step gc-reference-step-games">
+          <div class="gc-reference-step-head"><span class="gc-reference-step-icon">${gameIcon}</span><div><h3><em>1.</em> Chọn một game kiếm tiền</h3><p>Duyệt qua nhiều game hấp dẫn và chọn trò chơi phù hợp với bạn.</p></div></div>
+          <div class="gc-reference-game-board">${virtualGames.map(([name, , image, amount]) => `<span class="gc-reference-game-card"><img src="${gameArtUrl(image)}" alt="" width="960" height="540" loading="lazy" decoding="async" draggable="false"><span><b>${name}</b><small>Chơi & kiếm tiền</small><em>${amount}</em></span><i>G</i></span>`).join('')}</div>
+        </article>
+        <article class="gc-reference-step gc-reference-step-complete">
+          <div class="gc-reference-centered-copy"><h3><em>2.</em> Hoàn thành game</h3><p>Mỗi game có mục tiêu cụ thể. Hoàn thành <b>đúng điều kiện</b> để hệ thống ghi nhận kết quả.</p></div>
+          <div class="gc-reference-complete-card"><img src="${gameArtUrl('dragon-merge-3d.webp')}" alt="" width="960" height="540" loading="lazy" decoding="async" draggable="false"><div class="gc-reference-stars" aria-label="5 sao">★★★★★</div><div class="gc-reference-result"><span>G</span><strong>250.000đ</strong><b>Hoàn thành mục tiêu</b></div></div>
+        </article>
+        <article class="gc-reference-step gc-reference-step-cashout" id="gc-cashout">
+          <div class="gc-reference-step-head"><span class="gc-reference-step-icon">${walletIcon}</span><div><h3><em>3.</em> Nhận tiền</h3><p>Gửi yêu cầu rút qua phương thức đang hỗ trợ và theo dõi trạng thái ngay trong tài khoản.</p></div></div>
+          <div class="gc-reference-phone"><i class="gc-reference-phone-notch"></i><header><span>‹</span><b>Rút tiền</b><small>${shieldIcon} An toàn</small></header><h4>Chọn phương thức rút tiền</h4><div class="gc-reference-methods"><span class="is-active"><i class="gc-pay-momo">momo</i><b>MoMo</b><small>${checkIcon} Đang hỗ trợ</small></span><span><i class="gc-pay-zalo">ZaloPay</i><b>ZaloPay</b><small>Sắp hỗ trợ</small></span><span class="is-active"><i class="gc-pay-bank">▥</i><b>Chuyển khoản<br>ngân hàng</b><small>${checkIcon} Đang hỗ trợ</small></span><span><i class="gc-pay-paypal">P</i><b>PayPal</b><small>Sắp hỗ trợ</small></span><span><i class="gc-pay-play">▶</i><b>Google Play</b><small>Sắp hỗ trợ</small></span><span><i class="gc-pay-phone">▣</i><b>Thẻ điện thoại</b><small>Sắp hỗ trợ</small></span></div></div>
+          <div class="gc-reference-security">${shieldIcon}<span>Dữ liệu theo tài khoản · Trạng thái xử lý rõ ràng</span></div>
+        </article>
       </div>
     </section>
 
