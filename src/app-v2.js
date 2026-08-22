@@ -1,11 +1,16 @@
 import './styles.css'
 import './app-v2.css'
 import { supabase, api, adminApi } from './api.js'
+import { SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY } from './config.js'
+import { getLanguage, translate } from './landing-i18n.js'
 
 const root = document.querySelector('#app')
 const toasts = document.querySelector('#toast-root')
-const numberFmt = new Intl.NumberFormat('vi-VN')
+const language = getLanguage()
+const t = (key, variables) => translate(key, variables, language)
+const numberFmt = new Intl.NumberFormat(language === 'en' ? 'en-US' : 'vi-VN')
 const state = { data: null, tab: 'games', mode: 'login', block: null }
+let oauthProviderSettingsPromise = null
 
 const f = (n) => numberFmt.format(Number(n || 0))
 const e = (v) => String(v ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]))
@@ -26,6 +31,23 @@ function isIOSDevice() {
 
 const oauthProviderNames = { google: 'Google', facebook: 'Facebook', apple: 'Apple' }
 
+async function getOAuthProviderSettings() {
+  if (!oauthProviderSettingsPromise) {
+    oauthProviderSettingsPromise = fetch(`${SUPABASE_URL}/auth/v1/settings`, {
+      headers: { apikey: SUPABASE_PUBLISHABLE_KEY },
+      cache: 'no-store'
+    }).then(async (response) => {
+      if (!response.ok) throw new Error('PROVIDER_SETTINGS_UNAVAILABLE')
+      const settings = await response.json()
+      return settings.external || {}
+    }).catch((error) => {
+      oauthProviderSettingsPromise = null
+      throw error
+    })
+  }
+  return oauthProviderSettingsPromise
+}
+
 function toast(message, type = '') {
   const node = document.createElement('div')
   node.className = `toast ${type}`
@@ -37,9 +59,9 @@ function toast(message, type = '') {
 
 function friendly(message = '') {
   const map = {
-    'Invalid login credentials': 'Email hoặc mật khẩu không đúng.',
-    'Email not confirmed': 'Hãy xác nhận email trước khi đăng nhập.',
-    'provider is not enabled': 'Phương thức đăng nhập này chưa được bật trên hệ thống.',
+    'Invalid login credentials': t('auth.invalidCredentials'),
+    'Email not confirmed': t('auth.emailNotConfirmed'),
+    'provider is not enabled': t('auth.socialUnavailable'),
     TOO_FAST: 'Phiên chơi quá nhanh nên không được cộng coin.',
     IMPOSSIBLE_SCORE: 'Điểm vượt ngưỡng hợp lý nên bị từ chối.',
     SESSION_EXPIRED: 'Phiên chơi đã hết hạn.',
@@ -49,7 +71,7 @@ function friendly(message = '') {
     TOO_MANY_SESSIONS: 'Bạn đang mở quá nhiều phiên game.',
     SERVER_TIMEOUT: 'Máy chủ phản hồi quá lâu. Hãy thử lại.'
   }
-  return map[message] || message || 'Có lỗi xảy ra.'
+  return map[message] || message || t('auth.genericError')
 }
 
 async function load(action = 'bootstrap', draw = true) {
@@ -64,26 +86,26 @@ function renderAuth() {
     <main class="auth">
       <section class="brand">
         <div class="coin">G</div>
-        <div><h1>Gamezcoin</h1><p>Chơi Game & Kiếm Thưởng</p></div>
+        <div><h1>Gamezcoin</h1><p>${t('auth.brandTagline')}</p></div>
       </section>
       <section class="card authbox">
         <div class="switch">
-          <button data-mode="login" class="${login ? 'on' : ''}">Đăng nhập</button>
-          <button data-mode="signup" class="${login ? '' : 'on'}">Đăng ký</button>
+          <button data-mode="login" class="${login ? 'on' : ''}">${t('common.signIn')}</button>
+          <button data-mode="signup" class="${login ? '' : 'on'}">${t('common.signUp')}</button>
         </div>
         <form id="auth-form">
-          ${login ? '' : '<label>Tên hiển thị<input name="name" minlength="2" maxlength="40" required></label>'}
-          <label>Email<input name="email" type="email" required></label>
-          <label>Mật khẩu<input name="password" type="password" minlength="6" required></label>
-          ${login ? '' : '<label>Mã giới thiệu (không bắt buộc)<input name="ref" maxlength="16"></label>'}
-          <button class="primary" type="submit">${login ? 'Đăng nhập' : 'Tạo tài khoản'}</button>
+          ${login ? '' : `<label>${t('auth.displayName')}<input name="name" minlength="2" maxlength="40" required></label>`}
+          <label>${t('auth.email')}<input name="email" type="email" required></label>
+          <label>${t('auth.password')}<input name="password" type="password" minlength="6" required></label>
+          ${login ? '' : `<label>${t('auth.referral')}<input name="ref" maxlength="16"></label>`}
+          <button class="primary" type="submit">${login ? t('common.signIn') : t('auth.createAccount')}</button>
         </form>
         <div class="auth-social" data-auth-social>
-          <button type="button" id="google-login" class="google" data-oauth-provider="google">Tiếp tục với Google</button>
-          <button type="button" id="facebook-login" data-oauth-provider="facebook">Tiếp tục với Facebook</button>
-          ${isIOSDevice() ? '<button type="button" id="apple-login" data-oauth-provider="apple">Tiếp tục với Apple</button>' : ''}
+          <button type="button" id="google-login" class="google" data-oauth-provider="google">${t('auth.continueGoogle')}</button>
+          <button type="button" id="facebook-login" data-oauth-provider="facebook">${t('auth.continueFacebook')}</button>
+          ${isIOSDevice() ? `<button type="button" id="apple-login" data-oauth-provider="apple">${t('auth.continueApple')}</button>` : ''}
         </div>
-        <small>Tài khoản và coin được lưu trên server, dùng chung giữa nhiều thiết bị.</small>
+        <small>${t('auth.serverNote')}</small>
       </section>
     </main>`
 
@@ -113,7 +135,7 @@ function renderAuth() {
         })
         if (result.error) throw result.error
         if (!result.data.session) {
-          toast('Đã đăng ký. Hãy xác nhận email rồi đăng nhập.', 'ok')
+          toast(t('auth.signupConfirmation'), 'ok')
           state.mode = 'login'
           renderAuth()
         }
@@ -130,15 +152,31 @@ function renderAuth() {
       button.disabled = true
       button.setAttribute('aria-busy', 'true')
       try {
+        let providerSettings
+        try {
+          providerSettings = await getOAuthProviderSettings()
+        } catch {
+          const error = new Error('PROVIDER_SETTINGS_UNAVAILABLE')
+          error.code = 'PROVIDER_SETTINGS_UNAVAILABLE'
+          throw error
+        }
+        if (providerSettings[provider] !== true) {
+          const error = new Error('provider is not enabled')
+          error.code = 'PROVIDER_DISABLED'
+          throw error
+        }
         const { error } = await supabase.auth.signInWithOAuth({
           provider,
           options: { redirectTo: authRedirectUrl() }
         })
         if (error) throw error
       } catch (error) {
-        const message = /provider is not enabled/i.test(error?.message || '')
-          ? `${providerName} chưa được kích hoạt trên hệ thống. Vui lòng thử phương thức khác.`
-          : friendly(error?.message)
+        const message = error?.code === 'PROVIDER_SETTINGS_UNAVAILABLE'
+          ? t('auth.providerCheckFailed')
+          : error?.code === 'PROVIDER_DISABLED' || /provider is not enabled/i.test(error?.message || '')
+            ? t('auth.providerUnavailable', { provider: providerName })
+            : friendly(error?.message)
+        window.dispatchEvent(new CustomEvent('gamezcoin:oauth-error', { detail: { provider, message } }))
         toast(message, 'bad')
         button.disabled = false
         button.removeAttribute('aria-busy')

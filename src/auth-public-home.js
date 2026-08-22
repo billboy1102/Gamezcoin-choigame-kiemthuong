@@ -6,12 +6,19 @@ import './landing-hero-metrics.css'
 import './landing-faq-final-cta.css'
 import './landing-footer-pages.css'
 import './landing-brand-refresh.css'
+import './landing-hero-language.css'
 import { finalBannerImageUrl } from './final-cta-reference.js'
 import { supabase } from './api.js'
+import { getLanguage, setLanguage, translate } from './landing-i18n.js'
 
 const app = document.querySelector('#app')
+const language = getLanguage()
+const t = (key, variables) => translate(key, variables, language)
 let requestedMode = null
 let queued = false
+
+document.title = t('page.title')
+document.querySelector('meta[name="description"]')?.setAttribute('content', t('page.description'))
 
 const gameArtUrl = (file) => `${import.meta.env.BASE_URL}assets/games/${file}`
 const paymentAssetUrl = (file) => `${import.meta.env.BASE_URL}assets/payments/${file}`
@@ -56,8 +63,8 @@ function virtualGameCards() {
       </div>
       <div class="gc-virtual-copy">
         <strong>${name}</strong>
-        <span>Chơi & kiếm tiền</span>
-        <small>Lên đến ${amount}</small>
+        <span>${t('games.playEarn')}</span>
+        <small>${t('games.upTo', { amount })}</small>
       </div>
       <span class="gc-virtual-arrow">›</span>
     </article>`).join('')
@@ -77,146 +84,142 @@ function setAuthMessage(box, message, kind = '') {
 async function resetPassword(box) {
   const email = String(box.querySelector('input[name="email"]')?.value || '').trim()
   if (!email) {
-    setAuthMessage(box, 'Nhập email của bạn trước để đặt lại mật khẩu.', 'bad')
+    setAuthMessage(box, t('auth.resetEnterEmail'), 'bad')
     box.querySelector('input[name="email"]')?.focus()
     return
   }
-  setAuthMessage(box, 'Đang gửi liên kết đặt lại mật khẩu…')
+  setAuthMessage(box, t('auth.resetSending'))
   const redirectUrl = new URL(import.meta.env.BASE_URL, window.location.href)
   redirectUrl.search = ''
   redirectUrl.hash = ''
   const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: redirectUrl.href })
   if (error) {
-    setAuthMessage(box, error.message || 'Không thể gửi email đặt lại mật khẩu.', 'bad')
+    setAuthMessage(box, error.message || t('auth.resetFailed'), 'bad')
     return
   }
-  setAuthMessage(box, 'Đã gửi liên kết đặt lại mật khẩu vào email của bạn.', 'ok')
+  setAuthMessage(box, t('auth.resetSent'), 'ok')
 }
 
 function landingMarkup() {
   return `<div class="gc-public-home">
     <header class="gc-public-header">
-      <a class="gc-public-logo" href="${import.meta.env.BASE_URL}" data-public-reload aria-label="Tải lại trang Gamezcoin">
+      <a class="gc-public-logo" href="${import.meta.env.BASE_URL}" data-public-reload aria-label="${t('page.title')}">
         <span class="gc-public-logo-mark"><img src="${publicAssetUrl('gamezcoin-logo.png')}" alt="" width="256" height="253" decoding="async" fetchpriority="high"></span>
         <strong>GAMEZCOIN</strong>
       </a>
-      <nav class="gc-public-desktop-links" aria-label="Điều hướng giới thiệu">
-        <a href="#gc-games">Game</a><a href="#gc-proof">Uy tín</a><a href="#gc-how">Cách chơi</a><a href="#gc-cashout">Rút tiền</a>
-      </nav>
       <div class="gc-public-header-actions">
-        <span class="gc-public-language" title="Tiếng Việt">${globeIcon}<small>VI</small></span>
-        <button type="button" class="gc-public-signin" data-public-auth="login">Đăng nhập</button>
-        <button type="button" class="gc-public-signup" data-public-auth="signup">Đăng ký</button>
+        <div class="gc-language-picker">
+          <button type="button" class="gc-public-language" data-language-toggle aria-haspopup="menu" aria-expanded="false" aria-label="${t('language.select')}">${globeIcon}<small>${language.toUpperCase()}</small><span class="gc-language-caret">⌄</span></button>
+          <div class="gc-language-menu" data-language-menu role="menu" hidden>
+            <button type="button" role="menuitem" data-language="vi" class="${language === 'vi' ? 'is-current' : ''}"><span>VI</span><b>${t('language.vietnamese')}</b></button>
+            <button type="button" role="menuitem" data-language="en" class="${language === 'en' ? 'is-current' : ''}"><span>EN</span><b>${t('language.english')}</b></button>
+          </div>
+        </div>
+        <button type="button" class="gc-public-signin" data-public-auth="login">${t('common.signIn')}</button>
+        <button type="button" class="gc-public-signup" data-public-auth="signup">${t('common.signUp')}</button>
       </div>
     </header>
 
     <section class="gc-public-hero">
       <div class="gc-public-hero-copy">
-        <span class="gc-public-eyebrow">GAMEZCOIN • Chơi game & Kiếm tiền</span>
-        <h1>Chơi game &<br><em>kiếm tiền</em></h1>
-        <p>Chơi game, kiếm tiền thật và rút thưởng uy tín, nhanh chóng về ví của bạn</p>
+        <span class="gc-public-eyebrow">${t('hero.eyebrow')}</span>
+        <h1>${t('hero.titleTop')}<br><em>${t('hero.titleAccent')}</em></h1>
+        <p>${t('hero.description')}</p>
         <div class="gc-public-hero-cta">
-          <button type="button" class="gc-hero-explore" data-public-auth="signup">Bắt đầu kiếm tiền ${arrowIcon}</button>
-          <button type="button" class="secondary" data-public-auth="login">Đăng nhập</button>
+          <button type="button" class="gc-hero-explore" data-public-auth="signup">${t('hero.start')} ${arrowIcon}</button>
+          <button type="button" class="secondary" data-public-auth="login">${t('common.signIn')}</button>
         </div>
         <div class="gc-public-hero-meta">
-          <span><i class="gc-hero-metric-icon gc-metric-star" aria-hidden="true">★</i><b><strong>4.8/5</strong><small>Đánh giá</small></b></span>
-          <span><i class="gc-hero-metric-icon gc-metric-users" aria-hidden="true">${usersMetricIcon}</i><b><strong>100.000+</strong><small>Người dùng thật</small></b></span>
-          <span><i class="gc-hero-metric-icon gc-metric-bolt" aria-hidden="true">${boltIcon}</i><b><strong>Thanh toán</strong><small>Nhanh chóng</small></b></span>
+          <span><i class="gc-hero-metric-icon gc-metric-star" aria-hidden="true">★</i><b><strong>4.8/5</strong><small>${t('hero.rating')}</small></b></span>
+          <span><i class="gc-hero-metric-icon gc-metric-users" aria-hidden="true">${usersMetricIcon}</i><b><strong>100.000+</strong><small>${t('hero.realUsers')}</small></b></span>
+          <span><i class="gc-hero-metric-icon gc-metric-bolt" aria-hidden="true">${boltIcon}</i><b><strong>${t('hero.payment')}</strong><small>${t('hero.fast')}</small></b></span>
         </div>
       </div>
       <div class="gc-public-hero-art" aria-hidden="true">
-        <div class="gc-hero-visual">
-          <div class="gc-hero-ring"></div>
-          <article class="gc-hero-feature-card">
-            <img src="${gameArtUrl('galaxy-match-3d.webp')}" alt="" width="960" height="540" decoding="async" fetchpriority="high" draggable="false">
-            <span>12 GAME 3D</span>
-            <div><small>BỘ SƯU TẬP GAMEZCOIN</small><strong>Thế giới game mới đang chờ bạn</strong></div>
-          </article>
-          <article class="gc-hero-mini-card gc-hero-mini-one"><img src="${gameArtUrl('dragon-merge-3d.webp')}" alt="" width="960" height="540" decoding="async" draggable="false"><b>Dragon Merge</b></article>
-          <article class="gc-hero-mini-card gc-hero-mini-two"><img src="${gameArtUrl('candy-merge-3d.webp')}" alt="" width="960" height="540" decoding="async" draggable="false"><b>Candy Merge</b></article>
+        <div class="gc-hero-promo-visual">
+          <img class="gc-hero-promo-image" src="${publicAssetUrl('gamezcoin-hero-rewards.jpeg')}" alt="" width="1254" height="1254" decoding="async" fetchpriority="high" draggable="false">
         </div>
       </div>
     </section>
 
     <section class="gc-public-virtual-games" id="gc-games">
-      <div class="gc-public-section-title"><h2>NHIỀU GAME<br><em>ĐANG ĐỢI BẠN CHƠI</em></h2><p>Hàng trăm game hot - Kiếm tiền thật dễ dàng</p></div>
+      <div class="gc-public-section-title"><h2>${t('games.titleTop')}<br><em>${t('games.titleAccent')}</em></h2><p>${t('games.description')}</p></div>
       <div class="gc-virtual-grid">${virtualGameCards()}</div>
-      <button class="gc-more-games" type="button" data-public-auth="signup">Đăng ký để chơi game & kiếm tiền ${arrowIcon}</button>
+      <button class="gc-more-games" type="button" data-public-auth="signup">${t('games.signupCta')} ${arrowIcon}</button>
     </section>
 
     <section class="gc-public-proof gc-proof-reference" id="gc-proof">
-      <h2>Vì sao người chơi tin dùng Gamezcoin</h2>
+      <h2>${t('trust.title')}</h2>
       <div class="gc-proof-reference-grid">
-        <article><span class="gc-proof-reference-icon">${boltIcon}</span><div><strong>Rút tiền nhanh</strong><p>Xử lý tự động 24/7, nhanh chóng chỉ từ 1 – 10 phút</p></div></article>
-        <article><span class="gc-proof-reference-icon">${shieldIcon}</span><div><strong>Minh bạch</strong><p>Công khai lịch sử thanh toán, minh bạch số liệu, không phí ẩn</p></div></article>
-        <article><span class="gc-proof-reference-icon">${lockIcon}</span><div><strong>Bảo mật</strong><p>Bảo mật nhiều lớp, đảm bảo an toàn tuyệt đối cho tài khoản của bạn</p></div></article>
-        <article><span class="gc-proof-reference-icon">${gameIcon}</span><div><strong>Game hot mỗi ngày</strong><p>Cập nhật hàng trăm game mới, nhiều ưu đãi, phần thưởng hấp dẫn mỗi ngày</p></div></article>
+        <article><span class="gc-proof-reference-icon">${boltIcon}</span><div><strong>${t('trust.fastTitle')}</strong><p>${t('trust.fastBody')}</p></div></article>
+        <article><span class="gc-proof-reference-icon">${shieldIcon}</span><div><strong>${t('trust.transparentTitle')}</strong><p>${t('trust.transparentBody')}</p></div></article>
+        <article><span class="gc-proof-reference-icon">${lockIcon}</span><div><strong>${t('trust.secureTitle')}</strong><p>${t('trust.secureBody')}</p></div></article>
+        <article><span class="gc-proof-reference-icon">${gameIcon}</span><div><strong>${t('trust.gamesTitle')}</strong><p>${t('trust.gamesBody')}</p></div></article>
       </div>
     </section>
 
     <section class="gc-public-how gc-how-reference" id="gc-how">
-      <div class="gc-how-reference-title"><h2>Bạn muốn kiếm tiền<br>từ game? <em>Đây là cách</em></h2></div>
+      <div class="gc-how-reference-title"><h2>${t('how.titleTop')}<br>${t('how.titleMiddle')} <em>${t('how.titleAccent')}</em></h2></div>
       <div class="gc-how-reference-steps">
         <article class="gc-reference-step gc-reference-step-games">
-          <div class="gc-reference-step-head"><span class="gc-reference-step-icon">${gameIcon}</span><div><h3><em>1.</em> Chọn một game kiếm tiền</h3><p>Duyệt qua nhiều game hấp dẫn và chọn trò chơi phù hợp với bạn.</p></div></div>
-          <div class="gc-reference-game-board">${virtualGames.map(([name, , image, amount]) => `<span class="gc-reference-game-card"><img src="${gameArtUrl(image)}" alt="" width="960" height="540" loading="lazy" decoding="async" draggable="false"><span><b>${name}</b><small>Chơi & kiếm tiền</small><em>${amount}</em></span><i>G</i></span>`).join('')}</div>
+          <div class="gc-reference-step-head"><span class="gc-reference-step-icon">${gameIcon}</span><div><h3><em>1.</em> ${t('how.step1Title')}</h3><p>${t('how.step1Body')}</p></div></div>
+          <div class="gc-reference-game-board">${virtualGames.map(([name, , image, amount]) => `<span class="gc-reference-game-card"><img src="${gameArtUrl(image)}" alt="" width="960" height="540" loading="lazy" decoding="async" draggable="false"><span><b>${name}</b><small>${t('games.playEarn')}</small><em>${amount}</em></span><i>G</i></span>`).join('')}</div>
         </article>
         <article class="gc-reference-step gc-reference-step-complete">
-          <div class="gc-reference-centered-copy"><h3><em>2.</em> Hoàn thành game</h3><p>Mỗi game có mục tiêu cụ thể. Hoàn thành <b>đúng điều kiện</b> để hệ thống ghi nhận kết quả.</p></div>
-          <div class="gc-reference-complete-card"><img src="${gameArtUrl('dragon-merge-3d.webp')}" alt="" width="960" height="540" loading="lazy" decoding="async" draggable="false"><div class="gc-reference-stars" aria-label="5 sao">★★★★★</div><div class="gc-reference-result"><span>G</span><strong>250.000đ</strong><b>Hoàn thành mục tiêu</b></div></div>
+          <div class="gc-reference-centered-copy"><h3><em>2.</em> ${t('how.step2Title')}</h3><p>${t('how.step2Before')} <b>${t('how.step2Condition')}</b> ${t('how.step2After')}</p></div>
+          <div class="gc-reference-complete-card"><img src="${gameArtUrl('dragon-merge-3d.webp')}" alt="" width="960" height="540" loading="lazy" decoding="async" draggable="false"><div class="gc-reference-stars" aria-label="5">★★★★★</div><div class="gc-reference-result"><span>G</span><strong>250.000đ</strong><b>${t('how.goalComplete')}</b></div></div>
         </article>
         <article class="gc-reference-step gc-reference-step-cashout" id="gc-cashout">
-          <div class="gc-reference-step-head"><span class="gc-reference-step-icon">${walletIcon}</span><div><h3><em>3.</em> Nhận tiền</h3><p>Gửi yêu cầu rút qua phương thức đang hỗ trợ và theo dõi trạng thái ngay trong tài khoản.</p></div></div>
+          <div class="gc-reference-step-head"><span class="gc-reference-step-icon">${walletIcon}</span><div><h3><em>3.</em> ${t('how.step3Title')}</h3><p>${t('how.step3Body')}</p></div></div>
           <div class="gc-reference-phone">
             <i class="gc-reference-phone-notch"></i>
-            <header><span>‹</span><b>Rút tiền</b><small>${shieldIcon} An toàn</small></header>
-            <h4>Chọn phương thức rút tiền</h4>
+            <header><span>‹</span><b>${t('cashout.title')}</b><small>${shieldIcon} ${t('cashout.safe')}</small></header>
+            <h4>${t('cashout.choose')}</h4>
             <div class="gc-reference-methods">
-              <span class="is-active"><i class="gc-pay-logo gc-pay-momo"><img src="${paymentAssetUrl('momo-logo.webp')}" alt="" width="1200" height="1200" loading="lazy" decoding="async"></i><b>MoMo</b><small>${checkIcon} Đang hỗ trợ</small></span>
-              <span><i class="gc-pay-logo gc-pay-zalo"><img src="${paymentAssetUrl('zalopay-logo.png')}" alt="" width="1200" height="1200" loading="lazy" decoding="async"></i><b>ZaloPay</b><small>Sắp hỗ trợ</small></span>
-              <span class="is-active"><i class="gc-pay-logo gc-pay-bank"><img src="${paymentAssetUrl('bank-transfer.svg')}" alt="" width="128" height="128" loading="lazy" decoding="async"></i><b>Chuyển khoản<br>ngân hàng</b><small>${checkIcon} Đang hỗ trợ</small></span>
-              <span><i class="gc-pay-logo gc-pay-paypal"><img src="${paymentAssetUrl('paypal-logo.png')}" alt="" width="512" height="512" loading="lazy" decoding="async"></i><b>PayPal</b><small>Sắp hỗ trợ</small></span>
-              <span class="gc-method-last"><i class="gc-pay-logo gc-pay-play"><img src="${paymentAssetUrl('google-play-logo.webp')}" alt="" width="512" height="512" loading="lazy" decoding="async"></i><b>Google Play</b><small>Sắp hỗ trợ</small></span>
+              <span class="is-active"><i class="gc-pay-logo gc-pay-momo"><img src="${paymentAssetUrl('momo-logo.webp')}" alt="" width="1200" height="1200" loading="lazy" decoding="async"></i><b>MoMo</b><small>${checkIcon} ${t('cashout.available')}</small></span>
+              <span><i class="gc-pay-logo gc-pay-zalo"><img src="${paymentAssetUrl('zalopay-logo.png')}" alt="" width="1200" height="1200" loading="lazy" decoding="async"></i><b>ZaloPay</b><small>${t('cashout.coming')}</small></span>
+              <span class="is-active"><i class="gc-pay-logo gc-pay-bank"><img src="${paymentAssetUrl('bank-transfer.svg')}" alt="" width="128" height="128" loading="lazy" decoding="async"></i><b>${t('cashout.bank')}</b><small>${checkIcon} ${t('cashout.available')}</small></span>
+              <span><i class="gc-pay-logo gc-pay-paypal"><img src="${paymentAssetUrl('paypal-logo.png')}" alt="" width="512" height="512" loading="lazy" decoding="async"></i><b>PayPal</b><small>${t('cashout.coming')}</small></span>
+              <span class="gc-method-last"><i class="gc-pay-logo gc-pay-play"><img src="${paymentAssetUrl('google-play-logo.webp')}" alt="" width="512" height="512" loading="lazy" decoding="async"></i><b>Google Play</b><small>${t('cashout.coming')}</small></span>
             </div>
           </div>
-          <div class="gc-reference-security">${shieldIcon}<span>Dữ liệu theo tài khoản · Trạng thái xử lý rõ ràng</span></div>
+          <div class="gc-reference-security">${shieldIcon}<span>${t('cashout.security')}</span></div>
         </article>
       </div>
     </section>
 
     <section class="gc-public-faq gc-faq-reference">
-      <h2>Câu hỏi thường gặp</h2>
-      <details><summary>Gamezcoin có thật sự trả thưởng không?</summary><p>Có. Khi bạn hoàn thành đúng điều kiện của game hoặc nhiệm vụ đang hoạt động, coin hợp lệ sẽ được ghi nhận vào Ví Gamezcoin. Số dư và mọi yêu cầu rút đều được lưu trong lịch sử giao dịch của chính tài khoản.</p></details>
-      <details><summary>Rút tiền mất bao lâu?</summary><p>Yêu cầu được tiếp nhận ngay sau khi gửi. Thời gian xử lý phụ thuộc bước xác minh và phương thức nhận tiền; bạn có thể theo dõi trạng thái Đang chờ, Đã thanh toán hoặc Từ chối trực tiếp trong Ví.</p></details>
-      <details><summary>Tôi có thể chơi trên điện thoại không?</summary><p>Có. Giao diện Gamezcoin và kho game được tối ưu cho điện thoại. Để trải nghiệm ổn định, hãy dùng phiên bản Chrome hoặc Safari mới nhất và duy trì kết nối mạng tốt.</p></details>
-      <details><summary>Cần bao nhiêu coin để rút?</summary><p>Mức rút tối thiểu hiện tại là 20.000 coin. Nếu mức tối thiểu được điều chỉnh, con số mới sẽ luôn hiển thị trực tiếp trong màn hình Rút tiền trước khi bạn gửi yêu cầu.</p></details>
+      <h2>${t('faq.title')}</h2>
+      <details><summary>${t('faq.q1')}</summary><p>${t('faq.a1')}</p></details>
+      <details><summary>${t('faq.q2')}</summary><p>${t('faq.a2')}</p></details>
+      <details><summary>${t('faq.q3')}</summary><p>${t('faq.a3')}</p></details>
+      <details><summary>${t('faq.q4')}</summary><p>${t('faq.a4')}</p></details>
     </section>
 
     <section class="gc-public-final-cta gc-final-reference">
       <img class="gc-final-reference-image" src="${finalBannerImageUrl}" alt="" width="941" height="189" loading="eager" decoding="async" draggable="false">
       <div class="gc-final-reference-copy">
-        <h2>Bắt đầu <em>chơi game kiếm tiền</em><br>ngay hôm nay</h2>
-        <div class="gc-final-buttons"><button type="button" data-public-auth="signup">Đăng ký miễn phí</button><button type="button" class="secondary" data-public-auth="login">Đăng nhập</button></div>
+        <h2>${t('final.before')} <em>${t('final.accent')}</em><br>${t('final.after')}</h2>
+        <div class="gc-final-buttons"><button type="button" data-public-auth="signup">${t('final.freeSignup')}</button><button type="button" class="secondary" data-public-auth="login">${t('common.signIn')}</button></div>
       </div>
     </section>
 
     <footer class="gc-public-footer">
       <div class="gc-public-footer-brand">
-        <a class="gc-public-footer-brand-link" href="${import.meta.env.BASE_URL}" data-public-reload aria-label="Tải lại trang Gamezcoin"><span><img src="${publicAssetUrl('gamezcoin-logo.png')}" alt="" width="256" height="253" loading="lazy" decoding="async"></span><strong>GAMEZCOIN</strong></a>
-        <p>Chơi game kiếm tiền thật<br>dễ dàng và uy tín.</p>
+        <a class="gc-public-footer-brand-link" href="${import.meta.env.BASE_URL}" data-public-reload aria-label="${t('page.title')}"><span><img src="${publicAssetUrl('gamezcoin-logo.png')}" alt="" width="256" height="253" loading="lazy" decoding="async"></span><strong>GAMEZCOIN</strong></a>
+        <p>${t('footer.tagline')}</p>
       </div>
-      <nav class="gc-public-footer-links" aria-label="Hỗ trợ">
-        <b>Hỗ trợ</b>
-        <a href="${infoPageUrl('chinh-sach-bao-mat.html')}" target="_blank" rel="noopener noreferrer">Chính sách bảo mật</a>
-        <a href="${infoPageUrl('ve-chung-toi.html')}" target="_blank" rel="noopener noreferrer">Về chúng tôi</a>
-        <a href="${infoPageUrl('dieu-khoan-dich-vu.html')}" target="_blank" rel="noopener noreferrer">Điều khoản dịch vụ</a>
-        <a href="mailto:partnerships@bobbey.net?subject=Li%C3%AAn%20h%E1%BB%87%20Gamezcoin">Liên hệ chúng tôi</a>
+      <nav class="gc-public-footer-links" aria-label="${t('footer.support')}">
+        <b>${t('footer.support')}</b>
+        <a href="${infoPageUrl('chinh-sach-bao-mat.html')}" target="_blank" rel="noopener noreferrer">${t('footer.privacy')}</a>
+        <a href="${infoPageUrl('ve-chung-toi.html')}" target="_blank" rel="noopener noreferrer">${t('footer.about')}</a>
+        <a href="${infoPageUrl('dieu-khoan-dich-vu.html')}" target="_blank" rel="noopener noreferrer">${t('footer.terms')}</a>
+        <a href="mailto:partnerships@bobbey.net?subject=${encodeURIComponent(t('footer.contactSubject'))}">${t('footer.contact')}</a>
       </nav>
       <small>© 2026 Gamezcoin. All rights reserved.</small>
     </footer>
 
-    <button type="button" class="gc-mobile-sticky-cta" data-public-auth="signup"><span class="gc-sticky-game-icon">${gameIcon}</span><strong>Bắt đầu kiếm tiền ngay bây giờ</strong><span class="gc-sticky-arrow">${arrowIcon}</span></button>
+    <button type="button" class="gc-mobile-sticky-cta" data-public-auth="signup"><span class="gc-sticky-game-icon">${gameIcon}</span><strong>${t('sticky.start')}</strong><span class="gc-sticky-arrow">${arrowIcon}</span></button>
   </div>`
 }
 
@@ -228,7 +231,7 @@ function closeAuth(main) {
 
 function decorateAuthBox(main, box, login) {
   box.classList.add('gc-public-auth-panel')
-  box.insertAdjacentHTML('afterbegin', `<button type="button" class="gc-auth-close" aria-label="Đóng">${closeIcon}</button><div class="gc-auth-mobile-brand"><span>G</span><strong>Gamezcoin</strong></div><header class="gc-auth-heading"><small>${login ? 'CHÀO MỪNG TRỞ LẠI' : 'THAM GIA GAMEZCOIN'}</small><h1>${login ? 'Đăng nhập' : 'Tạo tài khoản miễn phí'}</h1><p>${login ? 'Đăng nhập để chơi game, xem số dư và lịch sử giao dịch.' : 'Tạo tài khoản trong vài giây để bắt đầu chơi game kiếm tiền.'}</p></header>`)
+  box.insertAdjacentHTML('afterbegin', `<button type="button" class="gc-auth-close" aria-label="${t('common.close')}">${closeIcon}</button><div class="gc-auth-mobile-brand"><span>G</span><strong>Gamezcoin</strong></div><header class="gc-auth-heading"><small>${login ? t('auth.welcomeBack') : t('auth.join')}</small><h1>${login ? t('common.signIn') : t('auth.signupTitle')}</h1><p>${login ? t('auth.loginBody') : t('auth.signupBody')}</p></header>`)
 
   const switcher = box.querySelector('.switch')
   switcher?.classList.add('gc-auth-switch')
@@ -243,18 +246,18 @@ function decorateAuthBox(main, box, login) {
     const apple = social.querySelector('[data-oauth-provider="apple"]')
     if (google) {
       google.classList.add('gc-auth-google')
-      google.innerHTML = `${googleIcon}<span>Tiếp tục với Google</span>`
+      google.innerHTML = `${googleIcon}<span>${t('auth.continueGoogle')}</span>`
     }
     if (facebook) {
       facebook.classList.add('gc-auth-facebook')
-      facebook.innerHTML = `${facebookIcon}<span>Tiếp tục với Facebook</span>`
+      facebook.innerHTML = `${facebookIcon}<span>${t('auth.continueFacebook')}</span>`
     }
     if (apple) {
       apple.classList.add('gc-auth-apple')
-      apple.innerHTML = `${appleIcon}<span>Tiếp tục với Apple</span>`
+      apple.innerHTML = `${appleIcon}<span>${t('auth.continueApple')}</span>`
     }
     switcher?.insertAdjacentElement('afterend', social)
-    social.insertAdjacentHTML('afterend', '<div class="gc-auth-divider"><span>HOẶC</span></div>')
+    social.insertAdjacentHTML('afterend', `<div class="gc-auth-divider"><span>${t('auth.or')}</span></div>`)
   }
 
   form?.classList.add('gc-auth-form')
@@ -263,21 +266,21 @@ function decorateAuthBox(main, box, login) {
   const emailInput = box.querySelector('input[name="email"]')
   const passwordInput = box.querySelector('input[name="password"]')
   const refInput = box.querySelector('input[name="ref"]')
-  if (nameInput) { nameInput.placeholder = 'Tên hiển thị'; nameInput.autocomplete = 'name' }
+  if (nameInput) { nameInput.placeholder = t('auth.displayName'); nameInput.autocomplete = 'name' }
   if (emailInput) { emailInput.placeholder = 'name@example.com'; emailInput.autocomplete = 'email'; emailInput.inputMode = 'email' }
-  if (passwordInput) { passwordInput.placeholder = 'Tối thiểu 6 ký tự'; passwordInput.autocomplete = login ? 'current-password' : 'new-password' }
-  if (refInput) { refInput.placeholder = 'Mã giới thiệu (nếu có)'; refInput.autocomplete = 'off' }
+  if (passwordInput) { passwordInput.placeholder = t('auth.passwordPlaceholder'); passwordInput.autocomplete = login ? 'current-password' : 'new-password' }
+  if (refInput) { refInput.placeholder = t('auth.referralPlaceholder'); refInput.autocomplete = 'off' }
 
   const passwordLabel = passwordInput?.closest('label')
   if (login && passwordLabel) {
     const forgot = document.createElement('button')
-    forgot.type = 'button'; forgot.className = 'gc-auth-forgot'; forgot.textContent = 'Quên mật khẩu?'
+    forgot.type = 'button'; forgot.className = 'gc-auth-forgot'; forgot.textContent = t('auth.forgot')
     forgot.addEventListener('click', () => resetPassword(box)); passwordLabel.append(forgot)
   }
 
   form?.querySelector('button[type="submit"]')?.classList.add('gc-auth-submit')
   box.querySelector(':scope > small')?.remove()
-  box.insertAdjacentHTML('beforeend', `<div class="gc-auth-bottom-link"><span>${login ? 'Chưa có tài khoản?' : 'Đã có tài khoản?'}</span><button type="button" data-gc-auth-toggle>${login ? 'Đăng ký' : 'Đăng nhập'}</button></div><p class="gc-auth-terms">Bằng cách tiếp tục, bạn đồng ý với <a href="${infoPageUrl('dieu-khoan-dich-vu.html')}" target="_blank" rel="noopener noreferrer">Điều khoản dịch vụ</a> và <a href="${infoPageUrl('chinh-sach-bao-mat.html')}" target="_blank" rel="noopener noreferrer">Chính sách bảo mật</a> của Gamezcoin.</p>`)
+  box.insertAdjacentHTML('beforeend', `<div class="gc-auth-bottom-link"><span>${login ? t('auth.noAccount') : t('auth.hasAccount')}</span><button type="button" data-gc-auth-toggle>${login ? t('common.signUp') : t('common.signIn')}</button></div><p class="gc-auth-terms">${t('auth.termsPrefix')} <a href="${infoPageUrl('dieu-khoan-dich-vu.html')}" target="_blank" rel="noopener noreferrer">${t('footer.terms')}</a> ${t('auth.termsJoin')} <a href="${infoPageUrl('chinh-sach-bao-mat.html')}" target="_blank" rel="noopener noreferrer">${t('footer.privacy')}</a> ${t('auth.termsSuffix')}</p>`)
 
   box.querySelector('.gc-auth-close')?.addEventListener('click', () => closeAuth(main))
   box.querySelector('[data-gc-auth-toggle]')?.addEventListener('click', () => {
@@ -288,6 +291,25 @@ function decorateAuthBox(main, box, login) {
 
 
 function bindLanding(main) {
+  const languageToggle = main.querySelector('[data-language-toggle]')
+  const languageMenu = main.querySelector('[data-language-menu]')
+  languageToggle?.addEventListener('click', () => {
+    const willOpen = languageMenu?.hidden !== false
+    if (languageMenu) languageMenu.hidden = !willOpen
+    languageToggle.setAttribute('aria-expanded', String(willOpen))
+  })
+  main.querySelectorAll('[data-language]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const nextLanguage = button.dataset.language === 'en' ? 'en' : 'vi'
+      if (nextLanguage === language) {
+        if (languageMenu) languageMenu.hidden = true
+        languageToggle?.setAttribute('aria-expanded', 'false')
+        return
+      }
+      setLanguage(nextLanguage)
+      window.location.reload()
+    })
+  })
   main.querySelectorAll('[data-public-auth]').forEach((button) => {
     button.addEventListener('click', () => {
       const mode = button.dataset.publicAuth || 'signup'
@@ -329,7 +351,7 @@ function enhanceAuth() {
   const overlay = document.createElement('div')
   overlay.className = 'gc-auth-modal'
   const backdrop = document.createElement('button')
-  backdrop.type = 'button'; backdrop.className = 'gc-auth-backdrop'; backdrop.setAttribute('aria-label', 'Đóng')
+  backdrop.type = 'button'; backdrop.className = 'gc-auth-backdrop'; backdrop.setAttribute('aria-label', t('common.close'))
   const dialog = document.createElement('div')
   dialog.className = 'gc-auth-dialog'; dialog.setAttribute('role', 'dialog'); dialog.setAttribute('aria-modal', 'true')
   box.insertAdjacentElement('beforebegin', overlay)
@@ -355,5 +377,9 @@ function schedule() {
 }
 
 new MutationObserver(schedule).observe(app || document.documentElement, { childList: true, subtree: true })
+window.addEventListener('gamezcoin:oauth-error', (event) => {
+  const box = app?.querySelector('.gc-public-auth-panel')
+  if (box && event.detail?.message) setAuthMessage(box, event.detail.message, 'bad')
+})
 window.addEventListener('pageshow', schedule)
 schedule()
