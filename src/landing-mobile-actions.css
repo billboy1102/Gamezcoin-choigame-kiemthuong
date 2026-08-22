@@ -1,0 +1,188 @@
+.gc-mobile-sticky-cta,
+.gc-public-bottom-nav {
+  display: none;
+}
+
+@media (max-width: 650px) {
+  .gc-public-home {
+    padding-bottom: calc(196px + env(safe-area-inset-bottom));
+  }
+
+  .gc-mobile-sticky-cta {
+    position: fixed;
+    z-index: 96;
+    left: 18px;
+    right: 18px;
+    bottom: calc(104px + env(safe-area-inset-bottom));
+    min-height: 70px;
+    padding: 0 13px;
+    display: grid;
+    grid-template-columns: 42px minmax(0, 1fr) 28px;
+    align-items: center;
+    gap: 8px;
+    overflow: hidden;
+    border: 2px solid rgba(86, 234, 255, 0.92);
+    border-radius: 21px;
+    background: linear-gradient(105deg, #0fcdf7 0%, #168cff 38%, #553dff 67%, #c528ef 100%);
+    color: #fff;
+    box-shadow:
+      inset 0 0 0 2px rgba(255, 255, 255, 0.16),
+      inset 0 -4px 0 rgba(78, 21, 175, 0.3),
+      0 0 18px rgba(23, 210, 255, 0.36),
+      0 0 28px rgba(144, 43, 255, 0.28),
+      0 12px 30px rgba(0, 0, 0, 0.42);
+  }
+
+  .gc-mobile-sticky-cta::before {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    border-radius: 17px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.17), transparent 40%);
+    pointer-events: none;
+  }
+
+  .gc-mobile-sticky-cta > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .gc-mobile-sticky-cta .gc-sticky-game-icon,
+  .gc-mobile-sticky-cta .gc-sticky-arrow {
+    display: grid;
+    place-items: center;
+  }
+
+  .gc-mobile-sticky-cta .gc-sticky-game-icon svg {
+    width: 42px;
+    height: 42px;
+    color: #8af2ff;
+    stroke-width: 1.7;
+    filter: drop-shadow(0 0 7px rgba(96, 238, 255, 0.72));
+  }
+
+  .gc-mobile-sticky-cta strong {
+    min-width: 0;
+    color: #fff;
+    font-size: clamp(13px, 3.7vw, 17px);
+    font-weight: 950;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    text-align: center;
+    white-space: nowrap;
+    text-shadow: 0 2px 8px rgba(7, 11, 47, 0.3);
+  }
+
+  .gc-mobile-sticky-cta .gc-sticky-arrow svg {
+    width: 28px;
+    height: 28px;
+    color: #fff;
+    stroke-width: 3;
+    filter: drop-shadow(0 2px 5px rgba(25, 12, 92, 0.38));
+  }
+
+  .gc-public-bottom-nav {
+    position: fixed;
+    z-index: 95;
+    left: 18px;
+    right: 18px;
+    bottom: calc(10px + env(safe-area-inset-bottom));
+    height: 82px;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    border: 1px solid rgba(58, 74, 118, 0.78);
+    border-radius: 18px;
+    background: linear-gradient(180deg, rgba(12, 19, 43, 0.98), rgba(5, 12, 30, 0.98));
+    box-shadow:
+      inset 0 1px rgba(255, 255, 255, 0.035),
+      0 12px 30px rgba(0, 0, 0, 0.36);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+
+  .gc-public-bottom-nav button {
+    position: relative;
+    min-width: 0;
+    padding: 7px 8px 9px;
+    display: grid;
+    place-items: center;
+    align-content: center;
+    gap: 3px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: #9da7c3;
+    box-shadow: none;
+  }
+
+  .gc-public-bottom-nav button:first-child {
+    border-right: 1px solid rgba(55, 70, 110, 0.68);
+  }
+
+  .gc-public-bottom-nav .gc-bottom-nav-icon {
+    width: 35px;
+    height: 35px;
+    display: grid;
+    place-items: center;
+  }
+
+  .gc-public-bottom-nav .gc-bottom-nav-icon svg {
+    width: 35px;
+    height: 35px;
+    color: currentColor;
+    stroke-width: 2.15;
+  }
+
+  .gc-public-bottom-nav small {
+    color: currentColor;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1;
+  }
+
+  .gc-public-bottom-nav button.on {
+    color: #25e9ff;
+  }
+
+  .gc-public-bottom-nav button.on .gc-bottom-nav-icon {
+    filter: drop-shadow(0 0 8px rgba(37, 233, 255, 0.52));
+  }
+
+  .gc-public-bottom-nav .gc-nav-dot {
+    position: absolute;
+    left: 50%;
+    bottom: 5px;
+    width: 8px;
+    height: 8px;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: #20efff;
+    box-shadow: 0 0 8px rgba(32, 239, 255, 0.85);
+  }
+}
+
+@media (max-width: 390px) {
+  .gc-mobile-sticky-cta,
+  .gc-public-bottom-nav {
+    left: 12px;
+    right: 12px;
+  }
+
+  .gc-mobile-sticky-cta {
+    grid-template-columns: 36px minmax(0, 1fr) 24px;
+    gap: 6px;
+    padding: 0 10px;
+  }
+
+  .gc-mobile-sticky-cta .gc-sticky-game-icon svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .gc-mobile-sticky-cta .gc-sticky-arrow svg {
+    width: 24px;
+    height: 24px;
+  }
+}

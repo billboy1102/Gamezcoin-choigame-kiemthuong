@@ -1,6 +1,7 @@
 import './auth-public-home.css'
 import './landing-how-professional.css'
 import './landing-trust-reference.css'
+import './landing-mobile-actions.css'
 import { supabase } from './api.js'
 
 const app = document.querySelector('#app')
@@ -18,9 +19,10 @@ const walletIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5h
 const checkIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>`
 const boltIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m13.5 2-8 11h6.1L10.5 22l8-11h-6.1L13.5 2Z"/></svg>`
 const lockIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></svg>`
-const clockIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.3 2"/></svg>`
 const arrowIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>`
 const closeIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>`
+const homeNavIcon = `<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M7 22.5 24 7l17 15.5"/><path d="M11 20.5V41h10V29h6v12h10V20.5"/></svg>`
+const cashoutNavIcon = `<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 9h32v9H8z"/><path d="M14 18v21h20V18"/><rect x="18" y="22" width="12" height="12" rx="2"/><path d="M24 24.5v7M27 26h-4.2a1.8 1.8 0 0 0 0 3.6H27"/></svg>`
 
 const virtualGames = [
   ['Galaxy Match', 'planet', 'galaxy-match-3d.webp', '250.000đ'],
@@ -168,16 +170,6 @@ function landingMarkup() {
       </div>
     </section>
 
-    <section class="gc-public-why">
-      <div class="gc-public-section-title"><small>VÌ SAO CÁCH LÀM NÀY ĐÁNG TIN HƠN?</small><h2>Uy tín đến từ <em>dữ liệu có thể kiểm tra</em></h2></div>
-      <div class="gc-why-grid">
-        <article>${clockIcon}<h3>Không hứa thời gian rút giả</h3><p>Landing không quảng cáo “1–10 phút” nếu hệ thống chưa có dữ liệu thống kê đủ để chứng minh.</p></article>
-        <article>${shieldIcon}<h3>Không bịa đánh giá</h3><p>Không gắn Trustpilot, số sao hoặc số lượng review nếu Gamezcoin chưa có hồ sơ đánh giá thật tương ứng.</p></article>
-        <article>${walletIcon}<h3>Không bịa giao dịch</h3><p>Các bằng chứng thanh toán chỉ nên lấy từ giao dịch đã hoàn tất thật và được ẩn thông tin nhạy cảm.</p></article>
-        <article>${gameIcon}<h3>Trạng thái game rõ ràng</h3><p>Game chưa phát hành được gắn nhãn “Sắp ra mắt” để người dùng luôn biết chính xác trạng thái sản phẩm.</p></article>
-      </div>
-    </section>
-
     <section class="gc-public-faq">
       <div class="gc-public-section-title"><small>GIẢI ĐÁP NHANH</small><h2>Câu hỏi thường gặp</h2></div>
       <details><summary>Khi nào các game trên landing có thể chơi?</summary><p>Toàn bộ game trong kho hiện là concept/sắp ra mắt. Gamezcoin sẽ cập nhật trạng thái và gửi thông báo cho tài khoản đã đăng ký khi từng game sẵn sàng.</p></details>
@@ -199,8 +191,8 @@ function landingMarkup() {
       <small>© 2026 Gamezcoin. All rights reserved.</small>
     </footer>
 
-    <button type="button" class="gc-mobile-sticky-cta" data-public-auth="signup">${gameIcon}<span>Bắt đầu kiếm tiền</span>${arrowIcon}</button>
-    <nav class="gc-public-bottom-nav" aria-label="Điều hướng khách"><button type="button" class="on" data-public-home><span>⌂</span><small>Nhà</small></button><button type="button" data-public-auth="login"><span>▣</span><small>Rút tiền mặt</small></button></nav>
+    <button type="button" class="gc-mobile-sticky-cta" data-public-auth="signup"><span class="gc-sticky-game-icon">${gameIcon}</span><strong>Bắt đầu kiếm tiền ngay bây giờ</strong><span class="gc-sticky-arrow">${arrowIcon}</span></button>
+    <nav class="gc-public-bottom-nav" aria-label="Điều hướng khách"><button type="button" class="on" data-public-home><span class="gc-bottom-nav-icon">${homeNavIcon}</span><small>Nhà</small><i class="gc-nav-dot" aria-hidden="true"></i></button><button type="button" data-public-auth="login"><span class="gc-bottom-nav-icon">${cashoutNavIcon}</span><small>Rút tiền mặt</small></button></nav>
   </div>`
 }
 
