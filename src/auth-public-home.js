@@ -19,22 +19,22 @@ const arrowIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7
 const closeIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>`
 
 const virtualGames = [
-  ['Galaxy Match', 'planet', 'galaxy-match-3d.webp'],
-  ['Fruit Craze', 'fruit', 'fruit-craze-3d.webp'],
-  ['Jewel Quest', 'jewel', 'jewel-quest-3d.webp'],
-  ['Candy Merge', 'candy', 'candy-merge-3d.webp'],
-  ['Bubble Pop', 'bubble', 'bubble-pop-3d.webp'],
-  ['Zombie Dash', 'zombie', 'zombie-dash-3d.webp'],
-  ['Farm Puzzle', 'farm', 'farm-puzzle-3d.webp'],
-  ['Speed Runner', 'runner', 'speed-runner-3d.webp'],
-  ['Pixel Shooter', 'space', 'pixel-shooter-3d.webp'],
-  ['Dragon Merge', 'dragon', 'dragon-merge-3d.webp'],
-  ['Lucky Spin', 'spin', 'lucky-spin-3d.webp'],
-  ['Merge Town', 'town', 'merge-town-3d.webp'],
+  ['Galaxy Match', 'planet', 'galaxy-match-3d.webp', '250.000đ'],
+  ['Fruit Craze', 'fruit', 'fruit-craze-3d.webp', '235.000đ'],
+  ['Jewel Quest', 'jewel', 'jewel-quest-3d.webp', '245.000đ'],
+  ['Candy Merge', 'candy', 'candy-merge-3d.webp', '220.000đ'],
+  ['Bubble Pop', 'bubble', 'bubble-pop-3d.webp', '205.000đ'],
+  ['Zombie Dash', 'zombie', 'zombie-dash-3d.webp', '240.000đ'],
+  ['Farm Puzzle', 'farm', 'farm-puzzle-3d.webp', '215.000đ'],
+  ['Speed Runner', 'runner', 'speed-runner-3d.webp', '230.000đ'],
+  ['Pixel Shooter', 'space', 'pixel-shooter-3d.webp', '225.000đ'],
+  ['Dragon Merge', 'dragon', 'dragon-merge-3d.webp', '248.000đ'],
+  ['Lucky Spin', 'spin', 'lucky-spin-3d.webp', '210.000đ'],
+  ['Merge Town', 'town', 'merge-town-3d.webp', '238.000đ'],
 ]
 
 function virtualGameCards() {
-  return virtualGames.map(([name, art, image]) => `
+  return virtualGames.map(([name, art, image, amount]) => `
     <article class="gc-virtual-game">
       <div class="gc-virtual-art gc-art-${art}" data-professional-art="1">
         <img src="${gameArtUrl(image)}" alt="" width="960" height="540" loading="lazy" decoding="async" draggable="false">
@@ -42,7 +42,7 @@ function virtualGameCards() {
       <div class="gc-virtual-copy">
         <strong>${name}</strong>
         <span>Concept game 3D</span>
-        <small>Phần thưởng sẽ công bố khi game ra mắt</small>
+        <small>Lên đến ${amount}</small>
       </div>
       <span class="gc-virtual-arrow">›</span>
     </article>`).join('')
