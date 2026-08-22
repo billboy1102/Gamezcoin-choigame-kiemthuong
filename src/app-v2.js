@@ -1,9 +1,11 @@
 import './styles.css'
 import './app-v2.css'
+import './account-level.css'
 import { supabase, api, adminApi } from './api.js'
 import { SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY } from './config.js'
 import { getLanguage, translate } from './landing-i18n.js'
 import { openWallet } from './wallet-adcash.js'
+import { getAccountLevel } from './account-level.js'
 
 const root = document.querySelector('#app')
 const toasts = document.querySelector('#toast-root')
@@ -284,21 +286,109 @@ function renderReferral() {
 function renderAccount() {
   const d = state.data
   const view = root.querySelector('#view')
+  const totalEarned = Number(d.wallet?.lifetime_earned || 0)
+  const currentBalance = Number(d.wallet?.balance || 0)
+  const level = getAccountLevel(totalEarned)
+  const levelProgress = level.progress.toFixed(2)
+  const copy = language === 'en' ? {
+    title: 'MY PROFILE',
+    verified: 'Verified account',
+    player: 'Player',
+    totalRevenue: 'Total revenue',
+    currentBalance: 'Current balance',
+    level: 'Level',
+    remaining: (coin, nextLevel) => `${coin} coin to reach level ${nextLevel}`,
+    currentMilestone: 'Current milestone',
+    nextMilestone: 'Next milestone',
+    accountInfo: 'Account information',
+    displayName: 'Display name',
+    saveName: 'Save name',
+    admin: 'Admin panel',
+    logout: 'Sign out',
+    saved: 'Saved.'
+  } : {
+    title: 'HỒ SƠ CỦA TÔI',
+    verified: 'Tài khoản đã xác thực',
+    player: 'Người chơi',
+    totalRevenue: 'Tổng doanh thu',
+    currentBalance: 'Số dư hiện tại',
+    level: 'Cấp độ',
+    remaining: (coin, nextLevel) => `Còn ${coin} coin để lên cấp ${nextLevel}`,
+    currentMilestone: 'Mốc hiện tại',
+    nextMilestone: 'Mốc tiếp theo',
+    accountInfo: 'Thông tin tài khoản',
+    displayName: 'Tên hiển thị',
+    saveName: 'Lưu tên',
+    admin: 'Trang quản trị',
+    logout: 'Đăng xuất',
+    saved: 'Đã lưu.'
+  }
+  const displayName = d.profile?.display_name || copy.player
   view.innerHTML = `
-    <section class="card center">
-      <div class="avatar">${e((d.profile?.display_name || 'G')[0])}</div>
-      <h2>${e(d.profile?.display_name || 'Người chơi')}</h2>
-      <p>${e(d.user?.email || '')}</p>
-      ${d.is_admin ? '<b class="adminbadge">ADMIN</b>' : ''}
-    </section>
-    <section class="card">
+    <div class="gc-account-page">
+      <section class="gc-account-overview">
+        <div class="gc-account-heading">
+          <span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg>
+            ${copy.title}
+          </span>
+          <small>${copy.verified}</small>
+        </div>
+        <div class="gc-account-main">
+          <div class="gc-account-identity">
+            <div class="avatar">${e(displayName[0])}</div>
+            <div>
+              <h1>${e(displayName)}</h1>
+              <p>${e(d.user?.email || '')}</p>
+              ${d.is_admin ? '<b class="adminbadge">ADMIN</b>' : ''}
+            </div>
+          </div>
+          <div class="gc-account-stats">
+            <article class="gc-account-stat">
+              <small>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M15 9.5c-.7-.7-1.7-1-3-1-1.7 0-3 .8-3 2s1.1 1.8 3 2c1.9.2 3 1 3 2.2 0 1.3-1.3 2.2-3 2.2-1.3 0-2.5-.4-3.2-1.2M12 6.5v11"/></svg>
+                ${copy.totalRevenue}
+              </small>
+              <strong>${f(totalEarned)} <em>coin</em></strong>
+            </article>
+            <article class="gc-account-stat">
+              <small>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5h14a2 2 0 0 1 2 2V18H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h13"/><path d="M16 11h6v4h-6a2 2 0 1 1 0-4Z"/></svg>
+                ${copy.currentBalance}
+              </small>
+              <strong>${f(currentBalance)} <em>coin</em></strong>
+            </article>
+          </div>
+        </div>
+        <div class="gc-account-level">
+          <div class="gc-account-level-head">
+            <strong>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.6 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.2l6.2-.9Z"/></svg>
+              ${copy.level} <span>${level.level}</span>
+            </strong>
+            <small>${copy.remaining(f(level.remaining), level.level + 1)}</small>
+          </div>
+          <div class="gc-account-progress" role="progressbar" aria-label="${e(copy.level)} ${level.level}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(level.progress)}">
+            <span style="width:${levelProgress}%"></span>
+          </div>
+          <div class="gc-account-level-foot">
+            <span>${copy.currentMilestone}: ${f(level.currentThreshold)} coin</span>
+            <span>${copy.nextMilestone}: ${f(level.nextThreshold)} coin</span>
+          </div>
+        </div>
+      </section>
+      <section class="card gc-account-settings">
+        <h3>${copy.accountInfo}</h3>
       <form id="profile-form">
-        <label>Tên hiển thị<input name="name" value="${e(d.profile?.display_name || '')}" minlength="2" maxlength="40" required></label>
-        <button class="secondary">Lưu tên</button>
-      </form>
-    </section>
-    ${d.is_admin ? '<button id="admin-button" class="adminbtn">🛡️ Trang quản trị</button>' : ''}
-    <button id="logout-button" class="danger">Đăng xuất</button>`
+          <label>${copy.displayName}<input name="name" value="${e(d.profile?.display_name || '')}" minlength="2" maxlength="40" required></label>
+          <button class="secondary">${copy.saveName}</button>
+        </form>
+      </section>
+      <div class="gc-account-actions">
+        ${d.is_admin ? `<button id="admin-button" class="adminbtn">🛡️ ${copy.admin}</button>` : ''}
+        <button id="logout-button" class="danger">${copy.logout}</button>
+      </div>
+    </div>`
 
   view.querySelector('#profile-form').onsubmit = async (event) => {
     event.preventDefault()
@@ -306,7 +396,7 @@ function renderAccount() {
     try {
       await api('update_profile', { display_name: form.get('name') })
       await load()
-      toast('Đã lưu.', 'ok')
+      toast(copy.saved, 'ok')
     } catch (error) {
       toast(friendly(error.message), 'bad')
     }

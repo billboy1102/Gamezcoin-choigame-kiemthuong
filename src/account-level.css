@@ -1,0 +1,276 @@
+.gc-account-page{
+  display:grid;
+  gap:18px;
+  padding-bottom:10px;
+}
+
+.gc-account-overview{
+  position:relative;
+  overflow:hidden;
+  padding:28px;
+  border:1px solid rgba(107,183,255,.22);
+  border-radius:28px;
+  background:
+    radial-gradient(circle at 92% 8%,rgba(121,58,255,.24),transparent 34%),
+    radial-gradient(circle at 8% 88%,rgba(0,213,255,.13),transparent 38%),
+    linear-gradient(145deg,#0d2138 0%,#09182b 58%,#101630 100%);
+  box-shadow:0 24px 70px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.04);
+}
+
+.gc-account-overview::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.28;
+  background:
+    linear-gradient(rgba(90,166,255,.08) 1px,transparent 1px) 0 0/44px 44px,
+    linear-gradient(90deg,rgba(90,166,255,.08) 1px,transparent 1px) 0 0/44px 44px;
+  -webkit-mask-image:linear-gradient(to bottom,black,transparent 72%);
+  mask-image:linear-gradient(to bottom,black,transparent 72%);
+}
+
+.gc-account-overview>*{position:relative;z-index:1}
+
+.gc-account-heading{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  margin-bottom:22px;
+}
+
+.gc-account-heading span{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  color:#72f7ff;
+  font-size:11px;
+  font-weight:950;
+  letter-spacing:2.2px;
+}
+
+.gc-account-heading svg{
+  width:18px;
+  height:18px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.gc-account-heading small{
+  margin:0!important;
+  padding:6px 10px;
+  border:1px solid rgba(113,247,255,.14);
+  border-radius:999px;
+  color:#9db3ca!important;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.8px;
+}
+
+.gc-account-main{
+  display:grid;
+  grid-template-columns:minmax(210px,.8fr) minmax(330px,1.2fr);
+  gap:26px;
+  align-items:center;
+}
+
+.gc-account-identity{
+  display:grid;
+  grid-template-columns:88px minmax(0,1fr);
+  gap:17px;
+  align-items:center;
+}
+
+.shell .gc-account-identity .avatar{
+  width:88px!important;
+  height:88px!important;
+  margin:0!important;
+  border:2px solid rgba(93,236,255,.72)!important;
+  color:#9cf9ff!important;
+  font-size:34px!important;
+  box-shadow:0 0 0 5px rgba(94,69,255,.18),0 0 30px rgba(0,209,255,.16)!important;
+}
+
+.gc-account-identity h1{
+  margin:0;
+  color:#f6f9ff;
+  font-size:clamp(25px,4vw,34px);
+  line-height:1.08;
+  letter-spacing:-.04em;
+}
+
+.gc-account-identity p{
+  margin:7px 0 0;
+  overflow:hidden;
+  color:#91a8bf;
+  font-size:12px;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.gc-account-identity .adminbadge{margin-top:9px}
+
+.gc-account-stats{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+
+.gc-account-stat{
+  min-width:0;
+  padding:17px 18px;
+  border:1px solid rgba(126,174,255,.15);
+  border-radius:18px;
+  background:rgba(5,17,32,.58);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025);
+}
+
+.gc-account-stat small{
+  display:flex!important;
+  align-items:center;
+  gap:7px;
+  margin:0 0 8px!important;
+  color:#8fa6bd!important;
+  font-size:10px!important;
+  font-weight:800;
+}
+
+.gc-account-stat small svg{
+  width:16px;
+  height:16px;
+  fill:none;
+  stroke:#72f7ff;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.gc-account-stat strong{
+  display:block;
+  overflow:hidden;
+  color:#fff;
+  font-size:clamp(22px,4vw,31px);
+  font-weight:950;
+  letter-spacing:-.045em;
+  line-height:1.05;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.gc-account-stat strong em{
+  color:#ffd45a;
+  font-size:12px;
+  font-style:normal;
+  letter-spacing:0;
+}
+
+.gc-account-level{
+  margin-top:24px;
+  padding:18px 20px;
+  border:1px solid rgba(113,247,255,.14);
+  border-radius:20px;
+  background:rgba(6,19,35,.7);
+}
+
+.gc-account-level-head,.gc-account-level-foot{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:14px;
+}
+
+.gc-account-level-head strong{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#f5f9ff;
+  font-size:16px;
+}
+
+.gc-account-level-head strong svg{
+  width:21px;
+  height:21px;
+  fill:#ffd45a;
+  filter:drop-shadow(0 0 8px rgba(255,212,90,.3));
+}
+
+.gc-account-level-head strong span{color:#72f7ff}
+
+.gc-account-level-head small{
+  margin:0!important;
+  color:#9db1c6!important;
+  font-size:10px!important;
+  text-align:right;
+}
+
+.gc-account-progress{
+  height:11px;
+  margin:14px 0 10px;
+  overflow:hidden;
+  border:1px solid rgba(131,173,255,.12);
+  border-radius:999px;
+  background:#111d32;
+  box-shadow:inset 0 2px 5px rgba(0,0,0,.32);
+}
+
+.gc-account-progress span{
+  display:block;
+  width:0;
+  height:100%;
+  border-radius:inherit;
+  background:linear-gradient(90deg,#00dcff,#3897ff 55%,#b53cff);
+  box-shadow:0 0 18px rgba(0,218,255,.42);
+}
+
+.gc-account-level-foot{
+  color:#738ca5;
+  font-size:9px;
+  font-weight:750;
+}
+
+.gc-account-settings{
+  margin:0!important;
+  padding:22px!important;
+  border-radius:22px!important;
+}
+
+.gc-account-settings h3{
+  margin-bottom:15px;
+  font-size:17px;
+}
+
+.gc-account-actions{display:grid;gap:10px}
+.gc-account-actions .adminbtn,.gc-account-actions .danger{margin:0!important}
+
+@media(max-width:700px){
+  .gc-account-page{gap:14px}
+  .gc-account-overview{padding:21px;border-radius:24px}
+  .gc-account-heading{margin-bottom:20px}
+  .gc-account-heading small{display:none!important}
+  .gc-account-main{grid-template-columns:1fr;gap:20px}
+  .gc-account-identity{grid-template-columns:76px minmax(0,1fr);gap:15px}
+  .shell .gc-account-identity .avatar{width:76px!important;height:76px!important;font-size:29px!important}
+  .gc-account-identity h1{font-size:27px}
+  .gc-account-stat{padding:15px 13px;border-radius:16px}
+  .gc-account-stat strong{font-size:clamp(19px,6.7vw,27px)}
+  .gc-account-stat strong em{display:block;margin-top:4px;font-size:10px}
+  .gc-account-level{margin-top:19px;padding:16px;border-radius:18px}
+  .gc-account-level-head{align-items:flex-start}
+  .gc-account-level-head small{max-width:145px}
+}
+
+@media(max-width:370px){
+  .gc-account-overview{padding:18px}
+  .gc-account-identity{grid-template-columns:68px minmax(0,1fr)}
+  .shell .gc-account-identity .avatar{width:68px!important;height:68px!important}
+  .gc-account-stats{gap:8px}
+  .gc-account-stat{padding:13px 10px}
+  .gc-account-stat small{font-size:9px!important}
+  .gc-account-stat strong{font-size:18px}
+  .gc-account-level-head{display:grid}
+  .gc-account-level-head small{max-width:none;text-align:left}
+}
