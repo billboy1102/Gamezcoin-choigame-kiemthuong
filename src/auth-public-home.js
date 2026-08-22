@@ -42,7 +42,7 @@ function virtualGameCards() {
       <div class="gc-virtual-copy">
         <strong>${name}</strong>
         <span>Concept game 3D</span>
-        <small>Sắp ra mắt · Nhận thông báo khi sẵn sàng</small>
+        <small>Phần thưởng sẽ công bố khi game ra mắt</small>
       </div>
       <span class="gc-virtual-arrow">›</span>
     </article>`).join('')
@@ -119,9 +119,9 @@ function landingMarkup() {
     </section>
 
     <section class="gc-public-virtual-games" id="gc-games">
-      <div class="gc-public-section-title"><small>KHO GAME 3D</small><h2>Nhiều game <em>đang được hoàn thiện</em></h2><p>Khám phá 12 concept game tương lai của Gamezcoin. Tất cả hiện là bản giới thiệu/sắp ra mắt, chưa phải game đang trả thưởng.</p></div>
+      <div class="gc-public-section-title"><h2>NHIỀU GAME<br><em>ĐANG ĐỢI BẠN CHƠI</em></h2><p>Hàng trăm game hot - Kiếm tiền thật dễ dàng</p></div>
       <div class="gc-virtual-grid">${virtualGameCards()}</div>
-      <button class="gc-more-games" type="button" data-public-auth="signup">Đăng ký để nhận thông báo game mới ${arrowIcon}</button>
+      <button class="gc-more-games" type="button" data-public-auth="signup">Đăng ký để chơi game & kiếm tiền ${arrowIcon}</button>
     </section>
 
     <section class="gc-public-proof" id="gc-proof">
