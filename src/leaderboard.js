@@ -1,24 +1,14 @@
 import './leaderboard.css'
 import { supabase } from './api.js'
 
-const PERIODS = [
-  ['today', 'Hôm nay'],
-  ['week', 'Tuần này'],
-  ['month', 'Tháng này'],
-  ['all', 'Tất cả'],
-]
-
 const trophySvg = `<svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="gcLbCup" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#5df3ff"/><stop offset=".45" stop-color="#6479ff"/><stop offset="1" stop-color="#b744ff"/></linearGradient><linearGradient id="gcLbGold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff07a"/><stop offset=".45" stop-color="#ffc52d"/><stop offset="1" stop-color="#e68a00"/></linearGradient></defs><path d="M30 18h36v13c0 18-7 31-18 31S30 49 30 31V18Z" fill="url(#gcLbCup)" stroke="#82d8ff" stroke-width="2"/><path d="M30 24H17v9c0 12 7 20 18 22M66 24h13v9c0 12-7 20-18 22" fill="none" stroke="#779dff" stroke-width="5" stroke-linecap="round"/><path d="M48 62v12M34 79h28" fill="none" stroke="#7e92ff" stroke-width="5" stroke-linecap="round"/><circle cx="48" cy="37" r="12" fill="url(#gcLbGold)"/><text x="48" y="43" text-anchor="middle" font-size="17" font-weight="900" fill="#8b5400">G</text></svg>`
 const crownSvg = `<svg viewBox="0 0 32 24" aria-hidden="true"><path d="m3 7 6 5 7-9 7 9 6-5-3 13H6L3 7Z"/><path d="M7 22h18"/></svg>`
 const chevronSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>`
 const shieldSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 6v5.5c0 4.7-3.1 7.8-8 9.5-4.9-1.7-8-4.8-8-9.5V6l8-3Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg>`
 const clockSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3.4 2"/></svg>`
-const calendarSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>`
-const infinitySvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 8.5c-3.4 0-5.5 1.6-5.5 3.5s2.1 3.5 5.5 3.5c2.8 0 4.4-2.1 7-5 1.4-1.5 2.8-2 4-2 2.2 0 3.5 1.5 3.5 3.5s-1.3 3.5-3.5 3.5c-2.8 0-4.4-2.1-7-5-1.4-1.5-2.8-2-4-2Z"/></svg>`
 
 const cache = new Map()
 let leaderboardOpen = false
-let activePeriod = 'today'
 let previewLoading = false
 let syncQueued = false
 
@@ -192,16 +182,9 @@ function ensureLeaderboardNav() {
   }
 }
 
-function periodTabs(period) {
-  return `<div class="gc-lb-periods">${PERIODS.map(([id, label]) => {
-    const icon = id === 'all' ? infinitySvg : calendarSvg
-    return `<button type="button" data-lb-period="${id}" class="${id === period ? 'on' : ''}">${icon}<span>${label}</span></button>`
-  }).join('')}</div>`
-}
-
 function fullHero() {
   return `<section class="gc-lb-hero">
-    <div class="gc-lb-hero-copy"><small>🏆 &nbsp; BẢNG XẾP HẠNG</small><h1>Top người dùng kiếm coin</h1><p>Xếp hạng người dùng theo số coin kiếm được thực tế trên Gamezcoin.</p>
+    <div class="gc-lb-hero-copy"><small>🏆 &nbsp; BẢNG XẾP HẠNG</small><h1>Top người dùng kiếm coin</h1><p>Xếp hạng người dùng theo tổng số coin kiếm được thực tế trên Gamezcoin.</p>
       <div class="gc-lb-trust"><span>${shieldSvg}<b>Minh bạch</b></span><span>${clockSvg}<b>Cập nhật thời gian thực</b></span><span>${shieldSvg}<b>Uy tín</b></span></div>
     </div>
     <div class="gc-lb-hero-art"><i></i>${trophySvg}</div>
@@ -209,35 +192,28 @@ function fullHero() {
 }
 
 function fullList(items) {
-  const rows = items.slice(3)
-  return `<section class="gc-lb-ranking-card">
-    ${podium(items)}
-    <div class="gc-lb-full-list">${rows.map(rankRow).join('') || '<p class="gc-lb-empty-text">Chưa có người dùng nào trong khoảng thời gian này.</p>'}</div>
+  return `<section class="gc-lb-ranking-card gc-lb-top-three-only" aria-label="Ba người dùng kiếm nhiều coin nhất">
+    ${podium(items.slice(0, 3))}
   </section>`
 }
 
-function currentLabel(period) {
-  return ({ today: 'hôm nay', week: 'tuần này', month: 'tháng này', all: 'toàn thời gian' })[period] || 'hôm nay'
-}
-
-async function renderLeaderboardData(period, token) {
+async function renderLeaderboardData(token) {
   const content = document.querySelector('.gc-lb-content')
   if (!content) return
-  content.innerHTML = '<div class="gc-lb-skeleton full"><i></i><i></i><i></i><i></i></div>'
+  content.innerHTML = '<div class="gc-lb-skeleton full"><i></i><i></i><i></i></div>'
   try {
-    const data = await fetchLeaderboard(period, 100)
+    const data = await fetchLeaderboard('all', 3)
     if (!leaderboardOpen || token !== Number(document.querySelector('.gc-leaderboard-page')?.dataset.token || -1)) return
-    content.innerHTML = `${fullList(data?.items || [])}<p class="gc-lb-note">Xếp hạng ${e(currentLabel(period))} dựa trên coin đã được hệ thống ghi nhận.</p>`
+    content.innerHTML = fullList(data?.items || [])
   } catch (error) {
     content.innerHTML = `<div class="gc-lb-state"><strong>Không tải được bảng xếp hạng</strong><span>${e(error?.message || 'Không thể kết nối máy chủ.')}</span><button type="button" data-gc-retry-full>Thử lại</button></div>`
   }
 }
 
-function openLeaderboard(period = activePeriod) {
+function openLeaderboard() {
   const view = document.querySelector('.shell>#view, #view')
   if (!view) return
   leaderboardOpen = true
-  activePeriod = PERIODS.some(([id]) => id === period) ? period : 'today'
   ensureLeaderboardNav()
   document.querySelectorAll('.shell>nav button.on').forEach((item) => item.classList.remove('on'))
   document.querySelector('.shell>nav [data-tab="leaderboard"]')?.classList.add('on')
@@ -247,11 +223,10 @@ function openLeaderboard(period = activePeriod) {
   view.dataset.gcPremiumHome = ''
   view.innerHTML = `<main class="gc-leaderboard-page" data-token="${token}">
     ${fullHero()}
-    ${periodTabs(activePeriod)}
     <div class="gc-lb-content"></div>
   </main>`
   window.scrollTo({ top: 0, behavior: 'smooth' })
-  void renderLeaderboardData(activePeriod, token)
+  void renderLeaderboardData(token)
 }
 
 function handleDocumentClick(event) {
@@ -267,14 +242,6 @@ function handleDocumentClick(event) {
   const nativeNav = event.target.closest?.('.shell>nav [data-tab]:not([data-tab="leaderboard"])')
   if (nativeNav) leaderboardOpen = false
 
-  const periodButton = event.target.closest?.('[data-lb-period]')
-  if (periodButton && leaderboardOpen) {
-    event.preventDefault()
-    const next = periodButton.dataset.lbPeriod
-    if (next !== activePeriod) openLeaderboard(next)
-    return
-  }
-
   if (event.target.closest?.('[data-gc-retry-preview]')) {
     const section = document.querySelector('.gc-home-leaderboard')
     if (section) void loadPreview(section, true)
@@ -282,7 +249,7 @@ function handleDocumentClick(event) {
 
   if (event.target.closest?.('[data-gc-retry-full]') && leaderboardOpen) {
     const token = Number(document.querySelector('.gc-leaderboard-page')?.dataset.token || Date.now())
-    void renderLeaderboardData(activePeriod, token)
+    void renderLeaderboardData(token)
   }
 }
 
@@ -291,7 +258,7 @@ document.addEventListener('click', handleDocumentClick, true)
 function sync() {
   ensureLeaderboardNav()
   mountHomePreview()
-  if (leaderboardOpen && !document.querySelector('.gc-leaderboard-page')) openLeaderboard(activePeriod)
+  if (leaderboardOpen && !document.querySelector('.gc-leaderboard-page')) openLeaderboard()
 }
 
 function schedule() {
