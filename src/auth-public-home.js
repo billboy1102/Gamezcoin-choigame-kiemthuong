@@ -4,6 +4,7 @@ import './landing-trust-reference.css'
 import './landing-mobile-actions.css'
 import './landing-hero-metrics.css'
 import './landing-faq-final-cta.css'
+import './landing-footer-pages.css'
 import { finalBannerImageUrl } from './final-cta-reference.js'
 import { supabase } from './api.js'
 
@@ -42,6 +43,40 @@ const virtualGames = [
   ['Lucky Spin', 'spin', 'lucky-spin-3d.webp', '210.000đ'],
   ['Merge Town', 'town', 'merge-town-3d.webp', '238.000đ'],
 ]
+
+const footerPages = {
+  privacy: {
+    eyebrow: 'QUYỀN RIÊNG TƯ',
+    title: 'Chính sách bảo mật',
+    html: `<p class="gc-footer-page-lead">Gamezcoin tôn trọng quyền riêng tư và chỉ sử dụng dữ liệu cần thiết để vận hành tài khoản, ghi nhận kết quả chơi game và xử lý giao dịch.</p>
+      <h3>Dữ liệu được thu thập</h3><ul><li>Thông tin tài khoản như tên hiển thị và email đăng nhập.</li><li>Dữ liệu phiên chơi, số coin, lịch sử giao dịch và trạng thái yêu cầu rút.</li><li>Thông tin nhận tiền do người dùng cung cấp khi tạo yêu cầu rút.</li></ul>
+      <h3>Mục đích sử dụng</h3><p>Dữ liệu được dùng để xác thực tài khoản, chống gian lận, hỗ trợ người dùng và thực hiện các chức năng của Gamezcoin. Gamezcoin không yêu cầu mật khẩu, mã OTP hoặc mã khôi phục qua tin nhắn hỗ trợ.</p>
+      <h3>Quyền của bạn</h3><p>Bạn có thể kiểm tra thông tin tài khoản, lịch sử coin và yêu cầu hỗ trợ khi phát hiện dữ liệu không chính xác. Chính sách này được cập nhật lần cuối ngày 22/08/2026.</p>`
+  },
+  about: {
+    eyebrow: 'VỀ GAMEZCOIN',
+    title: 'Về chúng tôi',
+    html: `<p class="gc-footer-page-lead">Gamezcoin là nền tảng trò chơi trực tuyến hướng đến trải nghiệm dễ sử dụng, minh bạch và tối ưu trên điện thoại.</p>
+      <h3>Gamezcoin xây dựng điều gì?</h3><p>Chúng tôi phát triển kho game, hệ thống tài khoản, Ví Gamezcoin và quy trình theo dõi giao dịch trong cùng một trải nghiệm. Mỗi game hoặc tính năng đều hiển thị trạng thái hỗ trợ để người dùng biết rõ trước khi tham gia.</p>
+      <h3>Nguyên tắc hoạt động</h3><ul><li>Điều kiện ghi nhận kết quả phải được trình bày rõ ràng.</li><li>Số dư và biến động coin được lưu theo tài khoản.</li><li>Trạng thái yêu cầu rút được theo dõi trực tiếp trong Ví.</li><li>Không yêu cầu người dùng cung cấp mật khẩu hoặc mã OTP.</li></ul>`
+  },
+  terms: {
+    eyebrow: 'QUY ĐỊNH SỬ DỤNG',
+    title: 'Điều khoản dịch vụ',
+    html: `<p class="gc-footer-page-lead">Khi đăng ký hoặc sử dụng Gamezcoin, bạn xác nhận đã đọc và đồng ý tuân thủ các điều khoản dưới đây.</p>
+      <h3>Tài khoản</h3><p>Bạn có trách nhiệm cung cấp thông tin chính xác, bảo vệ thông tin đăng nhập và không chia sẻ tài khoản cho người khác. Mỗi người dùng phải đáp ứng yêu cầu về độ tuổi theo pháp luật tại nơi cư trú.</p>
+      <h3>Chơi game và ghi nhận coin</h3><p>Coin chỉ được ghi nhận khi kết quả đáp ứng đúng điều kiện của game và vượt qua bước xác minh. Hành vi tự động hóa, can thiệp hệ thống, tạo nhiều tài khoản để trục lợi hoặc giả mạo giao dịch có thể dẫn đến việc hủy kết quả hoặc khóa tài khoản.</p>
+      <h3>Rút tiền và thay đổi dịch vụ</h3><p>Mức rút tối thiểu, phương thức nhận tiền và trạng thái xử lý được hiển thị trong Ví. Gamezcoin có thể cập nhật tính năng hoặc điều khoản để phù hợp với vận hành và yêu cầu pháp lý; thay đổi quan trọng sẽ được công bố trên nền tảng.</p>`
+  },
+  contact: {
+    eyebrow: 'HỖ TRỢ NGƯỜI DÙNG',
+    title: 'Liên hệ chúng tôi',
+    html: `<p class="gc-footer-page-lead">Nếu cần hỗ trợ tài khoản, kết quả game hoặc giao dịch, hãy gửi yêu cầu kèm thông tin đủ để đội ngũ kiểm tra.</p>
+      <div class="gc-footer-contact-card"><strong>Thông tin nên cung cấp</strong><span>Email tài khoản · Mã giao dịch · Thời điểm xảy ra · Ảnh chụp lỗi</span></div>
+      <p class="gc-footer-warning"><b>Lưu ý bảo mật:</b> Không gửi mật khẩu, mã OTP, mã khôi phục hoặc thông tin bí mật của ví trong yêu cầu hỗ trợ.</p>
+      <a class="gc-footer-support-link" href="https://github.com/billboy1102/Gamezcoin-choigame-kiemthuong/issues/new" target="_blank" rel="noopener noreferrer">Gửi yêu cầu hỗ trợ <span aria-hidden="true">↗</span></a>`
+  }
+}
 
 function virtualGameCards() {
   return virtualGames.map(([name, art, image, amount]) => `
@@ -192,11 +227,22 @@ function landingMarkup() {
 
     <footer class="gc-public-footer">
       <div class="gc-public-footer-brand"><span>G</span><strong>GAMEZCOIN</strong><p>Chơi game kiếm tiền với dữ liệu giao dịch minh bạch trong tài khoản.</p></div>
-      <div><b>Hỗ trợ</b><span>Trung tâm trợ giúp</span><span>Hướng dẫn</span><span>Chính sách bảo mật</span><span>Điều khoản sử dụng</span></div>
-      <div><b>Về Gamezcoin</b><span>Giới thiệu</span><span>Kho game 3D</span><span>Phương thức rút tiền</span></div>
-      <div><b>Minh bạch</b><span>Không số liệu giả</span><span>Không review giả</span><span>Trạng thái game rõ ràng</span></div>
+      <nav class="gc-public-footer-links" aria-label="Thông tin Gamezcoin">
+        <button type="button" data-footer-page="privacy">Chính sách bảo mật</button>
+        <button type="button" data-footer-page="about">Về chúng tôi</button>
+        <button type="button" data-footer-page="terms">Điều khoản dịch vụ</button>
+        <button type="button" data-footer-page="contact">Liên hệ chúng tôi</button>
+      </nav>
       <small>© 2026 Gamezcoin. All rights reserved.</small>
     </footer>
+
+    <div class="gc-footer-modal" data-footer-modal hidden>
+      <button type="button" class="gc-footer-modal-backdrop" data-footer-close aria-label="Đóng"></button>
+      <section class="gc-footer-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="gc-footer-modal-title">
+        <header><div><small data-footer-eyebrow></small><h2 id="gc-footer-modal-title" data-footer-title></h2></div><button type="button" class="gc-footer-modal-close" data-footer-close aria-label="Đóng">${closeIcon}</button></header>
+        <div class="gc-footer-modal-content" data-footer-content></div>
+      </section>
+    </div>
 
     <button type="button" class="gc-mobile-sticky-cta" data-public-auth="signup"><span class="gc-sticky-game-icon">${gameIcon}</span><strong>Bắt đầu kiếm tiền ngay bây giờ</strong><span class="gc-sticky-arrow">${arrowIcon}</span></button>
     <nav class="gc-public-bottom-nav" aria-label="Điều hướng khách"><button type="button" class="on" data-public-home><span class="gc-bottom-nav-icon">${homeNavIcon}</span><small>Nhà</small><i class="gc-nav-dot" aria-hidden="true"></i></button><button type="button" data-public-auth="login"><span class="gc-bottom-nav-icon">${cashoutNavIcon}</span><small>Rút tiền mặt</small></button></nav>
@@ -255,7 +301,43 @@ function decorateAuthBox(main, box, login) {
   })
 }
 
+function bindFooterPages(main) {
+  const modal = main.querySelector('[data-footer-modal]')
+  if (!modal) return
+  const title = modal.querySelector('[data-footer-title]')
+  const eyebrow = modal.querySelector('[data-footer-eyebrow]')
+  const content = modal.querySelector('[data-footer-content]')
+  let lastTrigger = null
+
+  const close = () => {
+    if (modal.hidden) return
+    modal.hidden = true
+    document.body.classList.remove('gc-footer-modal-open')
+    lastTrigger?.focus()
+  }
+
+  main.querySelectorAll('[data-footer-page]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const page = footerPages[button.dataset.footerPage]
+      if (!page) return
+      lastTrigger = button
+      eyebrow.textContent = page.eyebrow
+      title.textContent = page.title
+      content.innerHTML = page.html
+      modal.hidden = false
+      document.body.classList.add('gc-footer-modal-open')
+      modal.querySelector('.gc-footer-modal-close')?.focus()
+    })
+  })
+
+  modal.querySelectorAll('[data-footer-close]').forEach((button) => button.addEventListener('click', close))
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !modal.hidden) close()
+  })
+}
+
 function bindLanding(main) {
+  bindFooterPages(main)
   main.querySelectorAll('[data-public-auth]').forEach((button) => {
     button.addEventListener('click', () => {
       const mode = button.dataset.publicAuth || 'signup'
