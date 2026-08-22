@@ -1,5 +1,6 @@
 .gc-premium-dots{display:none!important}
-.shell>nav .gc-account-nav-source{display:none!important}
+.shell>nav [data-tab="account"]{display:grid!important}
+.shell>nav .gc-leaderboard-nav{display:none!important}
 .shell>nav .gc-leaderboard-nav-icon{display:grid;width:30px;height:30px;place-items:center}
 .shell>nav .gc-leaderboard-nav-icon svg{width:30px;height:30px;overflow:visible}
 .shell>nav .gc-leaderboard-nav-icon svg text{display:none}

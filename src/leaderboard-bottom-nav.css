@@ -1,3 +1,3 @@
-/* Match the five-item reference navigation: leaderboard replaces the account shortcut. */
-html body .shell>nav .gc-leaderboard-nav{display:grid!important}
-html body .shell>nav [data-tab="account"].gc-account-nav-source{display:none!important}
+/* Keep the original five-item navigation. The leaderboard opens from its home card. */
+html body .shell>nav .gc-leaderboard-nav{display:none!important}
+html body .shell>nav [data-tab="account"]{display:grid!important}

@@ -6,7 +6,6 @@ let avatarUrl = ''
 let loading = false
 let queued = false
 let hydratedShell = null
-const fallbackAvatarUrl = '/assets/leaderboard/avatar-rank-1.webp'
 
 const f = (value) => new Intl.NumberFormat('vi-VN').format(Number(value || 0))
 const e = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({
@@ -40,13 +39,14 @@ function renderHeader(data = cache || fallbackData()) {
   const header = document.querySelector('.shell>header')
   if (!header) return
   const name = data?.profile?.display_name || 'Người chơi'
+  const initial = Array.from(String(name).trim())[0]?.toUpperCase() || 'G'
   const balance = f(data?.wallet?.balance || 0)
-  const profileAvatar = avatarUrl || fallbackAvatarUrl
+  const profileAvatar = avatarUrl
 
   header.classList.add('gc-premium-header')
   header.innerHTML = `
     <div class="gc-premium-user">
-      <button type="button" class="gc-premium-avatar" id="gc-global-profile" aria-label="Tài khoản"><img src="${e(profileAvatar)}" alt="${e(name)}" referrerpolicy="no-referrer"></button>
+      <button type="button" class="gc-premium-avatar" id="gc-global-profile" aria-label="Tài khoản">${profileAvatar ? `<img src="${e(profileAvatar)}" alt="${e(name)}" referrerpolicy="no-referrer">` : `<span>${e(initial)}</span>`}</button>
       <div class="gc-premium-greeting"><small>Xin chào,</small><strong>${e(name)} <i>✓</i></strong></div>
     </div>
     <div class="gc-premium-head-actions">

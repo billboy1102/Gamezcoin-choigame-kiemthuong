@@ -8,12 +8,6 @@ const shieldSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20
 const clockSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3.4 2"/></svg>`
 const laurelSvg = `<svg viewBox="0 0 140 104" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round"><path d="M45 94C20 77 14 48 27 18"/><path d="M95 94c25-17 31-46 18-76"/></g><g fill="currentColor"><ellipse cx="27" cy="76" rx="5" ry="11" transform="rotate(-40 27 76)"/><ellipse cx="21" cy="61" rx="5" ry="11" transform="rotate(-58 21 61)"/><ellipse cx="21" cy="44" rx="5" ry="11" transform="rotate(-72 21 44)"/><ellipse cx="28" cy="28" rx="5" ry="11" transform="rotate(-88 28 28)"/><ellipse cx="37" cy="84" rx="5" ry="11" transform="rotate(-26 37 84)"/><ellipse cx="113" cy="76" rx="5" ry="11" transform="rotate(40 113 76)"/><ellipse cx="119" cy="61" rx="5" ry="11" transform="rotate(58 119 61)"/><ellipse cx="119" cy="44" rx="5" ry="11" transform="rotate(72 119 44)"/><ellipse cx="112" cy="28" rx="5" ry="11" transform="rotate(88 112 28)"/><ellipse cx="103" cy="84" rx="5" ry="11" transform="rotate(26 103 84)"/></g></svg>`
 
-const rankAvatarSources = {
-  1: '/assets/leaderboard/avatar-rank-1.webp',
-  2: '/assets/leaderboard/avatar-rank-2.webp',
-  3: '/assets/leaderboard/avatar-rank-3.webp',
-}
-
 const cache = new Map()
 let leaderboardOpen = false
 let previewLoading = false
@@ -25,9 +19,7 @@ const e = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({
 }[char]))
 
 function initials(name = '') {
-  const parts = String(name).trim().split(/\s+/).filter(Boolean)
-  if (!parts.length) return 'G'
-  return (parts.length === 1 ? parts[0].slice(0, 2) : parts[0][0] + parts.at(-1)[0]).toUpperCase()
+  return Array.from(String(name).trim())[0]?.toUpperCase() || 'G'
 }
 
 function hueFor(value = '') {
@@ -36,14 +28,10 @@ function hueFor(value = '') {
   return Math.abs(hash) % 360
 }
 
-function avatar(item, extra = '', rank = 0) {
+function avatar(item, extra = '') {
   const name = item?.display_name || 'Người chơi'
   const hue = hueFor(item?.user_id || name)
-  const source = rankAvatarSources[rank]
-  if (source) {
-    return `<span class="gc-lb-avatar gc-lb-avatar-art rank-${rank} ${extra}" style="--gc-lb-h:${hue}"><img src="${source}" alt="" aria-hidden="true"><i>G</i></span>`
-  }
-  return `<span class="gc-lb-avatar ${extra}" style="--gc-lb-h:${hue}"><b>${e(initials(name))}</b><i>G</i></span>`
+  return `<span class="gc-lb-avatar ${extra}" style="--gc-lb-h:${hue}" aria-label="${e(name)}"><b>${e(initials(name))}</b></span>`
 }
 
 function coin(value) {
@@ -82,7 +70,7 @@ function podiumCard(item, rank) {
   return `<article class="gc-lb-podium-card r${rank} ${item.is_me ? 'is-me' : ''}">
     ${rank === 1 ? `<span class="gc-lb-crown">${crownSvg}</span>` : ''}
     ${medal(rank)}
-    <span class="gc-lb-avatar-stage">${rank === 1 ? `<span class="gc-lb-laurel">${laurelSvg}</span>` : ''}${avatar(item, 'large', rank)}</span>
+    <span class="gc-lb-avatar-stage">${rank === 1 ? `<span class="gc-lb-laurel">${laurelSvg}</span>` : ''}${avatar(item, 'large')}</span>
     <span class="gc-lb-rank-ribbon">Hạng ${rank}</span>
     <strong>${e(item.display_name || 'Người chơi')}</strong>
     ${coin(item.earned_coin)}
@@ -116,17 +104,12 @@ function podium(items) {
 
 function previewMarkup(data) {
   const items = data?.items || []
-  const rows = items.slice(3, 7)
   return `
     <div class="gc-home-lb-head">
       <div><span class="gc-home-lb-trophy">${trophySvg}</span><div><small>BẢNG XẾP HẠNG</small><h2>Top người dùng kiếm coin</h2></div></div>
       <button type="button" data-gc-open-leaderboard>Xem tất cả ${chevronSvg}</button>
     </div>
-    ${podium(items)}
-    <div class="gc-home-lb-list">
-      ${rows.map(rankRow).join('') || '<p class="gc-lb-empty-text">Chưa có dữ liệu xếp hạng hôm nay.</p>'}
-    </div>
-    <button type="button" class="gc-home-lb-all" data-gc-open-leaderboard>Xem tất cả bảng xếp hạng ${chevronSvg}</button>`
+    <div class="gc-home-lb-reference">${fullList(items)}</div>`
 }
 
 function previewError(message) {
@@ -138,7 +121,7 @@ async function loadPreview(section, force = false) {
   previewLoading = true
   section.classList.add('is-loading')
   try {
-    const data = await fetchLeaderboard('today', 7, force)
+    const data = await fetchLeaderboard('all', 3, force)
     if (!section.isConnected) return
     section.innerHTML = previewMarkup(data)
     section.querySelector('[data-gc-retry-preview]')?.remove()
@@ -166,30 +149,12 @@ function mountHomePreview() {
   }
 }
 
-function ensureLeaderboardNav() {
+function restoreAccountNav() {
   const nav = document.querySelector('.shell>nav')
   if (!nav) return
+  nav.querySelector('[data-tab="leaderboard"]')?.remove()
   const account = nav.querySelector('[data-tab="account"]')
-  account?.classList.add('gc-account-nav-source')
-  let button = nav.querySelector('[data-tab="leaderboard"]')
-  if (!button) {
-    button = document.createElement('button')
-    button.type = 'button'
-    button.dataset.tab = 'leaderboard'
-    button.className = 'gc-leaderboard-nav'
-    button.innerHTML = `<b><span class="gc-leaderboard-nav-icon">${trophySvg}</span></b><small>Bảng xếp hạng</small>`
-    button.addEventListener('click', (event) => {
-      event.preventDefault()
-      event.stopPropagation()
-      openLeaderboard()
-    })
-    if (account) nav.insertBefore(button, account)
-    else nav.append(button)
-  }
-  if (leaderboardOpen) {
-    nav.querySelectorAll('button.on').forEach((item) => item.classList.remove('on'))
-    button.classList.add('on')
-  }
+  account?.classList.remove('gc-account-nav-source')
 }
 
 function fullHero() {
@@ -224,9 +189,8 @@ function openLeaderboard() {
   const view = document.querySelector('.shell>#view, #view')
   if (!view) return
   leaderboardOpen = true
-  ensureLeaderboardNav()
+  restoreAccountNav()
   document.querySelectorAll('.shell>nav button.on').forEach((item) => item.classList.remove('on'))
-  document.querySelector('.shell>nav [data-tab="leaderboard"]')?.classList.add('on')
 
   const token = Date.now()
   view.dataset.gamezPage = 'leaderboard'
@@ -249,7 +213,7 @@ function handleDocumentClick(event) {
     return
   }
 
-  const nativeNav = event.target.closest?.('.shell>nav [data-tab]:not([data-tab="leaderboard"])')
+  const nativeNav = event.target.closest?.('.shell>nav [data-tab]')
   if (nativeNav) leaderboardOpen = false
 
   if (event.target.closest?.('[data-gc-retry-preview]')) {
@@ -266,7 +230,7 @@ function handleDocumentClick(event) {
 document.addEventListener('click', handleDocumentClick, true)
 
 function sync() {
-  ensureLeaderboardNav()
+  restoreAccountNav()
   mountHomePreview()
   if (leaderboardOpen && !document.querySelector('.gc-leaderboard-page')) openLeaderboard()
 }

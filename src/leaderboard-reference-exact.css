@@ -104,17 +104,62 @@ html body .gc-leaderboard-page .gc-lb-podium-card.empty .gc-lb-empty-avatar{widt
 html body .gc-leaderboard-page .gc-lb-skeleton.full,
 html body .gc-leaderboard-page .gc-lb-state{min-height:314px!important;margin:0!important;border:1px solid rgba(45,88,157,.62)!important;border-radius:20px!important;background:#06162c!important}
 
+/* The home card reuses the same 2–1–3 podium treatment as the full leaderboard. */
+html body .gc-home-lb-reference{padding:0 10px 14px!important}
+html body .gc-home-lb-reference .gc-lb-ranking-card{position:relative!important;margin:0!important;overflow:visible!important;border:1px solid rgba(45,88,157,.72)!important;border-radius:20px!important;background:radial-gradient(circle at 50% 8%,rgba(83,56,220,.19),transparent 35%),radial-gradient(ellipse at 50% 95%,rgba(255,186,21,.10),transparent 37%),linear-gradient(180deg,#06172f,#031124)!important;box-shadow:0 13px 32px rgba(0,0,0,.26),inset 0 1px 0 rgba(255,255,255,.035)!important}
+html body .gc-home-lb-reference .gc-lb-podium{position:relative!important;min-height:314px!important;padding:42px 8px 22px!important;display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1.22fr) minmax(0,1fr)!important;align-items:end!important;gap:7px!important;background:transparent!important}
+html body .gc-home-lb-reference .gc-lb-podium:before{content:""!important;position:absolute!important;z-index:0!important;left:50%!important;bottom:4px!important;width:39%!important;height:31px!important;transform:translateX(-50%)!important;border:1px solid rgba(255,197,35,.48)!important;border-radius:50%!important;background:radial-gradient(ellipse,rgba(255,197,27,.29),rgba(46,33,21,.66) 56%,transparent 70%)!important;box-shadow:0 0 24px rgba(255,179,10,.23)!important}
+html body .gc-home-lb-reference .gc-lb-podium:after{content:""!important;position:absolute!important;z-index:0!important;left:50%!important;bottom:15px!important;width:34%!important;height:16px!important;transform:translateX(-50%)!important;border-radius:50% 50% 25% 25%!important;background:linear-gradient(180deg,#70531b,#231d18)!important;box-shadow:inset 0 1px 0 rgba(255,235,126,.42)!important}
+html body .gc-home-lb-reference .gc-lb-podium-card{position:relative!important;z-index:1!important;min-width:0!important;min-height:218px!important;padding:44px 6px 13px!important;overflow:visible!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-end!important;border:1px solid #268fde!important;border-radius:13px!important;background:radial-gradient(circle at 50% 20%,rgba(24,111,220,.13),transparent 38%),linear-gradient(180deg,rgba(8,38,76,.98),rgba(3,17,37,.99))!important;color:#fff!important;text-align:center!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.045),0 8px 18px rgba(0,0,0,.20)!important}
+html body .gc-home-lb-reference .gc-lb-podium-card.r1{min-height:258px!important;padding-top:48px!important;border-color:#f5ce2c!important;background:radial-gradient(circle at 50% 22%,rgba(255,197,32,.16),transparent 36%),linear-gradient(180deg,rgba(42,35,13,.98),rgba(4,18,36,.99))!important;box-shadow:0 0 0 1px rgba(255,211,46,.14),0 0 25px rgba(255,185,19,.20),inset 0 1px 0 rgba(255,242,153,.20)!important}
+html body .gc-home-lb-reference .gc-lb-podium-card.r3{border-color:#c4732f!important;background:radial-gradient(circle at 50% 19%,rgba(196,102,36,.12),transparent 38%),linear-gradient(180deg,rgba(40,25,22,.94),rgba(4,18,36,.99))!important}
+html body .gc-home-lb-reference .gc-lb-avatar-stage{position:relative!important;z-index:2!important;width:78px!important;height:78px!important;flex:0 0 78px!important;display:grid!important;place-items:center!important}
+html body .gc-home-lb-reference .r1 .gc-lb-avatar-stage{width:96px!important;height:96px!important;flex-basis:96px!important}
+html body .gc-home-lb-reference .gc-lb-avatar.large{position:relative!important;z-index:2!important;width:78px!important;height:78px!important;flex:0 0 78px!important;display:grid!important;place-items:center!important;border:2px solid #3ecbff!important;border-radius:50%!important;background:radial-gradient(circle at 35% 25%,hsl(var(--gc-lb-h) 88% 48%),hsl(var(--gc-lb-h) 75% 22%) 60%,#07152b)!important;box-shadow:0 0 0 3px rgba(59,90,225,.28),0 0 18px rgba(30,192,255,.26)!important}
+html body .gc-home-lb-reference .r1 .gc-lb-avatar.large{width:92px!important;height:92px!important;flex-basis:92px!important;border-color:#ffd73f!important;box-shadow:0 0 0 3px rgba(255,199,31,.18),0 0 22px rgba(255,186,14,.25)!important}
+html body .gc-home-lb-reference .r3 .gc-lb-avatar.large{border-color:#dc8a45!important;box-shadow:0 0 0 3px rgba(181,86,31,.20),0 0 16px rgba(213,102,35,.20)!important}
+html body .gc-home-lb-reference .gc-lb-laurel{position:absolute!important;z-index:1!important;left:50%!important;top:50%!important;width:124px!important;height:102px!important;transform:translate(-50%,-45%)!important;color:#e8b625!important;filter:drop-shadow(0 0 7px rgba(255,188,21,.30))!important;pointer-events:none!important}
+html body .gc-home-lb-reference .gc-lb-laurel svg{width:100%!important;height:100%!important}
+html body .gc-home-lb-reference .gc-lb-crown{z-index:5!important;top:-28px!important;width:50px!important;height:39px!important}
+html body .gc-home-lb-reference .gc-lb-medal{z-index:6!important;top:9px!important;left:8px!important;width:39px!important;height:50px!important;font-size:17px!important}
+html body .gc-home-lb-reference .gc-lb-medal:before,
+html body .gc-home-lb-reference .gc-lb-medal:after{content:""!important;position:absolute!important;z-index:0!important;bottom:1px!important;width:14px!important;height:22px!important;border-radius:2px!important;background:linear-gradient(180deg,#6e8dc1,#214a8f)!important}
+html body .gc-home-lb-reference .gc-lb-medal:before{left:6px!important;transform:rotate(10deg)!important}
+html body .gc-home-lb-reference .gc-lb-medal:after{right:6px!important;transform:rotate(-10deg)!important}
+html body .gc-home-lb-reference .gc-lb-medal>i{position:absolute!important;z-index:2!important;inset:0 auto auto 0!important;width:39px!important;height:39px!important;border:2px solid #e9f4ff!important;border-radius:50%!important;background:radial-gradient(circle at 35% 26%,#f7fbff,#9db4d5 57%,#536d92)!important;box-shadow:inset 0 0 0 3px rgba(255,255,255,.16)!important}
+html body .gc-home-lb-reference .gc-lb-medal>b{position:absolute!important;z-index:3!important;inset:0 auto auto 0!important;width:39px!important;height:39px!important;display:grid!important;place-items:center!important;color:#4f6481!important;font-size:17px!important;font-weight:1000!important;text-shadow:0 1px 0 rgba(255,255,255,.65)!important}
+html body .gc-home-lb-reference .gc-lb-medal.r1:before,
+html body .gc-home-lb-reference .gc-lb-medal.r1:after{background:linear-gradient(180deg,#ffc82d,#9d5b00)!important}
+html body .gc-home-lb-reference .gc-lb-medal.r1>i{border-color:#fff18d!important;background:radial-gradient(circle at 35% 25%,#fff796,#ffc51e 56%,#d68100)!important}
+html body .gc-home-lb-reference .gc-lb-medal.r1>b{color:#865000!important}
+html body .gc-home-lb-reference .gc-lb-medal.r3:before,
+html body .gc-home-lb-reference .gc-lb-medal.r3:after{background:linear-gradient(180deg,#d77b39,#713415)!important}
+html body .gc-home-lb-reference .gc-lb-medal.r3>i{border-color:#ffc396!important;background:radial-gradient(circle at 35% 25%,#ffd0a5,#c36d2c 58%,#874016)!important}
+html body .gc-home-lb-reference .gc-lb-medal.r3>b{color:#6b3517!important}
+html body .gc-home-lb-reference .gc-lb-medal>em{display:none!important}
+html body .gc-home-lb-reference .gc-lb-rank-ribbon{position:relative!important;z-index:4!important;min-width:72px!important;margin-top:-9px!important;padding:4px 9px!important;font-size:10px!important;line-height:1!important}
+html body .gc-home-lb-reference .r1 .gc-lb-rank-ribbon{min-width:80px!important}
+html body .gc-home-lb-reference .gc-lb-podium-card>strong{width:100%!important;margin:10px 0 7px!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;font-size:12px!important;line-height:1.08!important}
+html body .gc-home-lb-reference .gc-lb-podium-card.r1>strong{font-size:14px!important}
+html body .gc-home-lb-reference .gc-lb-coin{max-width:100%!important;justify-content:center!important}
+html body .gc-home-lb-reference .gc-lb-coin>i{width:20px!important;height:20px!important;flex:0 0 20px!important;font-size:10px!important}
+html body .gc-home-lb-reference .gc-lb-podium-card .gc-lb-coin>strong{min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important;color:#ffd42b!important;font-size:12px!important;font-weight:900!important}
+html body .gc-home-lb-reference .gc-lb-podium-card.r1 .gc-lb-coin>strong{font-size:15px!important}
+html body .gc-home-lb-reference .gc-lb-podium-card .gc-lb-coin>small{color:#f0f3f9!important;font-size:8px!important}
+html body :is(.gc-leaderboard-page,.gc-home-lb-reference) .gc-lb-avatar.large>b{font-size:27px!important;font-weight:950!important;line-height:1!important;text-shadow:0 2px 8px rgba(0,0,0,.48)!important}
+html body :is(.gc-leaderboard-page,.gc-home-lb-reference) .r1 .gc-lb-avatar.large>b{font-size:32px!important}
+
 /* Bottom navigation */
 html body:has(.gc-leaderboard-page) .shell>nav{left:50%!important;right:auto!important;bottom:0!important;z-index:70!important;width:min(850px,100%)!important;max-width:none!important;height:calc(78px + env(safe-area-inset-bottom))!important;padding:6px 8px env(safe-area-inset-bottom)!important;transform:translateX(-50%)!important;display:grid!important;grid-template-columns:repeat(5,1fr)!important;border:1px solid rgba(47,81,137,.55)!important;border-bottom:0!important;border-radius:25px 25px 0 0!important;background:linear-gradient(180deg,rgba(7,19,42,.99),rgba(4,13,29,.99))!important;box-shadow:0 -8px 26px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.025)!important;backdrop-filter:blur(20px)!important;-webkit-backdrop-filter:blur(20px)!important}
 html body:has(.gc-leaderboard-page) .shell>nav button{position:relative!important;min-height:64px!important;padding:5px 2px!important;display:grid!important;place-items:center!important;align-content:center!important;gap:3px!important;border:1px solid transparent!important;border-radius:18px!important;background:transparent!important;color:#7f92aa!important}
 html body:has(.gc-leaderboard-page) .shell>nav button b{width:31px!important;height:31px!important;display:grid!important;place-items:center!important;color:currentColor!important;font-size:25px!important}
 html body:has(.gc-leaderboard-page) .shell>nav button small{color:currentColor!important;font-size:9px!important;font-weight:650!important;line-height:1!important;white-space:nowrap!important}
 html body:has(.gc-leaderboard-page) .shell>nav button.on{border-color:rgba(40,174,255,.42)!important;background:linear-gradient(150deg,rgba(17,55,116,.80),rgba(8,32,75,.94))!important;color:#67eaff!important;box-shadow:inset 0 0 21px rgba(26,96,245,.17),0 -2px 16px rgba(0,134,255,.13)!important}
-html body:has(.gc-leaderboard-page) .shell>nav .gc-leaderboard-nav{display:grid!important;border-color:rgba(30,132,255,.66)!important;background:radial-gradient(circle at 50% 20%,rgba(38,74,255,.31),transparent 58%),linear-gradient(145deg,#07173a,#091d4b)!important;color:#59e8ff!important;box-shadow:inset 0 0 26px rgba(53,56,255,.22),0 0 18px rgba(0,128,255,.18)!important}
+html body:has(.gc-leaderboard-page) .shell>nav .gc-leaderboard-nav{display:none!important}
 html body:has(.gc-leaderboard-page) .shell>nav .gc-leaderboard-nav:before{content:""!important;position:absolute!important;left:10px!important;right:10px!important;top:-7px!important;height:2px!important;border-radius:999px!important;background:#31dfff!important;box-shadow:0 0 10px #279cff,0 0 18px #5f45ff!important}
 html body:has(.gc-leaderboard-page) .shell>nav .gc-leaderboard-nav-icon,
 html body:has(.gc-leaderboard-page) .shell>nav .gc-leaderboard-nav-icon svg{width:31px!important;height:31px!important}
-html body:has(.gc-leaderboard-page) .shell>nav [data-tab="account"].gc-account-nav-source{display:none!important}
+html body:has(.gc-leaderboard-page) .shell>nav [data-tab="account"]{display:grid!important}
 
 @media(max-width:390px){
   html body #view:has(.gc-leaderboard-page){width:calc(100% - 16px)!important}
