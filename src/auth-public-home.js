@@ -91,17 +91,17 @@ function landingMarkup() {
 
     <section class="gc-public-hero">
       <div class="gc-public-hero-copy">
-        <span class="gc-public-eyebrow"><i></i> GAMEZCOIN · KHO GAME 3D</span>
-        <h1>Thế giới game mới.<br><em>Sắp mở màn.</em></h1>
-        <p>Khám phá những concept game 3D mới của Gamezcoin. Mỗi trò chơi đều có trạng thái rõ ràng để bạn biết game nào đang được hoàn thiện và khi nào có thể trải nghiệm.</p>
+        <span class="gc-public-eyebrow"><i></i> GAMEZCOIN • Chơi game & Kiếm Tiền</span>
+        <h1>Chơi game &<br><em>kiếm tiền</em></h1>
+        <p>Chơi game, kiếm tiền thật và rút thưởng uy tín, nhanh chóng về ví của bạn</p>
         <div class="gc-public-hero-cta">
-          <a class="gc-hero-explore" href="#gc-games">Khám phá kho game ${arrowIcon}</a>
-          <button type="button" class="secondary" data-public-auth="signup">Nhận thông báo</button>
+          <button type="button" class="gc-hero-explore" data-public-auth="signup">Bắt đầu kiếm tiền ${arrowIcon}</button>
+          <button type="button" class="secondary" data-public-auth="login">Đăng nhập</button>
         </div>
         <div class="gc-public-hero-meta">
-          <span>${gameIcon}<b>12 concept game 3D</b></span>
-          <span>${shieldIcon}<b>Trạng thái minh bạch</b></span>
-          <span>${boltIcon}<b>Tối ưu cho di động</b></span>
+          <span><b>⭐️ 4.8/5 Đánh giá</b></span>
+          <span><b>100.000+ Người dùng thật</b></span>
+          <span><b>Thanh toán nhanh chóng</b></span>
         </div>
       </div>
       <div class="gc-public-hero-art" aria-hidden="true">
@@ -198,7 +198,7 @@ function landingMarkup() {
       <small>© 2026 Gamezcoin. All rights reserved.</small>
     </footer>
 
-    <a class="gc-mobile-sticky-cta" href="#gc-games">${gameIcon}<span>Khám phá kho game 3D</span>${arrowIcon}</a>
+    <button type="button" class="gc-mobile-sticky-cta" data-public-auth="signup">${gameIcon}<span>Bắt đầu kiếm tiền</span>${arrowIcon}</button>
     <nav class="gc-public-bottom-nav" aria-label="Điều hướng khách"><button type="button" class="on" data-public-home><span>⌂</span><small>Nhà</small></button><button type="button" data-public-auth="login"><span>▣</span><small>Rút tiền mặt</small></button></nav>
   </div>`
 }
