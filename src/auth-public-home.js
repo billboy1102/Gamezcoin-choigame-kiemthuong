@@ -5,6 +5,8 @@ const app = document.querySelector('#app')
 let requestedMode = null
 let queued = false
 
+const gameArtUrl = (file) => `${import.meta.env.BASE_URL}assets/games/${file}`
+
 const googleIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M21.6 12.23c0-.71-.06-1.23-.2-1.77H12v3.4h5.52a4.73 4.73 0 0 1-2.05 3.1l-.03.11 2.98 2.31.2.02c1.83-1.69 2.98-4.18 2.98-7.17Z"/><path fill="#34A853" d="M12 22c2.7 0 4.96-.89 6.62-2.42l-3.15-2.44c-.84.57-1.95.98-3.47.98a6.02 6.02 0 0 1-5.7-4.16l-.1.01-3.1 2.4-.04.1A10 10 0 0 0 12 22Z"/><path fill="#FBBC05" d="M6.3 13.96A6.17 6.17 0 0 1 5.96 12c0-.68.12-1.34.33-1.96l-.01-.13-3.14-2.44-.1.05A10.05 10.05 0 0 0 2 12c0 1.61.38 3.13 1.05 4.48l3.25-2.52Z"/><path fill="#EA4335" d="M12 5.88c1.88 0 3.15.81 3.88 1.48l2.8-2.73C16.96 3.03 14.7 2 12 2a10 10 0 0 0-8.95 5.52l3.24 2.52A6.04 6.04 0 0 1 12 5.88Z"/></svg>`
 const globeIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.8 2.6 4.2 5.6 4.2 9S14.8 18.4 12 21c-2.8-2.6-4.2-5.6-4.2-9S9.2 5.6 12 3Z"/></svg>`
 const shieldIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 6v5.5c0 4.6-3.1 7.7-8 9.5-4.9-1.8-8-4.9-8-9.5V6l8-3Z"/><path d="m8.6 12 2.2 2.2 4.7-4.8"/></svg>`
@@ -17,24 +19,26 @@ const arrowIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7
 const closeIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>`
 
 const virtualGames = [
-  ['Galaxy Match', 'planet', '65.000đ'],
-  ['Fruit Craze', 'fruit', '85.000đ'],
-  ['Jewel Quest', 'jewel', '100.000đ'],
-  ['Candy Merge', 'candy', '80.000đ'],
-  ['Bubble Pop', 'bubble', '60.000đ'],
-  ['Zombie Dash', 'zombie', '90.000đ'],
-  ['Farm Puzzle', 'farm', '70.000đ'],
-  ['Speed Runner', 'runner', '90.000đ'],
-  ['Pixel Shooter', 'space', '75.000đ'],
-  ['Dragon Merge', 'dragon', '120.000đ'],
-  ['Lucky Spin', 'spin', '55.000đ'],
-  ['Merge Town', 'town', '110.000đ'],
+  ['Galaxy Match', 'planet', 'galaxy-match-3d.webp', '65.000đ'],
+  ['Fruit Craze', 'fruit', 'fruit-craze-3d.webp', '85.000đ'],
+  ['Jewel Quest', 'jewel', 'jewel-quest-3d.webp', '100.000đ'],
+  ['Candy Merge', 'candy', 'candy-merge-3d.webp', '80.000đ'],
+  ['Bubble Pop', 'bubble', 'bubble-pop-3d.webp', '60.000đ'],
+  ['Zombie Dash', 'zombie', 'zombie-dash-3d.webp', '90.000đ'],
+  ['Farm Puzzle', 'farm', 'farm-puzzle-3d.webp', '70.000đ'],
+  ['Speed Runner', 'runner', 'speed-runner-3d.webp', '90.000đ'],
+  ['Pixel Shooter', 'space', 'pixel-shooter-3d.webp', '75.000đ'],
+  ['Dragon Merge', 'dragon', 'dragon-merge-3d.webp', '120.000đ'],
+  ['Lucky Spin', 'spin', 'lucky-spin-3d.webp', '55.000đ'],
+  ['Merge Town', 'town', 'merge-town-3d.webp', '110.000đ'],
 ]
 
 function virtualGameCards() {
-  return virtualGames.map(([name, art, reward]) => `
+  return virtualGames.map(([name, art, image, reward]) => `
     <article class="gc-virtual-game">
-      <div class="gc-virtual-art gc-art-${art}" aria-hidden="true"><span></span><i></i><b></b></div>
+      <div class="gc-virtual-art gc-art-${art}" data-professional-art="1">
+        <img src="${gameArtUrl(image)}" alt="" width="960" height="540" loading="lazy" decoding="async" draggable="false">
+      </div>
       <div class="gc-virtual-copy">
         <strong>${name}</strong>
         <span>Chơi & kiếm tiền</span>
@@ -115,9 +119,9 @@ function landingMarkup() {
     <section class="gc-public-live-games" id="gc-games">
       <div class="gc-public-section-title"><small>GAME ĐANG HOẠT ĐỘNG</small><h2>Chơi game & kiếm tiền</h2><p>Hai game hiện tại của Gamezcoin; các game khác bên dưới là bản giới thiệu sắp ra mắt.</p></div>
       <div class="gc-live-grid">
-        <article class="gc-live-card"><div class="gc-live-art gc-block-live" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="gc-live-tag">ĐANG CHƠI ĐƯỢC</span><h3>Block Blast</h3><p>Chơi & kiếm tiền</p><b>10 điểm = 1 coin</b><button data-public-auth="signup">Chơi ngay ${arrowIcon}</button></article>
-        <article class="gc-live-card"><div class="gc-live-art"><img src="/orbit-break-logo.jpg" alt="Orbit Break"></div><span class="gc-live-tag">ĐANG CHƠI ĐƯỢC</span><h3>Orbit Break</h3><p>Chơi & kiếm tiền</p><b>10 điểm = 1 coin</b><button data-public-auth="signup">Chơi ngay ${arrowIcon}</button></article>
-        <article class="gc-live-card gc-live-coming"><div class="gc-live-art gc-candy-preview" aria-hidden="true"><span>●</span><span>●</span><span>●</span><span>●</span><span>●</span></div><span class="gc-live-tag">SẮP RA MẮT</span><h3>Candy Merge</h3><p>Game giới thiệu</p><b>Phần thưởng sẽ công bố sau</b><button data-public-auth="signup">Đăng ký để cập nhật ${arrowIcon}</button></article>
+        <article class="gc-live-card"><div class="gc-live-art gc-block-live"><img src="${gameArtUrl('block-blast-3d.webp')}" alt="" width="960" height="540" decoding="async" fetchpriority="high" draggable="false"></div><span class="gc-live-tag">ĐANG CHƠI ĐƯỢC</span><h3>Block Blast</h3><p>Chơi & kiếm tiền</p><b>10 điểm = 1 coin</b><button data-public-auth="signup">Chơi ngay ${arrowIcon}</button></article>
+        <article class="gc-live-card"><div class="gc-live-art"><img src="${gameArtUrl('orbit-break-3d.webp')}" alt="" width="960" height="540" decoding="async" fetchpriority="high" draggable="false"></div><span class="gc-live-tag">ĐANG CHƠI ĐƯỢC</span><h3>Orbit Break</h3><p>Chơi & kiếm tiền</p><b>10 điểm = 1 coin</b><button data-public-auth="signup">Chơi ngay ${arrowIcon}</button></article>
+        <article class="gc-live-card gc-live-coming"><div class="gc-live-art gc-candy-preview"><img src="${gameArtUrl('candy-merge-3d.webp')}" alt="" width="960" height="540" loading="lazy" decoding="async" draggable="false"></div><span class="gc-live-tag">SẮP RA MẮT</span><h3>Candy Merge</h3><p>Game giới thiệu</p><b>Phần thưởng sẽ công bố sau</b><button data-public-auth="signup">Đăng ký để cập nhật ${arrowIcon}</button></article>
       </div>
     </section>
 

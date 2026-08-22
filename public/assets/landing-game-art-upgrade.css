@@ -1,1 +1,215 @@
-.gc-public-virtual-games{margin-top:72px!important}.gc-virtual-grid{margin-top:28px!important;gap:14px!important}.gc-virtual-game{position:relative!important;overflow:hidden!important;border:1px solid rgba(71,119,195,.5)!important;border-radius:20px!important;background:linear-gradient(180deg,#0b1d38,#061427)!important;box-shadow:0 16px 34px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.05)!important;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease!important}.gc-virtual-game:hover{transform:translateY(-3px);border-color:rgba(60,193,255,.66)!important;box-shadow:0 20px 40px rgba(0,0,0,.3),0 0 28px rgba(94,67,255,.13)!important}.gc-virtual-art{height:158px!important;position:relative!important;overflow:hidden!important;background:#071326!important;border-bottom:1px solid rgba(72,111,176,.34)!important}.gc-virtual-art img{display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important;transform:scale(1.01);transition:transform .28s ease,filter .28s ease!important}.gc-virtual-game:hover .gc-virtual-art img{transform:scale(1.045);filter:saturate(1.08) contrast(1.03)}.gc-virtual-art:after{content:""!important;position:absolute!important;inset:0!important;pointer-events:none!important;background:linear-gradient(180deg,rgba(255,255,255,.06),transparent 24%,transparent 72%,rgba(1,7,18,.32))!important}.gc-virtual-copy{padding:13px 14px 16px!important;gap:4px!important}.gc-virtual-copy strong{font-size:15px!important;font-weight:900!important;color:#fff!important;letter-spacing:-.015em!important}.gc-virtual-copy span{font-size:11px!important;color:#a7b9cc!important}.gc-virtual-copy small{margin-top:7px!important;padding-right:38px!important;font-size:10px!important;font-weight:800!important;color:#e5bd54!important;line-height:1.45!important}.gc-virtual-arrow{right:12px!important;bottom:12px!important;width:32px!important;height:32px!important;border-radius:50%!important;border:1px solid rgba(103,132,219,.65)!important;background:linear-gradient(180deg,#142a51,#09172f)!important;color:#c4d3ff!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.07)!important}.gc-live-card{border-color:rgba(62,111,184,.6)!important;box-shadow:0 18px 38px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.04)!important}.gc-live-art{height:205px!important}.gc-live-art img{transition:transform .28s ease,filter .28s ease!important}.gc-live-card:hover .gc-live-art img{transform:scale(1.035);filter:saturate(1.08)}@media(max-width:860px){.gc-virtual-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important}.gc-virtual-art{height:132px!important}.gc-virtual-copy{padding:12px 12px 14px!important}.gc-virtual-copy strong{font-size:14px!important}.gc-virtual-copy span{font-size:11px!important}.gc-virtual-copy small{font-size:10px!important}}@media(max-width:540px){.gc-public-virtual-games{margin-top:56px!important}.gc-virtual-game{border-radius:18px!important}.gc-virtual-art{height:118px!important}.gc-virtual-grid{gap:12px!important}.gc-virtual-copy{min-height:101px!important}.gc-live-art{height:178px!important}}
+.gc-public-virtual-games {
+  margin-top: 72px !important;
+}
+
+.gc-live-grid,
+.gc-virtual-grid {
+  gap: 14px !important;
+}
+
+.gc-virtual-grid {
+  margin-top: 28px !important;
+}
+
+.gc-live-card,
+.gc-virtual-game {
+  position: relative !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(80, 128, 208, 0.5) !important;
+  background: linear-gradient(180deg, #0b1d38 0%, #061427 100%) !important;
+  box-shadow:
+    0 16px 34px rgba(0, 0, 0, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease !important;
+}
+
+.gc-virtual-game {
+  min-width: 0 !important;
+  border-radius: 20px !important;
+}
+
+.gc-live-card:hover,
+.gc-virtual-game:hover {
+  transform: translateY(-3px);
+  border-color: rgba(69, 200, 255, 0.76) !important;
+  box-shadow:
+    0 22px 42px rgba(0, 0, 0, 0.34),
+    0 0 30px rgba(75, 76, 255, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+.gc-live-art,
+.gc-virtual-art {
+  position: relative !important;
+  isolation: isolate !important;
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 16 / 9 !important;
+  overflow: hidden !important;
+  filter: none !important;
+  background:
+    radial-gradient(circle at 50% 25%, rgba(50, 119, 255, 0.32), transparent 58%),
+    #071326 !important;
+}
+
+.gc-virtual-art {
+  border-bottom: 1px solid rgba(83, 128, 204, 0.36) !important;
+}
+
+.gc-live-grid .gc-live-card .gc-live-art img,
+.gc-virtual-art img {
+  position: relative !important;
+  z-index: 1 !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  filter: saturate(1.04) contrast(1.02) !important;
+  transform: scale(1.002);
+  transition: transform 0.32s ease, filter 0.32s ease !important;
+}
+
+.gc-live-card:hover .gc-live-art img,
+.gc-virtual-game:hover .gc-virtual-art img {
+  transform: scale(1.045);
+  filter: saturate(1.1) contrast(1.04) !important;
+}
+
+.gc-live-grid .gc-live-card .gc-live-art::before {
+  content: none !important;
+  display: none !important;
+  clip-path: none !important;
+}
+
+.gc-live-grid .gc-live-card .gc-live-art::after,
+.gc-virtual-art::after {
+  content: "" !important;
+  position: absolute !important;
+  z-index: 2 !important;
+  inset: 0 !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  transform: none !important;
+  filter: none !important;
+  pointer-events: none !important;
+  mix-blend-mode: normal !important;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.1), transparent 22%, transparent 68%, rgba(1, 7, 18, 0.4)),
+    linear-gradient(125deg, rgba(79, 218, 255, 0.08), transparent 38%, rgba(132, 68, 255, 0.08)) !important;
+}
+
+.gc-live-tag {
+  z-index: 4 !important;
+  box-shadow: 0 7px 18px rgba(4, 12, 32, 0.36) !important;
+}
+
+.gc-block-live i,
+.gc-candy-preview span {
+  display: none !important;
+}
+
+.gc-virtual-copy {
+  min-width: 0 !important;
+  padding: 13px 14px 16px !important;
+  gap: 4px !important;
+}
+
+.gc-virtual-copy strong {
+  color: #fff !important;
+  font-size: 15px !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.015em !important;
+}
+
+.gc-virtual-copy span {
+  color: #a7b9cc !important;
+  font-size: 11px !important;
+}
+
+.gc-virtual-copy small {
+  margin-top: 7px !important;
+  padding-right: 38px !important;
+  color: #e7c65e !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  line-height: 1.45 !important;
+}
+
+.gc-virtual-arrow {
+  right: 12px !important;
+  bottom: 12px !important;
+  width: 32px !important;
+  height: 32px !important;
+  border: 1px solid rgba(104, 157, 235, 0.7) !important;
+  border-radius: 50% !important;
+  background: linear-gradient(180deg, #173662, #09182f) !important;
+  color: #d9e7ff !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+@media (max-width: 860px) {
+  .gc-virtual-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+  }
+
+  .gc-virtual-copy {
+    padding: 12px 12px 14px !important;
+  }
+
+  .gc-virtual-copy strong {
+    font-size: 14px !important;
+  }
+}
+
+@media (max-width: 540px) {
+  .gc-public-virtual-games {
+    margin-top: 56px !important;
+  }
+
+  .gc-live-grid,
+  .gc-virtual-grid {
+    gap: 10px !important;
+  }
+
+  .gc-live-card,
+  .gc-virtual-game {
+    border-radius: 16px !important;
+  }
+
+  .gc-virtual-copy {
+    min-height: 98px !important;
+    padding: 11px 11px 13px !important;
+  }
+
+  .gc-virtual-copy strong {
+    font-size: 13px !important;
+  }
+
+  .gc-virtual-copy span,
+  .gc-virtual-copy small {
+    font-size: 9px !important;
+  }
+
+  .gc-virtual-arrow {
+    right: 9px !important;
+    bottom: 11px !important;
+    width: 28px !important;
+    height: 28px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gc-live-card,
+  .gc-virtual-game,
+  .gc-live-art img,
+  .gc-virtual-art img {
+    transition: none !important;
+  }
+}
